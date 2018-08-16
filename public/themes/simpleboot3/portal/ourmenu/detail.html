@@ -1,0 +1,76 @@
+<include file="public@head"/>    
+  </head>
+
+  <body id="page-top">
+    
+    <!-- Nav Section -->
+   <include file="public@nav"/>  
+    
+    <!-- Page Title Header -->
+     <include file="public@header"/>  
+    
+    <!-- Hot Deal Section -->
+    
+   <section id="hotdeal" class="hotdeal" style="background-image: url({:cmf_get_image_url($company.ourmenu_detail_bg.content)});"><!-- Section id-->
+        <div class="container">
+        	<include file="public@menu" />
+            <div class="row">
+            
+            	<div class="col-md-6 col-sm-12 left-side about-img">
+                     <figure><img src="{:cmf_get_image_url($info.pic)}" class="img-responsive" alt="Picture"></figure>
+                </div>
+                <div class="col-md-1 col-sm-12 col-md-pull-1 center-side">
+                	<div class="best-price">
+                    	<p class="tex">价格</p>
+                        <p class="amount"><eq name="info.price" value="0">详谈<else/>￥{$info.price}</eq></p>
+                    </div>
+                </div>
+            	<div class="col-md-5 col-sm-12 right-side">
+                	<div class="section-title inside-page">
+                     
+                        <h4>{$info.name}</h4>
+                          <p>{$info.dsc}</p>
+                    </div>
+                    <div class="hot-deal-item">
+                    	<p class="item-title">作用</p>
+                        <p>{$info.effect}</p>
+                    </div>
+                    <div class="hot-deal-item">
+                    	<p class="item-title">外观</p>
+                        <p>{$info.appearance}</p>
+                    </div>
+                    <div class="hot-deal-item">
+                    	<p class="item-title">口感</p>
+                        <p>{$info.taste}</p>
+                    </div>
+                    <div class="hot-deal-item">
+                    	<p class="item-title">包装大小</p>
+                        <p>{$info.much}{$info.unit}/{$info.pack}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+
+    <!-- Menu List Section -->
+    
+    <section id="menulist1" class="menulist"><!-- Section id-->
+        <div class="container">
+            <div class="row">
+            	<div class="detail"> 
+                  <div class="detail_con"> 
+                       {$info.content}  
+                   </div>
+                </div>
+            </div>
+        </div>
+    </section>   
+
+
+    <!-- Footer Section -->
+   <include file="public@footer" />
+    
+  </body>
+</html>
+

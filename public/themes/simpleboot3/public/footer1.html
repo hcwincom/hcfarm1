@@ -1,0 +1,85 @@
+<footer id="footer1">
+	<div class="container">
+		<div class="col-md-3 col-sm-4 col-xs-12 footer1_01">
+			<p>
+				<i class="icons"><img
+					src="__TMPL__/public/assets/images/small-phone.png" alt="">{$company.tel1.content}</i> 
+			</p>
+			<ul>
+				<li>{$company.address.title}：{$company.address.content}</li>
+			  
+				 <li>{$company.email.title}：{$company.email.content}</li>
+
+			</ul>
+		</div>
+		<div class="col-md-7 col-sm-5 col-xs-12 footer1_02">
+			<a class="search" href="http://www.wincomtech.cn/" target="_blank">
+				<i class="icons"><img
+					src="__TMPL__/public/assets/images/links.png" alt=""></i> <input
+				type="text" placeholder="华创在线网络科技（北京）有限公司" disabled='disabled'>
+
+			</a>
+			<p>{$company.copyright.title} {$company.copyright.content}</p>
+			<p>{$company.tech.title} : {$company.tech.content}</p>
+		</div>
+		<div class="col-md-2 col-sm-3 col-xs-12 footer1_03">
+			<div class="erweima">
+				<img src="{:cmf_get_image_url($company.wx_pic.content)}" alt="">
+			</div>
+			<p>{$company.wx_pic.title}</p>
+		</div>
+	</div>
+	<div class="container footer_friendly_link">
+		<span>友情链接：</span>
+
+		<div class="links">
+			<links> <a href="{$vo.url|default=''}"
+				target="{$vo.target|default=''}">{$vo.name}</a> </links>
+
+		</div>
+	</div>
+</footer>
+
+
+
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="__TMPL__/public/assets/js/ie10-viewport-bug-workaround.js"></script>
+
+<!-- jQuery -->
+<script src="__TMPL__/public/assets/vendor/jquery/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script
+	src="__TMPL__/public/assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+
+<!-- Bootstrap Datepicker- JavaScript -->
+<script
+	src="__TMPL__/public/assets/vendor/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
+
+<!-- Plugin JavaScript -->
+<script
+	src="__TMPL__/public/assets/vendor/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+<script
+	src="__TMPL__/public/assets/vendor/scrollreveal/scrollreveal.min.js"></script>
+
+<!-- custom JavaScript -->
+<script src="__TMPL__/public/assets/js/theme.js"></script>
+
+<!-- custom JavaScript -->
+<script src="__TMPL__/public/assets/js/custom.js"></script>
+
+<!-- prettyPhoto -->
+<script
+	src="__TMPL__/public/assets/vendor/prettyPhoto/jquery.prettyPhoto.js"></script>
+<script>
+    $('.zzcontact').submit(function(){
+    	var name=$('#InputName').val();
+    	var email=$('#InputEmail').val();
+    	var content=$('#InputMessage').val();
+    	var tel=$('#InputPhone').val(); 
+    	$.post("{:url('portal/index/send')}",{'name':name,'email':email,'content':content,'tel':tel},function(data){
+    		alert(data.msg);
+    	},'json');
+    	return false;
+    });
+    </script>

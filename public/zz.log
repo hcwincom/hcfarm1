@@ -1,0 +1,45 @@
+start
+start
+2018-01-12 15:22:02管理员1使用了Sql语句
+ds
+影响了0行数据
+2018-01-12 15:22:11管理员1使用了Sql语句
+select * from ff
+影响了0行数据
+2018-01-12 15:22:17管理员1使用了Sql语句
+select * from cmf_user
+影响了2行数据
+2018-01-16 10:31:11管理员1使用了Sql语句
+ALTER TABLE `cmf_news` ADD `keywords` VARCHAR( 50 ) NOT NULL COMMENT '关键字'
+影响了2行数据
+2018-01-16 10:31:31管理员1使用了Sql语句
+ALTER TABLE `cmf_service` ADD `keywords` VARCHAR( 50 ) NOT NULL COMMENT '关键字'
+影响了4行数据
+2018-01-16 10:33:39管理员1使用了Sql语句
+update cmf_goods set keywords=name
+影响了10行数据
+2018-01-16 10:33:46管理员1使用了Sql语句
+update cmf_news set keywords=name
+影响了2行数据
+2018-01-16 10:33:54管理员1使用了Sql语句
+update cmf_service set keywords=name
+影响了4行数据
+情况看看
+company1cates1
+情况看看
+company1cates1
+2018-01-27 17:29:08管理员1使用了Sql语句
+update cmf_goods set price=0;
+影响了12行数据
+2018-08-14 14:08:21管理员1使用了Sql语句
+update set cmf_voucher pid=1
+影响了0行数据
+2018-08-14 14:08:36管理员1使用了Sql语句
+update  cmf_voucher set pid=1
+影响了3500行数据
+2018-08-16 15:38:06管理员1使用了Sql语句
+update cmf_voucher set name=&quot;阳澄湖大闸蟹&quot;
+影响了0行数据
+2018-08-16 15:39:13管理员1使用了Sql语句
+update cmf_voucher set name=&quot;阳澄湖大闸蟹&quot;
+影响了0行数据

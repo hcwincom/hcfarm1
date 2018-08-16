@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="renderer" content="webkit|ie-stand|ie-comp">
+		<meta name="keywords" content=""/>
+		<meta name="description" content=""/>
+		<meta name="baidu-site-verification" content="xNRtrmerYv" /> 
+		<title>券卡提货</title>
+		<link rel="stylesheet" type="text/css" href="__TMPL__/public/thj/css/style.css"/>
+	</head>
+	<body>
+		<div id="header"></div>
+		<div class="logo2">
+			<img src="__TMPL__/public/thj/images/card_1.jpg" alt="步骤" />
+		</div> 
+		<div class="main">
+			<div class="goodsGrid">
+				<form action="" method="post">
+					<h1 class="bigtit">券卡验证</h1>
+					<div class="pick_goods">
+						<div class="fl cardl">
+							<img src="__TMPL__/public/thj/images/card.jpg" alt="" />
+						</div>
+						<div class="fr cardr">
+							<div class="middles_item">
+								<p>提货编码：</p>
+								<p><input type="text" id="code" class="txtpt" name="number" maxlength="20" placeholder="请输入提货编码" required/></p>
+							</div>
+							<p class="redColor indyz"></p>
+							<div class="middles_item">
+								<p>提货密码：</p>
+								<p><input type="text" id="password" class="txtpt" name="password" placeholder="请输入密码" required/></p>
+							</div>
+							<p class="redColor indyz1"></p>
+							<div class="middles_item">
+								<p>验证码：</p>
+								<p class="yzm">
+									<input type="text" id="checkcode" class="txtpt" name="codeNum" placeholder="输入验证码" required/>
+									<img src="/captcha/new.html?height=32&amp;width=150&amp;font_size=18" alt="看不清楚，请点击" class="codeImg" onclick="this.src='/captcha/new.html?height=32&amp;width=150&amp;font_size=18&amp;time='+Math.random();"/>
+									 
+								</p>	
+							</div>
+							<p class="redColor indyz2"></p>
+							<div class="middles_item">
+								<p>
+									<input type="button" id="submit" class="searbtn searclick" onclick="return pickGoods();" value="申请提货"/>
+								</p>
+							</div>	
+						</div>
+								
+					</div>
+				</form>		
+			<!--<div class="pick_main">
+					<span class="borderImg"></span>
+					<ul class="titleUl">
+						<li>券卡编码</li>
+						<li>商品信息</li>
+						<li>数量</li>
+					</ul>
+				</div>
+				<div class="pick_null">
+					<p>暂无券卡信息</p>
+				</div>
+				<div class="pick_detail" style="display: none;">
+					<ul class="detailUl">
+						<li>
+							<input type="checkbox" name="checked" id="checked" value="" />
+							<span>1111111111111111</span>
+						</li>
+						<li>
+							<p>dddddddddddddddddd</p>
+						</li>
+							<li>ssss</li>
+					</ul>
+				</div>
+						
+				<div class="totalcheck" id="total">
+					共验证&nbsp;<b id="totalNum">0</b>&nbsp;张券卡</span>
+					<input type="hidden" name="totalcheck" id="" value="" />
+					<input type="button" name="submit" value="提交" class="btn orgbtn"/>
+				</div>-->
+			
+			</div>
+			<!--信息验证-->
+			<div class="goodsGrid">
+				<h1 class="bigtit">信息验证</h1>
+				<div class="pick_info">	
+					<form action="" method="post">
+						<div class="personInfo">
+							<div class="infogrid">
+								<span class="label">
+									<span class="redcolor">*</span>
+									联系人：
+								</span>
+								<div class="fl">
+									<input type="text" class="infotxt" name="myname" id="myname" value="" maxlength="10" onkeyup="value=value.replace(/\s/g,'')" placeholder="名字"/>
+									<!--默认不显示 失去焦点时 显示下面的标签 begin-->
+									<span class="error-msg" id="showmyname">
+										<img src="__TMPL__/public/thj/images/wr.png" alt="" />
+										请填写联系人姓名
+									</span>
+									<!--默认不显示 失去焦点时 显示下面的标签 end-->
+								</div>
+							</div>
+							<div class="infogrid">
+								<span class="label">
+									<span class="redcolor">*</span>
+									联系电话：
+								</span>
+								<div class="fl">
+									<input type="text" class="infotxt" name="myphone" id="myphone" value="" maxlength="15" onkeyup="value=value.replace(/\s/g,'')" placeholder="11位手机号码"/> 
+									<!--默认不显示 失去焦点时 显示下面的标签 begin-->
+									<span class="error-msg" id="showmyphone">
+										<img src="__TMPL__/public/thj/images/wr.png" alt="" />
+										请填写联系电话
+									</span>
+									<!--默认不显示 失去焦点时 显示下面的标签 end-->
+								</div>
+							</div>
+							<div class="infogrid">
+								<span class="label">
+									<span class="redcolor">*</span>
+									所在地区：
+								</span>
+								<div class="fl">
+									
+									
+									
+									
+									
+									
+									
+									<!--默认不显示 失去焦点时 显示下面的标签 begin-->
+									<span class="error-msg" id="showmyphone">
+										<img src="__TMPL__/public/thj/images/wr.png" alt="" />
+										请选择所在地区
+									</span>
+									<!--默认不显示 失去焦点时 显示下面的标签 end-->
+								</div>
+							</div>
+							<div class="infogrid">
+								<span class="label">
+									<span class="redcolor">*</span>
+									详细地址：
+								</span>
+								<div class="fl">
+									<textarea name="myaddr" class="infotxt" maxlength="100" placeholder="街道门牌信息" onkeyup="value=value.replace(/\s/g,'')"></textarea>
+									<!--默认不显示 失去焦点时 显示下面的标签 begin-->
+									<span class="error-msg" id="showmyphone">
+										<img src="__TMPL__/public/thj/images/wr.png" alt="" />
+										请填写详细地址
+									</span>
+									<!--默认不显示 失去焦点时 显示下面的标签 end-->
+								</div>
+							</div>
+							<div class="infogrid">
+								<span class="label">&nbsp;</span>
+								<div class="fl">
+									<input type="button" name="mybtn" class="searbtn searclick" id="mybtn" value="提交" />
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+				<!---->
+			</div>
+			
+			
+			
+			
+			
+		</div>
+		<div class="clear"></div>
+			
+		<div id="footer"></div>
+		
+		<!--点击弹出div-->
+		<!--<div id="showDiv" class="bomBox" style="display: none;">
+			<div class="bomBoxc bigdh">
+				<div class="closeBox"></div>
+				<div class="card">
+					<img src="__TMPL__/public/thj/images/card.jpg" alt="" />
+					<p>1：券卡验证：输入提货编码，提货密码，点击【申请提货】</p>
+					<p>2：点击验证后表格上的【提交】按钮</p>
+					<p>3：填写收货人信息，【提交订单】</p>
+					<p>4：自动跳转到提货成功页，提货成功，耐心等待卖家发货！</p>
+				</div>
+			</div>
+		</div>-->	
+		<script type="text/javascript" src="__TMPL__/public/thj/js/jquery-1.12.1.min.js"></script>
+		<script type="text/javascript" src="__TMPL__/public/thj/js/index.js"></script>
+		<script type="text/javascript" src="__TMPL__/public/thj/js/form.js"></script>
+		<script type="text/javascript">
+			$("#navdiv>.navul").children("li").children("a").removeClass("active");
+				//控制导航条的选中样式
+			$("#navdiv>.navul").children("li:eq(1)").children("a").addClass("active");
+		</script>
+	</body>
+</html>

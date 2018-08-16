@@ -1,0 +1,74 @@
+<include file="public@header" />
+</head>
+<body>
+	<div class="wrap">
+		<ul class="nav nav-tabs">
+			<li><a href="{:url('index')}">所有{$flag}</a></li>
+			<li class="active"><a href="{:url('add')}">添加{$flag}</a></li>
+		</ul>
+		<form method="post" class="form-horizontal js-ajax-form margin-top-20" action="{:url('addPost')}">
+			<div class="form-group">
+				<label class="col-sm-2 control-label">姓名<span class="form-required">*</span></label>
+				<div class="col-md-6 col-sm-10">
+					<input type="text" class="form-control"  name="name" required>
+				</div>
+			</div>
+		 
+			<div class="form-group">
+				<label for="input-image" class="col-sm-2 control-label">头像<span class="form-required">*</span></label>
+				<div class="col-md-6 col-sm-10">
+					 <img id="old-pic" src="" style="width:100px;height:100px"/>
+				<a href="javascript:uploadOneImage('图片上传','#js-link-image');newPic();">上传新头像</a>
+				<input type="hidden" name="pic" id="js-link-image" required/> 
+				</div>
+			</div>
+			  <div class="form-group">
+				<label class="col-sm-2 control-label">职位 </label>
+				<div class="col-md-6 col-sm-10">
+					<input type="text" class="form-control"  name="job"  >
+				</div>
+			</div>
+			 <div class="form-group">
+				<label class="col-sm-2 control-label">是否前台显示<span class="form-required">*</span></label>
+				<div class="col-md-6 col-sm-10">
+					<input type="radio" name="is_other" value="0" checked>显示
+					<input type="radio" name="is_other" value="1">不显示
+				</div>
+			</div>
+			 <div class="form-group">
+				<label class="col-sm-2 control-label">简介<span class="form-required">*</span></label>
+				<div class="col-md-6 col-sm-10">
+					<input type="text" class="form-control" name="dsc" value="" required>
+				</div>
+			</div>
+			 <div class="form-group">
+				<label class="col-sm-2 control-label">排序 </label>
+				<div class="col-md-6 col-sm-10">
+					<input type="text" class="form-control" name="sort" value="5">
+				</div>
+			</div>
+			 
+			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-10">
+					<button type="submit" class="btn btn-primary js-ajax-submit">{:lang('ADD')}</button>
+					<a class="btn btn-default" href="javascript:history.back(-1);">{:lang('BACK')}</a>
+				</div>
+			</div>
+		</form>
+	</div>
+	<script src="__STATIC__/js/admin.js"></script>
+<script>
+	 
+function newPic(){
+	var oldPic=$.trim($('#old-pic').attr('src'));
+	var input=$('#js-link-image').val();
+	var newPic="{:cmf_get_image_url('')}"+input; 
+	if(newPic!=''&&newPic!=oldPic){
+		$('#old-pic').attr('src',newPic);
+	}
+	setTimeout("newPic()",1000);
+}
+ 
+</script>
+</body>
+</html>

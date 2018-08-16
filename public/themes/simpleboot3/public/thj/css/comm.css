@@ -1,0 +1,366 @@
+@charset "utf-8";
+* {
+    margin: 0;
+    padding: 0;
+    word-break: break-all;
+    word-wrap: break-word;
+}
+/*轮播*/
+.slidesNav{
+	width: 100%;
+    height: 400px;
+    margin: 0 auto;
+    background: #000;
+    position: relative;
+}
+.slides{
+	width: 100%;
+	height: 400px;
+}
+.slides img{
+	width: 100%;
+	height: 400px;
+	position: absolute;
+	top:0;
+	left: 0;
+}
+
+.slidesNum{
+	position: absolute;
+    bottom: 10px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    z-index: 6;
+    padding: 0 10px;
+    padding-top: 3px;
+    background: rgba(255,255,255,0.5);
+    box-shadow: 0 0 10px #ccc inset;
+    border-radius: 10px;
+    width: 7%;
+    height: 14px;
+   	display: flex;
+   	display: -webkit-flex;
+}
+.slidesNum li{
+    margin: 0 auto;
+    background: url(../images/pagination_1.png);
+    width: 10px;
+    height: 0;
+    padding-top: 10px;
+    overflow: hidden;
+}
+.slidesNum li.current{
+    background-position: 0 -10px;
+ }
+/* 其他公共样式 */
+a {
+    color: #333;
+    text-decoration: none;
+}
+.bgf{background: #fff;}
+.w100b{width: 100%;}
+.pt10{padding-top: 0.5rem;}
+.mt10{margin-top: 0.4rem;}
+.dstab{
+    display: table;
+}
+.ptop{padding-top: 1rem;}
+.ptop16{padding: 1rem 1%;}
+.mb10{margin-bottom: 0.3rem;}
+.marbottom{margin-bottom: 7.5rem;}
+.mt03{margin-top: 0.15rem;}
+.padd02{padding: 0.2rem;}
+.pt03{padding-top: 0.3rem;}
+.oragebg{
+    background-color: #fa6d01;
+}
+.violetbg{
+    background-color: #854cfd;
+}
+.redbg{
+    background-color: #fa2a5e;
+}
+.bluebg{
+    background-color: #2bbbfa;
+}
+.greenbg{
+    background-color: #4ec467;
+}
+.graybg{
+    background-color: #b3b3b3;
+}
+.m10{margin: 10px;}
+.fr{float: right;}
+.fl{
+    float: left;
+}
+.redColor{
+    color: #ef0707;
+    font-weight: 300;
+}
+.pt90{padding-top: 1.8rem;}
+
+.ind_nav b, .nava {
+    color: #d91422;
+}
+.thind{text-indent: 0.6rem;}
+input[type="text"], input[type="password"] {
+    -webkit-appearance: none;
+    border: 0;
+    border-radius: 0;
+    font-size: .4rem;
+    font-family: "Microsoft YaHei";
+    background: none;
+}
+select {
+    height: auto;
+    margin-top: 1px;
+    border: none;
+    border: 0;
+    background-color: #fff;
+    margin-bottom: 5px;
+    outline: none;
+}
+.clear{
+    clear: both;
+}
+input::-ms-input-placeholder{
+    font-size: 0.3rem;
+}
+input::-webkit-input-placeholder{
+    font-size: 0.3rem;
+}
+.mb60 {
+    margin-bottom: 60px;
+}
+.pb150 {
+    padding-bottom: 150px;
+}
+.pt50 {
+    padding-top: 50px;
+}
+.menudiv_p{padding: 0 0.3rem;}
+.lrul li:nth-child(n){float: left;}
+.lrul li:nth-child(2n){float: right;}
+.mlr10{margin: 0 0.3rem;}
+
+/*客户服务二级菜单*/
+.animatenav{
+	transform: translateX(50%);
+	-webkit-transform: translateX(50%); 
+	transition: 1s transform ease-in; 
+	-webkit-transition: 1s transform ease-in;
+}
+
+.yzdiv dl input[type="text"], .yzdiv dl input[type="password"], 
+.yzdiv dl input[type="file"], .yzdiv dl select {
+    border: 0;
+    height: 0.5rem;
+    line-height: 0.5rem;
+    font-size: .3rem;
+    width: 100%;
+}
+
+
+
+
+
+
+
+    @font-face {
+    font-family: 'icomoon';
+    src:url('fonts/icomoon.eot?4c8i2g');
+    src:url('fonts/icomoon.eot?4c8i2g#iefix') format('embedded-opentype'),
+        url('fonts/icomoon.ttf?4c8i2g') format('truetype'),
+        url('fonts/icomoon.woff?4c8i2g') format('woff'),
+        url('fonts/icomoon.svg?4c8i2g#icomoon') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+[class^="icon_"], [class*="icon_"] {
+    font-family: 'icomoon' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.icon_shop:before {
+    content: "\e902";
+}
+.icon_search:before{
+    content: "\e986";
+}
+.icon_addr:before{
+    content: "\e948";
+}
+.icon_sound:before{
+    content: "\ea27";
+}
+.icon_phone::before{
+    content: "\e942";
+}
+.icon_flickr::before{
+    content: "\eaa3";
+}
+.icon_sound2::before{
+    content: "\e900"
+}
+.icon_home::before{
+    content: "\e909";
+}
+em, i, del {
+    font-style: normal;
+}
+/*分页样式*/
+.page {
+    margin-bottom: 10px;
+    float: right;
+    width: 100%;
+    margin: 20px 0;
+}
+
+.page input[type=text], input[type=password] {
+    background: transparent;
+    border: 1px solid #ddd;
+    height: 23px;
+    line-height: 23px;
+}
+.page input[type=text], textarea, input[type=password] {
+    text-indent: 10px;
+}
+.page .p-wrap {
+    float: right;
+}
+.page .p-num {
+    float: left;
+}
+.page .p-num .pn-next.disabled, .page .p-num .pn-prev.disabled {
+    background: 0 0;
+    background: #fff;
+    cursor: default;
+}
+.page .p-num a {
+    color: #333;
+    border: 1px solid #ddd;
+    background-color: #f7f7f7;
+    background-repeat: repeat-x;
+    background-image: -moz-linear-gradient(top,#f7f7f7,#f2f2f2);
+    background-image: -webkit-linear-gradient(top,#f7f7f7,#f2f2f2);
+    background-image: -o-linear-gradient(top,#f7f7f7,#f2f2f2);
+    background-image: linear-gradient(top,#f7f7f7,#f2f2f2);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f7f7f7', endColorstr='#f2f2f2', GradientType=0);
+}
+.page .p-num a, .page .p-num b {
+    float: left;
+    height: 36px;
+    line-height: 36px;
+    padding: 0 14px;
+    margin-right: 5px;
+    font-size: 14px;
+}
+.page .p-num .pn-next.disabled em, .page .p-num .pn-next.disabled i, 
+.page .p-num .pn-prev.disabled em, .page .p-num .pn-prev.disabled i {
+    color: #ccc;
+}
+.page .p-num .pn-next i, .page .p-num .pn-prev i {
+    vertical-align: middle;
+    font-style: normal;
+    font-size: 16px;
+    font-family: "\5b8b\4f53";
+    padding: 0 5px;
+    color: #aaa;
+}
+.page .p-num .pn-prev i {
+    padding-left: 0;
+}
+.page .p-num .pn-next em, .page .p-num .pn-prev em {
+    vertical-align: middle;
+}
+.page .p-num a.curr {
+    border: 0 none;
+    padding: 1px 15px;
+    background: 0 0;
+    filter: none;
+    color: #e4393c;
+    cursor: default;
+}
+.page .p-skip {
+    float: left;
+    margin-left: 20px;
+}
+.page .p-skip em {
+    float: left;
+    line-height: 38px;
+    font-size: 14px;
+}
+em, i, del {
+    font-style: normal;
+}
+.page .p-skip .input-txt {
+    float: left;
+    width: 30px;
+    height: 30px;
+    margin: 0 3px;
+    line-height: 30px;
+    font-size: 14px;
+}
+.page .p-skip .btn {
+    float: left;
+    height: 27px;
+    margin-left: 10px;
+    font-size: 14px;
+    line-height: 27px;
+}
+.btn-default {
+    border: 1px solid #DDD;
+    padding: 4px 13px 5px;
+    color: #666;
+    background-color: #f7f7f7;
+    background-repeat: repeat-x;
+    background-image: -moz-linear-gradient(top,#f7f7f7,#f2f2f2);
+    background-image: -webkit-linear-gradient(top,#f7f7f7,#f2f2f2);
+    background-image: -o-linear-gradient(top,#f7f7f7,#f2f2f2);
+    background-image: linear-gradient(top,#f7f7f7,#f2f2f2);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f7f7f7', endColorstr='#f2f2f2', GradientType=0);
+}
+i
+.btn {
+    display: inline-block;
+    line-height: 14px;
+    height: 14px;
+    border-radius: 2px;
+    background: #F7F7F7;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+
+
+
+
+
+@media screen and (max-width:1410px){   
+	.slidesNum{width: 10%;}
+}
+
+ @media screen and (max-width:750px){
+     .slidesNav{height: 200px;}
+     .slides{height: 200px;}
+     .slides img{height: 200px;}
+    .slidesNum{width: 15%;}
+ }
+
+  @media screen and (max-width:400px){
+     .slidesNav{height: 180px;}
+     .slides{height: 180px;}
+     .slides img{height: 180px;}
+ }

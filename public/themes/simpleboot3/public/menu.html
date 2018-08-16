@@ -1,0 +1,7 @@
+<!-- 面包屑导航 -->
+            <ul class="brash_nav">
+                <span><a href="{:url('portal/index/index')}">首页</a>：</span>
+                <li class=""><a href="{:url('index')}">{$company[$html_flag]['title']}</a></li>
+                <li class=""><a href="{:url('index',['cid'=>$info['cid']])}">{$info['cname']}</a></li>
+                <li class="active"><a href="javascript:void(0);">{$info['name']}</a></li>
+            </ul>

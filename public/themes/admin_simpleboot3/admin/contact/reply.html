@@ -1,0 +1,45 @@
+<include file="public@header" />
+</head>
+<body>
+	<div class="wrap">
+		<form method="post" class="form-horizontal js-ajax-form" action="{:url('reply_post')}">
+			<div class="form-group">
+				<label for="input-to" class="col-sm-2 control-label"><span class="form-required">*</span>收件箱</label>
+				<div class="col-md-6 col-sm-10">
+					<input type="text" class="form-control" id="input-to" name="to" value="{$info.email}">
+				</div>
+			</div>
+            <div class="form-group">
+                <label for="input-subject" class="col-sm-2 control-label"><span class="form-required">*</span>标题</label>
+                <div class="col-md-6 col-sm-10">
+                    <input type="text" class="form-control" id="input-subject" name="subject" value="{$zztitle}回复">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="input-content" class="col-sm-2 control-label"><span class="form-required">*</span>内容(不可上传文件或图片)</label>
+                <div class="col-md-6 col-sm-10">
+                  <script type="text/plain" id="content" name="content">尊敬的客户{$info.name}:</script>
+                    
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                <input type="hidden" name="id" value="{$info.id}"/>
+                    <button type="submit" class="btn btn-primary js-ajax-submit">发送</button>
+                </div>
+            </div>
+		</form>
+	</div>
+	<script src="__STATIC__/js/admin.js"></script>
+	<script type="text/javascript">
+    //编辑器路径定义
+    var editorURL = GV.WEB_ROOT;
+</script>
+<script type="text/javascript" src="__STATIC__/js/ueditor/ueditor.config.js"></script>
+<script type="text/javascript" src="__STATIC__/js/ueditor/ueditor.all.min.js"></script>
+<script type="text/javascript">
+    var editorcontent = new baidu.editor.ui.Editor();
+    editorcontent.render('content');
+</script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+
+
+
+<form class="zzcontact" id="contact" name="contact">
+	<div class="form-group col-md-6">
+		<input type="text" class="form-control" name="InputName" id="InputName" placeholder="您的名字" required="required"> 
+			<b class="error_tip" style="display: none;">请填写姓名最多不能超过20字</b>
+	</div>
+	<div class="form-group col-md-6">
+		<input type="text" class="form-control" name="InputPhone" id="InputPhone" placeholder="您的手机号" required="required"> 
+			<b class="error_tip" style="display: none;">您的手机格式不对</b>
+	</div>
+	<div class="form-group col-md-12">
+		<input type="text" class="form-control" name="InputEmail" id="InputEmail" placeholder="您的邮箱" required="required">  
+		<b class="error_tip" style="display: none;">请正确填写邮箱</b>
+	</div>
+	<div class="form-group col-md-12">
+		<textarea class="form-control" name="InputMessage" id="InputMessage" rows="4" placeholder="留言内容" required="required"></textarea>
+		<b class="error_tip" style="display: none;">请填写留言内容最多不能超过200字</b>
+	</div>
+	  <button name="submit" type="submit" class="btn btn-gold  btn-define" onClick="return proving(this.form);">发送信息</button>
+	 
+
+</form>
+
+

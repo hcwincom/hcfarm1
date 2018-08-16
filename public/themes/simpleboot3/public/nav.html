@@ -1,0 +1,83 @@
+ <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+               <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only"></span> 目录 <i class="fa fa-bars"></i>
+                </button>
+                
+                <!-- Logo Here -->
+                 <a class="navbar-brand page-scroll" href="{:url('portal/index/index')}">
+                 	<p><img src="{:cmf_get_image_url($company.logo.content)}" alt="">{$company.title.content}</p>
+                 </a>
+               
+            </div>            
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                	<li class="<eq name='html_flag' value='index'>active</eq>">
+                        <a href="{:url('portal/index/index')}">{$company.index.title}</a>
+                    </li>
+                    <li class="<eq name='html_flag' value='about'>active</eq>">
+                        <a href="{:url('portal/about/index')}">{$company.about.title}</a>
+                    </li>
+                   <li  class="dropdown <eq name='html_flag' value='ourmenu'>active</eq>">
+                        <a href="javascript:void(0);" class="dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown">
+                         {$company.ourmenu.title}
+                            <span class="caret"></span>
+                       </a>
+                        <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                        <foreach name="cates.goods" item="vo">
+                            <li role="presentation" >
+                                <a role="menuitem" tabindex="-1" href="{:url('portal/ourmenu/index',['cid'=>$vo['id']])}">{$vo.name}</a>
+                            </li> 
+                         </foreach>
+                           
+                        </ul>
+                    </li>
+                    <li class="dropdown <eq name='html_flag' value='news'>active</eq>">
+                     <a href="javascript:void(0);" class="dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown">
+                        {$company.news.title}
+                            <span class="caret"></span>
+                       </a>
+                        
+                        <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                        <foreach name="cates.news" item="vo">
+                            <li role="presentation" >
+                                <a role="menuitem" tabindex="-1" href="{:url('portal/news/index',['cid'=>$vo['id']])}">{$vo.name}</a>
+                            </li> 
+                         </foreach> 
+                        </ul>
+                    </li>
+                    <li class="dropdown <eq name='html_flag' value='service'>active</eq>">
+                     <a href="javascript:void(0);" class="dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown">
+                        {$company.service.title}
+                            <span class="caret"></span>
+                       </a>
+                       
+                        <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                        <foreach name="cates.service" item="vo">
+                            <li role="presentation" >
+                                <a role="menuitem" tabindex="-1" href="{:url('portal/service/index',['cid'=>$vo['id']])}">{$vo.name}</a>
+                            </li> 
+                         </foreach> 
+                        </ul>
+                    </li>
+                  <notempty name="company.gallery.title">
+                    <li class="<eq name='html_flag' value='gallery'>active</eq>">
+                        <a href="{:url('portal/gallery/index')}">{$company.gallery.title}</a>
+                    </li>
+                  </notempty>
+                   <li class=" ">
+                        <a href="{:url('portal/thj/th')}">在线提货</a>
+                    </li>
+                    <li class="<eq name='html_flag' value='contact'>active</eq>">
+                        <a href="{:url('portal/contact/index')}">{$company.contact.title}</a>
+                    </li>
+                </ul>
+            </div>
+            
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>

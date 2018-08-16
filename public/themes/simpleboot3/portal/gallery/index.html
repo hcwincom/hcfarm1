@@ -1,0 +1,49 @@
+﻿<include file="public@head"/>    
+  </head>
+
+  <body id="page-top">
+    
+    <!-- Nav Section -->
+   <include file="public@nav"/>  
+    
+    <!-- Page Title Header -->
+     <include file="public@header"/>  
+    <!-- Gallery page Section -->
+    
+    <section id="gallery" class="gallery"><!-- Section id-->
+        <div class="container">
+            <div class="row no-gutter popup-gallery">
+            <foreach name="list" item="vo">
+                <div class="col-lg-4 col-sm-4">
+                    <a href="{:cmf_get_image_url($vo.pic0)}" class="gallery-box" rel="alternate"><!-- full image -->
+                        <img src="{:cmf_get_image_url($vo.pic)}" class="img-responsive" alt=""><!-- thumb image -->
+                        
+                        <div class="gallery-box-caption"><!-- caption here -->
+                            <div class="gallery-box-caption-content">
+                                <div class="project-name fs-18">
+                                {$vo.name}
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+             </foreach> 
+               
+              
+            </div>
+        </div>
+         <div class="container container-nav">
+             <nav aria-label="Page navigation ">
+              <ul class="pagination pagination-lg">
+                {$page}
+              </ul>
+            </nav>
+         </div>
+    </section>
+    
+    <!-- Footer Section -->
+    
+ <include file="public@footer"/>  
+  </body>
+</html>
+

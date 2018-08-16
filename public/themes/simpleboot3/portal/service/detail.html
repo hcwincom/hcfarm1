@@ -1,0 +1,53 @@
+<include file="public@head"/>    
+  </head>
+
+  <body id="page-top">
+    
+    <!-- Nav Section -->
+   <include file="public@nav"/>  
+    
+    <!-- Page Title Header -->
+     <include file="public@header"/>  
+    
+    <!-- Our Services Section -->
+    
+    <section id="services1" class="services"><!-- Section id-->
+        <div class="container">
+        <include file="public@menu" />
+            <div class="row">
+                <div class="detail">
+                    <h3 class="detail_tit">{$info.name}</h3>
+                    <ul class="detail_title">
+                        <li class="time">时间：<i>{$info.insert_time|date='Y-m-d H:i',###}</i></li>
+                        <li class="page_view">浏览：<i>{$info.browse}</i></li>
+                        <li>
+                            <div class="bdsharebuttonbox"  style="display:inline-block">
+                                <a href="#" class="bds_more" data-cmd="more"></a>
+                                <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+                                <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+                                <a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a>
+                                <a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a>
+                                <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+                            </div>
+                            <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{},"image":{"viewList":["qzone","tsina","tqq","renren","weixin"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                            </script>
+                        </li>
+                    </ul>   
+                    <div class="detail_con">
+                        
+                        <p>{$info.dsc}</p>
+                        {$info.content}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+    
+
+    <!-- Footer Section -->
+    <include file="public@footer"/>
+    
+  </body>
+</html>
+

@@ -1,0 +1,206 @@
+﻿<include file="public@head"/>    
+  </head>
+
+  <body id="page-top">
+    
+    <!-- Nav Section -->
+   <include file="public@nav"/>  
+    
+    
+    <!-- Full Page Image Background Carousel Header -->
+    <header id="myCarousel" class="carousel slide carousel-fade header">
+    
+        <!-- Wrapper for Slides -->
+        <div class="carousel-inner">
+        <foreach name="banners" item="vo" k="key">
+            <div class="item <eq name='key' value='0'>active</eq>">
+                <!-- Set the first background image using inline CSS below. -->
+                <div class="fill" style="background-image:url({:cmf_get_image_url($vo.pic)});"> 
+                	<a href="{$vo.link}" target="_blank"></a> 
+               	</div>
+            <!--  <div class="carousel-caption">
+                    <img src="__TMPL__/public/assets/images/slide-wave.png" class="img-responsive" alt="Slide">
+                  
+                    <h2>{$vo.title1}</h2> 
+                    <h3>{$vo.title2}</h3>
+                    
+                </div>  -->
+            </div>
+        </foreach>
+            
+        </div>
+        
+    </header>	
+    
+    
+    <!-- About Section -->
+    
+    <section id="about" class="about"><!-- Section id-->
+        <div class="container">
+              <div class="row row_tit" style="background-image: url({:cmf_get_image_url($company.bg_about1.content)})">
+                <p class="tit">公司简介</p>
+            </div>
+            <div class="row">
+            	<div class="col-md-6 col-sm-12">
+                	
+                    <div class="about-content">
+                        <h3 class="">{$about.title}</h3>
+                        <p>{$about.content}</p>
+                    </div>
+                    
+                </div>
+                <div class="col-md-6 col-sm-12 right-side">
+                	<div class="row about-img">
+                    	<div class="col-md-12 col-xs-12">
+                        	<figure><img src="{:cmf_get_image_url($company.pic_about1.content)}" class="img-responsive" alt="Picture"></figure>
+                        </div>
+                     
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+    
+    
+    <!-- Our Menu Section -->
+    
+   
+     <section id="ourmenu" class="ourmenu" style="background-image: url({:cmf_get_image_url($company.ourmenu_index_bg.content)})"><!-- Section id-->
+        <div class="container">
+             
+             <div class="row row_tit" style="background-image: url({:cmf_get_image_url($company.ourmenu_index_bg1.content)})">
+                <p class="tit" >产品中心</p>
+            </div>
+            <div class="row">
+            	
+              <foreach name="goods_sort" item="vo">   
+                <div class="col-md-4 col-sm-4 col-xs-12">				
+                    <div class="hover ehover">
+                        
+                        <div class="overlay">
+                            <img class="img-responsive" src="{:cmf_get_image_url($vo.pic)}" alt="">
+                            <a href="{:url('portal/ourmenu/detail',['id'=>$vo['id']])}" class="info btn btn-gold">查看更多</a>
+                        </div>	
+                        <h3><a href="{:url('portal/ourmenu/detail',['id'=>$vo['id']])}">{$vo.name}</a></h3>	
+                        <p>{$vo.dsc}</p>		
+                    </div>
+                </div>
+              </foreach> 
+                
+                <div class="col-md-12 col-sm-12 col-xs-12 call-to-btn">
+                	<a href="{:url('portal/ourmenu/index')}" class="btn btn-gold">更多产品</a>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+     
+    <!-- Book a Table Section -->
+    
+    <section id="bookatable" class="bookatable"><!-- Section id-->
+        <div class="container">
+            <div class="row row_tit" style="background-image: url({:cmf_get_image_url($company.service_index_bg1.content)})">
+                <p class="tit">活动中心</p>
+            </div>
+            <div class="row">
+            	<div class="col-md-12">
+                	<div class="best-dish">
+                        <p class="big-text"><a href="{:url('portal/service/detail',['id'=>$service['id']])}">{$service.name}</a></p>
+                        <p class="detail">{$service.dsc}</p>
+                        <div class="call-to-action">
+                            <a href="{:url('portal/service/index')}" class="btn btn-gold">查看更多</a>
+                        </div>                    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+	<!-- Testimonials Section -->
+     
+    <section id="testimonials" class="testimonials" style="background-image: url({:cmf_get_image_url($company.index_news_bg.content)})"><!-- Section id-->
+        <div class="container-fluid">
+           <div class="row row_tit" style="background-image: url({:cmf_get_image_url($company.index_news_bg1.content)})">
+                <p class="tit">热门新闻</p>
+            </div>
+            <div class="row">
+            <div class="col-md-12">
+                    <div class="carousel slide" id="fade-quote-carousel" data-ride="carousel" data-interval="3000">
+                      <!-- Carousel items -->
+                      <div class="container">
+                      <div class="carousel-inner">
+                      <foreach name="news" item="vo" k="key">
+                        <div class="item <eq name='key' value='0'>active</eq>">
+                            <div class="profile-circle"><img src="{:cmf_get_image_url($vo.pic)}" alt="avtar" /></div>
+                            <blockquote>
+                             
+                               <dl>
+                                    <dt><span class="title">{$vo.name}</span><span class="date">{$vo.insert_time|date='Y-m-d',###}</span></dt>
+                                    <dd>{$vo.dsc}</dd>
+                                    <dd><a href="{:url('portal/news/detail',['id'=>$vo.id])}" class="btn btn-gold">查看详情</a></dd>
+                                </dl>
+                               
+                            </blockquote>
+                        </div>
+                      </foreach>
+                        
+                      </div>
+                      </div>
+                       <!-- Controls -->
+                          <a class="left carousel-control" href="#fade-quote-carousel" role="button" data-slide="prev">
+                            <span class="fa fa-long-arrow-left" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                          </a>
+                          <a class="right carousel-control" href="#fade-quote-carousel" role="button" data-slide="next">
+                            <span class="fa fa-long-arrow-right" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                          </a>
+                      
+                    </div>
+                    </div>
+                </div>							
+            </div>
+    </section>
+
+    <!-- Events Section -->
+    
+   
+    <section id="events" class="events"><!-- Section id-->
+        <div class="container">
+            <div class="row row_tit" style="background-image: url({:cmf_get_image_url($company.index_goods_bg1.content)})">
+                <p class="tit">最新产品</p>
+            </div>
+           <div class="row event-block">
+            <foreach name="goods_new" item="vo" k="key">
+            	<div class="col-md-4 col-sm-4">
+                	<div class="event-artical">
+                	<eq name="key" value="1">
+                    	
+                        <p class="event-date">{$vo.insert_time|date='Y-m-d',###}</p>
+                        <h4 class="event-name fs-20"><a href="{:url('portal/ourmenu/detail',['id'=>$vo.id])}">{$vo.name}</a></h4>
+                        <p class="event-details">{$vo.dsc}</p>
+                        <img src="{:cmf_get_image_url($vo.pic)}" class="img-responsive" alt="Event" />
+                     <else/>
+                     	<img src="{:cmf_get_image_url($vo.pic)}" class="img-responsive" alt="Event" />
+                        <p class="event-date">{$vo.insert_time|date='Y-m-d',###}</p>
+                        <h4 class="event-name fs-20" ><a href="{:url('portal/ourmenu/detail',['id'=>$vo.id])}">{$vo.name}</a></h4>
+                        <p class="event-details">{$vo.dsc}</p>
+                     
+                     </eq>
+                    </div>
+                </div>
+              </foreach> 
+            </div>
+             
+            
+        </div>
+    </section>
+
+   
+
+<include file="public@footer"/>  
+    
+  </body>
+</html>
+
