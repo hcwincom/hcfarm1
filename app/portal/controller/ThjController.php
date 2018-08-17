@@ -18,7 +18,7 @@ class ThjController extends HomeBaseController
         //sn号码统计改变
         
         $sn=$this->request->param('sn','');
-        $sn='201808003001';
+        $sn='18080200';
        
         //12位201808000001
         //8位18080001
@@ -33,7 +33,7 @@ class ThjController extends HomeBaseController
         //sn号码统计改变
         
         $sn=$this->request->param('sn','');
-        
+        $sn='18080200';
         $this->assign('sn',$sn);
         return $this->fetch();
     }

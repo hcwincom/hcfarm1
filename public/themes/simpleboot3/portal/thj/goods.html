@@ -35,13 +35,13 @@
 								<p class="yzm">
 									<input type="text" id="checkcode" class="txtpt" name="codeNum" placeholder="输入验证码" required/>
 									 
-									<img class="codeImg" src="/captcha/new.html?height=32&amp;width=150&amp;font_size=18" onclick="this.src='/captcha/new.html?height=32&amp;width=150&amp;font_size=18&amp;time='+Math.random();" title="换一张"  style="cursor: pointer;position:absolute;right:1px;top:1px;">
+									<img class="codeImg" src="/captcha/new.html?height=30;width=150;font_size=18" onclick="this.src='/captcha/new.html?height=32;width=150;font_size=18;time='+Math.random();" title="换一张"  style="cursor: pointer;position:absolute;right:1px;top:1px;">
 								</p>	
 							</div>
 							<p class="redColor indyz2"></p>
 							<div class="middles_item">
 								<p>
-									<input type="submit" id="submit" class="searbtn searclick" onclick="return pickGoods();" value="申请提货"/>
+									<input type="submit" id="submit" class="searbtn searclick" value="券卡验证"/>
 								</p>
 							</div>	
 						</div>
@@ -51,7 +51,7 @@
 				</form>		
 			</div>
 			<!--信息验证-->
-			<div class="goodsGrid" style="display:none">
+			<div class="goodsGrid" style="display:none" id="info">
 				<h1 class="bigtit">提货信息</h1>
 				<div class="pick_info">	
 					<form action="" method="post">
@@ -243,6 +243,6 @@
 			laydate(start1);
 			laydate(end);
 		</script>
-		
+		<include file="portal@thj/thjs" /> 
 	</body>
 </html>

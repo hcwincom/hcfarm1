@@ -1,29 +1,51 @@
 <script>
 $('#goods_verify').submit(function(){
-	$('.goodsGrid').hide();
-	$('.goodsGrid .personInfo').hide();
+	var form_check=pickGoods();
+	console.log('ssssssss');
+	if(form_check==false){
+		return false;
+	}
+	 
+	$('#info').hide();
+	 
 	var sn=$('#code').val();
-	var sn=$('#password').val();
-	var sn=$('#checkcode').val();
+	var psw=$('#password').val();
+	var verify=$('#checkcode').val();
 	$.post("{:url('portal/thj/verify')}",{'sn':sn,'psw':psw,'verify':verify},function(data){
-		if(data.code1!=1){
-			alert(data.msg);
+		if(data.code!=1){
+		 
+			$(".indyz2").html(data.msg);
+			$('.codeImg').attr('src',$('.codeImg').attr('src')+';1');
+			return false;
 		}
 		//获取卡券数据赋值
 		var info=data.data.info;
-		
-		$('.goodsGrid .show_price em').text(info['show_price']);
-		$('.goodsGrid .status em').remove();
+		console.log(info);
+		$('#info').show();
+		$('#info .show_price em').text(info['show_price']);
+		$('#info .status em').remove();
+		return;
 		//按状态显示
+		//         'voucher_status'=>[
+//             1=>'系统生成',
+//             2=>'已导出',
+//             3=>'已发放',
+//             4=>'已提货',
+//             5=>'已发货',
+//             6=>'已收货',
+//             7=>'订单完成',
+//             8=>'已退货',
+//             9=>'售后结束',
+//         ],
 		if(info.status=='3'){ 
-			$('.goodsGrid .status').append('<em class="redcolor">未提货</em>');
-			$('.goodsGrid').show();
+			$('#info .status').append('<em class="redcolor">未提货</em>');
+			$('#info').show();
 			$('.codeBtn').show();
 			return false;
 		} 
 		//已提货显示提货信息
-		$('.goodsGrid .status').append('<em class="greenc">已提货</em>');
-		$('.goodsGrid').show();
+		$('#info .status').append('<em class="greenc">已提货</em>');
+		$('#info').show();
 		
 		$('#myname').val(info['uname']);
 		$('#myphone').val(info['utel']);

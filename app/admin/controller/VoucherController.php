@@ -119,8 +119,47 @@ class VoucherController extends AdminbaseController {
         if(empty($data['id'])){
             $this->error('数据错误');
         }
-          
+        $info=$m->where('id', $data['id'])->find();
+        
         $data['time']=time();
+//         'voucher_status'=>[
+//             1=>'系统生成',
+//             2=>'已导出',
+//             3=>'已发放',
+//             4=>'已提货',
+//             5=>'已发货',
+//             6=>'已收货',
+//             7=>'订单完成',
+//             8=>'已退货',
+//             9=>'售后结束',
+//         ],
+        if($data['status']!=$info['status']){
+            switch ($data['status']){
+                case 3:
+                    if($info['send_time']==0){
+                        $data['send_time']=$data['time'];
+                    }
+                    break;
+                case 4:
+                    if($info['take_time']==0){
+                        $data['take_time']=$data['time'];
+                    }
+                    break;
+                case 5:
+                    if($info['express_time']==0){
+                        $data['express_time']=$data['time'];
+                    }
+                    break;
+                case 6:
+                    if($info['get_time']==0){
+                        $data['get_time']=$data['time'];
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+        
         $row=$m->where('id', $data['id'])->update($data);
         if($row===1){
             $this->success('修改成功',url('edit',['id'=>$data['id']])); 
