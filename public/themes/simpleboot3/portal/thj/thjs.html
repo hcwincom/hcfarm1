@@ -58,16 +58,6 @@ $('#goods_verify').submit(function(){
 	
 	return false;
 });
-function th(sn,psw,verify){
-	 
-	$.post("{:url('portal/thj/verify')}",{'sn':sn,'psw':psw,'verify':verify},function(data){
-		if(data.code1!=1){
-			alert(data.msg);
-		}
-		
-		
-	},'json');
-}
  
 
 </script>
