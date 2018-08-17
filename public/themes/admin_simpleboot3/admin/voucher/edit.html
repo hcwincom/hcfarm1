@@ -158,6 +158,9 @@
 				<div class="col-md-6 col-sm-10">
 					<input type="text" class="form-control"  
 						name="express" value="{$info.express}"  />
+					<notempty name="info.express">
+						<a href="http://www.kuaidi100.com/chaxun?com=shunfeng&nu={$info.express}" target="_blank">查询快递</a>
+					</notempty>	 
 				</div>
 			</div>
 		</gt>

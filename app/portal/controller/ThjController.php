@@ -69,11 +69,47 @@ class ThjController extends HomeBaseController
         if($info['status']<3){
             $this->error('卡券尚未开放');
         }
+        if($info['psw_num']>20){
+            $this->error('密码错误次数过多，请联系客服后明天再试');
+        }
         if($info['psw']!=$data['psw']){
+            db('voucher')->where($where)->setInc('psw_num');
             $this->error('密码错误');
         }
-         
+        
         $this->success('ok','',['info'=>$info]);
     }
-    
+    //提货地址
+    public function address_do(){
+        $data=$this->request->param();
+        if(empty($data['sn']) || empty($data['psw']) || empty($data['uname']) || empty($data['utel']) || empty($data['city'])){
+            $this->error('输入错误');
+        }
+        $update=[
+            'uname'=>$data['uname'],
+            'utel'=>$data['utel'],
+            'city'=>$data['city'],
+            'address'=>$data['address'],
+            ''
+        ];
+        if(strlen($data['psw'])!=6){
+            $this->error('密码错误');
+        }
+        $where=[
+            'sn'=>['eq',$data['sn']],
+        ];
+        $info=db('voucher')->where($where)->find();
+        if(empty($info)){
+            $this->error('该编号不存在');
+        }
+        //判断状态
+        if($info['status']!=3){
+            $this->error('不能提货');
+        }
+        //判断时间
+        $time=time();
+        if($info['value_time2'] >$time ){
+            
+        }
+    }
 }

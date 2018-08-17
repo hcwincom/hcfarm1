@@ -215,9 +215,18 @@ class VoucherController extends AdminbaseController {
                 unset($data[$k]);
             }
         }
+         
         $data['time']=time();
         $where=['sn'=>['between',[$id1,$id2]]];
         $row=$m->where($where)->update($data);
+        if(!empty($data['bname'])){
+            $where['status']=['eq',2];
+            $update=[
+                'status'=>3,
+                'send_time'=>time(),
+            ];
+            $m->where($where)->update($update);
+        }
         if($row>=1){
             $this->success('修改成功'.$row.'条数据',url('index'));
         }else{
