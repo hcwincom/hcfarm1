@@ -1,0 +1,51 @@
+<script>
+$('#goods_verify').submit(function(){
+	$('.goodsGrid').hide();
+	$('.goodsGrid .personInfo').hide();
+	var sn=$('#code').val();
+	var sn=$('#password').val();
+	var sn=$('#checkcode').val();
+	$.post("{:url('portal/thj/verify')}",{'sn':sn,'psw':psw,'verify':verify},function(data){
+		if(data.code1!=1){
+			alert(data.msg);
+		}
+		//获取卡券数据赋值
+		var info=data.data.info;
+		
+		$('.goodsGrid .show_price em').text(info['show_price']);
+		$('.goodsGrid .status em').remove();
+		//按状态显示
+		if(info.status=='3'){ 
+			$('.goodsGrid .status').append('<em class="redcolor">未提货</em>');
+			$('.goodsGrid').show();
+			$('.codeBtn').show();
+			return false;
+		} 
+		//已提货显示提货信息
+		$('.goodsGrid .status').append('<em class="greenc">已提货</em>');
+		$('.goodsGrid').show();
+		
+		$('#myname').val(info['uname']);
+		$('#myphone').val(info['utel']);
+		$('#citySelect').text(info['city_name']);
+		$('#myaddr').val(info['address']);
+		$('#start').val(info['express_time']);
+		 
+		$('#address_btn').hide();
+	},'json');
+	
+	return false;
+});
+function th(sn,psw,verify){
+	 
+	$.post("{:url('portal/thj/verify')}",{'sn':sn,'psw':psw,'verify':verify},function(data){
+		if(data.code1!=1){
+			alert(data.msg);
+		}
+		
+		
+	},'json');
+}
+ 
+
+</script>

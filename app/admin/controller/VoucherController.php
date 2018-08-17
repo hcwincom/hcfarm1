@@ -166,7 +166,7 @@ class VoucherController extends AdminbaseController {
         $id1=intval($data['id1']);
         $id2=intval($data['id2']);
         if($id1<=0 || $id1>=$id2 ){
-            $this->error('id输入错误');
+            $this->error('编号输入错误');
         }
         unset($data['id1']);
         unset($data['id2']);
@@ -177,7 +177,7 @@ class VoucherController extends AdminbaseController {
             }
         }
         $data['time']=time();
-        $where=['id'=>['between',[$id1,$id2]]];
+        $where=['sn'=>['between',[$id1,$id2]]];
         $row=$m->where($where)->update($data);
         if($row>=1){
             $this->success('修改成功'.$row.'条数据',url('index'));
@@ -299,15 +299,12 @@ class VoucherController extends AdminbaseController {
         }
        
         $list= $m->where($where)
-        ->column('id,sn,psw,pid,show_money,real_money,dsc,status');  
+        ->column('id,sn,psw,pid,show_money,real_money,dsc,status,model,spec,num,color');  
         
         if(empty($list)){
             $this->error('数据不存在');
         }
-//         $count=count($list);
-//         if($count>1000){
-//             $this->error('数据超过1000条，请选择更小的范围');
-//         } 
+ 
         ini_set('max_execution_time', '0');
         
         $filename='提货卡'.date('Y-m-d-H-i-s').'.xls';
@@ -346,15 +343,19 @@ class VoucherController extends AdminbaseController {
         ->setCellValue('A'.$i, '序号')
         ->setCellValue('B'.$i, '提货网址')
         ->setCellValue('C'.$i, '提货编号') 
-        ->setCellValue('D'.$i, '提货密码');
-//         ->setCellValue('E'.$i, '状态')
-//         ->setCellValue('F'.$i, '产品id')
-//         ->setCellValue('G'.$i, '展示价格')
-//         ->setCellValue('H'.$i, '实际价格')
-//         ->setCellValue('I'.$i, '备注');
+        ->setCellValue('D'.$i, '提货密码')
+        ->setCellValue('E'.$i, '状态')
+        ->setCellValue('F'.$i, '产品名称')
+        ->setCellValue('G'.$i, '展示价格')
+        ->setCellValue('H'.$i, '实际价格')
+        ->setCellValue('I'.$i, '型号')
+        ->setCellValue('J'.$i, '规格')
+        ->setCellValue('K'.$i, '数量')
+        ->setCellValue('L'.$i, '颜色')
+        ->setCellValue('M'.$i, '备注');
         //设置第一行
-        import('phpqrcode',EXTEND_PATH);
-        $dir=getcwd().'/upload/qrcode/';
+//         import('phpqrcode',EXTEND_PATH);
+//         $dir='upload/qrcode/';
          
         $url0 = 'http://hcfarm.wincomtech.cn'.url('portal/thj/th','',false,false).'/sn/'; 
        foreach($list as $k=>$v){ 
@@ -363,12 +364,16 @@ class VoucherController extends AdminbaseController {
            $sheet
            ->setCellValue('A'.$i, $i-1) 
            ->setCellValue('B'.$i, $url) 
-           ->setCellValue('D'.$i, $v['psw']);
-//            ->setCellValue('E'.$i, $statuss[$v['status']])
-//            ->setCellValue('F'.$i, $v['pid'])
-//            ->setCellValue('G'.$i, $v['show_money'])
-//            ->setCellValue('H'.$i, $v['real_money'])
-//            ->setCellValue('I'.$i, $v['dsc']);
+           ->setCellValue('D'.$i, $v['psw'])
+           ->setCellValue('E'.$i, $statuss[$v['status']])
+           ->setCellValue('F'.$i, $v['pid'])
+           ->setCellValue('G'.$i, $v['show_money'])
+           ->setCellValue('H'.$i, $v['real_money'])
+           ->setCellValue('I'.$i, $v['model'])
+           ->setCellValue('J'.$i, $v['spec'])
+           ->setCellValue('K'.$i, $v['num'])
+           ->setCellValue('L'.$i, $v['color'])
+           ->setCellValue('M'.$i, $v['dsc']);
            
            $sheet->setCellValueExplicit('C'.$i, $v['sn'],$str);
             

@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="renderer" content="webkit|ie-stand|ie-comp">
+		<meta name="keywords" content="{$company.keywords.content},{$info.keywords|default='网站关键字'}"/>
+		<meta name="description" content="{$company.dsc.content}"/>
+		<meta name="baidu-site-verification" content="xNRtrmerYv" /> 
+		<title>券卡提货</title>
+		<link rel="stylesheet" type="text/css" href="__TMPL__/public/thj/css/style.css"/>
+	</head>
+	<body>
+		<include file="portal@thj/header" /> 
+		<div class="main">
+			<div class="goodsGrid">
+				<form action="" method="post" id="goods_verify">
+					<h1 class="bigtit">券卡验证</h1>
+					<div class="pick_goods">
+						<div class="fl cardl">
+							<img src="__TMPL__/public/thj/images/card.jpg" alt="" />
+						</div>
+						<div class="fr cardr">
+							<div class="middles_item">
+								<p>提货编码：</p>
+								<p><input type="text" id="code" class="txtpt" name="number" maxlength="20" value="{$sn}" placeholder="请输入提货编码" required/></p>
+							</div>
+							<p class="redColor indyz"></p>
+							<div class="middles_item">
+								<p>提货密码：</p>
+								<p><input type="text" id="password" class="txtpt" name="password" placeholder="请输入密码" required/></p>
+							</div>
+							<p class="redColor indyz1"></p>
+							<div class="middles_item">
+								<p>验证码：</p>
+								<p class="yzm">
+									<input type="text" id="checkcode" class="txtpt" name="codeNum" placeholder="输入验证码" required/>
+									 
+									<img class="codeImg" src="/captcha/new.html?height=32&amp;width=150&amp;font_size=18" onclick="this.src='/captcha/new.html?height=32&amp;width=150&amp;font_size=18&amp;time='+Math.random();" title="换一张"  style="cursor: pointer;position:absolute;right:1px;top:1px;">
+								</p>	
+							</div>
+							<p class="redColor indyz2"></p>
+							<div class="middles_item">
+								<p>
+									<input type="submit" id="submit" class="searbtn searclick" onclick="return pickGoods();" value="申请提货"/>
+								</p>
+							</div>	
+						</div>
+								
+					</div>
+					
+				</form>		
+			</div>
+			<!--信息验证-->
+			<div class="goodsGrid" style="display:none">
+				<h1 class="bigtit">提货信息</h1>
+				<div class="pick_info">	
+					<form action="" method="post">
+						<div class="fl cardInfo">
+							<div class="codeinfo">
+								<p></p>
+								<h1>礼品券信息</h1>
+								<p></p>
+								<p class="status"><b>券卡状态：</b><em class="greenc">此卡为真，已提货</em><em class="redcolor">此卡为真，未提货</em></p>
+								<p class="sn"><b>提货编号：</b><em class="orangrc">11111111111</em></p>
+							 
+								<p><b>查看商品：</b><a href="javascript:void(0);" class="redc" id="reDetail">点击查看详情</a></p>
+								<p class="show_price"><b>券卡面值：</b><em class="redc">¥&nbsp;880</em></p>
+								<p class="value_time1"><b>起始有效期：</b>2018-07-05</p>
+								<p class="value_time1"><b>结束有效期：</b>2018-07-15</p>
+								 
+								<p class="codeBtn" style="display:none">
+									<input type="button" class="searbtn" name="infoBtn" id="infoBtn" value="确认提货" />
+								</p>
+							</div>		
+						</div>
+						<div class="fl personInfo"  >
+							<div class="infogrid">
+								<span class="label">
+									<span class="redcolor">*</span>
+									联系人：
+								</span>
+								<div class="fl">
+									<input type="text" class="uname infotxt" name="myname" id="myname" value="" maxlength="10" onkeyup="value=value.replace(/\s/g,'')" placeholder="名字"/>
+								</div>
+							</div>
+							<div class="infogrid">
+								<span class="label">
+									<span class="redcolor">*</span>
+									联系电话：
+								</span>
+								<div class="fl">
+									<input type="text" class="utel infotxt" name="myphone" id="myphone" value="" maxlength="15" onkeyup="value=value.replace(/\s/g,'')" placeholder="11位手机号码"/> 
+								</div>
+							</div>
+							<div class="infogrid">
+								<span class="label">
+									<span class="redcolor">*</span>
+									所在地区：
+								</span>
+								<div class="fl">
+									<div class="citySelect" id="citySelect">
+										<select name="province">
+											<option value="0">请选择</option>
+											<option value="1">北京市</option>
+										</select>
+										<select name="city">
+											<option value="0">请选择</option>
+											<option value="1">北京直辖市</option>
+										</select>
+										<select name="country" id="country">
+											<option value="0">请选择</option>
+										</select>
+									</div>
+								</div>
+							</div>
+							<div class="infogrid">
+								<span class="label">
+									<span class="redcolor">*</span>
+									详细地址：
+								</span>
+								<div class="fl">
+									<textarea name="myaddr" id="myaddr" class="infotxt" maxlength="100" placeholder="街道门牌信息" onkeyup="value=value.replace(/\s/g,'')"></textarea>
+								</div>
+							</div>
+							<div class="infogrid">
+								<span class="label">
+									<span class="redcolor">&nbsp;</span>
+									发货时间：
+								</span>
+								<div class="fl">
+									<input class="inline laydate-icon" name="start" id="start" value="" readonly/>
+								</div>
+							</div>
+							<div class="infogrid">
+								<span class="label">
+									<span class="redcolor">&nbsp;</span>
+									预定时间：
+								</span>
+								<div class="fl infodate">
+									<input class="inline laydate-icon" name="start1" id="start1" readonly/>
+								</div>
+							</div>
+							<div class="infogrid">
+								<p class="redcolor codeMsg"></p>
+							</div>
+							<div class="infogrid " id="address_btn">
+								<span class="label">&nbsp;</span>
+								<div class="fl">
+									<input type="button" name="mybtn" class="searbtn" id="pickBtn" value="提交" />
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+				<!---->
+			</div>
+				
+			
+		</div>
+		<div class="clear"></div>
+			
+		<include file="portal@thj/footer" /> 
+		<!--点击查看详情-->
+		<div id="showDetail" class="bomBox">
+			<div class="bomBoxc bigdh">
+				<h2>
+					<span class="closeBox"></span>
+				</h2>
+				<div class="boxc">
+					<ul>
+						<li>
+							<div class="divImg"> </div>
+							<div class="divTxt">
+								<p class="modeal_name"> </p>
+								 
+								<p class="orangrc"> </p>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+			
+		</div>
+		<script type="text/javascript" src="__TMPL__/public/thj/js/jquery-1.12.1.min.js"></script>
+		<script type="text/javascript" src="__TMPL__/public/thj/js/index.js"></script>
+		<script type="text/javascript" src="__TMPL__/public/thj/js/form.js"></script>
+		<script type="text/javascript" src="__TMPL__/public/thj/js/laydate.js"></script>
+		<script type="text/javascript">
+			$("#navdiv>.navul").children("li").children("a").removeClass("active");
+				//控制导航条的选中样式
+			$("#navdiv>.navul").children("li:eq(1)").children("a").addClass("active");
+		</script>
+		<script type="text/javascript">
+			!function(){
+				laydate.skin('molv');//切换皮肤，请查看skins下面皮肤库
+//				laydate({elem: '#demo'});//绑定元素
+			}();
+			
+			//日期范围限制
+			var start = {
+			    elem: '#start',
+			    format: 'YYYY-MM-DD',
+			    min: laydate.now(), //设定最小日期为当前日期
+			    max: '2099-06-16', //最大日期
+			    istime: true,
+			    istoday: false,
+			    choose: function(datas){
+			         end.min = datas; //开始日选好后，重置结束日的最小日期
+			         end.start = datas //将结束日的初始值设定为开始日
+			    }
+			};
+			
+			var end = {
+			    elem: '#end',
+			    format: 'YYYY-MM-DD',
+			    min: laydate.now(),
+			    max: '2099-06-16',
+			    istime: true,
+			    istoday: false,
+			    choose: function(datas){
+			        start.max = datas; //结束日选好后，充值开始日的最大日期
+			    }
+			};
+			laydate(start);
+			laydate(end);
+
+
+
+			//日期范围限制
+			var start1 = {
+			    elem: '#start1',
+			    format: 'YYYY-MM-DD',
+			    min: laydate.now(), //设定最小日期为当前日期
+			    max: '2099-06-16', //最大日期
+			    istime: true,
+			    istoday: false,
+			    choose: function(datas){
+			         end.min = datas; //开始日选好后，重置结束日的最小日期
+			         end.start = datas //将结束日的初始值设定为开始日
+			    }
+			};
+		
+			laydate(start1);
+			laydate(end);
+		</script>
+		
+	</body>
+</html>
