@@ -32,10 +32,11 @@
 							<p class="redColor indyz1"></p>
 							<div class="middles_item">
 								<p>验证码：</p>
-								<p class="yzm">
+								<p class="yzm" style="position: relative;">
 									<input type="text" id="checkcode" class="txtpt" name="codeNum" placeholder="输入验证码" required/>
-									 
-									<img class="codeImg" src="/captcha/new.html?height=30;width=150;font_size=18" onclick="this.src='/captcha/new.html?height=32;width=150;font_size=18;time='+Math.random();" title="换一张"  style="cursor: pointer;position:absolute;right:1px;top:1px;">
+									<img class="codeImg" src="/captcha/new.html?height=50;width=150;font_size=18" onclick="this.src='/captcha/new.html?height=50;width=150;font_size=18;time='+Math.random();"
+									title="换一张">
+								<!-- 	<captcha height="32" width="150" font-size="18" style="cursor: pointer;position:absolute;right:1px;top:1px;" /> -->	
 								</p>	
 							</div>
 							<p class="redColor indyz2"></p>
@@ -242,6 +243,7 @@
 		
 			laydate(start1);
 			laydate(end);
+
 		</script>
 		<include file="portal@thj/thjs" /> 
 	</body>

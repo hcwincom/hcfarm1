@@ -263,36 +263,17 @@ img {
 .footer_top>dl>dd>a:hover{
 	color: #C91623;
 }
-.footer_bottom div a:hover{
-	color: #333;
-}
-.footer_right{
-	float: right;
-    padding-right: 100px;
-}
-.footer_right div,.footer_right span{
-	float: left;
-}
-.footer_right>div{
-	width: 110px;
-    height: 110px;
-    margin-right: 30px;
-}
-.footer_right>div img{
-	width: 160px;
-}
-.footer_right>span img{
-	width: 110px;
-    height: 110px;
-    background: #fff;
-}
-.footer_bottom{
+
+.footerInfo{
     padding: 20px 10px;
     background: #c91623;
 }
+.footer_bottom{
+    float: left;
+}
 .footer_bottom>div{
 	color: #fff;
-	padding: 5px 0;
+	padding: 10px 0;
 	font-size: 14px;
 }
 .footer_bottom>div span{
@@ -305,9 +286,37 @@ img {
     padding-right: 10px;
     letter-spacing: 2px;
 }
+.footer_bottom div a:hover{
+	color: #333;
+}
 .footer_bottom div a:last-child{
 	border: none;
 }
+.footer_right{
+	float: right;
+}
+.footer_right>div{
+	width: 120px;
+    height: 110px;
+    margin-right: 30px;
+    padding-bottom: 20px;
+}
+
+.footer_right>div img{
+    width: 100%;
+    height: 100%;
+}
+
+.footer_right>div p{
+    font-size: 14px;
+    color: #fff;
+    text-align: center;
+}
+
+
+
+
+
  /* --券卡查询  --*/
 .logo2{
 	position: absolute;
@@ -350,15 +359,17 @@ img {
 }
 .middles_item p.yzm input {
     width: 70%;
-    margin-right: 15px;
+    margin-right: 5px;
 }
 .txtyzm, #checkcode {
     width: 185px;
 }
-.middles_item p .codeImg{
-	width: 90px;
+.middles_item p.yzm .codeImg{
+	width: 120px;
     height: 30px;
     line-height: 30px;
+    cursor: pointer;
+  
 }
 
 .middles_item .searbtn,.infogrid .searbtn, .storeleft .searbtn, .codeBtn .searbtn{

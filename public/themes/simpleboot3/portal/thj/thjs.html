@@ -4,8 +4,7 @@ $('#goods_verify').submit(function(){
 	console.log('ssssssss');
 	if(form_check==false){
 		return false;
-	}
-	 
+	} 
 	$('#info').hide();
 	 
 	var sn=$('#code').val();
@@ -42,6 +41,7 @@ $('#goods_verify').submit(function(){
 			$('#info').show();
 			$('.codeBtn').show();
 			return false;
+
 		} 
 		//已提货显示提货信息
 		$('#info .status').append('<em class="greenc">已提货</em>');
@@ -55,6 +55,8 @@ $('#goods_verify').submit(function(){
 		 
 		$('#address_btn').hide();
 	},'json');
+	console.log("dd");
+	console.log(info.status);
 	
 	return false;
 });
