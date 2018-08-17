@@ -1,7 +1,7 @@
 
 // 提货编码验证
 	function isNumber(number){
-		var pattern = /^\d{16}$/;
+		var pattern = /^\d{8}$/;
 		return pattern.test(number);
 	}
 	// 验证6位密码

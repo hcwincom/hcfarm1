@@ -361,7 +361,7 @@ img {
     line-height: 30px;
 }
 
-.middles_item .searbtn,.infogrid .searbtn, .storeleft .searbtn{
+.middles_item .searbtn,.infogrid .searbtn, .storeleft .searbtn, .codeBtn .searbtn{
     background: #c91623;
     color: #fff;
     width: 100%;
@@ -456,7 +456,7 @@ img {
     top: 0;
     cursor: pointer;
 }
-.cardr2 h1{
+.cardr2 h1, .cardInfo h1{
     font-size: 16px;
     border-left: 4px solid #e6212f;
     padding-left: 10px;
@@ -465,7 +465,7 @@ img {
 .cardr2 p,.cardr2 p em,.cardr2 p a{
 	font-size: 14px;
 }
-.cardr2 p b {
+.cardr2 p b, .cardInfo p b {
     font-weight: 100;
     color: #aaa;
     font-size: 12px;
@@ -501,9 +501,8 @@ img {
     margin-left: -370px;
     z-index: 1;
     min-height: 100px;
-    padding: 30px;
+    padding: 25px;
     position: relative;
-    max-height: 500px;
     overflow-y: auto;
 }
 .closeBox{
@@ -512,7 +511,7 @@ img {
     width: 44px;
     height: 40px;
     right: 10px;
-    top: 20px;
+    top: 0px;
     transform: rotate(0deg);
     -webkit-transform: rotate(0deg);
     -moz-transform: rotate(0deg);
@@ -567,12 +566,10 @@ img {
 
 /*点击查看详情*/
 .boxc{
-	height: 300px;
     overflow-y: auto;
-    margin-bottom: 40px;
+    margin-bottom: 10px;
 }
 .boxc>ul>li{
-	border-bottom: 1px dashed #ccc;
     padding: 3px 0;
     width: 100%;
     position: relative;
@@ -589,14 +586,45 @@ img {
 .pick_info{
 	width: 100%;
 }
+.cardInfo{
+	width: 44%;
+	background: #f9f9f9;
+	border: 1px solid #E6E6E6;
+	min-height: 500px;
+}
+.cardInfo .codeinfo{
+	padding: 30px 20px;
+}
+.cardInfo h1{
+	 font-size: 24px;
+	 font-weight: 600;
+	 margin-bottom: 20px;
+}
+.cardInfo p{
+	display: block;
+    padding-bottom: 10px;
+    font-size: 16px;
+}
+.cardInfo p b{
+	font-size: 16px;
+}
+.codeBtn{
+	margin-top: 20px;
+}
 .personInfo{
-	margin: 30px 20px;
+	width: 50%;
+	margin: 30px 0;
 }
 .infogrid{
 	margin-bottom: 15px;
     line-height: 30px;
     float: left;
     width: 100%;
+}
+.infogrid p{
+	height: 30px;
+	line-height: 30px;
+	padding-left: 20%;
 }
 .infogrid span.label{
 	float: left;
@@ -609,7 +637,7 @@ img {
 }
 .infotxt, .itxt{
 	height: 26px;
-    width: 283px;
+    width: 300px;
     padding: 3px 0 2px;
     float: left;
 }
@@ -621,6 +649,18 @@ img {
     border: 1px solid #ddd;
     min-height: 80px;
     resize: none;
+}
+
+.citySelect{
+	float: left;
+}
+.citySelect select{
+	border: 1px solid #ddd;
+	height: 35px;
+	width: 98px;
+    padding: 3px 0 2px;
+    float: left;
+    margin-right: 5px;
 }
 .error-msg {
     display: none;
@@ -635,33 +675,6 @@ img {
     margin-left: 5px;
     float: left;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /* 商品中心*/
 .proh1{

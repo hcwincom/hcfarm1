@@ -70,6 +70,8 @@ $(function(){
 		$("#showDetail").fadeOut();
 	});
 	
+
+	
 	// 商品中心点击更多切换
 	var $category = $('#gselect2 dd:gt(8):not(:last)');
 	$category.hide();
@@ -289,16 +291,39 @@ $(function(){
 			$("#showyancode").hide();
 		});
 
+	// 提货信息验证
+	$("#pickBtn").click(function(){
+		if($.trim($("#myname").val()) == ""){
+			$("#myname").focus();
+			$(".codeMsg").html("请填写联系人姓名");
+			return false;
+		}else if($.trim($("#myphone").val()) == "" || isPhoneNo($.trim($("#myphone").val())) == false){
+			$("#myphone").focus();
+			$(".codeMsg").html("请填写联系人手机号码");
+			return false;	
+		}else if($.trim($("#country").val()) == ""){
+			$(".codeMsg").html("请填写地址");
+			return false;
+		}else if($.trim($("#myaddr").val()) == ""){
+			$("#myaddr").focus();
+			$(".codeMsg").html("请填写详细地址");
+			return false;
+		}	
+	});
+
+
+
+
 	
 });
 
-function searchAgain(){
+	function searchAgain(){
 	    $("#code").val("");
 	    $("#checkcode").val("");
 		$(".cardr2").hide();
 		$(".pick_top").show();
 		$(".codeImg").click();
-}
+	}
 
 
 
