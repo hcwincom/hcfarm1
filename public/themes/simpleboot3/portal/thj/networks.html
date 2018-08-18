@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="renderer" content="webkit|ie-stand|ie-comp">
+		<meta name="keywords" content=""/>
+		<meta name="description" content=""/>
+		<meta name="baidu-site-verification" content="xNRtrmerYv" /> 
+		<title>销售网点</title>
+		<link rel="stylesheet" type="text/css" href="css/style.css"/>
+	</head>
+	<body>
+		<div id="header"></div>
+		<div class="main">
+			<p class="crumbs">当前位置：首页 &gt; 销售网点 </p>
+			<form action="" method="post" id="myForm">
+				<div class="storeleft fl">
+					<div class="storefl">
+						<p>关键词：</p>
+						<p>
+							<input type="text" name="keyword" id="keyword" value="" />
+						</p>
+						<p>网点所在城市：</p>
+						<div class="selectdiv1">
+							<div class="selectdiv2">
+								<select name="cityCode" id="selcity">
+									<option value="">--请选择--</option>
+									<option value="1">合肥</option>
+									<option value="2">巢湖</option>
+									<option value="3">庐江</option>
+									<option value="4">肥西</option>
+								</select>
+							</div>
+						</div>
+						<div class="clear"></div>
+						<div>
+							<input type="button" name="searbtn" class="searbtn" id="" value="查询" />
+						</div>
+						<div>
+							<input type="button" name="nearbtn" id="" value="附近" class="searbtn nearbybtn" />
+						</div>
+					</div>
+				</div>
+				
+				<div class="storeright fr">
+					<ul class="storeul">
+						<li>
+							<h1>经销商长岛店</h1>
+							<p><span>地&nbsp;&nbsp;址：</span>安徽省 合肥市</p>
+							<p><span>网点电话：</span>123456</p>
+							<div class="see">
+								<a href="javascript:void(0);" class="addr">
+									<i></i>
+									<span>查看位置</span>
+								</a>
+							</div>
+							<div class="mapdisplay">
+								<iframe src="map.html" width="100%" height="440px"></iframe>
+							</div>
+						</li>
+						<li>
+							<h1>经销商长岛店</h1>
+							<p><span>地&nbsp;&nbsp;址：</span>安徽省 合肥市</p>
+							<p><span>网点电话：</span>123456</p>
+							<div class="see">
+								<a href="javascript:void(0);" class="addr">
+									<i></i>
+									<span>查看位置</span>
+								</a>
+							</div>
+							<div class="mapdisplay">
+								<iframe src="map.html" width="100%" height="440px"></iframe>
+							</div>
+						</li>
+					</ul>
+					<div class="pagediv">
+						<div class="pagediv">
+							<a href="javaScript:prevPage();" title="上一页">&lt;</a>
+							<span>
+								<em class="redcolor">1</em>
+								/4
+							</span>
+							<a href="javaScript:nextPage();" title="下一页">&gt;</a>
+						</div>
+					</div>
+				</div>
+				
+				<div class="clear"></div>
+			</form>	
+		</div>
+		
+		<!--底部-->
+		<div id="footer"></div>
+		
+		<script type="text/javascript" src="js/jquery-1.12.1.min.js"></script>
+		<script type="text/javascript" src="js/index.js"></script>
+		<script type="text/javascript" src="js/form.js"></script>
+		<script type="text/javascript">
+			$("#navdiv>.navul").children("li").children("a").removeClass("active");
+				//控制导航条的选中样式
+			$("#navdiv>.navul").children("li:eq(3)").children("a").addClass("active");	
+		</script>
+	</body>
+</html>
