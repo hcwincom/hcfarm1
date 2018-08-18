@@ -24,7 +24,7 @@
 								<div class="middles_item">
 									<p>提货密码：</p>
 									<p>
-										<input type="text" id="password" class="txtpt" name="password" placeholder="请输入密码" required/>
+										<input type="password" id="password" class="txtpt" name="password" placeholder="请输入密码" required/>
 									</p>
 								</div>
 								<p class="redColor indyz1"></p>
@@ -53,7 +53,7 @@
 				<div class="goodsGrid" style="display:none" id="info">
 					<h1 class="bigtit">提货信息</h1>
 					<div class="pick_info">
-						<form action="" method="post">
+						<form action="" method="post" id="goods_information">
 							<div class="fl cardInfo">
 								<div class="codeinfo">
 									<p></p>
@@ -88,6 +88,8 @@
 								</div>
 							</div>
 							<div class="fr personInfo" id="personInfo">
+								<input type="hidden" name="" id="codeNum" value="">
+								<input type="hidden" name="" id="codePwd" value="">
 								<div class="infogrid">
 									<span class="label">
 										<span class="redcolor">*</span>
@@ -116,13 +118,13 @@
 									<div class="fl">
 										<div class="citySelect" id="citySelect">
 											<select name="province" id="provinces">
-												<option value="0">请选择</option>
+												<option class="city0" value="0">请选择</option>
 											</select>
-											<select name="city" id="citys">
-												<option value="0">请选择</option>
+											<select name="city" id="citysel">
+												<option class="city0" value="0">请选择</option>
 											</select>
 											<select name="country" id="countys">
-												<option value="0">请选择</option>
+												<option class="city0" value="0">请选择</option>
 											</select>
 										</div>
 									</div>
@@ -142,7 +144,7 @@
 										预定时间：
 									</span>
 									<div class="fl infodate">
-										<input class="inline laydate-icon" name="start1" id="start1" readonly/>
+										<input class="inline laydate-icon" name="start" id="start" readonly/>
 									</div>
 									<div class="clear"></div>
 									<p class="orangrc" style="font-size: 14px;">不选择预定时间，会尽快安排发货</p>
@@ -160,6 +162,9 @@
 							<!-- 已提货显示的信息 -->
 							<div class="fl cardGoods">
 								<div class="cardGoods_info">
+									<p></p>
+									<h1>提货信息</h1>
+									<p></p>
 									<p>
 										<b>联系人:</b>
 										<em>扎梅花三</em>
@@ -175,6 +180,14 @@
 									<p>
 										<b>发货时间：</b>
 										<em>2018-08-25</em>
+									</p>
+									<p>
+										<b>快递信息：</b>
+										<em>顺丰速运</em>
+									</p>
+									<p>
+										<b>物流单号:</b>
+										<em></em>
 									</p>
 								</div>
 							</div>
@@ -260,27 +273,6 @@
 			laydate(start);
 			laydate(end);
 
-
-
-			//日期范围限制
-			var start1 = {
-			    elem: '#start1',
-			    format: 'YYYY-MM-DD',
-			    min: laydate.now(), //设定最小日期为当前日期
-			    max: '2099-06-16', //最大日期
-			    istime: true,
-			    istoday: false,
-			    choose: function(datas){
-			         end.min = datas; //开始日选好后，重置结束日的最小日期
-			         end.start = datas //将结束日的初始值设定为开始日
-			    }
-			};
-		
-			laydate(start1);
-			laydate(end);
-				
-
-
 			var city_url = "{:url('portal/public/city')}";
 				city(0);
 				function city(city = 0) {
@@ -291,15 +283,58 @@
 						}
 						var citys = data.data.citys;
 						var options='';
-						console.log(citys);
+						// console.log(citys);
 						for (var i in citys) {
 							options+= '<option value="' +i +'">' + citys[i]+ '</option>';
 						}
-						console.log(options);
+						// console.log(options);
 						provinces.append(options);
 						
 					}, 'json');
 				}
+
+				$("#provinces").change(function () {
+					$.post(city_url, { 'city': $(this).val() }, function (data) {
+						if (data.code != 1) {
+							return false;
+						}
+
+						var citys = data.data.citys;
+						var options = '';
+						
+						for (var i in citys) {
+							options += '<option class="city2" value="' + i + '">' + citys[i] + '</option>';
+						}
+					
+						$("#citysel .city2").remove();
+						$("#countys .city3").remove();
+						$("#citysel").append(options);
+						$("#citysel .city0").prop('selected', true)
+
+					}, 'json');
+					$("#citysel").val();
+				});
+				$("#citysel").change(function () {
+					$("#countys").val(0);
+					$.post(city_url, { 'city': $(this).val() }, function (data) {
+						if (data.code != 1) {
+							return false;
+						}
+						var citys = data.data.citys;
+						var options = '';
+						
+						for (var i in citys) {
+							options += '<option class="city3" value="' + i + '">' + citys[i] + '</option>';
+						}
+						$("#countys .city3").remove();
+						$("#countys").append(options);
+						$("#countys .city0").prop('selected', true)
+
+
+					}, 'json');
+				})
+			
+				
 
 		</script>
 		<include file="portal@thj/thjs" /> 

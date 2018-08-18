@@ -6,7 +6,7 @@ $('#goods_verify').submit(function(){
 		return false;
 	} 
 	$('#info').hide();
-	 
+	 $(".cardGoods").hide();
 	var sn=$('#code').val();
 	var psw=$('#password').val();
 	var verify=$('#checkcode').val();
@@ -23,7 +23,8 @@ $('#goods_verify').submit(function(){
 		$('#info').show();
 		$('#info .show_price em').text(info['show_money']);
 		$('#info .status em').remove();
-	 
+		console.log("tt");
+		console.log(info.sn);
 
 		//按状态显示
 		//         'voucher_status'=>[
@@ -37,17 +38,16 @@ $('#goods_verify').submit(function(){
 //             8=>'已退货',
 //             9=>'售后结束',
 //         ],
-
+		console.log("dd");
 		if(info.status=='3'){ 
 			$('#info .status').append('<em class="redcolor">未提货</em>');
 			$('#info').show();
 			// $('.codeBtn').show();
 			$(".personInfo").show();
-			$(".cardGoods").hide();
+			$("#codeNum").val(info.sn);
+			$("#codePwd").val(info.psw);
 			return false;
 		} 
-		console.log("tt");
-		console.log(info.status);
 		//已提货显示提货信息
 		
 			$('#info .status').append('<em class="greenc">已提货</em>');
@@ -55,6 +55,8 @@ $('#goods_verify').submit(function(){
 			$(".cardGoods").show();
 			$(".personInfo").hide();
 		
+		
+		console.log(info.sn);
 		
 		$('#myname').val(info['uname']);
 		$('#myphone').val(info['utel']);
@@ -67,6 +69,48 @@ $('#goods_verify').submit(function(){
 	
 	return false;
 });
+
+//  
+
+	
+	// 提货信息验证
+	$("#pickBtn").click(function () {
+		if ($.trim($("#myname").val()) == "") {
+			$("#myname").focus();
+			$(".codeMsg").html("请填写联系人姓名");
+			return false;
+		} else if ($.trim($("#myphone").val()) == "" || isPhoneNo($.trim($("#myphone").val())) == false) {
+			$("#myphone").focus();
+			$(".codeMsg").html("请填写联系人手机号码");
+			return false;
+		} else if ($.trim($("#countys").val()) == "0") {
+			$(".codeMsg").html("请填写地址");
+			return false;
+		} else if ($.trim($("#myaddr").text()) == "") {
+			$("#myaddr").focus();
+			$(".codeMsg").html("请填写详细地址");
+			//return false;
+		}
+		var sncode = $("#codeNum").val();
+		var pswcode = $("#codePwd").val();
+		var city = $("#countys").val();
+		var uname = $("#myname").val();
+		var utel = $("#myphone").val();
+		var address = $("#myaddr").val();
+		
+		var time = $("#start").val();
+
+	$.post("{:url('address_do')}",{"sn": sncode,"psw": pswcode,"uname":uname,"utel":utel,"city":city,"address":address,"get0_time":time},function (data) {
+		console.log(data);
+
+	}, 'json');
+	return false;
+
+
+});
+
+
+
  
 
 </script>

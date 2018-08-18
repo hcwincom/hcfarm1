@@ -78,10 +78,15 @@
 			$("input[name=codeNum]").focus();
 			$(".indyz2").html("请输入正确验证码");
 			return false;
-		}
-		
+		}	
 		return true;
 	}
+
+
+
+	//  提货提交地址验证
+
+	
 	
 	//  意见建议验证
 	function validateForm(){
