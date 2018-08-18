@@ -467,7 +467,7 @@ img {
     top: 0;
     cursor: pointer;
 }
-.cardr2 h1, .cardInfo h1{
+.cardr2 h1, .cardInfo h1,.cardGoods_info h1{
     font-size: 16px;
     border-left: 4px solid #e6212f;
     padding-left: 10px;
@@ -606,12 +606,12 @@ img {
 .cardInfo .codeinfo{
 	padding: 30px 20px;
 }
-.cardInfo h1{
+.cardInfo h1,.cardGoods_info h1{
 	 font-size: 24px;
 	 font-weight: 600;
 	 margin-bottom: 20px;
 }
-.cardInfo p{
+.cardInfo p,.cardGoods_info p{
 	display: block;
     padding-bottom: 10px;
     font-size: 16px;
@@ -691,6 +691,9 @@ img {
 }
 .cardGoods{
 
+}
+.cardGoods_info{
+    margin: 30px 20px;
 }
 
 /* 商品中心*/
