@@ -21,9 +21,10 @@ $('#goods_verify').submit(function(){
 		var info=data.data.info;
 		console.log(info);
 		$('#info').show();
-		$('#info .show_price em').text(info['show_price']);
+		$('#info .show_price em').text(info['show_money']);
 		$('#info .status em').remove();
-		return;
+		// return;
+
 		//按状态显示
 		//         'voucher_status'=>[
 //             1=>'系统生成',
@@ -36,16 +37,23 @@ $('#goods_verify').submit(function(){
 //             8=>'已退货',
 //             9=>'售后结束',
 //         ],
+
 		if(info.status=='3'){ 
 			$('#info .status').append('<em class="redcolor">未提货</em>');
 			$('#info').show();
-			$('.codeBtn').show();
+			// $('.codeBtn').show();
+			$(".cardGoods").hide();
 			return false;
-
 		} 
+		console.log("tt");
+		console.log(info.status);
 		//已提货显示提货信息
-		$('#info .status').append('<em class="greenc">已提货</em>');
-		$('#info').show();
+		
+			$('#info .status').append('<em class="greenc">已提货</em>');
+			$('#info').show();
+			$(".cardGoods").show();
+			$(".personInfo").hide();
+		
 		
 		$('#myname').val(info['uname']);
 		$('#myphone').val(info['utel']);
@@ -55,8 +63,6 @@ $('#goods_verify').submit(function(){
 		 
 		$('#address_btn').hide();
 	},'json');
-	console.log("dd");
-	console.log(info.status);
 	
 	return false;
 });

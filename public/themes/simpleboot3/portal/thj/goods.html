@@ -10,178 +10,223 @@
 		<link rel="stylesheet" type="text/css" href="__TMPL__/public/thj/css/style.css"/>
 	</head>
 	<body>
-		<include file="portal@thj/header" /> 
-		<div class="main">
-			<div class="goodsGrid">
-				<form action="" method="post" id="goods_verify">
-					<h1 class="bigtit">券卡验证</h1>
-					<div class="pick_goods">
-						<div class="fl cardl">
-							<img src="__TMPL__/public/thj/images/card.jpg" alt="" />
-						</div>
-						<div class="fr cardr">
-							<div class="middles_item">
-								<p>提货编码：</p>
-								<p><input type="text" id="code" class="txtpt" name="number" maxlength="20" value="{$sn}" placeholder="请输入提货编码" required/></p>
+		<div>
+			<!--  -->
+			<include file="portal@thj/header" />
+			<div class="main" style="min-height: 630px;">
+				<div class="goodsGrid">
+					<form action="" method="post" id="goods_verify">
+						<h1 class="bigtit">券卡验证</h1>
+						<div class="pick_goods">
+							<div class="fl cardl">
+								<div class="cardlImg">
+									<img src="__TMPL__/public/thj/images/card.jpg" alt="" />
+								</div>	
 							</div>
-							<p class="redColor indyz"></p>
-							<div class="middles_item">
-								<p>提货密码：</p>
-								<p><input type="text" id="password" class="txtpt" name="password" placeholder="请输入密码" required/></p>
-							</div>
-							<p class="redColor indyz1"></p>
-							<div class="middles_item">
-								<p>验证码：</p>
-								<p class="yzm" style="position: relative;">
-									<input type="text" id="checkcode" class="txtpt" name="codeNum" placeholder="输入验证码" required/>
-									<img class="codeImg" src="/captcha/new.html?height=50;width=150;font_size=18" onclick="this.src='/captcha/new.html?height=50;width=150;font_size=18;time='+Math.random();"
-									title="换一张">
-								<!-- 	<captcha height="32" width="150" font-size="18" style="cursor: pointer;position:absolute;right:1px;top:1px;" /> -->	
-								</p>	
-							</div>
-							<p class="redColor indyz2"></p>
-							<div class="middles_item">
-								<p>
-									<input type="submit" id="submit" class="searbtn searclick" value="券卡验证"/>
-								</p>
-							</div>	
-						</div>
-								
-					</div>
-					
-				</form>		
-			</div>
-			<!--信息验证-->
-			<div class="goodsGrid" style="display:none" id="info">
-				<h1 class="bigtit">提货信息</h1>
-				<div class="pick_info">	
-					<form action="" method="post">
-						<div class="fl cardInfo">
-							<div class="codeinfo">
-								<p></p>
-								<h1>礼品券信息</h1>
-								<p></p>
-								<p class="status"><b>券卡状态：</b><em class="greenc">此卡为真，已提货</em><em class="redcolor">此卡为真，未提货</em></p>
-								<p class="sn"><b>提货编号：</b><em class="orangrc">11111111111</em></p>
-							 
-								<p><b>查看商品：</b><a href="javascript:void(0);" class="redc" id="reDetail">点击查看详情</a></p>
-								<p class="show_price"><b>券卡面值：</b><em class="redc">¥&nbsp;880</em></p>
-								<p class="value_time1"><b>起始有效期：</b>2018-07-05</p>
-								<p class="value_time1"><b>结束有效期：</b>2018-07-15</p>
-								 
-								<p class="codeBtn" style="display:none">
-									<input type="button" class="searbtn" name="infoBtn" id="infoBtn" value="确认提货" />
-								</p>
-							</div>		
-						</div>
-						<div class="fl personInfo"  >
-							<div class="infogrid">
-								<span class="label">
-									<span class="redcolor">*</span>
-									联系人：
-								</span>
-								<div class="fl">
-									<input type="text" class="uname infotxt" name="myname" id="myname" value="" maxlength="10" onkeyup="value=value.replace(/\s/g,'')" placeholder="名字"/>
+							<div class="fr cardr">
+								<div class="middles_item">
+									<p>提货编码：</p>
+									<p>
+										<input type="text" id="code" class="txtpt" name="number" maxlength="20" value="{$sn}" placeholder="请输入提货编码" required/>
+									</p>
+								</div>
+								<p class="redColor indyz"></p>
+								<div class="middles_item">
+									<p>提货密码：</p>
+									<p>
+										<input type="text" id="password" class="txtpt" name="password" placeholder="请输入密码" required/>
+									</p>
+								</div>
+								<p class="redColor indyz1"></p>
+								<div class="middles_item">
+									<p>验证码：</p>
+									<p class="yzm" style="position: relative;">
+										<input type="text" id="checkcode" class="txtpt" name="codeNum" placeholder="输入验证码" required/>
+										<img class="codeImg" src="/captcha/new.html?height=50;width=150;font_size=18" onclick="this.src='/captcha/new.html?height=50;width=150;font_size=18;time='+Math.random();"
+										 title="换一张">
+										<!-- 	<captcha height="32" width="150" font-size="18" style="cursor: pointer;position:absolute;right:1px;top:1px;" /> -->
+									</p>
+								</div>
+								<p class="redColor indyz2"></p>
+								<div class="middles_item">
+									<p>
+										<input type="submit" id="submit" class="searbtn searclick" value="券卡验证" />
+									</p>
 								</div>
 							</div>
-							<div class="infogrid">
-								<span class="label">
-									<span class="redcolor">*</span>
-									联系电话：
-								</span>
-								<div class="fl">
-									<input type="text" class="utel infotxt" name="myphone" id="myphone" value="" maxlength="15" onkeyup="value=value.replace(/\s/g,'')" placeholder="11位手机号码"/> 
+			
+						</div>
+			
+					</form>
+				</div>
+				<!--信息验证-->
+				<div class="goodsGrid" style="display:none" id="info">
+					<h1 class="bigtit">提货信息</h1>
+					<div class="pick_info">
+						<form action="" method="post">
+							<div class="fl cardInfo">
+								<div class="codeinfo">
+									<p></p>
+									<h1>礼品券信息</h1>
+									<p></p>
+									<p class="status">
+										<b>券卡状态：</b>
+										<em class="greenc">此卡为真，已提货</em>
+										<em class="redcolor">此卡为真，未提货</em>
+									</p>
+									<p class="sn">
+										<b>提货编号：</b>
+										<em class="orangrc">11111111111</em>
+									</p>
+			
+									<p>
+										<b>查看商品：</b>
+										<a href="javascript:void(0);" class="redc" id="reDetail">点击查看详情</a>
+									</p>
+									<p class="show_price">
+										<b>券卡面值：</b>
+										<em class="redc">¥&nbsp;880</em>
+									</p>
+									<p class="value_time1">
+										<b>起始有效期：</b>2018-07-05</p>
+									<p class="value_time1">
+										<b>结束有效期：</b>2018-07-15</p>
+			
+									<!-- <p class="codeBtn" style="display:none">
+										<input type="button" class="searbtn" name="infoBtn" id="infoBtn" value="确认提货" />
+									</p> -->
 								</div>
 							</div>
-							<div class="infogrid">
-								<span class="label">
-									<span class="redcolor">*</span>
-									所在地区：
-								</span>
-								<div class="fl">
-									<div class="citySelect" id="citySelect">
-										<select name="province">
-											<option value="0">请选择</option>
-											<option value="1">北京市</option>
-										</select>
-										<select name="city">
-											<option value="0">请选择</option>
-											<option value="1">北京直辖市</option>
-										</select>
-										<select name="country" id="country">
-											<option value="0">请选择</option>
-										</select>
+							<div class="fr personInfo" id="personInfo">
+								<div class="infogrid">
+									<span class="label">
+										<span class="redcolor">*</span>
+										联系人：
+									</span>
+									<div class="fl">
+										<input type="text" class="uname infotxt" name="myname" id="myname" value="" maxlength="10" onkeyup="value=value.replace(/\s/g,'')"
+										 placeholder="名字" />
+									</div>
+								</div>
+								<div class="infogrid">
+									<span class="label">
+										<span class="redcolor">*</span>
+										联系电话：
+									</span>
+									<div class="fl">
+										<input type="text" class="utel infotxt" name="myphone" id="myphone" value="" maxlength="15" onkeyup="value=value.replace(/\s/g,'')"
+										 placeholder="11位手机号码" />
+									</div>
+								</div>
+								<div class="infogrid">
+									<span class="label">
+										<span class="redcolor">*</span>
+										所在地区：
+									</span>
+									<div class="fl">
+										<div class="citySelect" id="citySelect">
+											<select name="province" id="provinces">
+												<option value="0">请选择</option>
+											</select>
+											<select name="city" id="citys">
+												<option value="0">请选择</option>
+											</select>
+											<select name="country" id="countys">
+												<option value="0">请选择</option>
+											</select>
+										</div>
+									</div>
+								</div>
+								<div class="infogrid">
+									<span class="label">
+										<span class="redcolor">*</span>
+										详细地址：
+									</span>
+									<div class="fl">
+										<textarea name="myaddr" id="myaddr" class="infotxt" maxlength="100" placeholder="街道门牌信息" onkeyup="value=value.replace(/\s/g,'')"></textarea>
+									</div>
+								</div>
+								<div class="infogrid">
+									<span class="label">
+										<span class="redcolor">&nbsp;</span>
+										预定时间：
+									</span>
+									<div class="fl infodate">
+										<input class="inline laydate-icon" name="start1" id="start1" readonly/>
+									</div>
+									<div class="clear"></div>
+									<p class="orangrc" style="font-size: 14px;">不选择预定时间，会尽快安排发货</p>
+								</div>
+								<div class="infogrid">
+									<p class="redcolor codeMsg"></p>
+								</div>
+								<div class="infogrid " id="address_btn">
+									<span class="label">&nbsp;</span>
+									<div class="fl">
+										<input type="button" name="mybtn" class="searbtn" id="pickBtn" value="提交" />
 									</div>
 								</div>
 							</div>
-							<div class="infogrid">
-								<span class="label">
-									<span class="redcolor">*</span>
-									详细地址：
-								</span>
-								<div class="fl">
-									<textarea name="myaddr" id="myaddr" class="infotxt" maxlength="100" placeholder="街道门牌信息" onkeyup="value=value.replace(/\s/g,'')"></textarea>
+							<!-- 已提货显示的信息 -->
+							<div class="fl cardGoods">
+								<div class="cardGoods_info">
+									<p>
+										<b>联系人:</b>
+										<em>扎梅花三</em>
+									</p>
+									<p>
+										<b>联系电话：</b>
+										<em>13811111111</em>
+									</p>
+									<p>
+										<b>联系地址：</b>
+										<em>安徽省合肥市瑶海区</em>
+									</p>
+									<p>
+										<b>发货时间：</b>
+										<em>2018-08-25</em>
+									</p>
 								</div>
 							</div>
-							<div class="infogrid">
-								<span class="label">
-									<span class="redcolor">&nbsp;</span>
-									发货时间：
-								</span>
-								<div class="fl">
-									<input class="inline laydate-icon" name="start" id="start" value="" readonly/>
-								</div>
-							</div>
-							<div class="infogrid">
-								<span class="label">
-									<span class="redcolor">&nbsp;</span>
-									预定时间：
-								</span>
-								<div class="fl infodate">
-									<input class="inline laydate-icon" name="start1" id="start1" readonly/>
-								</div>
-							</div>
-							<div class="infogrid">
-								<p class="redcolor codeMsg"></p>
-							</div>
-							<div class="infogrid " id="address_btn">
-								<span class="label">&nbsp;</span>
-								<div class="fl">
-									<input type="button" name="mybtn" class="searbtn" id="pickBtn" value="提交" />
-								</div>
-							</div>
-						</div>
-					</form>
+						
+						</form>
+					</div>
+					<!---->
 				</div>
-				<!---->
+				<div class="clear"></div>
+			
 			</div>
-				
+			<div class="clear"></div>
 			
-		</div>
-		<div class="clear"></div>
+			<include file="portal@thj/footer" />
+			<!--点击查看详情-->
+			<div id="showDetail" class="bomBox">
+				<div class="bomBoxc bigdh">
+					<h2>
+						<span class="closeBox"></span>
+					</h2>
+					<div class="boxc">
+						<ul>
+							<li>
+								<div class="divImg"> </div>
+								<div class="divTxt">
+									<p class="modeal_name"> </p>
 			
-		<include file="portal@thj/footer" /> 
-		<!--点击查看详情-->
-		<div id="showDetail" class="bomBox">
-			<div class="bomBoxc bigdh">
-				<h2>
-					<span class="closeBox"></span>
-				</h2>
-				<div class="boxc">
-					<ul>
-						<li>
-							<div class="divImg"> </div>
-							<div class="divTxt">
-								<p class="modeal_name"> </p>
-								 
-								<p class="orangrc"> </p>
-							</div>
-						</li>
-					</ul>
+									<p class="orangrc"> </p>
+								</div>
+							</li>
+						</ul>
+					</div>
 				</div>
-			</div>
 			
+			</div>
+
+
+
+			<!--  -->
+
 		</div>
+		
 		<script type="text/javascript" src="__TMPL__/public/thj/js/jquery-1.12.1.min.js"></script>
 		<script type="text/javascript" src="__TMPL__/public/thj/js/index.js"></script>
 		<script type="text/javascript" src="__TMPL__/public/thj/js/form.js"></script>
@@ -243,6 +288,28 @@
 		
 			laydate(start1);
 			laydate(end);
+				
+
+
+			var city_url = "{:url('portal/public/city')}";
+				city(0);
+				function city(city = 0) {
+					var provinces = $("#provinces");
+					$.post(city_url, { 'city': city }, function (data) {
+						if (data.code != 1) {
+							return false;
+						}
+						var citys = data.data.citys;
+						var options='';
+						console.log(citys);
+						for (var i in citys) {
+							options+= '<option value="' +i +'">' + citys[i]+ '</option>';
+						}
+						console.log(options);
+						provinces.append(options);
+						
+					}, 'json');
+				}
 
 		</script>
 		<include file="portal@thj/thjs" /> 

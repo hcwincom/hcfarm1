@@ -9,11 +9,6 @@ html, body{
   	background: #ffffff;
 }
 
-body {
-    width: 100%;
-    height: auto;
-    position: relative;
-}
 body a {
     transition: 0.5s all;
     -webkit-transition: 0.5s all;
@@ -314,9 +309,6 @@ img {
 }
 
 
-
-
-
  /* --券卡查询  --*/
 .logo2{
 	position: absolute;
@@ -325,22 +317,30 @@ img {
 }
 .goodsGrid{width: 100%;}
 .pick_goods, .pick_info{
+    width: 100%;
 	float: left;
     border: 1px solid #e6e6e6;
     margin: 10px 0;
 }
 .cardl {
     text-align: center;
-    width: 550px;
+    width: 50%;
+}
+.cardlImg{
+     width: 390px;
+    height: 245px;
+    margin: 0 auto;
+    margin-top: 50px;
 }
 .cardl img {
-    padding-top: 50px;
+   width: 100%;
+   height: 100%; 
 }
 .cardr {
     padding: 20px;
     background: #f9f9f9;
     border-left: 1px solid #e6e6e6;
-    width: 400px;
+    width: 45%;
     min-height: 300px;
 }
 .pick_top{
@@ -476,7 +476,7 @@ img {
 .cardr2 p,.cardr2 p em,.cardr2 p a{
 	font-size: 14px;
 }
-.cardr2 p b, .cardInfo p b {
+.cardr2 p b, .cardInfo p b ,.cardGoods_info p b{
     font-weight: 100;
     color: #aaa;
     font-size: 12px;
@@ -616,13 +616,13 @@ img {
     padding-bottom: 10px;
     font-size: 16px;
 }
-.cardInfo p b{
+.cardInfo p b,.cardGoods p b{
 	font-size: 16px;
 }
 .codeBtn{
 	margin-top: 20px;
 }
-.personInfo{
+.personInfo,cardGoods{
 	width: 50%;
 	margin: 30px 0;
 }
@@ -642,7 +642,7 @@ img {
     height: 22px;
     line-height: 22px;
     padding: 4px 0 3px;
-    width: 160px;
+    width: 110px;
     text-align: right;
     color: #666;
 }
@@ -652,8 +652,11 @@ img {
     padding: 3px 0 2px;
     float: left;
 }
+.infotxt{
+    width: 260px;
+}
 .infogrid .searbtn{
-	width: 283px;
+	width: 260px;
 }
 .infogrid textarea, .personal2 textarea{
 	background: transparent;
@@ -685,6 +688,9 @@ img {
     padding: 3px 7px 2px;
     margin-left: 5px;
     float: left;
+}
+.cardGoods{
+
 }
 
 /* 商品中心*/
