@@ -273,69 +273,7 @@
 			laydate(start);
 			laydate(end);
 
-			var city_url = "{:url('portal/public/city')}";
-				city(0);
-				function city(city = 0) {
-					var provinces = $("#provinces");
-					$.post(city_url, { 'city': city }, function (data) {
-						if (data.code != 1) {
-							return false;
-						}
-						var citys = data.data.citys;
-						var options='';
-						// console.log(citys);
-						for (var i in citys) {
-							options+= '<option value="' +i +'">' + citys[i]+ '</option>';
-						}
-						// console.log(options);
-						provinces.append(options);
-						
-					}, 'json');
-				}
-
-				$("#provinces").change(function () {
-					$.post(city_url, { 'city': $(this).val() }, function (data) {
-						if (data.code != 1) {
-							return false;
-						}
-
-						var citys = data.data.citys;
-						var options = '';
-						
-						for (var i in citys) {
-							options += '<option class="city2" value="' + i + '">' + citys[i] + '</option>';
-						}
-					
-						$("#citysel .city2").remove();
-						$("#countys .city3").remove();
-						$("#citysel").append(options);
-						$("#citysel .city0").prop('selected', true)
-
-					}, 'json');
-					$("#citysel").val();
-				});
-				$("#citysel").change(function () {
-					$("#countys").val(0);
-					$.post(city_url, { 'city': $(this).val() }, function (data) {
-						if (data.code != 1) {
-							return false;
-						}
-						var citys = data.data.citys;
-						var options = '';
-						
-						for (var i in citys) {
-							options += '<option class="city3" value="' + i + '">' + citys[i] + '</option>';
-						}
-						$("#countys .city3").remove();
-						$("#countys").append(options);
-						$("#countys .city0").prop('selected', true)
-
-
-					}, 'json');
-				})
 			
-				
-
 		</script>
 		<include file="portal@thj/thjs" /> 
 	</body>

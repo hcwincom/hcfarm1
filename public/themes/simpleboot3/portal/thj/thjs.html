@@ -1,4 +1,68 @@
 <script>
+	var city_url = "{:url('portal/public/city')}";
+	city(0);
+	function city(city = 0) {
+		var provinces = $("#provinces");
+		$.post(city_url, { 'city': city }, function (data) {
+			if (data.code != 1) {
+				return false;
+			}
+			var citys = data.data.citys;
+			var options = '';
+			// console.log(citys);
+			for (var i in citys) {
+				options += '<option value="' + i + '">' + citys[i] + '</option>';
+			}
+			// console.log(options);
+			provinces.append(options);
+
+		}, 'json');
+	}
+
+	$("#provinces").change(function () {
+		$.post(city_url, { 'city': $(this).val() }, function (data) {
+			if (data.code != 1) {
+				return false;
+			}
+
+			var citys = data.data.citys;
+			var options = '';
+
+			for (var i in citys) {
+				options += '<option class="city2" value="' + i + '">' + citys[i] + '</option>';
+			}
+
+			$("#citysel .city2").remove();
+			$("#countys .city3").remove();
+			$("#citysel").append(options);
+			$("#citysel .city0").prop('selected', true)
+
+		}, 'json');
+		$("#citysel").val();
+	});
+	$("#citysel").change(function () {
+		$("#countys").val(0);
+		$.post(city_url, { 'city': $(this).val() }, function (data) {
+			if (data.code != 1) {
+				return false;
+			}
+			var citys = data.data.citys;
+			var options = '';
+
+			for (var i in citys) {
+				options += '<option class="city3" value="' + i + '">' + citys[i] + '</option>';
+			}
+			$("#countys .city3").remove();
+			$("#countys").append(options);
+			$("#countys .city0").prop('selected', true)
+
+
+		}, 'json');
+	})
+
+
+//  验证提货券
+
 $('#goods_verify').submit(function(){
 	var form_check=pickGoods();
 	console.log('ssssssss');
@@ -6,7 +70,9 @@ $('#goods_verify').submit(function(){
 		return false;
 	} 
 	$('#info').hide();
-	 $(".cardGoods").hide();
+	$(".cardGoods").hide();
+	$(".personInfo").hide();
+
 	var sn=$('#code').val();
 	var psw=$('#password').val();
 	var verify=$('#checkcode').val();
@@ -49,15 +115,12 @@ $('#goods_verify').submit(function(){
 			return false;
 		} 
 		//已提货显示提货信息
-		
+		if(info.status == '4'){
 			$('#info .status').append('<em class="greenc">已提货</em>');
 			$('#info').show();
 			$(".cardGoods").show();
-			$(".personInfo").hide();
-		
-		
-		console.log(info.sn);
-		
+		}
+
 		$('#myname').val(info['uname']);
 		$('#myphone').val(info['utel']);
 		$('#citySelect').text(info['city_name']);
