@@ -92,6 +92,7 @@ class UserController extends AdminBaseController
     {
         $roles = Db::name('role')->where(['status' => 1])->order("id DESC")->select();
         $this->assign("roles", $roles);
+         
         return $this->fetch();
     }
 

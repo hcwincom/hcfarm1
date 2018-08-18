@@ -4,7 +4,8 @@ namespace app\portal\controller;
 
 use cmf\controller\HomeBaseController;
 use think\Db;
-class ThjController extends HomeBaseController
+/* 移动端提货 */
+class ThjmController extends HomeBaseController
 {
      public function _initialize()
     {
@@ -12,25 +13,7 @@ class ThjController extends HomeBaseController
         parent::_initialize();
         $this->assign('html_flag','thj'); 
     } 
-    //提货券首页
-    public function th()
-    {
-        //sn号码统计改变
-        
-        $sn=$this->request->param('sn','');
-         
-        //12位201808000001
-        //8位18080001
-        if(strlen($sn)==12){
-            $sn=(substr($sn,2,4)).(substr($sn,8));
-        }
-        if(cmf_is_mobile()){
-            $this->redirect('portal/thjm/goods',['sn'=>$sn]);
-        }else{
-            $this->redirect('portal/thj/goods',['sn'=>$sn]);
-        }
-       
-    }
+    
     //提货券首页
     public function goods()
     {
@@ -88,7 +71,6 @@ class ThjController extends HomeBaseController
         if(empty($data['sn']) || empty($data['psw']) || empty($data['uname']) || empty($data['utel']) || empty($data['city'])){
             $this->error('输入错误');
         }
-       
         $time=time();
         $update=[
             'uname'=>$data['uname'],
@@ -98,17 +80,10 @@ class ThjController extends HomeBaseController
             'take_time'=>$time,
             'time'=>$time,
             'take_dsc'=>$data['take_dsc'], 
-            'status'=>4,
         ];
         if(strlen($data['psw'])!=6){
             $this->error('密码错误');
         }
-        $update['city_name']=db('city')
-        ->alias('c3')
-        ->join('cmf_city c2','c2.id=c3.fid')
-        ->join('cmf_city c1','c1.id=c2.fid')
-        ->where('c3.id',$data['city'])
-        ->value('concat(c1.name,c2.name,c3.name)'); 
         $where=[
             'sn'=>['eq',$data['sn']],
         ];

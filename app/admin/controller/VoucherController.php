@@ -96,8 +96,21 @@ class VoucherController extends AdminbaseController {
         ->alias('v')
         ->join('cmf_goods p','p.id=v.pid')
         ->find(); */
+        if($info['network']!=0){
+            $info['network_name']=db('network')->where('id',$info['network'])->value('name');
+        }
+        $where=[
+            'vid'=>$info['id'],
+            'type'=>1,
+        ];
+        $m_pic=db('voucher_pic');
+        $pics1=$m_pic->where($where)->column('id,pic');
+        
+        $where['type']=2;
+        $pics2=$m_pic->where($where)->column('id,pic');
         $this->assign('info',$info);
-      
+        $this->assign('express_pics',$pics1);
+        $this->assign('get_pics',$pics2);
         return $this->fetch();
     }
     /**
@@ -122,6 +135,7 @@ class VoucherController extends AdminbaseController {
         $info=$m->where('id', $data['id'])->find();
         
         $data['time']=time();
+        
 //         'voucher_status'=>[
 //             1=>'系统生成',
 //             2=>'已导出',
@@ -159,11 +173,66 @@ class VoucherController extends AdminbaseController {
                     break;
             }
         }
+        //处理图片
+        $pics=[];
+        if(isset($data['urls'])){
+            $path='upload/';
+            $pathid='voucher/'.$info['sn'].'/';
+            $pics=$data['urls'];
+            $pic_size=config('voucher_pic');
+            if(!is_dir($path.$pathid)){
+                mkdir($path.$pathid);
+            }
+            foreach($pics as $k=>$v){
+                if (!is_file($path.$v))
+                {
+                    $this->error('有图片损坏，请注意');
+                }
+                //先比较是否需要额外保存,admin打头的要重新保存
+                if(strpos($v, $pathid)!==0){
+                    //获取后缀名,复制文件
+                    $ext=substr($v, strrpos($v,'.'));
+                    $new_file=$pathid.'express-'.$k.'-'.date('Ymd-His').$ext;
+                    zz_set_image($v, $new_file, $pic_size['width'], $pic_size['height']);
+                    unlink($path.$v);
+                    $pics[$k]=$new_file;
+                }
+            }
+            unset($data['urls']);
+        }
         
+        $where=[
+            'vid'=>$info['id'],
+            'type'=>1,
+        ];
+        $m_pic=db('voucher_pic');
+        $pics0=$m_pic->where($where)->column('id,pic');
+        //比较变化
+        $m_pic->startTrans();
+        if(!empty(array_diff($pics0,$pics)) ||  !empty(array_diff($pics,$pics0))){
+            $data_pic=[];
+            foreach($pics as $k=>$v){
+                $data_pic[]=[
+                    'vid'=>$info['id'],
+                    'type'=>1,
+                    'pic'=>$v,
+                ];
+            }
+            //删除旧数据
+            if(!empty($pics0)){
+                $m_pic->where($where)->delete();
+            }
+            //添加新数据
+            if(!empty($pics)){
+                $m_pic->insertAll($data_pic);
+            }
+        }
         $row=$m->where('id', $data['id'])->update($data);
         if($row===1){
+            $m_pic->commit();
             $this->success('修改成功',url('edit',['id'=>$data['id']])); 
         }else{
+            $m_pic->rollback();
             $this->error('修改失败');
         }
         
