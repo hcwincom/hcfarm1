@@ -350,7 +350,7 @@ img {
     display: block;
     padding-bottom: 5px;
 }
-.middles_item p input[type="text"]{
+.middles_item p input[type="text"], .middles_item p input[type="password"]{
     background: #fff;
     height: 30px;
     line-height: 30px;
@@ -601,7 +601,7 @@ img {
 	width: 44%;
 	background: #f9f9f9;
 	border: 1px solid #E6E6E6;
-	min-height: 500px;
+	min-height: 521px;
 }
 .cardInfo .codeinfo{
 	padding: 30px 20px;
@@ -633,9 +633,9 @@ img {
     width: 100%;
 }
 .infogrid p{
-	height: 30px;
-	line-height: 30px;
-	padding-left: 20%;
+	height: 20px;
+	line-height: 20px;
+	padding-left: 10%;
 }
 .infogrid span.label{
 	float: left;
@@ -653,25 +653,37 @@ img {
     float: left;
 }
 .infotxt{
-    width: 260px;
+    width: 280px;
 }
 .infogrid .searbtn{
-	width: 260px;
+	width: 280px;
 }
+
 .infogrid textarea, .personal2 textarea{
 	background: transparent;
     border: 1px solid #ddd;
+    width: 280px;
     min-height: 80px;
     resize: none;
 }
-
+.infogrid textarea{
+    min-height: 40px;
+}
 .citySelect{
 	float: left;
 }
 .citySelect select{
 	border: 1px solid #ddd;
 	height: 35px;
-	width: 98px;
+	width: 90px;
+    padding: 3px 0 2px;
+    float: left;
+    margin-right: 5px;
+}
+.storeSelect select{
+    border: 1px solid #ddd;
+	height: 35px;
+	width: 140px;
     padding: 3px 0 2px;
     float: left;
     margin-right: 5px;
@@ -1112,7 +1124,7 @@ select {
 .appc1 span.label {
     width: 120px;
 }
-.personal2 input[type=text], input[type=password] {
+.personal2 input[type=text],.personal2 input[type=password] {
     background: transparent;
     border: 1px solid #ddd;
     height: 23px;

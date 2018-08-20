@@ -60,6 +60,44 @@
 		}, 'json');
 	})
 
+	// 提货方式
+	var citys_network_url = "{:url('portal/public/citys_network')}";
+		storeCitySelect();
+		//获取提货点城市
+		function storeCitySelect() {
+			$.post(citys_network_url, {}, function (data) {
+				if (data.code != 1) {
+					return false;
+				}
+				var citys = data.data.citys;
+				console.log(citys);
+
+			}, 'json');
+		}
+	
+
+		var city_networks_url = "{:url('portal/public/city_networks')}";
+		$("#storeCity").change(function () {
+				//获取对应城市的提货点
+			$.post(city_networks_url, { 'city': $(this).val() }, function (data) {
+				if (data.code != 1) {
+					return false;
+				}
+				
+				var lists = data.data.lists;
+				var options = '';
+				for(var i in lists){
+					options += '<option class="store" value="' + i + '">' + lists[i] + '</option>';
+				}
+				console.log(lists);
+				$("#storeaddr .store").remove();
+				$("#storeaddr").append(options);
+				$("#storeaddr .store0").prop('selected',true);
+			}, 'json');
+
+		});
+	
+
 
 //  验证提货券
 
@@ -68,64 +106,105 @@ $('#goods_verify').submit(function(){
 	console.log('ssssssss');
 	if(form_check==false){
 		return false;
-	} 
+	}
+	
+
 	$('#info').hide();
 	$(".cardGoods").hide();
 	$(".personInfo").hide();
-
+	// $(".storeGoods").hide();
+	
 	var sn=$('#code').val();
 	var psw=$('#password').val();
 	var verify=$('#checkcode').val();
 	$.post("{:url('portal/thj/verify')}",{'sn':sn,'psw':psw,'verify':verify},function(data){
-		if(data.code!=1){
-		 
+		if(data.code!=1){ 
 			$(".indyz2").html(data.msg);
 			$('.codeImg').attr('src',$('.codeImg').attr('src')+';1');
 			return false;
 		}
+		$(".indyz2").html("");
 		//获取卡券数据赋值
 		var info=data.data.info;
 		console.log(info);
 		$('#info').show();
 		$('#info .show_price em').text(info['show_money']);
 		$('#info .status em').remove();
-		console.log("tt");
-		console.log(info.sn);
-
+		
 		//按状态显示
-		//         'voucher_status'=>[
-//             1=>'系统生成',
-//             2=>'已导出',
-//             3=>'已发放',
-//             4=>'已提货',
-//             5=>'已发货',
-//             6=>'已收货',
-//             7=>'订单完成',
-//             8=>'已退货',
-//             9=>'售后结束',
+		// 'voucher_status'=>[
+				// 1=>'系统生成',
+				// 2=> '已导出',
+				// 3=> '已发放',
+				// 4=> '已提货',
+				// 5=> '已发货',
+				// 6=> '已收货',
+				// 7=> '已退货',
+				// 8=> '售后结束',
+
 //         ],
-		console.log("dd");
+		
+		var value_time1 = timestampToTime(info.value_time1);
+		var value_time2 = timestampToTime(info.value_time2);
+		$(".sn em").text(info.sn);
+		var send_time = timestampToTime(info.send_time);
+		$(".value_time1 em").text(value_time1);
+		$(".value_time2 em").text(value_time2);
+		$(".modeal_name").text(info.name);
+		$(".modeal_model").text(info.model);
+		$(".modeal_num").text(info.num);
+		$(".modeal_color").text(info.color);
+
 		if(info.status=='3'){ 
 			$('#info .status').append('<em class="redcolor">未提货</em>');
 			$('#info').show();
-			// $('.codeBtn').show();
 			$(".personInfo").show();
 			$("#codeNum").val(info.sn);
 			$("#codePwd").val(info.psw);
+
 			return false;
 		} 
+
 		//已提货显示提货信息
-		if(info.status == '4'){
+		if(parseInt(info.status) == '4'){
 			$('#info .status').append('<em class="greenc">已提货</em>');
 			$('#info').show();
 			$(".cardGoods").show();
+			$(".uname em").text(info['uname']);
+			$(".utel em").text(info['utel']);
+			$(".city_name em").text(info['city_name'] + info['address']);
+			$(".express_time em").text(info['express_time']);
+
+			return false;
 		}
 
-		$('#myname').val(info['uname']);
-		$('#myphone').val(info['utel']);
-		$('#citySelect').text(info['city_name']);
-		$('#myaddr').val(info['address']);
-		$('#start').val(info['express_time']);
+
+		//已发货显示提货信息
+		if(parseInt(info.status) == '5'){
+			$('#info .status').append('<em class="greenc">已发货</em>');
+			$('#info').show();
+			$(".cardGoods").show();
+			$(".uname em").text(info['uname']);
+			$(".utel em").text(info['utel']);
+			$(".city_name em").text(info['city_name'] + info['address']);
+			$(".express_time em").text(info['express_time']);
+
+			return false;
+		}
+		if ($data['take_type'] == 1) {
+			//线上取货  
+			$(".onlineGoods").show();
+		}
+		if ($data['take_type'] == 2) {
+			//线上取货  
+
+			$(".storeGoods").show();
+		}
+		 
+		$(".uname em").text(info['uname']);
+		$(".utel em").text(info['utel']);
+		$(".city_name em").text(info['city_name'] + info['address']);
+		$(".express_time em").text(info['express_time']);
 		 
 		$('#address_btn').hide();
 	},'json');
@@ -149,10 +228,10 @@ $('#goods_verify').submit(function(){
 		} else if ($.trim($("#countys").val()) == "0") {
 			$(".codeMsg").html("请填写地址");
 			return false;
-		} else if ($.trim($("#myaddr").text()) == "") {
+		} else if ($.trim($("textarea[name='myaddr']").val()) == "") {
 			$("#myaddr").focus();
 			$(".codeMsg").html("请填写详细地址");
-			//return false;
+			return false;
 		}
 		var sncode = $("#codeNum").val();
 		var pswcode = $("#codePwd").val();
@@ -160,11 +239,17 @@ $('#goods_verify').submit(function(){
 		var uname = $("#myname").val();
 		var utel = $("#myphone").val();
 		var address = $("#myaddr").val();
+		var take_dsc = $("#beizhu").val();
 		
 		var time = $("#start").val();
 
-	$.post("{:url('address_do')}",{"sn": sncode,"psw": pswcode,"uname":uname,"utel":utel,"city":city,"address":address,"get0_time":time},function (data) {
+	$.post("{:url('address_do')}",{"sn": sncode,"psw": pswcode,"uname":uname,"utel":utel,"city":city,"address":address,"get0_time":time,"take_dsc": take_dsc},function (data) {
 		console.log(data);
+		$(".codeMsg").html(data.msg);
+			if(data.code!=1){
+				return false;
+			}
+		$('#address_btn').hide();	
 
 	}, 'json');
 	return false;
@@ -174,6 +259,24 @@ $('#goods_verify').submit(function(){
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+	 function timestampToTime(timestamp) {
+			var date = new Date(timestamp * 1000);//时间戳为10位需*1000，时间戳为13位的话不需乘1000
+			var Y = date.getFullYear() + '-';
+			var M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-';
+			var D = (date.getDate()<10 ? '0' + (date.getDate()) : date.getDate()) + ' ';
+			return Y + M + D;
+		}
  
 
 </script>

@@ -10,7 +10,7 @@
 						<div class="pick_goods">
 							<div class="fl cardl">
 								<div class="cardlImg">
-									<img src="__TMPL__/public/thj/images/card.jpg" alt="" />
+									<img src="__TMPL__/public/thj/images/carddx.jpg" alt="" />
 								</div>	
 							</div>
 							<div class="fr cardr">
@@ -66,7 +66,7 @@
 									</p>
 									<p class="sn">
 										<b>提货编号：</b>
-										<em class="orangrc">11111111111</em>
+										<em class="orangrc">11111</em>
 									</p>
 			
 									<p>
@@ -75,12 +75,12 @@
 									</p>
 									<p class="show_price">
 										<b>券卡面值：</b>
-										<em class="redc">¥&nbsp;880</em>
+										<span class="redc">¥&nbsp;<em class="redc"></em></span>
 									</p>
 									<p class="value_time1">
-										<b>起始有效期：</b>2018-07-05</p>
+										<b>起始有效期：</b><em>2018-07-05</em></p>
 									<p class="value_time1">
-										<b>结束有效期：</b>2018-07-15</p>
+										<b>结束有效期：</b><em>2018-07-15</em></p>
 			
 									<!-- <p class="codeBtn" style="display:none">
 										<input type="button" class="searbtn" name="infoBtn" id="infoBtn" value="确认提货" />
@@ -110,6 +110,8 @@
 										 placeholder="11位手机号码" />
 									</div>
 								</div>
+
+
 								<div class="infogrid">
 									<span class="label">
 										<span class="redcolor">*</span>
@@ -132,23 +134,82 @@
 								<div class="infogrid">
 									<span class="label">
 										<span class="redcolor">*</span>
-										详细地址：
+										提货方式：
 									</span>
 									<div class="fl">
-										<textarea name="myaddr" id="myaddr" class="infotxt" maxlength="100" placeholder="街道门牌信息" onkeyup="value=value.replace(/\s/g,'')"></textarea>
+										<label for="racheck">
+											<input type="radio" name="take_type" value="1" id="racheck" checked="checked">线上发货
+										</label>
+										<label for="radiocheck">
+											<input type="radio" name="take_type" value="2" id="radiocheck">门店自提
+										</label>
+										
 									</div>
 								</div>
-								<div class="infogrid">
-									<span class="label">
-										<span class="redcolor">&nbsp;</span>
-										预定时间：
-									</span>
-									<div class="fl infodate">
-										<input class="inline laydate-icon" name="start" id="start" readonly/>
+								<!-- 线上提货 -->
+								<div class="onlineGoods">
+									<div class="infogrid">
+										<span class="label">
+											<span class="redcolor">*</span>
+											详细地址：
+										</span>
+										<div class="fl">
+											<textarea name="myaddr" id="myaddr" class="infotxt" maxlength="100" placeholder="街道门牌信息" onkeyup="value=value.replace(/\s/g,'')"></textarea>
+										</div>
 									</div>
-									<div class="clear"></div>
-									<p class="orangrc" style="font-size: 14px;">不选择预定时间，会尽快安排发货</p>
+									<div class="infogrid">
+										<span class="label">
+											<span class="redcolor"></span>
+											信息备注：
+										</span>
+										<div class="fl">
+											<input type="text" name="beizhu" id="beizhu" class="infotxt" maxlength="50" placeholder="备注信息" onkeyup="value=value.replace(/\s/g,'')"
+											 value="">
+										</div>
+									</div>
+									<div class="infogrid">
+										<span class="label">
+											<span class="redcolor">&nbsp;</span>
+											预定时间：
+										</span>
+										<div class="fl infodate">
+											<input class="inline laydate-icon" name="start" id="start" readonly/>
+										</div>
+										<div class="clear"></div>
+										<p class="orangrc" style="font-size: 14px;">不选择预定时间，会尽快安排发货</p>
+									</div>
+									
 								</div>
+								<!-- 门店自提 -->
+								<div class="storeGoods">
+									<div class="infogrid">
+										<span class="label">
+											<span class="redcolor">&nbsp;</span>
+											门店地址：
+										</span>
+										<div class="fl">
+											<div class="storeSelect">
+												<select name="store" id="storeCity">
+													<option class="store0" value="0">请选择城市</option>
+												</select>
+												<select name="storeaddr" id="storeaddr">
+													<option class="store0" value="0">请选择门店地址</option>
+												</select>
+											</div>
+										</div>
+									</div>
+									<div class="infogrid">
+										<span class="label">
+											<span>&nbsp;</span>
+											信息备注:
+										</span>
+										<div class="fl">
+											<input type="text" name="beizhu" id="beizhu2" class="infotxt" maxlength="50" placeholder="备注信息" onkeyup="value=value.replace(/\s/g,'')"
+											 value="">
+										</div>
+									</div>
+								</div>
+							
 								<div class="infogrid">
 									<p class="redcolor codeMsg"></p>
 								</div>
@@ -165,27 +226,27 @@
 									<p></p>
 									<h1>提货信息</h1>
 									<p></p>
-									<p>
+									<p class="uname">
 										<b>联系人:</b>
 										<em>扎梅花三</em>
 									</p>
-									<p>
+									<p class="utel">
 										<b>联系电话：</b>
 										<em>13811111111</em>
 									</p>
-									<p>
+									<p class="city_name">
 										<b>联系地址：</b>
 										<em>安徽省合肥市瑶海区</em>
 									</p>
-									<p>
+									<p class="express_time">
 										<b>发货时间：</b>
 										<em>2018-08-25</em>
 									</p>
-									<p>
+									<p class="express_info">
 										<b>快递信息：</b>
 										<em>顺丰速运</em>
 									</p>
-									<p>
+									<p class="express_odd">
 										<b>物流单号:</b>
 										<em></em>
 									</p>
@@ -213,9 +274,10 @@
 							<li>
 								<div class="divImg"> </div>
 								<div class="divTxt">
-									<p class="modeal_name"> </p>
-			
-									<p class="orangrc"> </p>
+									<p class="modeal_name"></p>
+									<p class="orangrc modeal_model"> </p>
+									<p class="modeal_num"></p>
+									<p class="modeal_color"></p>
 								</div>
 							</li>
 						</ul>
