@@ -35,17 +35,12 @@ class ThjmController extends HomeBaseController
         if(strlen($data['psw'])!=6){
             $this->error('密码错误');
         }
-        $sn=$data['sn'];
-        $len=strlen($sn);
-        //12位201808000001
-        //8位18080001
-        if($len==12){
-            $sn=(substr($sn,2,4)).(substr($sn,8));
-        }elseif($len!=8){
+        if(strlen($data['sn'])!=8){
             $this->error('该编号不存在');
         }
+        
         $where=[ 
-            'sn'=>['eq',$sn], 
+            'sn'=>['eq',$data['sn']], 
         ];
         $info=db('voucher')->where($where)->find();
         if(empty($info)){
@@ -62,8 +57,8 @@ class ThjmController extends HomeBaseController
             db('voucher')->where($where)->setInc('psw_num');
             $this->error('密码错误');
         }
-        
-        $this->success('ok','',['info'=>$info]);
+        session('thj',['sn'=>$data['sn'],'psw'=>$data['psw']]);
+        $this->success('ok',url('address',['sn'=>$data['sn']]));
     }
     //提货地址提交
     public function address_do(){
