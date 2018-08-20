@@ -1,0 +1,27 @@
+<script>
+$('#goods_verify').submit(function(){
+	var form_check=pickGoods();
+	console.log('ssssssss');
+	if(form_check==false){
+		return false;
+	} 
+	 
+	var sn=$('#code').val();
+	var psw=$('#password').val();
+	var verify=$('#checkcode').val();
+	$.post("{:url('portal/thjm/verify')}",{'sn':sn,'psw':psw,'verify':verify},function(data){
+		if(data.code!=1){
+		 
+			$(".indyz2").html(data.msg);
+			$('.codeImg').attr('src',$('.codeImg').attr('src')+';1');
+			return false;
+		}
+		$(".indyz2").html('正在跳转');
+		location.href=data.url;
+	},'json');
+	
+	return false;
+});
+ 
+
+</script>

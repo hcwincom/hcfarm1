@@ -1,0 +1,46 @@
+ <include file="portal@thjm/head" />
+	</head>
+	<body class="bgf"> 
+		  <include file="portal@thjm/header" />
+	    <form action="{:url('verify')}" method="post" id="goods_verify">
+	    	<div class="yzdiv">
+		    		<div class="middles_item">
+	                <span>卡券编码：</span>
+	                <div>
+	                    <input id="code" type="text" class="txtpt" name="number" value="{$sn}" maxlength="20" placeholder="请输入提货编码" required/>
+	                </div>
+	            </div>
+	            <p class="redColor indyz"></p>
+	            <div class="middles_item">
+	            	<span>提货密码：</span>
+	            	<div>
+	            		<input id="password" type="password" class="txtpt" name="password" placeholder="请输入提货密码" required/>
+	            	</div>
+	            </div>
+	            <p class="redColor indyz1"></p>
+	            <div class="middles_item">
+	                <span>验证码：</span>
+	                <div style="position: relative;">
+	                    <input id="checkcode" type="text" class="txtpt" name="codeNum" placeholder="请输入验证码" required/>
+	                    <div class="identify">
+	                    	<img class="codeImg" src="/captcha/new.html?height=50;width=150;font_size=18" onclick="this.src='/captcha/new.html?height=50;width=150;font_size=18;time='+Math.random();"
+										 title="换一张">
+	                    </div>  
+	                </div>
+	            </div>
+	            <p class="redColor indyz2"></p>
+	            <div class="middles_item">
+	                <span>&nbsp;</span>
+	                <div class="btndiv">
+	                    <input type="submit" id="submit" class="orgbtn btn w100b"   value="查询" />
+	                </div>
+	            </div>
+	    	</div>  	
+	    </form>
+	    
+	    
+	    <!--底部-->	
+	 <include file="portal@thjm/footer" />
+     <include file="portal@thjm/thjs" />
+	</body>
+</html>

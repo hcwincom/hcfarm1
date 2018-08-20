@@ -63,7 +63,7 @@ class ThjController extends HomeBaseController
         ];
         $info=db('voucher')->where($where)->find();
         if(empty($info)){
-            $this->error('该编号不存在');
+            $this->error('该编号不存在'.$sn);
         }
         //判断状态
         if($info['status']<3){
@@ -170,12 +170,12 @@ class ThjController extends HomeBaseController
         if(empty($data['city'])){
              $data['city']=0;
         }else{
-             $where['city']=['eq',$data['city']];
+             $where['p.city']=['eq',$data['city']];
         }
         if(empty($data['name'])){
              $data['name']='';
         }else{
-             $where['name']=['like','%'.$data['name'].'%'];
+             $where['p.name']=['like','%'.$data['name'].'%'];
         }
         
         $list= db('network')->field('p.*,concat(c1.name,c2.name) as city_name')
@@ -183,14 +183,30 @@ class ThjController extends HomeBaseController
         ->join('cmf_city c2','c2.id=p.city')
         ->join('cmf_city c1','c1.id=c2.fid')
         ->where($where)
-        ->paginate(6);
+        ->paginate(2);
         // 获取分页显示
         $page = $list->appends($data)->render(); 
-        
+       
         $this->assign('page',$page);
         $this->assign('list',$list);
+        $this->assign('data',$data);
         $this->assign('html_flag','networks');
         $this->assign('html_title','线下网点');
+        return $this->fetch();
+    }
+    //提货券首页
+    public function map()
+    {
+        $id=$this->request->param('id',0,'intval');
+        $where=[
+            'id'=>['eq',$id],
+        ];
+        $info=db('network')->where($where)->find();
+        if(empty($info)){
+            $this->error('数据不存在');
+        }
+        $this->assign('data',$info);
+        
         return $this->fetch();
     }
 }

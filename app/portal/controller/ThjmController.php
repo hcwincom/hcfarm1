@@ -21,6 +21,7 @@ class ThjmController extends HomeBaseController
         $this->assign('sn',$sn);
         $this->assign('html_flag','goods');
         $this->assign('html_title','券卡提货');
+        
         return $this->fetch();
     }
     //提货验证
@@ -36,7 +37,7 @@ class ThjmController extends HomeBaseController
             $this->error('密码错误');
         }
         if(strlen($data['sn'])!=8){
-            $this->error('该编号不存在');
+            $this->error('编号错误');
         }
         
         $where=[ 
@@ -44,7 +45,7 @@ class ThjmController extends HomeBaseController
         ];
         $info=db('voucher')->where($where)->find();
         if(empty($info)){
-            $this->error('该编号不存在');
+            $this->error('该编号不存在'.$data['sn']);
         }
         //判断状态
         if($info['status']<3){
@@ -58,7 +59,26 @@ class ThjmController extends HomeBaseController
             $this->error('密码错误');
         }
         session('thj',['sn'=>$data['sn'],'psw'=>$data['psw']]);
-        $this->success('ok',url('address',['sn'=>$data['sn']]));
+        $this->success('ok',url('info',['sn'=>$data['sn']]));
+    }
+    //券卡信息
+    public function info(){
+        $sn=$this->request->param('sn',''); 
+        $where=[
+            'sn'=>['eq',$sn],
+        ];
+        $info=db('voucher')->where($where)->find();
+        if(empty($info)){
+            $this->error('该编号不存在');
+        }
+        //判断状态
+        if($info['status']<3){
+            $this->error('卡券尚未开放');
+        }
+        $this->assign('info',$info);
+        dump($info);
+        exit('no');
+        return $this->fetch();
     }
     //提货地址提交
     public function address_do(){
@@ -115,9 +135,7 @@ class ThjmController extends HomeBaseController
         //获取查询
         $data=$this->request->param();
         $m_net=db('network');
-        //获取所有有线下网点的城市
-        $keys=$m_net->distinct('city')->column('city');
-        $citys=db('city')->where('id','in',$keys)->column('id,name');
+        
         $where=[];
         if(empty($data['city'])){
              $data['city']=0;

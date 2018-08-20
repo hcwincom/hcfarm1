@@ -43,6 +43,9 @@ class OurmenuController extends HomeBaseController
     public function detail()
     {
         $id=$this->request->param('id',0,'intval'); 
+        if($id==100){
+            $this->redirect('xie');
+        }
         $m=$this->m; 
         $info=$m->where('id',$id)->find();
         if(empty($info)){
@@ -64,7 +67,9 @@ class OurmenuController extends HomeBaseController
         $this->assign('info',$info); 
         return $this->fetch();
     }
-     
+     public function xie(){
+         return $this->fetch();
+     }
     
     public function more_detail()
     {
