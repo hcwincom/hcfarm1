@@ -11,10 +11,11 @@ class SqlController extends AdminbaseController {
     
     
     private $dir;
+    private $log;
     public function _initialize() {
         parent::_initialize();
-        $this->dir=getcwd().'/data/';
-        
+        $this->dir='data/';
+        $this->log='log/zz.log';
     }
     
     /**
@@ -78,7 +79,7 @@ class SqlController extends AdminbaseController {
         $msqlback=new \SqlBack($db['hostname'], $db['username'], $db['password'], $dname,  $db['hostport'],$db['charset'],$dir);
         $url=url('index');
         if($msqlback->backup()){
-            error_log(date('Y-m-d H:i:s').'管理员'.session('ADMIN_ID').'备份了数据库'."\n",3,'zz.log');
+            error_log(date('Y-m-d H:i:s').'管理员'.session('ADMIN_ID').'备份了数据库'."\n",3,$this->log);
             
             $this->success('数据备份成功',$url);
         }else{
@@ -116,7 +117,7 @@ class SqlController extends AdminbaseController {
             $url=url('index');
             
              if($msqlback->restore($filename)){
-                 error_log(date('Y-m-d H:i:s').'管理员'.session('ADMIN_ID').'还原了数据库'.$filename."\n",3,'zz.log');
+                 error_log(date('Y-m-d H:i:s').'管理员'.session('ADMIN_ID').'还原了数据库'.$filename."\n",3,$this->log);
                 $this->success('数据备份成功',$url);
             }else{
                 echo "备份失败! <a href='.$url.'>返回</a>";
@@ -143,7 +144,7 @@ class SqlController extends AdminbaseController {
     public function del(){
         $file=$this->request->param('id','');
         if(unlink(($this->dir).$file)===true){
-            error_log(date('Y-m-d H:i:s').'管理员'.session('ADMIN_ID').'删除了备份数据库'.$file."\n",3,'zz.log');
+            error_log(date('Y-m-d H:i:s').'管理员'.session('ADMIN_ID').'删除了备份数据库'.$file."\n",3,$this->log);
             $this->success('备份已删除');
         }else{
             $this->error('删除失败');
@@ -172,7 +173,7 @@ class SqlController extends AdminbaseController {
                 $this->error('删除失败');
             }
         }
-        error_log(date('Y-m-d H:i:s').'管理员'.session('ADMIN_ID').'批量删除了备份数据库'."\n",3,'zz.log');
+        error_log(date('Y-m-d H:i:s').'管理员'.session('ADMIN_ID').'批量删除了备份数据库'."\n",3,$this->log);
         
         $this->success('备份已删除');
          
@@ -199,14 +200,14 @@ class SqlController extends AdminbaseController {
        if(empty($data['sql'])){
            $data['sql']='';
        }else{
-           
+           $sql=trim($_POST['sql']);
            try {
                if($data['type']==0){
-                   $list=Db::query($data['sql']);
+                   $list=Db::query($sql);
                    $row=count($list);
                    $this->assign('list',$list);
                }else{
-                   $row=Db::execute($data['sql']);
+                   $row=Db::execute($sql);
                }
            } catch (\Exception $e) {
                $msg=$e->getMessage();
@@ -216,7 +217,7 @@ class SqlController extends AdminbaseController {
                $row=0;
            }
            $this->assign('row',$row);
-           error_log(date('Y-m-d H:i:s').'管理员'.session('ADMIN_ID').'使用了Sql语句'."\n".$data['sql']."\n".'影响了'.$row.'行数据'."\n",3,'zz.log');
+           error_log(date('Y-m-d H:i:s').'管理员'.session('ADMIN_ID').'使用了Sql语句'."\n".$data['sql']."\n".'影响了'.$row.'行数据'."\n",3,$this->log);
            
        }
         $this->assign('data',$data);
