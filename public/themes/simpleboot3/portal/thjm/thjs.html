@@ -141,14 +141,7 @@ $('#goods_verify').submit(function(){
 				$("#myphone").focus();
 				$(".codeMsg").html("请填写联系人手机号码");
 				return false;
-			} else if ($.trim($("#countys").val()) == "0") {
-				$(".codeMsg").html("请填写地址");
-				return false;
-			} else if ($.trim($("textarea[name='myaddr']").val()) == "") {
-				$("#myaddr").focus();
-				$(".codeMsg").html("请填写详细地址");
-				return false;
-			}
+			} 
 			var city = $("#countys").val();
 			var uname = $("#myname").val();
 			var utel = $("#myphone").val();
@@ -163,7 +156,16 @@ $('#goods_verify').submit(function(){
 
 
 			if (checked == 1) {
-				$.post("{:url('address_do')}", {"uname": uname, "utel": utel, "city": city, "address": address, "get0_time": time, "take_dsc": take_dsc }, function (data) {
+				 if ($.trim($("#countys").val()) == "0") {
+					$(".codeMsg").html("请填写地址");
+					return false;
+				}
+				 if ($.trim($("textarea[name='myaddr']").val()) == "") {
+					$("#myaddr").focus();
+					$(".codeMsg").html("请填写详细地址");
+					return false;
+				}
+				$.post("{:url('address_do')}", {"uname": uname, "utel": utel, "city": city, "address": address, "get0_time": time, "take_dsc": take_dsc,'take_type':1 }, function (data) {
 					console.log(data);
 					$(".codeMsg").html(data.msg);
 					if (data.code != 1) {
@@ -173,7 +175,7 @@ $('#goods_verify').submit(function(){
 
 				}, 'json');
 			} else if (checked == 2) {
-				$.post("{:url('address_do')}", {"uname": uname, "utel": utel, 'network': storeaddr, "take_dsc": take_dsc }, function (data) {
+				$.post("{:url('address_do')}", {"uname": uname, "utel": utel, 'network': storeaddr, "take_dsc": take_dsc, 'take_type': 2 }, function (data) {
 					if (data.code != 1) {
 						return false;
 					}
