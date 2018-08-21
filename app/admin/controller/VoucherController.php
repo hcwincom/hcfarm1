@@ -82,10 +82,16 @@ class VoucherController extends AdminbaseController {
                 $where['v.'.$data['type2']]=['like','%'.$data['type2_name'].'%'];
             }
         }
+        if(empty($data['order'])){
+            $data['order']='time';
+        }
+        if(empty($data['sort'])){
+            $data['sort']='desc';
+        }
          $list= $m->field('v.*')
          ->alias('v') 
          ->where($where)
-         ->order('v.time desc,v.id desc')
+         ->order('v.'.$data['order'].' '. $data['sort'])
          ->paginate(10);  
          // 获取分页显示
          $page = $list->appends($data)->render(); 
@@ -94,6 +100,15 @@ class VoucherController extends AdminbaseController {
          $this->assign('data',$data);
          $this->assign('list',$list);
          $this->assign('types',$types);
+         
+         $orders=[
+             'time'=>'更新时间',
+             'sn'=>'编号',
+             'take_time'=>'提货时间',
+             'get0_time'=>'预订时间',
+             'express_time'=>'发货时间',
+         ];
+         $this->assign('orders',$orders);
         return $this->fetch();
     }
     /**

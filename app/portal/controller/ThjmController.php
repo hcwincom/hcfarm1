@@ -101,12 +101,13 @@ class ThjmController extends HomeBaseController
     }
     //提货地址提交
     public function address_do(){
+       
         $data=$this->request->param();
         $thj=session('thj');
         if(empty($thj['psw'])){
             $this->error('数据错误');
         }
-        if(empty($data['uname']) || empty($data['utel']) ){
+        if(empty($data['uname']) || empty($data['utel']) || empty($data['take_type'])){
             $this->error('输入错误');
         } 
         $where=[
@@ -119,15 +120,16 @@ class ThjmController extends HomeBaseController
         }
         //判断状态
         if($info['status']!=3){
-            $this->error('状态异常，不能提货');
+            $this->error('已提货，不能再次提货');
         }
         //判断时间
         if($info['value_time2'] <$time ){
             $this->error('券卡已过期');
         }
-        
+       
         //自提还是线上取货
         if($data['take_type']==1){
+          
             //线上取货
             $update=[
                 'uname'=>$data['uname'],
@@ -169,11 +171,11 @@ class ThjmController extends HomeBaseController
                 'get_time'=>$time,
                 'time'=>$time,
                 'take_dsc'=>$data['take_dsc'],
-                'status'=>7,
+                'status'=>6,
             ];
             $dsc='已提货';
         }
-        
+       
         db('voucher')->where($where)->update($update);
         $this->success($dsc,url('info'));
     }

@@ -15,14 +15,14 @@
             <foreach name="voucher_status" item="vo" k="key">
              <option value='{$key}' <if condition="$key eq $data.status">selected</if>>{$vo}</option>
             </foreach>
-        </select> &nbsp;&nbsp;
+        </select>  
           精确查找:
         <select class="form-control" name="type1" style="width: 140px;">
          
             <foreach name="types" item="vo" k="key">
              <option value='{$key}' <if condition="$key eq $data.type1">selected</if>>{$vo}</option>
             </foreach>
-        </select> &nbsp;&nbsp;
+        </select> 
   
         <input type="text" class="form-control" name="type1_name" style="width: 200px;"
                value="{$data.type1_name}" placeholder="请输入关键字">
@@ -32,11 +32,23 @@
             <foreach name="types" item="vo" k="key">
              <option value='{$key}' <if condition="$key eq $data.type2">selected</if>>{$vo}</option>
             </foreach>
-        </select> &nbsp;&nbsp;
-  
-        <input type="text" class="form-control" name="type2_name" style="width: 200px;"
+        </select> 
+          <input type="text" class="form-control" name="type2_name" style="width: 200px;"
                value="{$data.type2_name}" placeholder="请输入关键字">
+  		排序：
+  		 <select class="form-control" name="order" > 
+            <foreach name="orders" item="vo" k="key">
+             <option value='{$key}' <if condition="$key eq $data.order">selected</if>>{$vo}</option>
+            </foreach>
+        </select> 
+        <select class="form-control" name="sort"  > 
+            
+             <option value='desc' <eq name="data.sort" value="desc">selected</eq> >倒序</option>
+              <option value='asc' <eq name="data.sort" value="asc">selected</eq> >正序</option>
+        </select>  
+      
         <input type="submit" class="btn btn-primary" value="搜索"/>
+         &nbsp;&nbsp;&nbsp;&nbsp;
         <a class="btn btn-danger" href="{:url('index')}">清空</a>
         &nbsp;&nbsp;&nbsp;&nbsp;
          <a class="btn btn-primary" href="{:url('excel',$data)}">导出表格</a>
