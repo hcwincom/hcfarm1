@@ -9,11 +9,11 @@
 			}
 			var citys = data.data.citys;
 			var options = '';
-			// console.log(citys);
+		
 			for (var i in citys) {
 				options += '<option value="' + i + '">' + citys[i] + '</option>';
 			}
-			// console.log(options);
+		
 			provinces.append(options);
 
 		}, 'json');
@@ -58,20 +58,25 @@
 
 
 		}, 'json');
-	})
+	});
 
 	// 提货方式
 	var citys_network_url = "{:url('portal/public/citys_network')}";
-		storeCitySelect();
+		storeCitySelect();			
 		//获取提货点城市
-		function storeCitySelect() {
-			$.post(citys_network_url, {}, function (data) {
+		function storeCitySelect() {			
+			$.post(citys_network_url, {'dd':'dd'}, function (data) {
+				
 				if (data.code != 1) {
 					return false;
 				}
 				var citys = data.data.citys;
-				console.log(citys);
-
+				var options = '';
+				for (var i in citys) {
+					options += '<option class="cityStore" value="' + i + '">' + citys[i] + '</option>';
+				}
+				$("#storeCity").append(options);
+			
 			}, 'json');
 		}
 	
@@ -89,7 +94,7 @@
 				for(var i in lists){
 					options += '<option class="store" value="' + i + '">' + lists[i] + '</option>';
 				}
-				console.log(lists);
+				// console.log(lists);
 				$("#storeaddr .store").remove();
 				$("#storeaddr").append(options);
 				$("#storeaddr .store0").prop('selected',true);
@@ -112,8 +117,8 @@ $('#goods_verify').submit(function(){
 	$('#info').hide();
 	$(".cardGoods").hide();
 	$(".personInfo").hide();
-	// $(".storeGoods").hide();
-	
+	$(".storeGoods").hide();
+		
 	var sn=$('#code').val();
 	var psw=$('#password').val();
 	var verify=$('#checkcode').val();
@@ -127,6 +132,7 @@ $('#goods_verify').submit(function(){
 		//获取卡券数据赋值
 		var info=data.data.info;
 		console.log(info);
+		console.log(info.network);
 		$('#info').show();
 		$('#info .show_price em').text(info['show_money']);
 		$('#info .status em').remove();
@@ -148,6 +154,11 @@ $('#goods_verify').submit(function(){
 		var value_time2 = timestampToTime(info.value_time2);
 		$(".sn em").text(info.sn);
 		var send_time = timestampToTime(info.send_time);
+		var express_time = timestampToTime(info['express_time']);
+		var expressHref = $(".express_odd a").attr("href")
+		console.log(express_time);
+		console.log(info.status);
+		// 查看图片显示信息
 		$(".value_time1 em").text(value_time1);
 		$(".value_time2 em").text(value_time2);
 		$(".modeal_name").text(info.name);
@@ -172,12 +183,19 @@ $('#goods_verify').submit(function(){
 			$(".cardGoods").show();
 			$(".uname em").text(info['uname']);
 			$(".utel em").text(info['utel']);
-			$(".city_name em").text(info['city_name'] + info['address']);
-			$(".express_time em").text(info['express_time']);
+			if(info.network == '0'){
+				$(".city_name em").text(info['city_name'] + info['address']);
+				$(".express_time em").text('--');
+				$(".express_odd a").text("--");
+			}else{
+				$(".city_name").text("");
+				$(".express_time").text("");
+				$(".cardGoods_info").append('<p class="redcolor">门店提货</p>');
 
+			}
+			
 			return false;
 		}
-
 
 		//已发货显示提货信息
 		if(parseInt(info.status) == '5'){
@@ -186,35 +204,48 @@ $('#goods_verify').submit(function(){
 			$(".cardGoods").show();
 			$(".uname em").text(info['uname']);
 			$(".utel em").text(info['utel']);
-			$(".city_name em").text(info['city_name'] + info['address']);
-			$(".express_time em").text(info['express_time']);
+			if (info.network == '0') {
+				$(".city_name em").text(info['city_name'] + info['address']);
+				$(".express_time em").text(express_time);
+				$(".express_odd a").attr("href", expressHref + info['express']);
+				$(".express_odd a").text(info['express']);	
+			} else {
+				$(".city_name").text("");
+				$(".express_time").text("");
+				$(".cardGoods_info").append('<p class="redcolor">门店提货</p>');
+			}
 
 			return false;
-		}
-		if ($data['take_type'] == 1) {
-			//线上取货  
-			$(".onlineGoods").show();
-		}
-		if ($data['take_type'] == 2) {
-			//线上取货  
-
-			$(".storeGoods").show();
 		}
 		 
 		$(".uname em").text(info['uname']);
 		$(".utel em").text(info['utel']);
 		$(".city_name em").text(info['city_name'] + info['address']);
-		$(".express_time em").text(info['express_time']);
-		 
+		$(".express_time em").text(express_time);
+		$(".express_odd a").attr("href", expressHref + info['express']);
+		$(".express_odd a").text(info['express']);
+		
 		$('#address_btn').hide();
 	},'json');
 	
 	return false;
 });
 
-//  
 
-	
+
+
+//  
+	$("#racheck").click(function () {
+		$(".onlineGoods").show();
+		$(".storeGoods").hide();
+	})
+
+	$("#radiocheck").click(function () {
+		$(".onlineGoods").hide();
+		$(".storeGoods").show();
+	});	
+
+
 	// 提货信息验证
 	$("#pickBtn").click(function () {
 		if ($.trim($("#myname").val()) == "") {
@@ -239,36 +270,38 @@ $('#goods_verify').submit(function(){
 		var uname = $("#myname").val();
 		var utel = $("#myphone").val();
 		var address = $("#myaddr").val();
-		var take_dsc = $("#beizhu").val();
+		var take_dsc = $("input[name='beizhu']").val();
 		
 		var time = $("#start").val();
 
-	$.post("{:url('address_do')}",{"sn": sncode,"psw": pswcode,"uname":uname,"utel":utel,"city":city,"address":address,"get0_time":time,"take_dsc": take_dsc},function (data) {
-		console.log(data);
-		$(".codeMsg").html(data.msg);
-			if(data.code!=1){
-				return false;
-			}
-		$('#address_btn').hide();	
+		var storeaddr = $("#storeaddr").val();
+		 
+		var checked = $("input[name='take_type']:checked").val();
+		
 
-	}, 'json');
+		if(checked == 1){
+			$.post("{:url('address_do')}", { "sn": sncode, "psw": pswcode, "uname": uname, "utel": utel, "city": city, "address": address, "get0_time": time, "take_dsc": take_dsc }, function (data) {
+				console.log(data);
+				$(".codeMsg").html(data.msg);
+				if (data.code != 1) {
+					return false;
+				}
+				$('#address_btn').hide();
+
+			}, 'json');
+		}else if(checked == 2){
+			$.post("{:url('address_do')}",{ "sn": sncode, "psw": pswcode, "uname": uname, "utel": utel,'network': storeaddr, "take_dsc": take_dsc},function (data) {
+				if(data.code != 1){
+					return false;
+				}
+				$('#address_btn').hide();
+			});
+		}
+	
 	return false;
 
 
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 	 function timestampToTime(timestamp) {
 			var date = new Date(timestamp * 1000);//时间戳为10位需*1000，时间戳为13位的话不需乘1000

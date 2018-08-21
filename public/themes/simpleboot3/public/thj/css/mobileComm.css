@@ -672,6 +672,7 @@ header .top0{
     padding: 10px;
     font-family: "microsoft yahei";
     font-size: 0.3rem; 
+    cursor: pointer;
 }
 /*销售网点*/
 

@@ -226,13 +226,13 @@ em, i, del {
     margin: 20px 0;
 }
 
-.page input[type=text], input[type=password] {
+.page input[type=text], .page input[type=password] {
     background: transparent;
     border: 1px solid #ddd;
     height: 23px;
     line-height: 23px;
 }
-.page input[type=text], textarea, input[type=password] {
+.page input[type=text],.page textarea,.page input[type=password] {
     text-indent: 10px;
 }
 .page .p-wrap {

@@ -76,8 +76,26 @@ class ThjmController extends HomeBaseController
             $this->error('卡券尚未开放');
         }
         $this->assign('info',$info);
-        dump($info);
-        exit('no');
+        
+        return $this->fetch();
+    }
+     //填写收货地址
+    public function address(){
+        $thj=session('thj');
+        $sn=$thj['sn']; 
+        $where=[
+            'sn'=>['eq',$sn],
+        ];
+        $info=db('voucher')->where($where)->find();
+        if(empty($info)){
+            $this->error('该编号不存在');
+        }
+        //判断状态
+        if($info['status']<3){
+            $this->error('卡券尚未开放');
+        }
+        $this->assign('info',$info);
+        
         return $this->fetch();
     }
     //提货地址提交
