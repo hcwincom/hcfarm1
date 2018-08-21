@@ -10,7 +10,7 @@
     </ul>
      <form class="well form-inline margin-top-20" method="post" action="{:url('index')}">
      城市:
-        <select class="form-control" name="status" style="width: 140px;">
+        <select class="form-control" name="city" style="width: 140px;">
            <option value='0'>全部</option>
             <foreach name="citys" item="vo" k="key">
              <option value='{$key}' <if condition="$key eq $data.city">selected</if>>{$vo}</option>
@@ -37,8 +37,8 @@
                 <th>城市</th>
                 <th>电话</th>
                 <th>简介</th>
-               
-                   
+                <th>状态</th>
+                    <th>操作</th>
             </tr>
             </thead>
             <tbody>
@@ -51,7 +51,10 @@
                    
                  	<td>{$vo.tel}</td> 
                     <td>{$vo.dsc}</td>
-                     
+                    <td>{$network_status[$vo.status]}</td>
+                     <td>
+                     <a href="{:url('delete',array('id'=>$vo['id']))}" class="js-ajax-delete" data-msg="确认删除吗?">删除</a>
+                     </td>
                 </tr>
             </foreach>
             </tbody>

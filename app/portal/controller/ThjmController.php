@@ -187,7 +187,7 @@ class ThjmController extends HomeBaseController
         //获取所有有线下网点的城市
         $keys=$m_net->distinct('city')->column('city');
         $citys=db('city')->where('id','in',$keys)->column('id,name');
-        $where=[];
+        $where=['p.status'=>1];
         if(empty($data['city'])){
             $data['city']=0;
         }else{
