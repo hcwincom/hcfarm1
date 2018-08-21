@@ -168,18 +168,27 @@ $('#goods_verify').submit(function(){
 				$.post("{:url('address_do')}", {"uname": uname, "utel": utel, "city": city, "address": address, "get0_time": time, "take_dsc": take_dsc,'take_type':1 }, function (data) {
 					console.log(data);
 					$(".codeMsg").html(data.msg);
+					 setTimeout(function () {
+						window.location = data.url;
+					}, 3000);
+	
 					if (data.code != 1) {
 						return false;
 					}
 					$('#address_btn').hide();
-
+					 
 				}, 'json');
 			} else if (checked == 2) {
 				$.post("{:url('address_do')}", {"uname": uname, "utel": utel, 'network': storeaddr, "take_dsc": take_dsc, 'take_type': 2 }, function (data) {
+					$(".codeMsg").html(data.msg);
+					 setTimeout(function () {
+						window.location = data.url;
+					}, 3000);
 					if (data.code != 1) {
 						return false;
 					}
-					$('#address_btn').hide();
+					$("#address_btn").hide();
+					  
 				});
 			}
 
