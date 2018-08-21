@@ -534,7 +534,7 @@ class VoucherController extends AdminbaseController {
            $sheet
            ->setCellValue('A'.$i, $i-1) 
            ->setCellValue('B'.$i, $url) 
-           ->setCellValue('D'.$i, $v['psw'])
+           ->setCellValue('D'.$i, '******')
            ->setCellValue('E'.$i, $statuss[$v['status']])
            ->setCellValue('F'.$i, $v['pid'])
            ->setCellValue('G'.$i, $v['show_money'])

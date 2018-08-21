@@ -64,7 +64,7 @@
                 <th width="50">ID</th>
                 <th>产品名称</th>
                 <th>编码</th>
-                <th>密码--错误次数</th>
+                <th>错误次数</th>
                 <th>展示价格</th>
                 <th>实际价格</th> 
                 <th>创建时间</th>
@@ -81,7 +81,7 @@
                     <td><a href="{:url('edit',['id'=>$vo.id])}">{$vo.id}</a></td>
                     <td>{$vo.name}</td>
                     <td>{$vo.sn}</td>
-                    <td>{$vo.psw}--{$vo.psw_num}</td> 
+                    <td>{$vo.psw_num}</td> 
                  	<td>￥{$vo.show_money}</td> 
                     <td>￥{$vo.real_money}</td>
                     
