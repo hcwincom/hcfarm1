@@ -627,7 +627,7 @@ header .top0{
 .middles_item p img{
     position: absolute;
 }
-.middles_item span{
+.middles_item>span{
     display: inline-block;
     width: 25%;
     text-align: right;
@@ -646,7 +646,7 @@ header .top0{
 	display: inline-block;
 }
 .middles_item div input{
-    background: none;
+    background: #fff;
 }
 .middles_item div .identify{
 	position: absolute;
@@ -674,6 +674,78 @@ header .top0{
     font-size: 0.3rem; 
     cursor: pointer;
 }
+.btndiv a{
+    display: inline-block;
+    width: 90%;
+}
+/* 券卡信息 */
+.yzdivInfo{
+    padding-top: 0.9rem;
+}
+.yzdivInfo>.middles_item>span{width: 30%;color: #8E8D8D;}
+.yzdivInfo>h1{
+    font-weight: 600;
+    border-left: 2px solid #D50708;
+    padding: 0.1rem 0.2rem;
+}
+.yzdivInfo>.middles_item{
+    height: 0.8rem;
+    line-height: 0.8rem;
+}
+.yzdivInfo>.middles_item>div>p{
+    font-size: 0.33rem;
+}
+.cardInfomation{
+    width: 100%;
+    padding-top: 0.2rem;
+}
+.cardInfomation>div{
+    width: 100%;
+   line-height: 0.6rem;
+   border-bottom: 0.02rem solid #999;
+   padding-top: 0.2rem;
+}
+.cardInfomation>div>span{
+    display: inline-block;
+    font-size: 0.3rem;
+    width: 25%;
+    text-align: right;
+}
+.cardInfomation>div>p{
+    display: inline-block;
+    font-size: 0.28rem;
+    width: 71%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*销售网点*/
 
 .header_2gray a.icon_search{

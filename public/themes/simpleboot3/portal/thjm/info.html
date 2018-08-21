@@ -3,38 +3,72 @@
 	<body class="bgf"> 
 		  <include file="portal@thjm/header" />
 	    <form action="{:url('verify')}" method="post" id="goods_verify">
-	    	<div class="yzdiv">
-		    		<div class="middles_item">
-	                <span>卡券编码：</span>
+	    	<div class="yzdiv yzdivInfo">
+				<h1>礼品券信息</h1>
+		    	<div class="middles_item">
+	                <span>券卡状态：</span>
 	                <div>
-	                    <input id="code" type="text" class="txtpt" name="number" value="{$info.sn}" maxlength="20" placeholder="请输入提货编码" required/>
+						<p class="greenc">已提货</p>
+	                    <!-- <input id="code" type="text" class="txtpt" name="number" value="{$info.sn}" maxlength="20" placeholder="请输入提货编码" required/> -->
 	                </div>
 	            </div>
-	            <p class="redColor indyz"></p>
 	            <div class="middles_item">
-	            	<span>提货密码：</span>
+	            	<span>券卡编号：</span>
 	            	<div>
-	            		<input id="password" type="password" class="txtpt" name="password" placeholder="请输入提货密码" required/>
+	            		<p>{$info.sn}</p>
 	            	</div>
 	            </div>
-	            <p class="redColor indyz1"></p>
 	            <div class="middles_item">
-	                <span>验证码：</span>
-	                <div style="position: relative;">
-	                    <input id="checkcode" type="text" class="txtpt" name="codeNum" placeholder="请输入验证码" required/>
-	                    <div class="identify">
-	                    	<img class="codeImg" src="/captcha/new.html?height=50;width=150;font_size=18" onclick="this.src='/captcha/new.html?height=50;width=150;font_size=18;time='+Math.random();"
-										 title="换一张">
-	                    </div>  
+	                <span>券卡面值：</span>
+	                <div>
+	                    <p class="colorred">¥ <span>{$info.show_money}</span></p>
 	                </div>
-	            </div>
-	            <p class="redColor indyz2"></p>
-	            <div class="middles_item">
+				</div>
+				<div class="middles_item">
+					<span>起始有效期：</span>
+					<div>
+						<p>{$info.value_time1|date='Y-m-d H:i',###}</p>
+					</div>
+				</div>
+				<div class="middles_item">
+					<span>结束有效期：</span>
+					<div>
+						<p>{$info.value_time2|date='Y-m-d H:i',###}</p>
+					</div>
+				</div>
+				<!-- 券卡信息是未提货时显示 -->
+	            <div>
 	                <span>&nbsp;</span>
 	                <div class="btndiv">
-	                    <input type="submit" id="submit" class="orgbtn btn w100b"   value="申请提货" />
+						<a href="{:url('address')}" class="orgbtn btn w100b">确认提货</a>
 	                </div>
-	            </div>
+				</div>
+				<!-- 券卡信息是已提货时显示 -->
+				<div class="cardInfomation">
+					<div>
+						<span>联系人：</span>
+						<p>{$info.uname}</p>
+					</div>
+					<div>
+						<span>联系电话：</span>
+						<p>{$info.utel}</p>
+					</div>
+					<div>
+						<span style="vertical-align: top;">联系地址：</span>
+						<p>{$info.city_name}{$info.address}</p>
+					</div>
+					<div>
+						<span>发货时间：</span>
+						<p>{$info.express_time|date='Y-m-d H:i',###}</p>
+					</div>
+					<div>
+						<span>顺丰速运：</span>
+						<p>
+							<a href="http://www.kuaidi100.com/chaxun?com=shunfeng&nu=" + {$info.express} target="_blank">{$info.express}</a>
+						</p>
+					</div>
+				</div>
+
 	    	</div>  	
 	    </form>
 	    

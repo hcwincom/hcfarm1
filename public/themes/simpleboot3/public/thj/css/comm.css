@@ -95,6 +95,8 @@ a {
 .fl{
     float: left;
 }
+.colorred{color: #d91422;}
+.greenc{color: #4ec467;}
 .redColor{
     color: #ef0707;
     font-weight: 300;
@@ -105,6 +107,7 @@ a {
     color: #d91422;
 }
 .thind{text-indent: 0.6rem;}
+input:-webkit-autofill { box-shadow: 0 0 0px 1000px white inset !important;}
 input[type="text"], input[type="password"] {
     -webkit-appearance: none;
     border: 0;
@@ -112,6 +115,7 @@ input[type="text"], input[type="password"] {
     font-size: .4rem;
     font-family: "Microsoft YaHei";
     background: none;
+    outline: none;
 }
 select {
     height: auto;
