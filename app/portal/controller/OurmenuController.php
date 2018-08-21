@@ -44,7 +44,8 @@ class OurmenuController extends HomeBaseController
     {
         $id=$this->request->param('id',0,'intval'); 
         if($id==100){
-            $this->redirect('xie');
+            $type=$this->request->param('type',0,'intval'); 
+            $this->redirect('xie',['type'=>$type]);
         }
         $m=$this->m; 
         $info=$m->where('id',$id)->find();
@@ -68,6 +69,8 @@ class OurmenuController extends HomeBaseController
         return $this->fetch();
     }
      public function xie(){
+         $type=$this->request->param('type',0,'intval'); 
+         $this->assign('type',$type); 
          return $this->fetch();
      }
     
