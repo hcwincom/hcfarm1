@@ -32,12 +32,16 @@
             
             	<div class="col-md-6 col-sm-12 left-side about-img">
                      
-                     <figure><img src=" " class="img-responsive" alt="Picture"></figure>
-                		<div class="best-price">
-                    <!--	<p class="tex">价格</p>-->
+                     <!--<figure></figure>-->
+                <div class="pro-showpic" style="margin-top: 40px;">
+            			<img src="__TMPL__/public/assets/images/xpyj-1.png" id="pro_picchange"/>	
+            			
+                </div>     
+                <div class="best-price">
+                    <p class="amount" style="color:darkred">多种精美礼盒可供选择</p>
                     
                         <!--<p class="amount"><a href="#"class="chicklook">300</a></p>-->
-                    </div>
+                </div>
             	</div>
                 <div class="col-md-1 col-sm-12 col-md-pull-1 center-side">
                 	
@@ -46,7 +50,7 @@
                 	<div class="section-title inside-page">
                      
                         <h4 class="inside_h4title clearfix"><span>精品阳澄湖大闸蟹</span></h4>
-                          <p class="type-style"><span>3对装</span> <span>4对装</span> <span>5对装</span></p>
+                          <p class="type-style"><span>三对装</span> <span>四对装</span> <span>五对装</span></p>
                     </div>
                     <div class="hot-deal-item clearfix">
                     	<p class="item-title">价格: <span class="pce">￥48</span></p>
@@ -131,21 +135,21 @@
 		var typeObj = {
 //			'size_num':['398型','558型','1188型','1588型','2088型'],
 //			'peizhi':['雄蟹:1.0两 3只 雌蟹:2.0两 3只','雄蟹:2.0两 4只 雌蟹:3.0两 4只','雄蟹:3.0两 4只 雌蟹:2.0两 4只','雄蟹:4.0两 4只 雌蟹:2.0两 4只','雄蟹:5.0两 4只 雌蟹:2.0两 4只']
-			398:'雄蟹:1.0两 3只 雌蟹:2.0两 3只',
-			558:'558',
-			1188:'1188',
-			1588:'1588',
-			2088:'2088',
-			588:'588',
-			858:'858',
-			1388:'1388',
-			1988:'1988',
-			2988:'2988',
-			688:'688',
-			1028:'1028',
-			1688:'1688',
-			2388:'2388',
-			3788:'3788',
+			398:'公蟹3.0-3.4两  母蟹2.0-2.4两',
+			558:'公蟹3.5-3.9两  母蟹2.5-2.9两',
+			1188:'公蟹4.0-4.4两  母蟹3.0-3.2两',
+			1588:'公蟹4.0-4.4两  母蟹3.3-3.4两',
+			2088:'公蟹5.0两以上  母蟹3.5两',
+			588:'公蟹3.0-3.4两  母蟹2.0-2.4两',
+			858:'公蟹3.5-3.9两  母蟹2.5-2.9两',
+			1388:'公蟹4.0-4.4两  母蟹3.0-3.2两', 
+			1988:'公蟹4.5-4.9两  母蟹3.3-3.4两',
+			2988:'公蟹5.0两以上  母蟹3.5两',
+			688:'公蟹3.0-3.4两  母蟹2.0-2.4两',
+			1028:'公蟹3.5-3.9两  母蟹2.5-2.9两',
+			1688:'公蟹4.0-4.4两  母蟹3.0-3.2两',
+			2388:'公蟹4.5-4.9两  母蟹3.3-3.4两',
+			3788:'公蟹5.0两以上  母蟹3.5两以上',
 			0:[398,558,1188,1588,2088],
 			1:[588,858,1388,1988,2988],
 			2:[688,1028,1688,2388,3788],
@@ -168,27 +172,31 @@
 		
 		function fn(){
 //			alert(type) 
+			
 			if (type>=10&&type<15) {
-				
 				typeStyle.eq(0).addClass('topClass');
 				clac.call(sizePrice,'price_active');
-				
 				sizePrice.eq(type.substring(1)).addClass('price_active');
-				
-				
 			}else if (type>=20&&type<25){
 				typeStyle.eq(1).addClass('topClass');
 				clac.call(sizePrice,'price_active');
 				sizePrice.eq(type.substring(1)).addClass('price_active');
-				
-				
 			} else{
 				typeStyle.eq(2).addClass('topClass');
 				clac.call(sizePrice,'price_active');
 				sizePrice.eq(type.substring(1)).addClass('price_active');
-				
-				
 			}
+			console.log($('.topClass').text())
+			var topText = $('.topClass').text();
+			if (topText=='三对装') {
+								document.getElementById('pro_picchange').setAttribute('src','/themes/simpleboot3/public/assets/images/food-1.jpg')
+							} else if (topText=='四对装') {
+								document.getElementById('pro_picchange').setAttribute('src','/themes/simpleboot3/public/assets/images/food-2.jpg')
+							} else if(topText=='五对装'){
+								document.getElementById('pro_picchange').setAttribute('src','/themes/simpleboot3/public/assets/images/food-3.jpg')
+							}
+			
+			
 		};
 		fn()
 		

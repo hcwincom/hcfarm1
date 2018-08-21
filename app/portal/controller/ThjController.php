@@ -102,7 +102,7 @@ class ThjController extends HomeBaseController
             $this->error('状态异常，不能提货');
         }
         //判断时间
-        if($info['value_time2'] >$time ){
+        if($info['value_time2'] <$time ){
             $this->error('券卡已过期');
         }
          

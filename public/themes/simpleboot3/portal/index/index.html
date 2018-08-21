@@ -75,28 +75,23 @@
       <section class="index-tuijians"style="padding: 60px 0;background-image: url({:cmf_get_image_url($company.index_news_bg.content)});"> 
             <div class="container ">
             	<div class="tuijian_options btns" style="text-align: center; margin-bottom: 50px;">
-            		<a class="pro_cards act btn"id="pro_cards">礼盒</a>
-            		<a class="pro_boxs btn"id="pro_boxs">礼券</a>
+            		<a class="pro_cards act btn"id="pro_cards">礼盒礼券</a>
+            		<!--<a class="pro_boxs btn"id="pro_boxs"></a>-->
             	</div>
 	            <div class="row contact-info">
 	             
 	            	 
 	            	<div class="col-md-6 col-xs-12 col-sm-12" style="margin-bottom: 40px;">
-            			<!--<img src="__TMPL__/public/assets/images/xpyj-1.png" alt="" width="80%""/>-->
-            			<img src="__TMPL__/public/assets/images/pro1.png" alt="" width="80%""/>
+            			<img src="__TMPL__/public/assets/images/xpyj-1.png" width='80%' id="name-pic"/>
+            			<!--<img src="__TMPL__/public/assets/images/pro1.png" alt="" width="80%""/>-->
             			
             			
 	            	</div>
 	            	
 	            	<div class="col-md-6 col-xs-12 col-sm-12 info">
-            			<!-- <img src="__TMPL__/public/assets/images/text-art.png" alt="" width="80%" "/>-->  
             			<dl class="car-box ">
-            				<dt style="margin-top:-30px; margin-bottom: 20px;">大闸蟹<span id="name">礼盒</span></dt>
-            				<!--<dd><span class="act">三对装</span><span>四对装</span><span>五对装</span></dd>-->
+            				<dt style="margin-top:-30px; margin-bottom: 20px;">精品大闸蟹</dt>
             				<dd>
-            					<!--<p><span class="act">588型</span><span>688型</span><span>1088型</span></p>-->
-            					<!--<p><span>788型</span><span>888型</span><span>988型</span></p>-->
-            					<!--<p><span>988型</span><span>1088型</span></p>-->
             					<ul id="items">
 												<li id="active" class="act">
 													三对装
@@ -174,14 +169,12 @@
                                     <dt><span class="title">{$vo.name}</span></dt>
                                     <dd><span class="date title">{$vo.insert_time|date='Y-m-d',###}</span></dd>
                                     <dd>{$vo.dsc}</dd>
-                                    <!--<dd><a href="{:url('portal/news/detail',['id'=>$vo.id])}" class="btn btn-gold">查看详情</a></dd>-->
                                 </dl>
                                	<dl>
                                     <dt><span class="title">{$vo.name}</span></dt>
                                     <dd><span class="date">{$vo.insert_time|date='Y-m-d',###}</span></dd>
                                     
                                     <dd>{$vo.dsc}</dd>
-                                    <!--<dd><a href="{:url('portal/news/detail',['id'=>$vo.id])}" class="btn btn-gold">查看详情</a></dd>-->
                                 </dl>
                                 <p style="text-align: center;"><a href="{:url('portal/news/detail',['id'=>$vo.id])}" class="btn-red">查看详情>></a></p>
                             </blockquote>
@@ -241,11 +234,15 @@
 			
 					if (target.nodeName.toLowerCase()==nodename) {
 						//为点击的添加active
-						console.log(target.innerText)	
-						name.innerText = target.innerText
-					//清空选中
-							if (name.innerText=='礼盒') {
-								
+					//	console.log(target.innerText)	
+					var	nameText = target.innerText
+					//切换产品图
+							if (nameText=='三对装') {
+								document.getElementById('name-pic').setAttribute('src','/themes/simpleboot3/public/assets/images/xpyj-1.png')
+							} else if (nameText=='四对装') {
+								document.getElementById('name-pic').setAttribute('src','/themes/simpleboot3/public/assets/images/pro1.png')
+							} else if(nameText=='五对装'){
+								document.getElementById('name-pic').setAttribute('src','/themes/simpleboot3/public/assets/images/food-1.jpg')
 							}
 					
 						clactive.call(even);
