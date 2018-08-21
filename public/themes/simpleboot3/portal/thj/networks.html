@@ -75,9 +75,7 @@
 
 	var citys_network_url = "{:url('portal/public/citys_network')}";
 	storeCitySelect();
-	if (city != 0) {
-			$("#storeCity .cityStore").prop('selected', true);
-		}
+	
 	//获取提货点城市
 	function storeCitySelect() {
 		$.post(citys_network_url, { 'dd': 'dd' }, function (data) {
@@ -94,5 +92,6 @@
 
 		}, 'json');
 	}
-	$(city).prop('selected', true);
+		
+
 </script>
