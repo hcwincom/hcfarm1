@@ -61,32 +61,22 @@ $(function () {
 	$(".showdr").click(function(){
 		$(".showtopdl").stop().toggle('animatenav');
 	});
-	
+    
+    //  点击查看商品显示商品信息
+    $("#checkGoods p").click(function () {
+        $(".showdiv").toggle();
+    });
+    
+    // 点击选择发货形式
+    $("#racheck").click(function () {
+        $(".onlineGoods").show();
+        $(".storeGoods").hide();
+    })
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    $("#radiocheck").click(function () {
+        $(".onlineGoods").hide();
+        $(".storeGoods").show();
+    });	
 
 
 

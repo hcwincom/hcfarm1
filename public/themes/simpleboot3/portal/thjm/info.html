@@ -8,8 +8,8 @@
 		    	<div class="middles_item">
 	                <span>券卡状态：</span>
 	                <div>
-						<p class="greenc">已提货</p>
-	                    <!-- <input id="code" type="text" class="txtpt" name="number" value="{$info.sn}" maxlength="20" placeholder="请输入提货编码" required/> -->
+						<p class="greenc">{$info['status_name']}</p>
+	                    
 	                </div>
 	            </div>
 	            <div class="middles_item">
@@ -25,24 +25,46 @@
 	                </div>
 				</div>
 				<div class="middles_item">
+					<span>查看商品：</span>
+					<div id="checkGoods">
+						<p class="colorred">点击查看商品信息</p>
+					</div>
+				</div>
+				<div class="showdiv">
+					<div class="hidegoodsinfo">
+						<div class="goodsImg">
+							<img src="{:cmf_get_image_url($company.wx_pic.content)}" alt="">
+						</div>
+						<div class="goodsInfomation">
+							<p>{$info.name}</p>
+							<p>{$info.model}</p>
+							<p>{$info.spec}</p>
+							<p>{$info.num}</p>
+							<p>{$info.color}</p>
+						</div>
+					</div>
+				</div>
+				<div class="middles_item">
 					<span>起始有效期：</span>
 					<div>
-						<p>{$info.value_time1|date='Y-m-d H:i',###}</p>
+						<p>{$info.value_time1|date='Y-m-d',###}</p>
 					</div>
 				</div>
 				<div class="middles_item">
 					<span>结束有效期：</span>
 					<div>
-						<p>{$info.value_time2|date='Y-m-d H:i',###}</p>
+						<p>{$info.value_time2|date='Y-m-d',###}</p>
 					</div>
 				</div>
 				<!-- 券卡信息是未提货时显示 -->
+			<eq name="info.status" value="3">
 	            <div>
 	                <span>&nbsp;</span>
 	                <div class="btndiv">
-						<a href="{:url('address')}" class="orgbtn btn w100b">确认提货</a>
+						<a href="{:url('address')}" class="orgbtn btn w100b">去提货</a>
 	                </div>
 				</div>
+			<else/>
 				<!-- 券卡信息是已提货时显示 -->
 				<div class="cardInfomation">
 					<div>
@@ -54,21 +76,35 @@
 						<p>{$info.utel}</p>
 					</div>
 					<div>
-						<span style="vertical-align: top;">联系地址：</span>
-						<p>{$info.city_name}{$info.address}</p>
+						<span>提货时间：</span>
+						<p>{$info.take_time|date='Y-m-d',###}</p>
 					</div>
+			 
+					<div>
+						<span style="vertical-align: top;">联系地址：</span>
+						<p>
+						<eq name="info.network" value="0">
+							线下自提
+						<else/>
+							{$info.city_name}{$info.address}
+						</eq>
+						</p>
+					</div>
+				 
+				<notempty name="info.express" >
 					<div>
 						<span>发货时间：</span>
 						<p>{$info.express_time|date='Y-m-d H:i',###}</p>
 					</div>
 					<div>
-						<span>顺丰速运：</span>
+						<span>顺丰快递：</span>
 						<p>
-							<a href="http://www.kuaidi100.com/chaxun?com=shunfeng&nu=" + {$info.express} target="_blank">{$info.express}</a>
+							<a href="http://www.kuaidi100.com/chaxun?com=shunfeng&nu={$info.express}" target="_blank">{$info.express}</a>
 						</p>
 					</div>
+				</notempty>
 				</div>
-
+			</eq>
 	    	</div>  	
 	    </form>
 	    

@@ -22,6 +22,175 @@ $('#goods_verify').submit(function(){
 	
 	return false;
 });
- 
+
+
+//  城市选择
+
+	var city_url = "{:url('portal/public/city')}";
+	city(0);
+	function city(city = 0) {
+		var provinces = $("#provinces");
+		$.post(city_url, { 'city': city }, function (data) {
+			if (data.code != 1) {
+				return false;
+			}
+			var citys = data.data.citys;
+			var options = '';
+
+			for (var i in citys) {
+				options += '<option value="' + i + '">' + citys[i] + '</option>';
+			}
+
+			provinces.append(options);
+
+		}, 'json');
+	}
+
+	$("#provinces").change(function () {
+		$.post(city_url, { 'city': $(this).val() }, function (data) {
+			if (data.code != 1) {
+				return false;
+			}
+
+			var citys = data.data.citys;
+			var options = '';
+
+			for (var i in citys) {
+				options += '<option class="city2" value="' + i + '">' + citys[i] + '</option>';
+			}
+
+			$("#citysel .city2").remove();
+			$("#countys .city3").remove();
+			$("#citysel").append(options);
+			$("#citysel .city0").prop('selected', true)
+
+		}, 'json');
+		$("#citysel").val();
+	});
+	$("#citysel").change(function () {
+		$("#countys").val(0);
+		$.post(city_url, { 'city': $(this).val() }, function (data) {
+			if (data.code != 1) {
+				return false;
+			}
+			var citys = data.data.citys;
+			var options = '';
+
+			for (var i in citys) {
+				options += '<option class="city3" value="' + i + '">' + citys[i] + '</option>';
+			}
+			$("#countys .city3").remove();
+			$("#countys").append(options);
+			$("#countys .city0").prop('selected', true)
+
+
+		}, 'json');
+	});
+
+	// 提货方式
+	var citys_network_url = "{:url('portal/public/citys_network')}";
+	storeCitySelect();
+	//获取提货点城市
+	function storeCitySelect() {
+		$.post(citys_network_url, { 'dd': 'dd' }, function (data) {
+
+			if (data.code != 1) {
+				return false;
+			}
+			var citys = data.data.citys;
+			var options = '';
+			for (var i in citys) {
+				options += '<option class="cityStore" value="' + i + '">' + citys[i] + '</option>';
+			}
+			$("#storeCity").append(options);
+
+		}, 'json');
+	}
+
+
+	var city_networks_url = "{:url('portal/public/city_networks')}";
+	$("#storeCity").change(function () {
+		//获取对应城市的提货点
+		$.post(city_networks_url, { 'city': $(this).val() }, function (data) {
+			if (data.code != 1) {
+				return false;
+			}
+
+			var lists = data.data.lists;
+			var options = '';
+			for (var i in lists) {
+				options += '<option class="store" value="' + i + '">' + lists[i] + '</option>';
+			}
+			// console.log(lists);
+			$("#storeaddr .store").remove();
+			$("#storeaddr").append(options);
+			$("#storeaddr .store0").prop('selected', true);
+		}, 'json');
+
+	});
+
+
+	//  
+	// 提货信息验证
+		$("#pickBtn").click(function () {
+			if ($.trim($("#myname").val()) == "") {
+				$("#myname").focus();
+				$(".codeMsg").html("请填写联系人姓名");
+				return false;
+			} else if ($.trim($("#myphone").val()) == "" || isPhoneNo($.trim($("#myphone").val())) == false) {
+				$("#myphone").focus();
+				$(".codeMsg").html("请填写联系人手机号码");
+				return false;
+			} else if ($.trim($("#countys").val()) == "0") {
+				$(".codeMsg").html("请填写地址");
+				return false;
+			} else if ($.trim($("textarea[name='myaddr']").val()) == "") {
+				$("#myaddr").focus();
+				$(".codeMsg").html("请填写详细地址");
+				return false;
+			}
+			var city = $("#countys").val();
+			var uname = $("#myname").val();
+			var utel = $("#myphone").val();
+			var address = $("#myaddr").val();
+			var take_dsc = $("input[name='beizhu']").val();
+
+			var time = $("#start").val();
+
+			var storeaddr = $("#storeaddr").val();
+
+			var checked = $("input[name='take_type']:checked").val();
+
+
+			if (checked == 1) {
+				$.post("{:url('address_do')}", {"uname": uname, "utel": utel, "city": city, "address": address, "get0_time": time, "take_dsc": take_dsc }, function (data) {
+					console.log(data);
+					$(".codeMsg").html(data.msg);
+					if (data.code != 1) {
+						return false;
+					}
+					$('#address_btn').hide();
+
+				}, 'json');
+			} else if (checked == 2) {
+				$.post("{:url('address_do')}", {"uname": uname, "utel": utel, 'network': storeaddr, "take_dsc": take_dsc }, function (data) {
+					if (data.code != 1) {
+						return false;
+					}
+					$('#address_btn').hide();
+				});
+			}
+
+			return false;
+
+
+		});
+
+
+
+
+
+
+
 
 </script>
