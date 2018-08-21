@@ -12,24 +12,33 @@
     
     <!-- About page Section -->
     
- 	<section id="about" class="about"><!-- Section id-->
+ 	<section id="about" class="about services" style="padding-bottom: 50px;"><!-- Section id-->
          <div class="container">
-            <div class="row row_tit" style="background-image: url({:cmf_get_image_url($company.bg_about1.content)})">
-                <p class="tit">公司简介</p>
+            <div class="row row_tit"> <!--style="background-image: url({:cmf_get_image_url($company.bg_about1.content)})"-->
+                <p class="tit companyje">
+                	
+                	<img src="__TMPL__/public/assets/images/company-detail.png"/>     
+                	
+                </p>
             </div>
        
             <div class="row">
-            	<div class="col-md-6 col-sm-12">
+            	<div class="col-md-6 col-sm-6">
                     
                     <div class="about-content">
-                    	<h3 class="">{$about[0]['name']}</h3>
-                    	<p>{$about[0]['content']}</p>
+                    	<!--<h3 class="">{$about[0]['name']}</h3>-->
+                    	<!--<p>{$about[0]['content']}</p>-->
+                    	<p> 公司成立于2017年，是一家以农产品研发、生产、加工、销售、贸易与于一体的企业。公司坐落于合肥市政务区天鹅湖畔中心的商品大厦，在土特产行业享有较高的知名度，获安徽省“四星级”市场、安徽省首批“信用管理示范单位”等称号，其拥有的商标被认定为“安徽省著名商标”；公司依托安徽省各地具有特色的土特产资源，本着“健康生活，致富农民“的发展理念，励志将安徽省各地农村生长的纯天然的绿色有机农产品送进千家万户，传承徽派特色文化。</p>
+                        <p>另外本公司还在阳澄湖东湖拥有480亩养殖基地。采用传统养殖方法，采用大豆，鸡蛋等天然饲料。确保大闸蟹的品质优良纯天然，无污染。</p>
+                    	
+                    
                     </div>
                 </div>
-                <div class="col-md-6 col-sm-12 right-side">
+                <div class="col-md-6 col-sm-6 right-side">
                     <div class="row about-img">
                         <div class="col-md-12 col-xs-12">
-                            <figure><img src="{:cmf_get_image_url($company.pic_about1.content)}" class="img-responsive" alt="Picture"></figure>
+                            <figure><img src="__TMPL__/public/assets/images/humian.gif" class="img-responsive" alt="Picture" width="100%"></figure>
+                            <p style="font-size: 26px; ">480亩养殖水域</p>
                         </div>
                      
                     </div>
@@ -46,40 +55,62 @@
         <div class="container">
             <div class="row">
             	<div class="col-md-12">
-                	<div class="best-dish about-page">
-                    	<div class="section-title inside-page">
-                            <h4>{$about[1]['name']}</h4>
-                            <h2>{$about[1]['title']}</h2>
+            		<!--best-dish about-page    下css-->
+                	<div class=" clearfix row  justify-content-between">
+                				<div class="no-normal-lefe  col-md-4 col-xs-4">
+                          <p class="no-normal-p-lefe">为客户创造价值 。</p>
+                          <p class="no-normal-p-lefe">第一时,为客户创造价值 。</p>                       	
+                        </div> 
+                    	<div class="section-title inside-page inside-text col-md-4 col-xs-8	row">
+                            <!--<h4>{$about[1]['name']}</h4>-->
+                            <!--<h2>{$about[1]['title']}</h2>-->
+                          <div class="col-xs-12 col-md-6 col-sm-6" style="float: right;">
+                          	<h2 style="color: #ffffff;" class="inside-text-phone">公司宗旨</h2>
+                						<img src="__TMPL__/public/assets/images/company-main.png" width="80%"/>               	
+                           </div>	
+                          <div class="col-xs-12 col-md-6 col-sm-6">
+                          	<p class="no-normal-p">第一时间产地直供 ,为客户创造价值 。</p>
+	                          <p class="no-normal-p">咸香流油 ,营养健康</p>
+	                          <p class="no-normal-p">第一时间产地直供 ,营养健康 ,为客户创造价值 。</p>
+                          </div>
+                          
+                         
                         </div>
-                     {$about[1]['content']} 
-                                     
+                     <!--{$about[1]['content']}--> 
+                                    
                     </div>
+                   
                 </div>
             </div>
+            
         </div>
     </section>
     
     
 	<!-- Our Team Section -->
     
-    <section id="ourteam" class="ourteam"><!-- Section id-->
+    <section id="ourteam" class="ourteam services"><!-- Section id-->
         <div class="container">
          	<div class="row">
-         		<div class="row row_tit" style="background-image: url({:cmf_get_image_url($company.bg_about3.content)})">
-                     <p class="tit">公司团队</p>
+         		<div class="row row_tit">
+                     <p class="tit companyje">
+                	<img src="__TMPL__/public/assets/images/company-team.png"/>               	
+                     		
+                     </p>
                 </div>
             	 
             </div>
             
             <div class="row">
            		<foreach name="workers" item="vo">
-            		<div class="col-md-4 col-sm-4">
+            		<div class="col-md-6 col-sm-6">
                     	<div class="team-block">
-                        	<p class="name fs-18">{$vo.name}</p>
-                            <p class="pos fs-12">{$vo.job}</p>
-                            <img src="{:cmf_get_image_url($vo.pic)}" class="img-circle img-responsive" alt="avtar" />
+                        	<!--<p class="name fs-18">{$vo.name}</p>-->
+                            <!--<p class="pos fs-12"></p>-->
+                            <img src="{:cmf_get_image_url($vo.pic)}" class="img-circle img-responsive" alt="avtar" style="border: 2px solid #000000;"/>
                             <p class="details">{$vo.dsc}</p>
-                            <ul class="list-inline social-icon">
+                            <p class="details">{$vo.job}</p>
+                            <!--<ul class="list-inline social-icon">
                             	<div class="bdsharebuttonbox"  style="display:inline-block">
                                     <a href="#" class="bds_more" data-cmd="more"></a>
                                     <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
@@ -90,7 +121,7 @@
                                 </div>
                                 <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{},"image":{"viewList":["qzone","tsina","tqq","renren","weixin"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
                                 </script>
-                            </ul>
+                            </ul>-->
                         </div>
                     </div>
                 </foreach>

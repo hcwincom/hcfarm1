@@ -1,20 +1,40 @@
- <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
-        <div class="container-fluid">
+ <!-- navbar-fixed-top-->
+ <nav id="" class="navbar navbar-default" style="margin: 0;">
+        <div class="container-fluid" style="padding: 0;">
             <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
+            <div class="navbar-header" style="float: none;">
                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only"></span> 目录 <i class="fa fa-bars"></i>
                 </button>
                 
                 <!-- Logo Here -->
-                 <a class="navbar-brand page-scroll" href="{:url('portal/index/index')}">
-                 	<p><img src="{:cmf_get_image_url($company.logo.content)}" alt="">{$company.title.content}</p>
+                <div class="container">
+                 <a class="navbar-brand page-scroll " href="{:url('portal/index/index')}" >
+                 	<p style="margin: 0;">
+                 		<img src="{:cmf_get_image_url($company.logo.content)}" alt="" width="20%">
+                 		{$company.title.content}
+                 	</p>
                  </a>
-               
+                 <div class="imgfix" style="position: relative;">
+                 	<a href="" style="position: absolute;left: 50%;margin-left: -50px; z-index: 999;">
+                 	<!--<img src="{:cmf_get_image_url($company.logo.content)}" alt="" style="width: 80%;">-->                		                	                		
+                 	</a>
+                 </div>
+		            <div class="nav_phone" style="float: right;margin-top: 15px;position: absolute;right: 200px;top: 10px;">	
+						<!--<input type="text" name="search-content" class="ui-search-input" placeholder="请输入搜索内容">
+						<a href="#" class="ui-search-submit">&nbsp;</a>		-->
+						<p style="color: #FFFFFF;"> 
+							
+							订购热线：400-6527-879 <br />
+							提货热线：400-6527-879
+						</p>
+					</div>
+               </div>
             </div>            
             <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right">
+            <div class="collapse navbar-collapse nav-bg" id="bs-example-navbar-collapse-1">
+            	<div class="container">
+                <ul class="nav navbar-nav" id="navs"><!--navbar-right-->
                 	<li class="<eq name='html_flag' value='index'>active</eq>">
                         <a href="{:url('portal/index/index')}">{$company.index.title}</a>
                     </li>
@@ -26,7 +46,7 @@
                          {$company.ourmenu.title}
                             <span class="caret"></span>
                        </a>
-                        <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                        <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1" style="width: 100%;">
                         <foreach name="cates.goods" item="vo">
                             <li role="presentation" >
                                 <a role="menuitem" tabindex="-1" href="{:url('portal/ourmenu/index',['cid'=>$vo['id']])}">{$vo.name}</a>
@@ -35,7 +55,7 @@
                            
                         </ul>
                     </li>
-                    <li class="dropdown <eq name='html_flag' value='news'>active</eq>">
+                    <li class="dropdown <eq name='html_flag' value='news'>active</eq>" style="">
                      <a href="javascript:void(0);" class="dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown">
                         {$company.news.title}
                             <span class="caret"></span>
@@ -49,6 +69,9 @@
                          </foreach> 
                         </ul>
                     </li>
+                    <!--</ul>-->
+                    <!--============左右导航===============-->
+                    <!--<ul class="nav navbar-nav ">-->                 
                     <li class="dropdown <eq name='html_flag' value='service'>active</eq>">
                      <a href="javascript:void(0);" class="dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown">
                         {$company.service.title}
@@ -68,13 +91,15 @@
                         <a href="{:url('portal/gallery/index')}">{$company.gallery.title}</a>
                     </li>
                   </notempty>
-                   <li class=" ">
-                        <a href="{:url('portal/thj/th')}">在线提货</a>
-                    </li>
                     <li class="<eq name='html_flag' value='contact'>active</eq>">
                         <a href="{:url('portal/contact/index')}">{$company.contact.title}</a>
                     </li>
-                </ul>
+                     <li class="">
+                        <a href="{:url('portal/thj/th')}">在线提货</a>
+                    </li>
+                   
+                   </ul>
+                </div>
             </div>
             
             <!-- /.navbar-collapse -->

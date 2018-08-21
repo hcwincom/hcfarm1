@@ -97,7 +97,7 @@ class NetworkController extends AdminbaseController {
         ->join('cmf_city c2','c2.id=p.city')
         ->join('cmf_city c1','c1.id=c2.fid')
         ->where('p.id',$id)->find();
-       
+      
         $this->assign('info',$info);
       
         return $this->fetch();

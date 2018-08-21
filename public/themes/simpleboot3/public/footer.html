@@ -1,36 +1,99 @@
+	
 
-
-<footer id="footer" class="footer "
-	style="background-image: url({:cmf_get_image_url($company.bg_footer.content)}">
+<footer id="footer" class="footer ">
 	<!-- Section id-->
-	<div class="container">
-		<div class="row contect-out-bg">
-
-			<div class="col-md-6 col-sm-6">
-				<div class="section-title">
-					<h1>如需购买，请联系我们</h1>
-					<img src="__TMPL__/public/assets/images/sep-2.png" alt="sep">
+	<div style="background-image: url({:cmf_get_image_url($company.bg_footer.content)}">			
+		<div class="container" >
+			<div class="row contect-out-bg" >		
+					<div class="section-title">
+						
+						<!--<h1>如需购买，请联系我们</h1>-->
+						<div class="buylin" style="background:#9f1c28; display: inline-block;">
+							<h1>如何购买？</h1>
+							<a href="">点 这 里</a>
+						</div>
+						<!--<img src="__TMPL__/public/assets/images/sep-2.png" alt="sep">-->
+						<!--<img src="__TMPL__/public/assets/images/logo-center.png" />-->
+					</div>
+				<div class="col-md-6 col-sm-6 col-xs-12">
+					<div class="row inmation">
+						<div class="form-group col-md-4 "></div>
+						<div class="form-group col-md-8">
+							<span>
+            				<img src="__TMPL__/public/assets/images/icon-phone.png" alt="" width="75%" />            		
+								
+							</span>
+							<span>188 5519 6588</span>					
+						</div>
+						<div class="form-group col-md-4"></div>
+						
+						<div class="form-group col-md-8">
+								<span>
+            				<img src="__TMPL__/public/assets/images/icon-address.png" alt="" width="75%" />            		
+								
+								</span>
+								<span>安徽省政务区</span>				
+						</div>
+						<div class="form-group col-md-4"></div>
+						
+						<div class="form-group col-md-8">
+							<span>
+            				<img src="__TMPL__/public/assets/images/icon-update.png" alt="" width="75%" />            		
+								
+							</span><span>hhhsss188 5519 6588</span>				
+						</div>
+						<div class="form-group col-md-4"></div>
+						
+						<div class="form-group col-md-8">
+								<span>
+            				<img src="__TMPL__/public/assets/images/icon-at.png" alt="" width="75%" />            		
+									
+								</span><span>99988 5519 6588</span>			
+						</div>
+						<div class="form-group col-md-4"></div>
+						
+						<div class="form-group col-md-8 qqwxwb">
+							<a><img src="__TMPL__/public/assets/images/qqwxwb-qq.png" alt="" width="65%" /> </a>	
+							<a><img src="__TMPL__/public/assets/images/qqwxwb-wx.png" alt="" width="75%" /></a>	
+							<a><img src="__TMPL__/public/assets/images/qqwxwb-wb.png" alt="" width="75%" /></a>	
+						</div>
+						<div class="form-group col-md-3"></div>
+						
+						<div class="form-group col-md-9">
+							<div class="container">
+								
+						
+								<div class="links">
+									<span>友情链接：</span>
+									<links> <a href="{$vo.url|default=''}"
+										target="{$vo.target|default=''}">{$vo.name}</a> </links>
+						
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
-				<div class="contact-form row">
-					<include file="public@contact" />
+				<div class="col-md-6 col-sm-6 col-xs-12">
+					<div class="contact-form row">
+						<include file="public@contact" />
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-
-	<div class="container friendly_link">
-		<div class="link_show">
-			<img src="{:cmf_get_image_url($company.footer_pic1.content)}" alt="">
+	<div class="" style="background-image: url({:cmf_get_image_url($company.index_news_bg.content)})">
+		<div class="container friendly_link" >
+			<div class="link_show">
+				<img src="{:cmf_get_image_url($company.footer_pic1.content)}" alt="">
+			</div>
+			<div class="link_show">
+				<img src="{:cmf_get_image_url($company.footer_pic2.content)}" alt="">
+			</div>
+			<div class="link_show">
+				<img src="{:cmf_get_image_url($company.footer_pic3.content)}" alt="">
+			</div>
 		</div>
-		<div class="link_show">
-			<img src="{:cmf_get_image_url($company.footer_pic2.content)}" alt="">
-		</div>
-		<div class="link_show">
-			<img src="{:cmf_get_image_url($company.footer_pic3.content)}" alt="">
-		</div>
-
 	</div>
-
 
 </footer>
 <include file="public@footer1" />

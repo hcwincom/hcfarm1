@@ -1,7 +1,11 @@
-<footer id="footer1">
+					<footer id="footer1">
 	<div class="container">
-		<div class="col-md-3 col-sm-4 col-xs-12 footer1_01">
-			<p>
+		<div class="col-md-4 col-sm-6 col-xs-12 footer1_01">
+			<div class="erweima" style="text-align: center;">
+				<img src="__TMPL__/public/assets/images/erweima.png"/>
+				<p>扫一扫 关注微信</p>
+			</div>
+			<!--<p>
 				<i class="icons"><img
 					src="__TMPL__/public/assets/images/small-phone.png" alt="">{$company.tel1.content}</i> 
 			</p>
@@ -10,33 +14,43 @@
 			  
 				 <li>{$company.email.title}：{$company.email.content}</li>
 
-			</ul>
+			</ul>-->
 		</div>
-		<div class="col-md-7 col-sm-5 col-xs-12 footer1_02">
-			<a class="search" href="http://www.wincomtech.cn/" target="_blank">
+		<div class="col-md-7 col-sm-6 col-xs-12 footer1_02">
+			<!--<a class="search" href="http://www.wincomtech.cn/" target="_blank">
 				<i class="icons"><img
 					src="__TMPL__/public/assets/images/links.png" alt=""></i> <input
 				type="text" placeholder="华创在线网络科技（北京）有限公司" disabled='disabled'>
 
-			</a>
-			<p>{$company.copyright.title} {$company.copyright.content}</p>
-			<p>{$company.tech.title} : {$company.tech.content}</p>
+			</a>-->
+			<ul class="nav navbar-nav">
+				<li><a href="">首页</a></li>
+				<li><a href="">公司简介</a></li>
+				<li><a href="">新闻中心</a></li>
+				<li><a href="">联系我们</a></li>
+				<li style="border-right:none ;"><a href="">售后服务</a></li>
+			</ul>
+			<!--<p>{$company.copyright.title} {$company.copyright.content}</p>-->
+			<!--<p>{$company.tech.title} : {$company.tech.content}</p>-->
 		</div>
-		<div class="col-md-2 col-sm-3 col-xs-12 footer1_03">
+		<!--<div class="col-md-2 col-sm-3 col-xs-12 footer1_03">
 			<div class="erweima">
 				<img src="{:cmf_get_image_url($company.wx_pic.content)}" alt="">
 			</div>
 			<p>{$company.wx_pic.title}</p>
-		</div>
+		</div>-->
 	</div>
 	<div class="container footer_friendly_link">
-		<span>友情链接：</span>
+		
+		<p >  {$company.copyright.title} {$company.copyright.content}</p>
+		<p>{$company.tech.title} : {$company.tech.content}</p>
+		<!--<span>友情链接：</span>
 
 		<div class="links">
 			<links> <a href="{$vo.url|default=''}"
 				target="{$vo.target|default=''}">{$vo.name}</a> </links>
 
-		</div>
+		</div>-->
 	</div>
 </footer>
 

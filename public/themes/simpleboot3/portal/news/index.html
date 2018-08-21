@@ -8,74 +8,121 @@
     
     <!-- Page Title Header -->
      <include file="public@header"/>  
-       <div class="container">
-		     <div class="row">
-		          <div class="fy_tab col-lg-12">
-		              <ul class="fy_tab_tit">
-		              <foreach name="cates.news" item="vo">
-                            <li class="<if condition='$cid eq $vo.id'>on</if>">
-                                <a href="{:url('index',['cid'=>$vo['id']])}">{$vo.name}</a>
-                            </li> 
-                       </foreach> 
+     <div class="news0">
+     	
+     
+	       <div class="container">
+			     <div class="row">
+			          <div class="fy_tab col-lg-12">
+			              <ul class="fy_tab_tit">
+			              <foreach name="cates.news" item="vo">
+	                            <li class="<if condition='$cid eq $vo.id'>on</if>">
+	                                <a href="{:url('index',['cid'=>$vo['id']])}">{$vo.name}</a>
+	                            </li> 
+	                       </foreach> 
+			                  
+			              </ul>
+			          </div>
+			      </div>
+	      </div>
+	    <!-- Our Services Section -->
+		  <volist name="list" id="vo" mod="2">
+		    <section id="services{$i}" class="service container"><!-- Section id-->
+		        <!--<div class="container">-->
+		            <div class="row ">
+		            <eq name="mod" value="0">
+		            	<div class="col-md-8 col-sm-8 text-side">
+		                	<div class="section-title inside-page">
+		                    <h2><a href="{:url('detail',['id'=>$vo['id']])}">{$vo.name}</a></h2>
+		                        <h4>{$vo.dsc}</h4><!---->
 		                  
-		              </ul>
-		          </div>
-		      </div>
-      </div>
-    <!-- Our Services Section -->
-  <volist name="list" id="vo" mod="2">
-    <section id="services{$i}" class="services"><!-- Section id-->
-        <div class="container">
-            <div class="row">
-            <eq name="mod" value="0">
-            	<div class="col-md-6 col-sm-6 text-side">
-                	<div class="section-title inside-page">
-                    <h2><a href="{:url('detail',['id'=>$vo['id']])}">{$vo.name}</a></h2>
-                        <h4>{$vo.dsc}</h4>
-                    </div>
-                    <div class="ser-content">
-                    	{$vo.content}<p></p>
-                    </div>  
-                     <a class="btn" href="{:url('detail',['id'=>$vo['id']])}">查看详情</a>                  
-                </div>
-                <div class="col-md-6 col-sm-6 img-side">
-                	<div class="row about-img">
-                    	<div class="col-sm-12 col-xs-12">
-                        	<figure><img src="{:cmf_get_image_url($vo.pic)}" class="img-responsive" alt="Picture"></figure>
-                        </div>
-                    </div>
-                </div>
-              <else/>
-               <div class="col-md-6 col-sm-6 img-side">
-                	<div class="row about-img">
-                    	<div class="col-sm-12 col-xs-12">
-                        	<figure><img src="{:cmf_get_image_url($vo.pic)}" class="img-responsive" alt="Picture"></figure>
-                        </div>
-                    </div>
-                </div>
-              <div class="col-md-6 col-sm-6 text-side">
-                	<div class="section-title inside-page">
-                    <h2><a href="{:url('detail',['id'=>$vo['id']])}">{$vo.name}</a></h2>
-                        <h4>{$vo.dsc}</h4>
-                    </div>
-                    <div class="ser-content">
-                    	{$vo.content}<p></p>
-                    </div> 
-                      <a class="btn" href="{:url('detail',['id'=>$vo['id']])}">查看详情</a>                     
-                </div>
-              </eq>
-            </div>
-        </div>
-    </section>
-   </volist>   
-    <div class="container container-nav">
-          <nav aria-label="Page navigation ">
-             <ul class="pagination pagination-lg">
-                {$page}
-             </ul>
-          </nav>
-      </div>
- 
+		                    <div class="ser-content">
+		                    	<p>{$vo.content}</p>
+		                    </div>  
+		                     <a class="chicklook" href="{:url('detail',['id'=>$vo['id']])}">查看详情</a> 
+		                	</div>                
+		                </div>
+		                <div class="col-md-4 col-sm-4 img-side">
+		                	<div class="row about-img cro" >
+		                		<div class="cro_left_top"></div>
+												<div class="cro_right_top"></div>												
+												<div class="cro_left_bottom"></div>											
+												<div class="cro_right_bottom"></div>
+		                    <div class="col-sm-12 col-xs-12  cro cor2">
+		                    		<div class="cro_left_top"></div>
+														<div class="cro_right_top"></div>													
+														<div class="cro_left_bottom"></div>													
+														<div class="cro_right_bottom"></div>
+														<div class="img">
+			                        <figure>
+			                        	<img src="{:cmf_get_image_url($vo.pic)}" class="img-responsive" alt="Picture">
+			                        </figure>
+														</div>
+		                    </div>
+		                  </div>
+		                </div>		                
+		              <else/>
+		               <!--<div class="col-md-6 col-sm-6 img-side">
+		                	<div class="row about-img">
+		                    	<div class="col-sm-12 col-xs-12">
+		                        	<figure><img src="{:cmf_get_image_url($vo.pic)}" class="img-responsive" alt="Picture"></figure>
+		                        </div>
+		                    </div>
+		                </div>
+		              <div class="col-md-6 col-sm-6 text-side">
+		                	<div class="section-title inside-page">
+		                    <h2><a href="{:url('detail',['id'=>$vo['id']])}">{$vo.name}</a></h2>
+		                        <h4>{$vo.dsc}</h4>
+		                    </div>
+		                    <div class="ser-content">
+		                    	{$vo.content}<p></p>
+		                    </div> 
+		                      <a class="btn" href="{:url('detail',['id'=>$vo['id']])}">查看详情</a>                     
+		                </div>
+		            
+		            </div>--> 
+		            <div class="col-md-8 col-sm-8 text-side">
+		                	<div class="section-title inside-page">
+		                    <h2><a href="{:url('detail',['id'=>$vo['id']])}">{$vo.name}</a></h2>
+		                        <h4>{$vo.dsc}</h4><!---->
+		                  
+		                    <div class="ser-content">
+		                    	<p>{$vo.content}</p>
+		                    </div>  
+		                     <a class="chicklook" href="{:url('detail',['id'=>$vo['id']])}">查看详情</a> 
+		                	</div>                
+		                </div>
+		                <div class="col-md-4 col-sm-4 img-side">
+		                	<div class="row about-img cro" >
+		                		<div class="cro_left_top"></div>
+												<div class="cro_right_top"></div>												
+												<div class="cro_left_bottom"></div>											
+												<div class="cro_right_bottom"></div>
+		                    	<div class="col-sm-12 col-xs-12 cro cor2">
+		                    		<div class="cro_left_top"></div>
+														<div class="cro_right_top"></div>												
+														<div class="cro_left_bottom"></div>											
+														<div class="cro_right_bottom"></div>
+														<div class="img">
+		                        	<figure>		                        		
+		                        		<img src="{:cmf_get_image_url($vo.pic)}" class="img-responsive" alt="Picture">		                        		
+		                        	</figure>
+														</div>
+		                        </div>
+		                    </div>
+		                </div>
+		          </eq>
+		        </div>
+		    </section>
+		   </volist>   
+	    	<div class="container container-nav">
+	          <nav aria-label="Page navigation ">
+	             <ul class="pagination pagination-lg">
+	                {$page}
+	             </ul>
+	          </nav>
+	      </div>
+ 		</div>
     <!-- Footer Section -->
     
    <include file="public@footer"/>  

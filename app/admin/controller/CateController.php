@@ -95,14 +95,14 @@ class CateController extends AdminbaseController {
         $data= $this->request->param();
         $path='upload/';
         if(!empty($data['pic']) && is_file($path.$data['pic'])){
-            $pic_size=config('cate_pic');
+//             $pic_size=config('cate_pic');
             $pathid='cate/';
             if(strpos($data['pic'], $pathid)!==0){
                 //获取后缀名,复制文件
                 $ext=substr($data['pic'], strrpos($data['pic'],'.'));
                 $new_file=$pathid.($data['id']).'-'.date('Ymd-His').$ext;
-                $data['pic']=zz_set_image($data['pic'], $new_file, $pic_size['width'], $pic_size['height']);
-                
+                //$data['pic']=zz_set_image($data['pic'], $new_file, $pic_size['width'], $pic_size['height'],2);
+                copy($path.$data['pic'], $path.$new_file);
             } 
         }
         $data['time']=time();

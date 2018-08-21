@@ -18,13 +18,7 @@
                 <div class="fill" style="background-image:url({:cmf_get_image_url($vo.pic)});"> 
                 	<a href="{$vo.link}" target="_blank"></a> 
                	</div>
-            <!--  <div class="carousel-caption">
-                    <img src="__TMPL__/public/assets/images/slide-wave.png" class="img-responsive" alt="Slide">
-                  
-                    <h2>{$vo.title1}</h2> 
-                    <h3>{$vo.title2}</h3>
-                    
-                </div>  -->
+           
             </div>
         </foreach>
             
@@ -35,94 +29,131 @@
     
     <!-- About Section -->
     
-    <section id="about" class="about"><!-- Section id-->
-        <div class="container">
-              <div class="row row_tit" style="background-image: url({:cmf_get_image_url($company.bg_about1.content)})">
-                <p class="tit">公司简介</p>
-            </div>
-            <div class="row">
-            	<div class="col-md-6 col-sm-12">
-                	
-                    <div class="about-content">
-                        <h3 class="">{$about.title}</h3>
-                        <p>{$about.content}</p>
-                    </div>
-                    
-                </div>
-                <div class="col-md-6 col-sm-12 right-side">
-                	<div class="row about-img">
-                    	<div class="col-md-12 col-xs-12">
-                        	<figure><img src="{:cmf_get_image_url($company.pic_about1.content)}" class="img-responsive" alt="Picture"></figure>
-                        </div>
-                     
-                    </div>
-                </div>
-                
-            </div>
-        </div>
+    <section id="about" class="about service newbg1"><!-- Section id-->
+    	<img src="__TMPL__/public/assets/images/shouye1111.png" width="100%"/>
+      
     </section>
     
     
     <!-- Our Menu Section -->
     
    
-     <section id="ourmenu" class="ourmenu" style="background-image: url({:cmf_get_image_url($company.ourmenu_index_bg.content)})"><!-- Section id-->
+     <section id="ourmenu" class="ourmenu" style="background-image: url({:cmf_get_image_url($company.ourmenu_index_bg.content)});"><!-- Section id-->
         <div class="container">
              
-             <div class="row row_tit" style="background-image: url({:cmf_get_image_url($company.ourmenu_index_bg1.content)})">
+             <!--<div class="row row_tit" style="background-image: url({:cmf_get_image_url($company.ourmenu_index_bg1.content)})">
                 <p class="tit" >产品中心</p>
-            </div>
-            <div class="row">
-            	
-              <foreach name="goods_sort" item="vo">   
-                <div class="col-md-4 col-sm-4 col-xs-12">				
-                    <div class="hover ehover">
-                        
-                        <div class="overlay">
-                            <img class="img-responsive" src="{:cmf_get_image_url($vo.pic)}" alt="">
-                            <a href="{:url('portal/ourmenu/detail',['id'=>$vo['id']])}" class="info btn btn-gold">查看更多</a>
-                        </div>	
-                        <h3><a href="{:url('portal/ourmenu/detail',['id'=>$vo['id']])}">{$vo.name}</a></h3>	
-                        <p>{$vo.dsc}</p>		
-                    </div>
-                </div>
-              </foreach> 
+            </div>-->
+            <div class="row contact-info justify-content-between">
+            <foreach name="cate_goods" item="vo">
+            
+              <div class="col-sm-3 col-xs-7 pro-center-szbg{$key}">
+                <h2>{$vo.name}</h2>
+                <img src="{:cmf_get_image_url($vo.pic)}" alt="" width="80%" style="margin: 40px 0;"/>
+                <a href="{:url('portal/ourmenu/index',['cid'=>$vo.id])}"class="btn btn-gold">查看详情</a>
+               </div> 
+            </foreach>
+             
+            </div>  
+             
                 
-                <div class="col-md-12 col-sm-12 col-xs-12 call-to-btn">
-                	<a href="{:url('portal/ourmenu/index')}" class="btn btn-gold">更多产品</a>
-                </div>
-                
-            </div>
+           
         </div>
     </section>
      
     <!-- Book a Table Section -->
     
-    <section id="bookatable" class="bookatable"><!-- Section id-->
-        <div class="container">
-            <div class="row row_tit" style="background-image: url({:cmf_get_image_url($company.service_index_bg1.content)})">
-                <p class="tit">活动中心</p>
+    <section id="bookatable" class="bookatable" style="padding: 0;"> <!--Section id-->
+       
+            <div class="row row_tit"<!-- style="background-image: url({:cmf_get_image_url($company.index_news_bg1.content)})"-->>
+            	 <div class="container">
+                <p class="tit tit-text">
+            			<img src="__TMPL__/public/assets/images/text-1.png" alt="" width="20%" />            		
+                </p>
+            	 </div>
             </div>
-            <div class="row">
-            	<div class="col-md-12">
-                	<div class="best-dish">
-                        <p class="big-text"><a href="{:url('portal/service/detail',['id'=>$service['id']])}">{$service.name}</a></p>
-                        <p class="detail">{$service.dsc}</p>
-                        <div class="call-to-action">
-                            <a href="{:url('portal/service/index')}" class="btn btn-gold">查看更多</a>
-                        </div>                    
-                    </div>
-                </div>
-            </div>
-        </div>
+      <section class="index-tuijians"style="padding: 60px 0;background-image: url({:cmf_get_image_url($company.index_news_bg.content)});"> 
+            <div class="container ">
+            	<div class="tuijian_options btns" style="text-align: center; margin-bottom: 50px;">
+            		<a class="pro_cards act btn"id="pro_cards">礼盒</a>
+            		<a class="pro_boxs btn"id="pro_boxs">礼券</a>
+            	</div>
+	            <div class="row contact-info">
+	             
+	            	 
+	            	<div class="col-md-6 col-xs-12 col-sm-12" style="margin-bottom: 40px;">
+            			<!--<img src="__TMPL__/public/assets/images/xpyj-1.png" alt="" width="80%""/>-->
+            			<img src="__TMPL__/public/assets/images/pro1.png" alt="" width="80%""/>
+            			
+            			
+	            	</div>
+	            	
+	            	<div class="col-md-6 col-xs-12 col-sm-12 info">
+            			<!-- <img src="__TMPL__/public/assets/images/text-art.png" alt="" width="80%" "/>-->  
+            			<dl class="car-box ">
+            				<dt style="margin-top:-30px; margin-bottom: 20px;">大闸蟹<span id="name">礼盒</span></dt>
+            				<!--<dd><span class="act">三对装</span><span>四对装</span><span>五对装</span></dd>-->
+            				<dd>
+            					<!--<p><span class="act">588型</span><span>688型</span><span>1088型</span></p>-->
+            					<!--<p><span>788型</span><span>888型</span><span>988型</span></p>-->
+            					<!--<p><span>988型</span><span>1088型</span></p>-->
+            					<ul id="items">
+												<li id="active" class="act">
+													三对装
+													<ul class="price">
+														<li class="act"><a href="{:url('portal/ourmenu/xie',['type'=>10])}">398</a></li>
+														<li><a href="{:url('portal/ourmenu/xie',['type'=>11])}">558</a></li>
+														<li><a href="{:url('portal/ourmenu/xie',['type'=>12])}">1188</a></li>
+														<li><a href="{:url('portal/ourmenu/xie',['type'=>13])}">1588</a></li>
+														<li><a href="{:url('portal/ourmenu/xie',['type'=>14])}">2088</a></li>
+														
+													</ul>
+												</li>
+												<li>
+													四对装
+													<ul class="price">
+														<li class="act"><a href="{:url('portal/ourmenu/xie',['type'=>20])}">588</a></li>
+														<li><a href="{:url('portal/ourmenu/xie',['type'=>21])}">858</a></li>
+														<li><a href="{:url('portal/ourmenu/xie',['type'=>22])}">1388</a></li>
+														<li><a href="{:url('portal/ourmenu/xie',['type'=>23])}">1988</a></li>
+														<li><a href="{:url('portal/ourmenu/xie',['type'=>24])}">2988</a></li>
+														
+													</ul>
+												</li>
+												<li>
+													五对装
+													<ul class="price">
+														<li class="act"><a href="{:url('portal/ourmenu/xie',['type'=>30])}">688</a></li>
+														<li><a href="{:url('portal/ourmenu/xie',['type'=>31])}">1028</a></li>
+														<li><a href="{:url('portal/ourmenu/xie',['type'=>32])}">1688</a></li>
+														<li><a href="{:url('portal/ourmenu/xie',['type'=>33])}">2388</a></li>
+														<li><a href="{:url('portal/ourmenu/xie',['type'=>34])}">3788</a></li>
+													
+													</ul>
+												</li>
+											</ul>
+            				</dd>
+            				
+            			</dl>
+	            	</div>
+	 
+	            </div>   
+	          </div>
+      		
+     </section>  
+     
+     
     </section>
     
-	<!-- Testimonials Section -->
+    
+	<!-- Testimonials Section  -->
      
-    <section id="testimonials" class="testimonials" style="background-image: url({:cmf_get_image_url($company.index_news_bg.content)})"><!-- Section id-->
+    <section id="testimonials" class="testimonials" style="background-image: url({:cmf_get_image_url($company.index_news_bg.content)});padding-top:0 ;"><!-- Section id-->
         <div class="container-fluid">
            <div class="row row_tit" style="background-image: url({:cmf_get_image_url($company.index_news_bg1.content)})">
-                <p class="tit">热门新闻</p>
+                <p class="tit tit-text">
+            			<img src="__TMPL__/public/assets/images/text-2.png" alt="" width="15%" />            		
+                </p>
             </div>
             <div class="row">
             <div class="col-md-12">
@@ -131,16 +162,28 @@
                       <div class="container">
                       <div class="carousel-inner">
                       <foreach name="news" item="vo" k="key">
-                        <div class="item <eq name='key' value='0'>active</eq>">
-                            <div class="profile-circle"><img src="{:cmf_get_image_url($vo.pic)}" alt="avtar" /></div>
-                            <blockquote>
+                        <div class="item <eq name='key' value='0'>active</eq> row">
+                            <div class="profile-circle col-md-4">
+                            	<img src="{:cmf_get_image_url($vo.pic)}" alt="avtar" />
+                            	<!-- Controls -->
+                            	
+                            </div>
+                            <blockquote class="col-md-8">
                              
                                <dl>
-                                    <dt><span class="title">{$vo.name}</span><span class="date">{$vo.insert_time|date='Y-m-d',###}</span></dt>
+                                    <dt><span class="title">{$vo.name}</span></dt>
+                                    <dd><span class="date title">{$vo.insert_time|date='Y-m-d',###}</span></dd>
                                     <dd>{$vo.dsc}</dd>
-                                    <dd><a href="{:url('portal/news/detail',['id'=>$vo.id])}" class="btn btn-gold">查看详情</a></dd>
+                                    <!--<dd><a href="{:url('portal/news/detail',['id'=>$vo.id])}" class="btn btn-gold">查看详情</a></dd>-->
                                 </dl>
-                               
+                               	<dl>
+                                    <dt><span class="title">{$vo.name}</span></dt>
+                                    <dd><span class="date">{$vo.insert_time|date='Y-m-d',###}</span></dd>
+                                    
+                                    <dd>{$vo.dsc}</dd>
+                                    <!--<dd><a href="{:url('portal/news/detail',['id'=>$vo.id])}" class="btn btn-gold">查看详情</a></dd>-->
+                                </dl>
+                                <p style="text-align: center;"><a href="{:url('portal/news/detail',['id'=>$vo.id])}" class="btn-red">查看详情>></a></p>
                             </blockquote>
                         </div>
                       </foreach>
@@ -166,41 +209,81 @@
     <!-- Events Section -->
     
    
-    <section id="events" class="events"><!-- Section id-->
-        <div class="container">
-            <div class="row row_tit" style="background-image: url({:cmf_get_image_url($company.index_goods_bg1.content)})">
-                <p class="tit">最新产品</p>
-            </div>
-           <div class="row event-block">
-            <foreach name="goods_new" item="vo" k="key">
-            	<div class="col-md-4 col-sm-4">
-                	<div class="event-artical">
-                	<eq name="key" value="1">
-                    	
-                        <p class="event-date">{$vo.insert_time|date='Y-m-d',###}</p>
-                        <h4 class="event-name fs-20"><a href="{:url('portal/ourmenu/detail',['id'=>$vo.id])}">{$vo.name}</a></h4>
-                        <p class="event-details">{$vo.dsc}</p>
-                        <img src="{:cmf_get_image_url($vo.pic)}" class="img-responsive" alt="Event" />
-                     <else/>
-                     	<img src="{:cmf_get_image_url($vo.pic)}" class="img-responsive" alt="Event" />
-                        <p class="event-date">{$vo.insert_time|date='Y-m-d',###}</p>
-                        <h4 class="event-name fs-20" ><a href="{:url('portal/ourmenu/detail',['id'=>$vo.id])}">{$vo.name}</a></h4>
-                        <p class="event-details">{$vo.dsc}</p>
-                     
-                     </eq>
-                    </div>
-                </div>
-              </foreach> 
-            </div>
-             
-            
-        </div>
-    </section>
-
-   
 
 <include file="public@footer"/>  
     
+    
+    <script>
+    	window.onload=function() {
+				var boxDom = document.getElementById('box');
+				var btns = document.getElementsByClassName('btn');
+				var btn = document.getElementsByClassName('btns');
+				var items =document.getElementById("items")
+				var name = document.getElementById('name')
+			//清空选中项函数
+			var clactive = function() {
+//				
+				var chil =this.children;
+//				console.log(chil)
+				for (var i = 0;i<chil.length;i++) {
+					chil[i].classList.remove('act')
+				}
+			}
+			//添加类
+			var addactive = function(event) {
+				event.classList.add('act');
+			}
+			//封装函数
+			var fn = function(even,nodename){
+//					alert('aaa')
+					var ev = ev || window.event;
+　　　　		var target = ev.target || ev.srcElement;
+			
+					if (target.nodeName.toLowerCase()==nodename) {
+						//为点击的添加active
+						console.log(target.innerText)	
+						name.innerText = target.innerText
+					//清空选中
+							if (name.innerText=='礼盒') {
+								
+							}
+					
+						clactive.call(even);
+						addactive(target)
+					}
+				}
+			//事件委托	
+				btn[0].onclick =function  () {
+					var _sele =this
+					fn(_sele,'a');
+				}
+				
+				items.onclick=function  () {
+					var _sele =this
+					fn(_sele,'li');
+				}
+				
+				var prices = document.getElementsByClassName('price');
+				prices[0].onclick = function  (event) {
+					var _sele =this
+					fn(_sele,'li');
+					 event.stopPropagation();//阻止冒泡
+				}
+				
+				prices[1].onclick = function  (event) {
+					var _sele =this
+					fn(_sele,'li');
+					 event.stopPropagation();
+				}
+				
+				prices[2].onclick = function  (event) {
+					var _sele =this
+					fn(_sele,'li');
+					 event.stopPropagation();
+				}
+			}
+			
+    </script>
   </body>
 </html>
 

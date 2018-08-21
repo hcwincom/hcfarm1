@@ -79,10 +79,9 @@ class ThjmController extends HomeBaseController
         
         return $this->fetch();
     }
-     //填写收货地址
+    //提货信息
     public function address(){
-        $thj=session('thj');
-        $sn=$thj['sn']; 
+        $sn=session('thj.sn');
         $where=[
             'sn'=>['eq',$sn],
         ];

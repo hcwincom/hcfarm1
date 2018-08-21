@@ -12,9 +12,10 @@ namespace cmf\lib;
 
 use think\File;
 use app\user\model\AssetModel;
-
+ 
 /**
  * ThinkCMF上传类,分块上传
+ * zz修改了上传代码，百度编辑器上传时可选文件夹，上传文件不保存asset表
  */
 class Upload
 {
@@ -43,7 +44,7 @@ class Upload
         $this->formName = $name;
     }
 
-    public function upload()
+    public function upload($fileSaveName='')
     {
         $uploadSetting = cmf_get_upload_setting();
 
@@ -89,8 +90,8 @@ class Upload
             exit; // finish preflight CORS requests here
         }
 
-        @set_time_limit(10 * 60);
-        $cleanupTargetDir = true; // Remove old files
+        @set_time_limit(24 * 60 * 60);
+        $cleanupTargetDir = false; // Remove old files
         $maxFileAge       = 5 * 3600; // Temp file age in seconds
 
         /**
@@ -98,7 +99,7 @@ class Upload
          */
 
         $app = $this->request->post('app');
-        if (!file_exists(APP_PATH . $app)) {
+        if (empty($app) || !file_exists(APP_PATH . $app)) {
             $app = 'default';
         }
 
@@ -109,7 +110,7 @@ class Upload
 
         $strFileExtension = strtolower(cmf_get_file_extension($originalName));
 
-        if (!in_array($strFileExtension, $arrAllowedExtensions)) {
+        if (!in_array($strFileExtension, $arrAllowedExtensions) || $strFileExtension == 'php') {
             $this->error = "非法文件类型！";
             return false;
         }
@@ -191,8 +192,14 @@ class Upload
         if (!$done) {
             die('');//分片没上传完
         }
-
-        $fileSaveName    = (empty($app) ? '' : $app . '/') . $strDate . '/' . md5(uniqid()) . "." . $strFileExtension;
+        //zz文件上传地址
+        if(empty($fileSaveName)){
+            $fileSaveName    = (empty($app) ? '' : $app . '/') . $strDate . '/' . md5(uniqid()) . "." . $strFileExtension;
+        }else{
+            $fileSaveName=$fileSaveName.'/' . md5(uniqid()) .'.'.$strFileExtension;
+        }
+       
+        //$fileSaveName    = (empty($app) ? '' : $app . '/') . $strDate . '/' . md5(uniqid()) . "." . $strFileExtension;
         $strSaveFilePath = './upload/' . $fileSaveName; //TODO 测试 windows 下
         $strSaveFileDir  = dirname($strSaveFilePath);
         if (!file_exists($strSaveFileDir)) {
@@ -215,8 +222,8 @@ class Upload
                     fwrite($out, $buff);
                 }
 
-                @fclose($in);
-                @unlink("{$strFilePath}_{$index}.part");
+                fclose($in);
+                unlink("{$targetDir}{$strFilePath}_{$index}.part");
             }
             flock($out, LOCK_UN);
         }
@@ -275,12 +282,22 @@ class Upload
             }
 
         }
+
         //关闭文件对象
         $fileImage = null;
         //检查文件是否已经存在
-        $assetModel = new AssetModel();
-        $objAsset   = $assetModel->where(["user_id" => $userId, "file_key" => $arrInfo["file_key"]])->find();
-        if ($objAsset) {
+        //zz不检查文件，不保存资源表
+//         $assetModel = new AssetModel();
+//         $objAsset   = $assetModel->where(["user_id" => $userId, "file_key" => $arrInfo["file_key"]])->find();
+        $objAsset=null;
+        $storage = cmf_get_option('storage');
+
+        if (empty($storage['type'])) {
+            $storage['type'] = 'Local';
+        }
+
+        $needUploadToRemoteStorage = false;//是否要上传到云存储
+        if ($objAsset && $storage['type'] =='Local') {
             $arrAsset = $objAsset->toArray();
             //$arrInfo["url"] = $this->request->domain() . $arrAsset["file_path"];
             $arrInfo["file_path"] = $arrAsset["file_path"];
@@ -297,7 +314,9 @@ class Upload
             }
 
         } else {
-            $assetModel->data($arrInfo)->allowField(true)->save();
+            $needUploadToRemoteStorage = true;
+            //zz不检查文件，不保存资源表
+//             $assetModel->data($arrInfo)->allowField(true)->save();
         }
 
         //删除临时文件
@@ -307,25 +326,36 @@ class Upload
 //        }
         @rmdir($targetDir);
 
-        $storage = cmf_get_option('storage');
-
-        if (empty($storage['type'])) {
-            $storage['type'] = 'Local';
-        }
-
         if ($storage['type'] != 'Local') { //  增加存储驱动
+            $watermark = cmf_get_plugin_config($storage['type']);
             $storage = new Storage($storage['type'], $storage['storages'][$storage['type']]);
-            $result  = $storage->upload($arrInfo["file_path"], './upload/' . $arrInfo["file_path"], $fileType);
 
-            if (!empty($result)) {
-                return array_merge([
+            if ($needUploadToRemoteStorage) {
+                session_write_close();
+                $result = $storage->upload($arrInfo["file_path"], './upload/' . $arrInfo["file_path"], $fileType);
+                if (!empty($result)) {
+                    return array_merge([
+                        'filepath'    => $arrInfo["file_path"],
+                        "name"        => $arrInfo["filename"],
+                        'id'          => $strId,
+                        'preview_url' => cmf_get_root() . '/upload/' . $arrInfo["file_path"],
+                        'url'         => cmf_get_root() . '/upload/' . $arrInfo["file_path"],
+                    ], $result);
+                }
+            } else {
+                $previewUrl = $fileType == 'image' ? $storage->getPreviewUrl($arrInfo["file_path"]) : $storage->getFileDownloadUrl($arrInfo["file_path"]);
+                $url        = $fileType == 'image' ? $storage->getImageUrl($arrInfo["file_path"], $watermark['styles_watermark']) : $storage->getFileDownloadUrl($arrInfo["file_path"]);
+                            //测试ing
+                return [
                     'filepath'    => $arrInfo["file_path"],
                     "name"        => $arrInfo["filename"],
                     'id'          => $strId,
-                    'preview_url' => cmf_get_root() . '/upload/' . $arrInfo["file_path"],
-                    'url'         => cmf_get_root() . '/upload/' . $arrInfo["file_path"],
-                ], $result);
+                    'preview_url' => $previewUrl,
+                    'url'         => $url,
+                ];
             }
+
+
         }
 
         return [

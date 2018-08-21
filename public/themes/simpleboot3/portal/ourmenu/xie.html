@@ -1,0 +1,260 @@
+<include file="public@head"/>    
+  </head>
+  <style type="text/css">
+  	#prices .price_active{
+  		background: #000000;
+  		color: #FFFFFF;
+  	}
+  	.topClass{
+  		background: #000000;
+  		color: #FFFFFF;
+  	}
+  </style>
+  <body id="page-top">
+    
+    <!-- Nav Section -->
+   <include file="public@nav"/>  
+    
+    <!-- Page Title Header -->
+     <include file="public@header"/>  
+    
+    <!-- Hot Deal Section -->
+    
+   <section id="hotdeal" class="hotdeal services"><!-- Section id-->
+        <div class="container">
+        	  <ul class="brash_nav">
+                <span><a href="{:url('portal/index/index')}">首页</a>：</span>
+                <li class=""><a href="{:url('index')}">ff</a></li>
+                <li class=""><a href="{:url('index',['cid'=>33])}">vv</a></li>
+                <li class="active"><a href="javascript:void(0);">vv</a></li>
+            </ul>
+            <div class="row">
+            
+            	<div class="col-md-6 col-sm-12 left-side about-img">
+                     
+                     <figure><img src=" " class="img-responsive" alt="Picture"></figure>
+                		<div class="best-price">
+                    <!--	<p class="tex">价格</p>-->
+                    
+                        <!--<p class="amount"><a href="#"class="chicklook">300</a></p>-->
+                    </div>
+            	</div>
+                <div class="col-md-1 col-sm-12 col-md-pull-1 center-side">
+                	
+                </div>
+            	<div class="col-md-5 col-sm-12 right-side">
+                	<div class="section-title inside-page">
+                     
+                        <h4 class="inside_h4title clearfix"><span>精品阳澄湖大闸蟹</span></h4>
+                          <p class="type-style"><span>3对装</span> <span>4对装</span> <span>5对装</span></p>
+                    </div>
+                    <div class="hot-deal-item clearfix">
+                    	<p class="item-title">价格: <span class="pce">￥48</span></p>
+                    </div>
+                    <div class="hot-deal-item clearfix">
+                    	<p class="item-title">配置: <span class="peizhi">只 雌蟹:2.0两 4只</span></p>
+                    </div>
+                    <div class="hot-deal-item clearfix">
+                    	<p class="item-title">产地: <span>阳澄湖</span></p>
+                    </div>
+                    <div class="hot-deal-item clearfix">
+                    	<p class="item-title" >工具: <span>蟹醋 姜茶 紫苏 剪刀 蟹勺 质保卡</span></p>
+                    </div>
+                    <div class="hot-deal-item clearfix">
+                    	<p class="item-title size_price">型号:</p>
+                    	<p class="item-title size_price " id="prices">
+                    		<span></span>
+                    		<span></span>
+                    		<span></span>
+                    		<span></span>
+                    		<span></span>
+                    	</p>
+                    	
+                    </div>
+                    <div class="hot-deal-item clearfix">
+                    	<p class="item-title" >温馨提示:</p>
+                    	<p>阳澄湖大闸蟹可隔水蒸食或放入水中煮食（蟹壳均匀变红即可食用）</p>
+                    	<p>隔水蒸熟方法：净蟹肚朝上放在垫子上，，水开后继续蒸煮12-15分钟</p>
+                    	<p>水中煮熟方法：将蟹倒竖放入水中，水盖平蟹为准，水开后继续蒸熟12-15分钟</p>
+                    	<p></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+
+    <!-- Menu List Section -->
+    
+    
+    <!--产品详情-->
+		<section class="hotdeal services pro_xq">
+			<h1>产品详情</h1>
+			<div class="container">
+					<div class="xiangqiang1">
+            <img src="__TMPL__/public/assets/images/xq_01.jpg" alt="Underline" />
+					</div>
+					<div class="xiangqiang1">
+            <img src="__TMPL__/public/assets/images/xq_02.jpg" alt="Underline" />
+					</div>
+				<!--	<div class="xiangqiang1">
+            <img src="__TMPL__/public/assets/images/_03.jpg" alt="Underline" />
+					</div>
+					<div class="xiangqiang1">
+            <img src="__TMPL__/public/assets/images/xq_04.jpg" alt="Underline" />
+					</div>
+					<div class="xiangqiang1">
+            <img src="__TMPL__/public/assets/images/xq_05.jpg" alt="Underline" />
+					</div>-->
+					<!--<div class="xiangqiang1">
+            <img src="__TMPL__/public/assets/images/xq3.jpg" alt="Underline" />
+					</div>-->
+			</div>
+			
+		</section>
+
+
+
+
+
+
+    <!-- Footer Section -->
+   <include file="public@footer" />
+    
+  </body>
+</html>
+
+<script>
+	$(function(){
+		var type="{$type|default=0}";
+//		console.log(type);
+		var typeObj = {
+//			'size_num':['398型','558型','1188型','1588型','2088型'],
+//			'peizhi':['雄蟹:1.0两 3只 雌蟹:2.0两 3只','雄蟹:2.0两 4只 雌蟹:3.0两 4只','雄蟹:3.0两 4只 雌蟹:2.0两 4只','雄蟹:4.0两 4只 雌蟹:2.0两 4只','雄蟹:5.0两 4只 雌蟹:2.0两 4只']
+			398:'雄蟹:1.0两 3只 雌蟹:2.0两 3只',
+			558:'558',
+			1188:'1188',
+			1588:'1588',
+			2088:'2088',
+			588:'588',
+			858:'858',
+			1388:'1388',
+			1988:'1988',
+			2988:'2988',
+			688:'688',
+			1028:'1028',
+			1688:'1688',
+			2388:'2388',
+			3788:'3788',
+			0:[398,558,1188,1588,2088],
+			1:[588,858,1388,1988,2988],
+			2:[688,1028,1688,2388,3788],
+			
+//			488:'雄蟹:1.0两 3只 雌蟹:2.0两 3只'
+		}
+		
+	var cage = function(){
+		//判断型号
+		var sizePrice = $('#prices span');
+		var typeStyle = $('.type-style span');
+		//清除class
+		var clac = function(className){
+			$(this).removeClass(className)
+		}
+		//添加class
+		var adac = function(className){
+			$(this).addClass(className)
+		}
+		
+		function fn(){
+//			alert(type) 
+			if (type>=10&&type<15) {
+				
+				typeStyle.eq(0).addClass('topClass');
+				clac.call(sizePrice,'price_active');
+				
+				sizePrice.eq(type.substring(1)).addClass('price_active');
+				
+				
+			}else if (type>=20&&type<25){
+				typeStyle.eq(1).addClass('topClass');
+				clac.call(sizePrice,'price_active');
+				sizePrice.eq(type.substring(1)).addClass('price_active');
+				
+				
+			} else{
+				typeStyle.eq(2).addClass('topClass');
+				clac.call(sizePrice,'price_active');
+				sizePrice.eq(type.substring(1)).addClass('price_active');
+				
+				
+			}
+		};
+		fn()
+		
+		//切换包装型号（3对，4对，5对）
+		for (var i=0;i<typeStyle.length;i++) {
+				typeStyle.eq(i).click(function(){
+					clac.call(typeStyle,'topClass');
+					adac.call(this,'topClass');
+//					console.log($(this).index())
+					type = ($(this).index()+1)*10;
+					type = type.toString();
+//					console.log(type);
+					fn();
+					xuanran();
+					price_active = $('.price_active');
+					priceSpan.text('￥'+price_active.text())
+					peizhi.text(typeObj[price_active.text()]);
+				})
+				
+			}
+		//渲染型号
+		function xuanran() {
+//			alert(2)
+//			alert(typeStyle)
+			for (var i = 0 ;i<typeStyle.length;i++) {
+				if (typeStyle.eq(i).hasClass('topClass')) {
+//					console.log(i)
+					var styleArr = typeObj[i];
+					for( var j in styleArr){
+						sizePrice.eq(j).text(styleArr[j]);
+					}
+				} 
+			}
+		};
+		xuanran()
+		
+		
+		//点击事件
+		var sizePrice = $('#prices span');
+		
+		var price_active = $('.price_active');
+//		console.log(price_active.text())
+		//价格
+		var priceSpan = $('.pce');
+		priceSpan.text('￥'+price_active.text())
+		//配置
+		var peizhi = $('.peizhi');
+		peizhi.text(typeObj[price_active.text()]);
+		//价格与配置更新
+		
+		//判断并切换信息
+		for (var i = 0;i<sizePrice.length;i++) {
+			sizePrice.eq(i).click(function(){
+				clac.call(sizePrice,'price_active');
+				adac.call(this,'price_active');
+				price_active = $('.price_active');
+				priceSpan.text('￥'+price_active.text())
+				peizhi.text(typeObj[price_active.text()]);
+				
+			})
+		}
+		
+	}	
+		cage()
+		
+	})
+	
+</script>
+

@@ -61,7 +61,7 @@ class HomeBaseController extends BaseController
         $com=session('company');
         $cates=session('cates');
         
-         if(empty($com)){
+         if(empty($com0)){
              //获取网站信息
             $company=DB::name('company')->select(); 
             $com=[];

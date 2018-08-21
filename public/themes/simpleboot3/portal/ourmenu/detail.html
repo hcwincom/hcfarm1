@@ -11,22 +11,22 @@
     
     <!-- Hot Deal Section -->
     
-   <section id="hotdeal" class="hotdeal" style="background-image: url({:cmf_get_image_url($company.ourmenu_detail_bg.content)});"><!-- Section id-->
+   <section id="hotdeal" class="hotdeal services"><!-- Section id-->
         <div class="container">
         	<include file="public@menu" />
             <div class="row">
             
             	<div class="col-md-6 col-sm-12 left-side about-img">
+                     
                      <figure><img src="{:cmf_get_image_url($info.pic)}" class="img-responsive" alt="Picture"></figure>
-                </div>
-                <div class="col-md-1 col-sm-12 col-md-pull-1 center-side">
-                	<div class="best-price">
-                    	<p class="tex">价格</p>
-                        <p class="amount"><eq name="info.price" value="0">详谈<else/>￥{$info.price}</eq></p>
+                		<div class="best-price">
+                    <!--	<p class="tex">价格</p>-->
+                        <p class="amount"><eq name="info.price" value="0"><a class="chicklook">价格详谈</a><else/><a href="javascript:void();"class="chicklook">￥{$info.price}</a></eq></p>
                     </div>
-                </div>
+            	</div>
+                
             	<div class="col-md-5 col-sm-12 right-side">
-                	<div class="section-title inside-page">
+                	 <div class="section-title inside-page">
                      
                         <h4>{$info.name}</h4>
                           <p>{$info.dsc}</p>
@@ -47,6 +47,7 @@
                     	<p class="item-title">包装大小</p>
                         <p>{$info.much}{$info.unit}/{$info.pack}</p>
                     </div>
+                    
                 </div>
             </div>
         </div>
@@ -55,8 +56,41 @@
 
     <!-- Menu List Section -->
     
-    <section id="menulist1" class="menulist"><!-- Section id-->
-        <div class="container">
+    
+    <!--产品详情-->
+		<section class="hotdeal services pro_xq">
+			<h1>产品详情</h1>
+			<div class="container">
+					<div class="xiangqiang1">
+            <img src="__TMPL__/public/assets/images/xq_01.jpg" alt="Underline" />
+					</div>
+					<div class="xiangqiang1">
+            <img src="__TMPL__/public/assets/images/xq_02.jpg" alt="Underline" />
+					</div>
+				<!--	<div class="xiangqiang1">
+            <img src="__TMPL__/public/assets/images/_03.jpg" alt="Underline" />
+					</div>
+					<div class="xiangqiang1">
+            <img src="__TMPL__/public/assets/images/xq_04.jpg" alt="Underline" />
+					</div>
+					<div class="xiangqiang1">
+            <img src="__TMPL__/public/assets/images/xq_05.jpg" alt="Underline" />
+					</div>-->
+					<!--<div class="xiangqiang1">
+            <img src="__TMPL__/public/assets/images/xq3.jpg" alt="Underline" />
+					</div>-->
+			</div>
+			
+		</section>
+
+
+
+
+
+    <!--<section id="menulist1" class="menulist">  
+   	
+    <!--Section id---->
+        <!--<div class="container">
             <div class="row">
             	<div class="detail"> 
                   <div class="detail_con"> 
@@ -65,8 +99,7 @@
                 </div>
             </div>
         </div>
-    </section>   
-
+    </section>   -->
 
     <!-- Footer Section -->
    <include file="public@footer" />

@@ -23,51 +23,55 @@
 
     <!-- Contact with form Section -->
     
-    <section id="contact" class="contact contactus" style="background-image: url({:cmf_get_image_url($company.bg_contact.content)});"><!-- Section id-->
+    <section id="contact" class="contact contactus services"><!-- Section id style="background-image: url({:cmf_get_image_url($company.bg_contact.content)});-->
         <div class="container">
-            <div class="row">
-            	<div class="col-md-12 bg-black">
-                	<div class="row contact-info">
-                    	<div class="col-sm-4">
+            <div class="row contact-info justify-content-between">
+            	
+                		  
+                    	<div class="col-sm-3 col-xs-7 contacts-bg">
                             <img src="__TMPL__/public/assets/images/phone.png" class="img-responsive" alt="Phone" />
                              <p class="fs-18 text-uppercase black">{$company.tel1.title}</p>
-                            <p class="black">{$company.tel1.content}</p>
-                            
-                           
+                            <p class="black">{$company.tel1.content}</p>                     
                         </div> 
-                        <div class="col-sm-4">
+                        	
+                        <div class="col-sm-3 col-xs-7 contacts-bg">
                             <img src="__TMPL__/public/assets/images/address.png" class="img-responsive" alt="Phone" />
                              <p class="fs-18 text-uppercase black">{$company.address.title}</p>
                             <p class="black">{$company.address.content}</p>
                           
                         </div>
-                        <div class="col-sm-4">
-                            <img src="__TMPL__/public/assets/images/mail.png" class="img-responsive" alt="Phone" />
+                        	   
+                        <div class="col-sm-3 col-xs-7 contacts-bg">
+                            <img src="__TMPL__/public/assets/images/email.png" class="img-responsive" alt="Phone" />
                             <p class="fs-18 text-uppercase black">{$company.email.title}</p>
-                            <p class="black">{$company.email.content}</p>
-                          
-                        </div>     
-                    </div>
+                            <p class="black">{$company.email.content}</p>                          
+                        </div>    
+            </div>              
+            </div> 
                     <div class="open-time-info">
-                     	<p class="fw-600 fs-16 black">{$company.time1.title}<span class="">{$company.time2.content}</span> 
-                    	{$company.time2.title} <span class="">{$company.time2.content}</span></p>
+                     	<p class="fw-600 fs-16 black">
+                     		{$company.time1.title}
+                     		<span class="">{$company.time2.content}&nbsp;&nbsp;</span>
+                     		{$company.time2.title} 
+                     		<span class="">{$company.time2.content}</span>
+                     	</p>
                     </div>
                      <div class="row contactus-form">
-                    		<p class=" fw-600 text-center black">如需购买，请联系我们</p>
+                    		<!--<p class=" fw-600 text-center black">如需购买，请联系我们</p>-->
                         <div class="col-lg-8 col-md-push-2 col-sm-push-1 col-sm-10 col-md-8">
                         <div class="contact-form">
-                      		<include file="public@contact"/>  
+                      		<!--<include file="public@contact"/>-->  
                       	</div>
                     </div>
                   </div>
-                </div>
-            </div>
-        </div>
+               
+            
+        <!--</div>-->
     </section>
     
 
     <!-- Footer Section -->
-     <include file="public@footer0"/>  
+     <include file="public@footer"/>  
      <script>
     $('.zzcontact').submit(function(){
     	var name=$('#InputName').val();

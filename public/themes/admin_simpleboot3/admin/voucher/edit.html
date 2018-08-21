@@ -5,7 +5,23 @@
 	width: 100px;
 	height: 30px;
 }
-</style>
+<style type="text/css">
+    .pic-list li {
+        margin-bottom: 5px;
+    }
+ </style>
+ 
+<script type="text/html" id="photos-item"> 
+    <li id="saved-image{id}">
+        <input class="file0" id="photo-{id}" type="hidden" name="urls[]" value="{filepath}">
+        
+		<img id="photo-{id}-preview" src="{url}" style="height:36px;width: 36px;"
+             onclick="imagePreviewDialog(this.src);"> 
+	&nbsp;&nbsp;&nbsp;
+        <a href="javascript:(function(){$('#saved-image{id}').remove();})();">移除</a>
+    </li>
+</script>
+ 
 </head>
 <body>
 	<div class="wrap">
@@ -16,7 +32,7 @@
 			<li class="active"><a href="{:url('edit',['id'=>$info.id])}">编辑{$flag}</a></li>
 		</ul>
 
-		<form method="post" class="form-horizontal js-ajax-form margin-top-20"
+		<form method="post" class="form-horizontal js-ajax-form33 margin-top-20"
 			action="{:url('editPost')}">
 			<div class="form-group">
 				<label class="col-sm-2 control-label">产品名称 </label>
@@ -153,6 +169,18 @@
 				</eq>
 				</div>
 			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">提货备注</label>
+				<div class="col-md-6 col-sm-10"> 
+			 
+					<input type="text" class="form-control"  
+						name="take_dsc" value="{$info.take_dsc}"  /> 
+				</div>
+			</div>
+	 
+		 
+		<eq name="info.network" value="0">
+		
 			 <div class="form-group">
 				<label class="col-sm-2 control-label">发货单号</label>
 				<div class="col-md-6 col-sm-10">
@@ -161,6 +189,51 @@
 					<notempty name="info.express">
 						<a href="http://www.kuaidi100.com/chaxun?com=shunfeng&nu={$info.express}" target="_blank">查询快递</a>
 					</notempty>	 
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">发货图片</label>
+				<div class="col-md-6 col-sm-10">
+					 <ul id="pics" class="pic-list list-unstyled form-inline">
+					<foreach name="express_pics" item="vo">
+				  
+					   <li id="saved-image{$key}">
+					  
+					        <img id="photo-{$key}-preview" src="{:cmf_get_image_url($vo)}" style="height:36px;width: 36px;"
+             onclick="imagePreviewDialog(this.src);"> 
+					       <input  id="photo-{$key}" type="hidden" name="urls[]" value="{$vo}">
+					        
+					        <a href="javascript:(function(){$('#saved-image{$key}').remove();})();">移除</a>
+					    
+					    </li>
+					 </foreach>  
+					 </ul>
+					 <a href="javascript:uploadMultiImage('图片上传','#pics','photos-item');"
+                               class="btn btn-default btn-sm">选择图片</a>
+				</div>
+			</div>
+		<else/>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">提货网点</label>
+				<div class="col-md-6 col-sm-10">
+					<input type="text" class="form-control"  value="{$info.network_name}" readonly />
+					 
+				</div>
+			</div>
+		</eq>
+		</gt>
+		<gt name="info.status" value="4">
+			<div class="form-group">
+				<label class="col-sm-2 control-label">收货图片</label>
+				<div class="col-md-6 col-sm-10">
+					 
+					<foreach name="get_pics" item="vo">
+				   
+					<img  src="{:cmf_get_image_url($vo)}" style="height:36px;width: 36px;"
+             onclick="imagePreviewDialog(this.src);"> 
+					    
+					 </foreach>  
+					 
 				</div>
 			</div>
 		</gt>

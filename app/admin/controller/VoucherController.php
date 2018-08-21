@@ -97,7 +97,12 @@ class VoucherController extends AdminbaseController {
         ->join('cmf_goods p','p.id=v.pid')
         ->find(); */
         if($info['network']!=0){
-            $info['network_name']=db('network')->where('id',$info['network'])->value('name');
+            $info['network_name']=db('network') 
+            ->alias('net')
+            ->join('cmf_city city','city.id=net.city')
+            ->where('net.id',$info['network'])
+            ->value('concat(net.name,city.name)');
+            
         }
         $where=[
             'vid'=>$info['id'],
@@ -284,7 +289,9 @@ class VoucherController extends AdminbaseController {
                 unset($data[$k]);
             }
         }
-         
+         if(($id2-$id1)>300){
+             $this->error('批量处理一次不能超过300');
+         }
         $data['time']=time();
         $where=['sn'=>['between',[$id1,$id2]]];
         $row=$m->where($where)->update($data);

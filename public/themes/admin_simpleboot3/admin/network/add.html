@@ -1,0 +1,119 @@
+<include file="public@header" />
+<style>
+#zzsize input, #zzsize select {
+	display: inline-block;
+	width: 100px;
+	height: 30px;
+}
+</style>
+</head>
+<body>
+	<div class="wrap">
+		<ul class="nav nav-tabs">
+			<li><a href="{:url('index')}">所有{$flag}</a></li>
+			<li class="active"><a href="{:url('add')}">添加{$flag}</a></li>
+		</ul>
+		<form method="post" class="form-horizontal js-ajax-form margin-top-20"
+			action="{:url('addPost')}">
+			 
+			 
+			<div class="form-group">
+				<label class="col-sm-2 control-label">店铺名称<span
+					class="form-required">*</span></label>
+				<div class="col-md-6 col-sm-10">
+					 <input type="text" class="form-control" name="name"   required>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">联系方式</label>
+				<div class="col-md-6 col-sm-10">
+					<input type="text" class="form-control" name="tel" id="show_money" required>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">所在城市</label>
+				<div class="col-md-6 col-sm-10">
+					<select name="" id="city1">
+					<option value="0">选择省</option>
+					</select>
+					<select name="city" id="city2" required>
+					<option value="0">选择市</option>
+					</select>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">百度地图坐标x</label>
+				<div class="col-md-6 col-sm-10">
+					<input type="text" class="form-control" name="pointx" required>
+					<a href="http://api.map.baidu.com/lbsapi/getpoint/index.html" target="_blank">拾取坐标</a>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">百度地图坐标y</label>
+				<div class="col-md-6 col-sm-10">
+					<input type="text" class="form-control" name="pointy" required>
+				</div>
+			</div>
+		  
+			<div class="form-group">
+				<label class="col-sm-2 control-label">排序</label>
+				<div class="col-md-6 col-sm-10">
+					<input type="number" class="form-control" name="sort" value="1000" required>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">简介</label>
+				<div class="col-md-6 col-sm-10">
+					<input type="text" class="form-control" name="dsc"> 
+				</div>
+			</div>
+			  
+
+			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-10">
+					<button type="submit" class="btn btn-primary js-ajax-submit">{:lang('ADD')}</button>
+					<a class="btn btn-default" href="javascript:history.back(-1);">{:lang('BACK')}</a>
+				</div>
+			</div>
+		</form>
+	</div>
+	<script src="__STATIC__/js/admin.js"></script>
+	 
+	 
+<script type="text/javascript">
+var city_url="{:url('portal/public/city')}";
+var options='';
+
+ $('#city1').change(function(){
+  var city=$(this).val();
+  $('#city2 .city').remove();
+ if(city=='0'){ 
+	 return false;
+ }
+ $.post(city_url,{'city':city},function(data){
+	 if(data.code!=1){
+		return false;
+	}
+	var citys=data.data.citys;
+	options='';
+	for(var i in citys){
+		options+='<option class="city" value="'+i+'">'+citys[i]+'</option>';
+	}
+	$('#city2').append(options);
+ },'json');
+   
+ });
+ $.post(city_url,{'city':0},function(data){
+	 if(data.code!=1){
+		return false;
+	}
+	var citys=data.data.citys;
+	options='';
+	for(var i in citys){
+		options+='<option class="city" value="'+i+'">'+citys[i]+'</option>';
+	}
+	$('#city1').append(options);
+ },'json');  
+</script>
+</body>
+</html>

@@ -11,7 +11,7 @@
     
     <!-- Hot Deal Section -->
     
-    <section id="hotdeal" class="hotdeal"><!-- Section id-->
+    <section id="hotdeal" class="hotdeal services"><!-- Section id-->
         <div class="container">
              <div class="row">
 		          <div class="fy_tab col-lg-12">
@@ -25,16 +25,21 @@
 		              </ul>
 		          </div>
 		      </div>
-            <div class="row">
+            <div class="row contact-info">
             <foreach name="list" item="vo"> 
                  <div class="col-lg-4 col-md-4 col-sm-6">
                      <div class="fh5co-blog animate-box fadeInUp animated-fast">
-                         <a href="{:url('detail',['id'=>$vo['id']])}"><img class="img-responsive" src="{:cmf_get_image_url($vo.pic)}" alt="产品图片"></a>
+                         <a href="{:url('detail',['id'=>$vo['id']])}" style="min-height: 189px;">
+                         	
+                						<!--<img src="__TMPL__/public/assets/images/pro1.png"/>-->               	
+                         		
+                         	<img class="img-responsive" src="{:cmf_get_image_url($vo.pic)}" alt="产品图片">
+                         </a>
                          <div class="blog-text">
                              
-                             <h3><a href="{:url('detail',['id'=>$vo['id']])}">{$vo.name}</a></h3>
-                             <p>{$vo.dsc}</p>
-                             <a href="{:url('detail',['id'=>$vo['id']])}" class="btn btn-primary">进入</a>
+                             <h3 class="clearfix"><a href="{:url('detail',['id'=>$vo['id']])}">{$vo.name}</a></h3><!---->
+                             <p>{$vo.dsc} &nbsp;</p>
+                             <a href="{:url('detail',['id'=>$vo['id']])}" class="chicklook">进入</a><!--btn btn-primary-->
                          </div> 
                      </div>
                  </div>
