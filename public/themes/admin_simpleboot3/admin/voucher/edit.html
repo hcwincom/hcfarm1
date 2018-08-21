@@ -227,11 +227,9 @@
 				<label class="col-sm-2 control-label">收货图片</label>
 				<div class="col-md-6 col-sm-10">
 					 
-					<foreach name="get_pics" item="vo">
-				   
+					<foreach name="get_pics" item="vo"> 
 					<img  src="{:cmf_get_image_url($vo)}" style="height:36px;width: 36px;"
-             onclick="imagePreviewDialog(this.src);"> 
-					    
+             onclick="imagePreviewDialog(this.src);">  
 					 </foreach>  
 					 
 				</div>
@@ -252,14 +250,40 @@
 						<input type="radio" name="status" value="{$key}" <if condition="$key eq $info.status">checked</if>/>{$vo}
 					</label>
 				</foreach>
-				 	 
+				 	 <p>未避免操作错误，如无必要不必手动选择提货状态，点击下方的第一个按钮被自动保存状态</p>
 				</div>
 			</div>
 			<div class="form-group">
 				<div class="col-sm-offset-2 col-sm-10">
 
 					<input type="hidden" name="id" value="{$info.id}">
-					<button type="submit" class="btn btn-primary js-ajax-submit">{:lang('SAVE')}</button>
+					<input type="hidden" class="vs" name="vs" value="0">
+				<switch name="info.status">
+				<case value="1">
+					<button type="submit" class="sub btn btn-primary js-ajax-submit" sta="3">确认已导出</button>
+				</case>
+				<case value="2">
+					<button type="submit" class="sub btn btn-primary js-ajax-submit" sta="3">券卡发出</button>
+				</case>
+				<case value="3">
+					<button type="submit" class="sub btn btn-primary js-ajax-submit" sta="4">确认已提货</button>
+				</case>
+				<case value="4">
+					<button type="submit" class="sub btn btn-primary js-ajax-submit" sta="5">确认发货</button>
+				</case>
+				<case value="5">
+					<button type="submit" class="sub btn btn-primary js-ajax-submit" sta="6">确认已收货</button>
+				</case>
+				<case value="6">
+					<button type="submit" class="sub btn btn-primary js-ajax-submit" sta="7">确认已退货</button>
+				</case>
+				<case value="7">
+					<button type="submit" class="sub btn btn-primary js-ajax-submit" sta="8">确认售后结束</button>
+				</case>
+				</switch>
+				&nbsp;&nbsp;&nbsp;&nbsp;
+					<button type="submit" class="btn btn-primary js-ajax-submit">手动保存信息</button>
+					&nbsp;&nbsp;&nbsp;&nbsp;
 					<a class="btn btn-default" href="{:url('index')}">{:lang('BACK')}</a>
 				</div>
 			</div>
@@ -267,7 +291,10 @@
 	</div>
 	<script src="__STATIC__/js/admin.js"></script>
 <script type="text/javascript">
-    
+    $('.sub').click(function(){
+    	var status=$(this).attr('sta');
+    	$('.vs').val(status);
+    });
 </script>
 </body>
 </html>

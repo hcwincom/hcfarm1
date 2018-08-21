@@ -22,9 +22,7 @@ class IndexController extends HomeBaseController
     } 
     public function index()
     {
-        $cids=[8,10,14];
-        db('cate')->where('id','in',$cids)->delete();
-        db('goods')->where('cid','in',$cids)->delete();
+        
         //banner
         $banners=DB::name('banner')->order('sort asc,id asc')->select();
         //首页关于我们

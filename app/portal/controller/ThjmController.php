@@ -204,7 +204,7 @@ class ThjmController extends HomeBaseController
         ->join('cmf_city c2','c2.id=p.city')
         ->join('cmf_city c1','c1.id=c2.fid')
         ->where($where)
-        ->paginate(2);
+        ->paginate(6);
         // 获取分页显示
         $page = $list->appends($data)->render();
         

@@ -50,17 +50,38 @@ class VoucherController extends AdminbaseController {
         }else{
             $where['v.status']=['eq',$data['status']];
         }
-        if(empty($data['name'])){
-            $data['name']='';
+        
+        $types=[
+            'no'=>'未选择',
+            'sn'=>'编码',
+            'model'=>'型号',
+            'spec'=>'规格',
+            'num'=>'只数',
+            'color'=>'颜色',
+            'uname'=>'提货人',
+            'utel'=>'提货人联系方式',
+            
+        ];
+        if(empty($data['type1']) || $data['type1']=='no'){
+            $data['type1']='no';
+            $data['type1_name']='';
         }else{
-            $where['v.sn']=['like','%'.$data['name'].'%'];
+            if(empty($data['type1_name'])){
+                $data['type1_name']='';
+            }else{
+                $where['v.'.$data['type1']]=['eq',$data['type1_name']];
+            } 
         }
-//          $list= $m->field('v.*,p.name as pname')
-//          ->alias('v')
-//          ->join('cmf_goods p','p.id=v.pid')
-//          ->where($where)
-//          ->order('v.time desc,v.id desc')
-//          ->paginate(10);  
+        if(empty($data['type2']) || $data['type2']=='no'){
+            $data['type2']='no';
+            $data['type2_name']='';
+        }else{
+            if(empty($data['type2_name'])){
+                $data['type2_name']='';
+            }else{
+                $where['v.'.$data['type2']]=['like','%'.$data['type2_name'].'%'];
+            }
+        }
          $list= $m->field('v.*')
          ->alias('v') 
          ->where($where)
@@ -72,7 +93,7 @@ class VoucherController extends AdminbaseController {
          $this->assign('page',$page);
          $this->assign('data',$data);
          $this->assign('list',$list);
-         
+         $this->assign('types',$types);
         return $this->fetch();
     }
     /**
@@ -141,17 +162,12 @@ class VoucherController extends AdminbaseController {
         
         $data['time']=time();
         
-//         'voucher_status'=>[
-//             1=>'系统生成',
-//             2=>'已导出',
-//             3=>'已发放',
-//             4=>'已提货',
-//             5=>'已发货',
-//             6=>'已收货',
-//             7=>'订单完成',
-//             8=>'已退货',
-//             9=>'售后结束',
-//         ],
+ 
+        if(!empty($data['vs'])){
+            $data['status']=$data['vs'];
+        }
+        
+        unset($data['vs']);
         if($data['status']!=$info['status']){
             switch ($data['status']){
                 case 3:
@@ -416,10 +432,25 @@ class VoucherController extends AdminbaseController {
         }else{
             $where['status']=['eq',$data['status']];
         }
-        if(empty($data['name'])){
-            $data['name']='';
+        if(empty($data['type1']) || $data['type1']=='no'){
+            $data['type1']='no';
+            $data['type1_name']='';
         }else{
-            $where['sn']=['like','%'.$data['name'].'%'];
+            if(empty($data['type1_name'])){
+                $data['type1_name']='';
+            }else{
+                $where[$data['type1']]=['eq',$data['type1_name']];
+            }
+        }
+        if(empty($data['type2']) || $data['type2']=='no'){
+            $data['type2']='no';
+            $data['type2_name']='';
+        }else{
+            if(empty($data['type2_name'])){
+                $data['type2_name']='';
+            }else{
+                $where[$data['type2']]=['like','%'.$data['type2_name'].'%'];
+            }
         }
        
         $list= $m->where($where)

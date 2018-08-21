@@ -76,7 +76,8 @@ class ThjController extends HomeBaseController
             db('voucher')->where($where)->setInc('psw_num');
             $this->error('密码错误');
         }
-        
+        $status=config('voucher_status');
+        $info['status_name']=$status[$info['status']];
         $this->success('ok','',['info'=>$info]);
     }
     //提货地址提交
@@ -183,7 +184,7 @@ class ThjController extends HomeBaseController
         ->join('cmf_city c2','c2.id=p.city')
         ->join('cmf_city c1','c1.id=c2.fid')
         ->where($where)
-        ->paginate(2);
+        ->paginate(6);
         // 获取分页显示
         $page = $list->appends($data)->render(); 
        
