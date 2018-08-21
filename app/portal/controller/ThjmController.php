@@ -75,6 +75,8 @@ class ThjmController extends HomeBaseController
         if($info['status']<3){
             $this->error('卡券尚未开放');
         }
+        $status=config('voucher_status');
+        $info['status_name']=$status[$info['status']];
         $this->assign('info',$info);
         
         return $this->fetch();
