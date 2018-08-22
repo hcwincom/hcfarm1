@@ -217,6 +217,25 @@ $('#goods_verify').submit(function(){
 
 			return false;
 		}
+		if (parseInt(info.status) == '6') {
+			$('#info .status').append('<em class="greenc">已发货</em>');
+			$('#info').show();
+			$(".cardGoods").show();
+			$(".uname em").text(info['uname']);
+			$(".utel em").text(info['utel']);
+			if (info.network == '0') {
+				$(".city_name em").text(info['city_name'] + info['address']);
+				$(".express_time em").text(express_time);
+				$(".express_odd a").attr("href", expressHref + info['express']);
+				$(".express_odd a").text(info['express']);
+			} else {
+				$(".city_name").text("");
+				$(".express_time").text("");
+				$(".cardGoods_info").append('<p class="redcolor">门店提货</p>');
+			}
+
+			return false;
+		}
 		 
 		$(".uname em").text(info['uname']);
 		$(".utel em").text(info['utel']);
