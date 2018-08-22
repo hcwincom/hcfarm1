@@ -29,7 +29,7 @@ $configs = [
     // 注册的根命名空间
     'root_namespace'          => ['cmf' => CMF_PATH, 'plugins' => PLUGINS_PATH],
     // 扩展函数文件
-    'extra_file_list'         => [CMF_PATH . 'common' . EXT, THINK_PATH . 'helper' . EXT,CMF_PATH . 'zzfunction' . EXT,],
+    'extra_file_list'         => [CMF_PATH . 'common' . EXT, THINK_PATH . 'helper' . EXT,],
     // 默认输出类型
     'default_return_type'     => 'html',
     // 默认AJAX 数据返回格式,可选json xml ...
