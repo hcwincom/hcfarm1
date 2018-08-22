@@ -25,7 +25,7 @@ class TimeController extends HomeBaseController
         
          
         cmf_set_dynamic_config(['task_date'=>$date]);
-        
+        exit();
     }
      
 }

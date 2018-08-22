@@ -180,6 +180,87 @@ class ThjmController extends HomeBaseController
         db('voucher')->where($where)->update($update);
         $this->success($dsc,url('info'));
     }
+    //退货申请
+    public function back(){
+        $sn=session('thj.sn');
+        $where=[
+            'sn'=>['eq',$sn],
+        ];
+        $info=db('voucher')->where($where)->find();
+        if(empty($info)){
+            $this->error('该编号不存在');
+        }
+        //判断状态
+        if($info['status']<5 || $info['status']==8){
+            $this->error('卡券不能退货');
+        }
+        //发货7天内退货
+        $time=time()-7*3600*24;
+        if($info['express_time']<$time){
+            $this->error('时间超过退货期，不能退货');
+        }
+       
+        $this->assign('info',$info);
+        $back=db('voucher_back')->where('sn',$sn)->find();
+        $this->assign('back',$back);
+        return $this->fetch();
+    }
+    //提货地址提交
+    public function back_do(){
+        
+        $data=$this->request->param();
+        $thj=session('thj');
+        if(empty($thj['psw'])){
+            $this->error('数据错误');
+        }
+        if(empty($data['express']) || empty($data['dsc'])){
+            $this->error('请输入退货运单号和退货描述');
+        }
+        $where=[
+            'sn'=>['eq',$thj['sn']],
+        ];
+        $time=time();
+        $m_voucher=db('voucher');
+        $info=$m_voucher->where($where)->find();
+        if(empty($info)){
+            $this->error('该编号不存在');
+        }
+        //判断状态
+        if($info['status']<5 || $info['status']==8){
+            $this->error('卡券不能退货');
+        }
+        //发货7天内退货
+        $time0=$time-7*3600*24;
+        if($info['express_time']<$time0){
+            $this->error('时间超过退货期，不能退货');
+        }
+        
+        
+        //提货券信息
+        $update=[  
+            'time'=>$time, 
+            'status'=>7,
+        ]; 
+        $m_voucher->startTrans();
+        $m_voucher->where($where)->update($update);
+        $data_back=[
+            'pid'=>$info['id'],
+            'sn'=>$info['sn'],
+            'time'=>$time,
+            'express'=>$data['express'],
+            'dsc'=>$data['dsc'],
+            'pic1'=>$data['pic1'],
+            'pic2'=>$data['pic2'],
+            'pic3'=>$data['pic3'],
+             
+        ];
+        if(empty($data['id'])){
+            db('voucher_back')->insert($data_back);
+        }else{
+            db('voucher_back')->where('id',$data['id'])->update($data_back);
+        }
+        $this->success('已提交退货信息');
+    }
     //
     //线下网点
     public function networks()

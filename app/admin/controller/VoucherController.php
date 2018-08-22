@@ -189,24 +189,24 @@ class VoucherController extends AdminbaseController {
         if($data['status']!=$info['status']){
             switch ($data['status']){
                 case 3:
-                    if($info['send_time']==0){
+                   
                         $data['send_time']=$data['time'];
-                    }
+                   
                     break;
                 case 4:
-                    if($info['take_time']==0){
+                    
                         $data['take_time']=$data['time'];
-                    }
+                    
                     break;
                 case 5:
-                    if($info['express_time']==0){
+                   
                         $data['express_time']=$data['time'];
-                    }
+                 
                     break;
                 case 6:
-                    if($info['get_time']==0){
+                  
                         $data['get_time']=$data['time'];
-                    }
+                  
                     break;
                 default:
                     break;
