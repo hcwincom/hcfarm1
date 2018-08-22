@@ -1269,7 +1269,7 @@ margin-left: 100px;
 	/*max-width: 1920px;*/
 	/*max-height: 820px;*/
 	background-size: 100% 100%;
-	background: repeat;
+	
 }
 .footer .section-title{
    color:#050505;
@@ -1962,6 +1962,7 @@ border-left: 1px solid #000;
 		margin-top: 30px;
 		margin-bottom: 20px;
 		font-size: 1.5em;
+		padding: 0 30px;
 	}
 	.open-time-info{
 		text-align:center;
@@ -2310,11 +2311,15 @@ section {
 		padding: 20px 0;
 	}
 	
+	
 }
 
 
 /*--------------iPhone 6 plus landscape----------------*/
 @media only screen and (max-width: 767px) {
+	.table_cads tr td .name{
+		margin-left:0px;
+	}
 body{
 	font-size:100%;
 	    overflow-x: hidden;
