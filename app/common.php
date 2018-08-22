@@ -1,19 +1,11 @@
 <?php
+// | Copyright (c) 2018-2019 http://zz.zheng11223.top All rights reserved.
+// | Licensed ( http://www.apache.org/licenses/LICENSE-2.0 )
+// | Author: infinitezheng<infinitezheng@qq.com>
 use think\Config;
 use think\Db;
 use think\Url;
-use dir\Dir;
-use think\Route;
-use think\Loader;
-use think\Request;
-use cmf\lib\Storage;
-
-// 应用公共文件
-
-//设置插件入口路由
-Route::any('plugin/[:_plugin]/[:_controller]/[:_action]', "\\cmf\\controller\\PluginController@index");
-Route::get('captcha/new', "\\cmf\\controller\\CaptchaController@index");
-
+ 
 /* 过滤HTML得到纯文本 */
 function zz_get_content($list,$len=100){
     //过滤富文本
@@ -33,29 +25,29 @@ function zz_get_content($list,$len=100){
 
 /* 浏览量计算 */
 function zz_browse($name,$id){
-     
-   $session=session('goods.'.$name);
-   if(empty($session) || !in_array($id, $session)){
-       $session[]=$id;
-       //使用sql函数
-       //Db::name($name)->where('id',$id)->update(['browse'=>['exp','browse+1']]);
-       //字段自增,默认为1 
-       Db::name($name)->where('id',$id)->setInc('browse');
-       session('goods.'.$name,$session);
-   } 
+    
+    $session=session('goods.'.$name);
+    if(empty($session) || !in_array($id, $session)){
+        $session[]=$id;
+        //使用sql函数
+        //Db::name($name)->where('id',$id)->update(['browse'=>['exp','browse+1']]);
+        //字段自增,默认为1
+        Db::name($name)->where('id',$id)->setInc('browse');
+        session('goods.'.$name,$session);
+    }
 }
 
-/*制作缩略图 
+/*制作缩略图
  * zz_set_image(原图名,新图名,新宽度,新高度,缩放类型)
  *  */
 function zz_set_image($pic,$pic_new,$width,$height,$thump=6){
     /* 缩略图相关常量定义 */
-//     const THUMB_SCALING   = 1; //常量，标识缩略图等比例缩放类型
-//     const THUMB_FILLED    = 2; //常量，标识缩略图缩放后填充类型
-//     const THUMB_CENTER    = 3; //常量，标识缩略图居中裁剪类型
-//     const THUMB_NORTHWEST = 4; //常量，标识缩略图左上角裁剪类型
-//     const THUMB_SOUTHEAST = 5; //常量，标识缩略图右下角裁剪类型
-//     const THUMB_FIXED     = 6; //常量，标识缩略图固定尺寸缩放类型
+    //     const THUMB_SCALING   = 1; //常量，标识缩略图等比例缩放类型
+    //     const THUMB_FILLED    = 2; //常量，标识缩略图缩放后填充类型
+    //     const THUMB_CENTER    = 3; //常量，标识缩略图居中裁剪类型
+    //     const THUMB_NORTHWEST = 4; //常量，标识缩略图左上角裁剪类型
+    //     const THUMB_SOUTHEAST = 5; //常量，标识缩略图右下角裁剪类型
+    //     const THUMB_FIXED     = 6; //常量，标识缩略图固定尺寸缩放类型
     //         $water=INDEXIMG.'water.png';//水印图片
     //         $image->thumb(800, 800,1)->water($water,1,50)->save($imgSrc);//生成缩略图、删除原图以及添加水印
     // 1; //常量，标识缩略图等比例缩放类型
@@ -64,17 +56,21 @@ function zz_set_image($pic,$pic_new,$width,$height,$thump=6){
     $imgSrc=$path.$pic;
     $imgSrc1=$path.$pic_new;
     if(is_file($imgSrc)){
-        $image = \think\Image::open($imgSrc); 
-        $size=$image->size(); 
-        if($size!=[$width,$height] || !is_file($imgSrc1)){ 
+        $image = \think\Image::open($imgSrc);
+        $size=$image->size();
+        if($size!=[$width,$height] || !is_file($imgSrc1)){
             $image->thumb($width, $height,$thump)->save($imgSrc1);
-        } 
+        }
     }
-    return $pic_new; 
+    return $pic_new;
 }
 
 /* 为网址补加http:// */
 function zz_link($link){
+    $link=trim($link);
+    if($link==''){
+        return '';
+    }
     //处理网址，补加http://
     $exp='/^(http|ftp|https):\/\/([\w.]+\/?)\S*/';
     if(preg_match($exp, $link)==0){
@@ -82,5 +78,3 @@ function zz_link($link){
     }
     return $link;
 }
-  
-  
