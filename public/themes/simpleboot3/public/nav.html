@@ -41,19 +41,19 @@
                     <li class="<eq name='html_flag' value='about'>active</eq>">
                         <a href="{:url('portal/about/index')}">{$company.about.title}</a>
                     </li>
-                   <li  class="dropdown <eq name='html_flag' value='ourmenu'>active</eq>">
-                        <a href="javascript:void(0);" class="dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown">
+                   <li  class=" <eq name='html_flag' value='ourmenu'>active</eq>">
+                        <a href="{:url('portal/ourmenu/index')}">
                          {$company.ourmenu.title}
-                            <span class="caret"></span>
+                            <!--<span class="caret"></span>-->
                        </a>
-                        <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1" style="width: 100%;">
+                        <!--<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1" style="width: 100%;">
                         <foreach name="cates.goods" item="vo">
                             <li role="presentation" >
                                 <a role="menuitem" tabindex="-1" href="{:url('portal/ourmenu/index',['cid'=>$vo['id']])}">{$vo.name}</a>
                             </li> 
                          </foreach>
                            
-                        </ul>
+                        </ul>-->
                     </li>
                     <li class="dropdown <eq name='html_flag' value='news'>active</eq>" style="">
                      <a href="javascript:void(0);" class="dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown">
@@ -72,7 +72,7 @@
                     <!--</ul>-->
                     <!--============左右导航===============-->
                     <!--<ul class="nav navbar-nav ">-->                 
-                    <li class="dropdown <eq name='html_flag' value='service'>active</eq>">
+                    <!--<li class="dropdown <eq name='html_flag' value='service'>active</eq>">
                      <a href="javascript:void(0);" class="dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown">
                         {$company.service.title}
                             <span class="caret"></span>
@@ -85,7 +85,7 @@
                             </li> 
                          </foreach> 
                         </ul>
-                    </li>
+                    </li>-->
                   <notempty name="company.gallery.title">
                     <li class="<eq name='html_flag' value='gallery'>active</eq>">
                         <a href="{:url('portal/gallery/index')}">{$company.gallery.title}</a>
