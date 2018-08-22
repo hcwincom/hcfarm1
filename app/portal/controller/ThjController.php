@@ -78,7 +78,17 @@ class ThjController extends HomeBaseController
         }
         $status=config('voucher_status');
         $info['status_name']=$status[$info['status']];
-        $this->success('ok','',['info'=>$info]);
+        //提货图片
+        $pics1=[];
+        if($info['status']>3){
+            $where=[
+                'vid'=>$info['id'],
+                'type'=>1,
+            ];
+            $pics1=db('voucher_pic')->where($where)->column('id,pic');
+        }
+         
+        $this->success('ok','',['info'=>$info,'pics1'=>$pics1]);
     }
     //提货地址提交
     public function address_do(){

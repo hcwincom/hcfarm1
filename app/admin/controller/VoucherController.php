@@ -147,11 +147,14 @@ class VoucherController extends AdminbaseController {
         $m_pic=db('voucher_pic');
         $pics1=$m_pic->where($where)->column('id,pic');
         
-        $where['type']=2;
-        $pics2=$m_pic->where($where)->column('id,pic');
+        $back=[];
+        if($info['status']>6){
+            $back=db('voucher_back')->where('pid',$info['id'])->find();
+        }
+        
         $this->assign('info',$info);
         $this->assign('express_pics',$pics1);
-        $this->assign('get_pics',$pics2);
+        $this->assign('back',$back);
         return $this->fetch();
     }
     /**
