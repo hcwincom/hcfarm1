@@ -151,6 +151,7 @@ class ThjmController extends HomeBaseController
             
             //预订时间为空为立即发货
             if(!empty($data['get0_time'])){
+                $data['get0_time']=strtotime($data['get0_time']);
                 if($info['value_time1'] > $data['get0_time']){
                     $this->error('预订时间太早，不在发货期内');
                 }
