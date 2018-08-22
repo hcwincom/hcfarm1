@@ -33,7 +33,7 @@
                      
                      <!--<figure></figure>-->
                 <div class="pro-showpic" style="margin-top: 40px;">
-            			<img src="__TMPL__/public/assets/images/food-1.png" id="pro_picchange"/>	
+            			<img src="{:cmf_get_image_url($company.xie_pic1.content)}" id="pro_picchange"/>	
             			
                 </div>     
                 <div class="best-price">
@@ -182,12 +182,15 @@
 			}
 			console.log($('.topClass').text())
 			var topText = $('.topClass').text();
+			var xiepic1 = "{:cmf_get_image_url($company.xie_pic1.content)}";
+			var xiepic2 = "{:cmf_get_image_url($company.xie_pic2.content)}";
+			var xiepic3 = "{:cmf_get_image_url($company.xie_pic3.content)}";
 			if (topText=='三对装') {
-								document.getElementById('pro_picchange').setAttribute('src','/themes/simpleboot3/public/assets/images/food-1.png')
+								document.getElementById('pro_picchange').setAttribute('src',xiepic1)
 							} else if (topText=='四对装') {
-								document.getElementById('pro_picchange').setAttribute('src','/themes/simpleboot3/public/assets/images/food-2.png')
+								document.getElementById('pro_picchange').setAttribute('src',xiepic2)
 							} else if(topText=='五对装'){
-								document.getElementById('pro_picchange').setAttribute('src','/themes/simpleboot3/public/assets/images/food-3.png')
+								document.getElementById('pro_picchange').setAttribute('src',xiepic3)
 							}
 			
 			

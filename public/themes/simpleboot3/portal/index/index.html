@@ -82,7 +82,7 @@
 	             
 	            	 
 	            	<div class="col-md-6 col-xs-12 col-sm-12" style="margin-bottom: 40px;">
-            			<img src="__TMPL__/public/assets/images/food-1.png" width='80%' id="name-pic"/>
+            			<img src="{:cmf_get_image_url($company.xie_pic1.content)}" width='80%' id="name-pic"/>
             			<!--<img src="__TMPL__/public/assets/images/pro1.png" alt="" width="80%""/>-->
             			
             			
@@ -235,14 +235,18 @@
 					if (target.nodeName.toLowerCase()==nodename) {
 						//为点击的添加active
 					//	console.log(target.innerText)	
+					var xiepic1 = "{:cmf_get_image_url($company.xie_pic1.content)}";
+					var xiepic2 = "{:cmf_get_image_url($company.xie_pic2.content)}";
+					var xiepic3 = "{:cmf_get_image_url($company.xie_pic3.content)}";
+					
 					var	nameText = target.innerText
 					//切换产品图
 							if (nameText=='三对装') {
-								document.getElementById('name-pic').setAttribute('src','/themes/simpleboot3/public/assets/images/food-1.png')
+								document.getElementById('name-pic').setAttribute('src',xiepic1)
 							} else if (nameText=='四对装') {
-								document.getElementById('name-pic').setAttribute('src','/themes/simpleboot3/public/assets/images/food-2.png')
+								document.getElementById('name-pic').setAttribute('src',xiepic2)
 							} else if(nameText=='五对装'){
-								document.getElementById('name-pic').setAttribute('src','/themes/simpleboot3/public/assets/images/food-3.png')
+								document.getElementById('name-pic').setAttribute('src',xiepic3)
 							}
 					
 						clactive.call(even);
