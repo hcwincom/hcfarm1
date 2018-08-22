@@ -673,6 +673,7 @@ header {
 }
 .about-img img{
 	margin: auto;
+	max-width: 100%;
 }
 .about-img figure {
 	/*margin-bottom:15px;
