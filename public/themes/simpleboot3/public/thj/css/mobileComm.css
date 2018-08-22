@@ -623,6 +623,7 @@ header .top0{
 }
 .middles_item p{
     display: inline-block;
+    line-height: 0.6rem;
 }
 .middles_item p img{
     position: absolute;
@@ -632,6 +633,7 @@ header .top0{
     width: 25%;
     text-align: right;
     font-size: 0.3rem;
+    line-height: 0.6rem;
 }
 .middles_item:last-child{
     border-bottom: none;
@@ -643,7 +645,9 @@ header .top0{
     margin-bottom: 0.05rem;
 }
 .middles_item div{
-	display: inline-block;
+    display: inline-block;
+    line-height: 0.6rem;
+    width: 68%;
 }
 .middles_item div input{
     background: #fff;
@@ -689,7 +693,6 @@ header .top0{
     padding: 0.1rem 0.2rem;
 }
 .yzdivInfo>.middles_item{
-    height: 0.8rem;
     line-height: 0.8rem;
 }
 .yzdivInfo>.middles_item>div>p{
@@ -709,12 +712,14 @@ header .top0{
     display: inline-block;
     font-size: 0.3rem;
     width: 25%;
+    line-height: 0.6rem;
     text-align: right;
 }
 .cardInfomation>div>p{
     display: inline-block;
     font-size: 0.28rem;
     width: 71%;
+    line-height: 0.6rem;
 }
 /* 点击查看商品信息进行切换显示 */
 .showdiv{display: none;}

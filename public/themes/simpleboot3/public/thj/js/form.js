@@ -61,6 +61,10 @@
 			$("input[name=codeNum]").focus();
 			$(".indyz2").html("请输入正确验证码");
 			return false;
+		}else{
+			$(".indyz").html("");
+			$(".indyz1").html("");
+			$(".indyz2").html("");
 		}
 		return true;
 	}

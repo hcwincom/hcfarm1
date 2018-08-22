@@ -14,8 +14,8 @@
 						<p>网点所在城市：</p>
 						<div class="selectdiv1">
 							<div class="selectdiv2">
-								<select name="cityCode" id="storeCity">
-									<option value="">--请选择--</option>
+								<select name="city" id="storeCity">
+									<option value="0">--请选择--</option>
 									 
 								</select>
 							</div>
@@ -72,7 +72,7 @@
 </html>
 <script>
 	var city="{$data.city|default=0}";
-
+	console.log(city);
 	var citys_network_url = "{:url('portal/public/citys_network')}";
 	storeCitySelect();
 	//获取提货点城市
@@ -85,11 +85,20 @@
 			var citys = data.data.citys;
 			var options = '';
 			for (var i in citys) {
-				options += '<option class="cityStore" value="' + i + '">' + citys[i] + '</option>';
+				if(parseInt(city) == i){
+					options += '<option class="cityStore" value="' + i + '" selected>' + citys[i] + '</option>';
+				}else{
+					options += '<option class="cityStore" value="' + i + ' ">' + citys[i] + '</option>';
+				}
+			 
 			}
 			$("#storeCity").append(options);
 
 		}, 'json');
 	}
+	$("#storeCity").change(function () {
+		console.log(city);
+	});
+	
 
 </script>

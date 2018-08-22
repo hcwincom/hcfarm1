@@ -9,6 +9,7 @@ $('#goods_verify').submit(function(){
 	var sn=$('#code').val();
 	var psw=$('#password').val();
 	var verify=$('#checkcode').val();
+	
 	$.post("{:url('portal/thjm/verify')}",{'sn':sn,'psw':psw,'verify':verify},function(data){
 		if(data.code!=1){
 		 
@@ -141,7 +142,10 @@ $('#goods_verify').submit(function(){
 				$("#myphone").focus();
 				$(".codeMsg").html("请填写联系人手机号码");
 				return false;
-			} 
+			} else{
+				$(".codeMsg").html("");
+				return true;
+			}
 			var city = $("#countys").val();
 			var uname = $("#myname").val();
 			var utel = $("#myphone").val();
@@ -159,11 +163,17 @@ $('#goods_verify').submit(function(){
 				 if ($.trim($("#countys").val()) == "0") {
 					$(".codeMsg").html("请填写地址");
 					return false;
+				}else{
+					$(".codeMsg").html("");
+					 return true;
 				}
 				 if ($.trim($("textarea[name='myaddr']").val()) == "") {
 					$("#myaddr").focus();
 					$(".codeMsg").html("请填写详细地址");
 					return false;
+				}else{
+					$(".codeMsg").html("");
+					 return true;
 				}
 				$.post("{:url('address_do')}", {"uname": uname, "utel": utel, "city": city, "address": address, "get0_time": time, "take_dsc": take_dsc,'take_type':1 }, function (data) {
 					console.log(data);
