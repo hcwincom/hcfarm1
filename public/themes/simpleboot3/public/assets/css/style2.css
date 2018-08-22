@@ -1742,7 +1742,7 @@ margin-left: 100px;
 	.services .text-side {
 		/*T*/
 		/*padding-top: 5%;*/
-		padding-bottom: 10%;	
+		padding-bottom: 20px;	
 	}
 	.text-side{
 		text-align: center;
@@ -1979,7 +1979,7 @@ border-left: 1px solid #000;
 /*T*/
  .form-group span{
 	display: inline-block;
-	margin: 0px 10px;
+	margin: 0px 5px;
 	color: #fff;
 }
 .inmation .form-group{
