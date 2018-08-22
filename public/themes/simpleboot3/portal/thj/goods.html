@@ -77,7 +77,7 @@
 									</p>
 									<p class="value_time1">
 										<b>起始有效期：</b><em></em></p>
-									<p class="value_time1">
+									<p class="value_time2">
 										<b>结束有效期：</b><em></em></p>
 			
 									<!-- <p class="codeBtn" style="display:none">
@@ -114,12 +114,12 @@
 										<span class="redcolor">*</span>
 										提货方式：
 									</span>
-									<div class="fl">
+									<div class="fl" id="pick_way">
 										<label for="racheck">
-											<input type="radio" name="take_type" value="1" id="racheck" checked="checked">线上发货
+											<input type="radio" name="takeType" value="1" id="racheck" checked />线上发货
 										</label>
 										<label for="radiocheck">
-											<input type="radio" name="take_type" value="2" id="radiocheck">门店自提
+											<input type="radio" name="takeType" value="2" id="radiocheck" />门店自提
 										</label>
 										
 									</div>
@@ -312,22 +312,8 @@
 			         end.min = datas; //开始日选好后，重置结束日的最小日期
 			         end.start = datas //将结束日的初始值设定为开始日
 			    }
-			};
-			
-			var end = {
-			    elem: '#end',
-			    format: 'YYYY-MM-DD',
-			    min: laydate.now(),
-			    max: '2099-06-16',
-			    istime: false,
-				istoday: true,
-			    choose: function(datas){
-			        start.max = datas; //结束日选好后，充值开始日的最大日期
-			    }
-			};
+			};			
 			laydate(start);
-			laydate(end);
-
 		</script>
 		<include file="portal@thj/thjs" /> 
 	</body>

@@ -142,10 +142,11 @@ $('#goods_verify').submit(function(){
 				$("#myphone").focus();
 				$(".codeMsg").html("请填写联系人手机号码");
 				return false;
-			} else{
-				$(".codeMsg").html("");
-				return true;
-			}
+			} 
+			$(".codeMsg").html("");
+				
+			
+			
 			var city = $("#countys").val();
 			var uname = $("#myname").val();
 			var utel = $("#myphone").val();
@@ -160,21 +161,17 @@ $('#goods_verify').submit(function(){
 
 
 			if (checked == 1) {
-				 if ($.trim($("#countys").val()) == "0") {
+				 if ($.trim($("#countys").val()) == " ") {
 					$(".codeMsg").html("请填写地址");
 					return false;
-				}else{
-					$(".codeMsg").html("");
-					 return true;
-				}
-				 if ($.trim($("textarea[name='myaddr']").val()) == "") {
+				} else if ($.trim($("textarea[name='myaddr']").val()) == "") {
 					$("#myaddr").focus();
 					$(".codeMsg").html("请填写详细地址");
 					return false;
-				}else{
-					$(".codeMsg").html("");
-					 return true;
-				}
+				} 
+				$(".codeMsg").html("");
+					
+				
 				$.post("{:url('address_do')}", {"uname": uname, "utel": utel, "city": city, "address": address, "get0_time": time, "take_dsc": take_dsc,'take_type':1 }, function (data) {
 					console.log(data);
 					$(".codeMsg").html(data.msg);

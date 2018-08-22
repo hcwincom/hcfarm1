@@ -129,19 +129,7 @@
         }
     };
 
-    var end = {
-        elem: '#end',
-        format: 'YYYY-MM-DD',
-        min: laydate.now(),
-        max: '2099-06-16',
-        istime: false,
-        istoday: true,
-        choose: function (datas) {
-            start.max = datas; //结束日选好后，充值开始日的最大日期
-        }
-    };
     laydate(start);
-    laydate(end);
 
 </script>
 </body>

@@ -291,6 +291,7 @@ $('#goods_verify').submit(function(){
 
 	// 提货信息验证
 	$("#pickBtn").click(function () {
+			console.log("tt1");
 		if ($.trim($("#myname").val()) == "") {
 			$("#myname").focus();
 			$(".codeMsg").html("请填写联系人姓名");
@@ -299,10 +300,10 @@ $('#goods_verify').submit(function(){
 			$("#myphone").focus();
 			$(".codeMsg").html("请填写联系人手机号码");
 			return false;
-		}else{
-			$(".codeMsg").html("");
-			return true;
 		}
+		$(".codeMsg").html("");
+		 
+		
 	
 		var sncode = $("#codeNum").val();
 		var pswcode = $("#codePwd").val();
@@ -316,27 +317,23 @@ $('#goods_verify').submit(function(){
 
 		var storeaddr = $("#storeaddr").val();
 		 
-		var checked = $("input[name='take_type']:checked").val();
+		var checkedV = $('#pick_way input[name="takeType"]:checked').val();
 		
+		console.log("tt");
+		console.log(checkedV);
 
-		if(checked == 1){
-				
+		if(checkedV == 1){				
 			if ($.trim($("#countys").val()) == "0") {
 				$(".codeMsg").html("请填写地址");
 				return false;
-			}else{
-				$(".codeMsg").html("");
-				return true;
-			}
-
-			if ($.trim($("textarea[name='myaddr']").val()) == "") {
+			}else if ($.trim($("textarea[name='myaddr']").val()) == "") {
 				$("#myaddr").focus();
 				$(".codeMsg").html("请填写详细地址");
 				return false;
-			}else{
-				$(".codeMsg").html("");
-				return true;
-			}
+			} 
+			$(".codeMsg").html("");
+			 
+			 
 			$.post("{:url('address_do')}", { "sn": sncode, "psw": pswcode, "uname": uname, "utel": utel, "city": city, "address": address, "get0_time": time, "take_dsc": take_dsc,'take_type':1}, function (data) {
 				console.log(data);
 				$(".codeMsg").html(data.msg);
@@ -346,7 +343,7 @@ $('#goods_verify').submit(function(){
 				$('#address_btn').hide();
 
 			}, 'json');
-		}else if(checked == 2){
+		}else if(checkedV == 2){
 			$.post("{:url('address_do')}",{ "sn": sncode, "psw": pswcode, "uname": uname, "utel": utel,'network': storeaddr, "take_dsc": take_dsc,'take_type':2},function (data) {
 				if(data.code != 1){
 					return false;
