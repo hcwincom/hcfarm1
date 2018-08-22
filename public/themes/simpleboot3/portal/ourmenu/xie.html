@@ -24,9 +24,8 @@
         <div class="container">
         	  <ul class="brash_nav">
                 <span><a href="{:url('portal/index/index')}">首页</a>：</span>
-                <li class=""><a href="{:url('index')}">ff</a></li>
-                <li class=""><a href="{:url('index',['cid'=>33])}">vv</a></li>
-                <li class="active"><a href="javascript:void(0);">vv</a></li>
+                <li class=""><a href="{:url('index')}">产品中心</a></li>
+                <li class="active"><a href="javascript:void(0);">产品介绍</a></li>
             </ul>
             <div class="row">
             
@@ -34,7 +33,7 @@
                      
                      <!--<figure></figure>-->
                 <div class="pro-showpic" style="margin-top: 40px;">
-            			<img src="__TMPL__/public/assets/images/xpyj-1.png" id="pro_picchange"/>	
+            			<img src="__TMPL__/public/assets/images/food-1.png" id="pro_picchange"/>	
             			
                 </div>     
                 <div class="best-price">
@@ -131,10 +130,7 @@
 <script>
 	$(function(){
 		var type="{$type|default=0}";
-//		console.log(type);
 		var typeObj = {
-//			'size_num':['398型','558型','1188型','1588型','2088型'],
-//			'peizhi':['雄蟹:1.0两 3只 雌蟹:2.0两 3只','雄蟹:2.0两 4只 雌蟹:3.0两 4只','雄蟹:3.0两 4只 雌蟹:2.0两 4只','雄蟹:4.0两 4只 雌蟹:2.0两 4只','雄蟹:5.0两 4只 雌蟹:2.0两 4只']
 			398:'公蟹3.0-3.4两  母蟹2.0-2.4两',
 			558:'公蟹3.5-3.9两  母蟹2.5-2.9两',
 			1188:'公蟹4.0-4.4两  母蟹3.0-3.2两',
@@ -153,8 +149,6 @@
 			0:[398,558,1188,1588,2088],
 			1:[588,858,1388,1988,2988],
 			2:[688,1028,1688,2388,3788],
-			
-//			488:'雄蟹:1.0两 3只 雌蟹:2.0两 3只'
 		}
 		
 	var cage = function(){
@@ -189,11 +183,11 @@
 			console.log($('.topClass').text())
 			var topText = $('.topClass').text();
 			if (topText=='三对装') {
-								document.getElementById('pro_picchange').setAttribute('src','/themes/simpleboot3/public/assets/images/food-1.jpg')
+								document.getElementById('pro_picchange').setAttribute('src','/themes/simpleboot3/public/assets/images/food-1.png')
 							} else if (topText=='四对装') {
-								document.getElementById('pro_picchange').setAttribute('src','/themes/simpleboot3/public/assets/images/food-2.jpg')
+								document.getElementById('pro_picchange').setAttribute('src','/themes/simpleboot3/public/assets/images/food-2.png')
 							} else if(topText=='五对装'){
-								document.getElementById('pro_picchange').setAttribute('src','/themes/simpleboot3/public/assets/images/food-3.jpg')
+								document.getElementById('pro_picchange').setAttribute('src','/themes/simpleboot3/public/assets/images/food-3.png')
 							}
 			
 			
