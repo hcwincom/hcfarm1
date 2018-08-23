@@ -8,15 +8,16 @@
     
     
     <!-- Full Page Image Background Carousel Header -->
-    <header id="myCarousel" class="carousel slide carousel-fade header">
+    <header id="myCarousel" class="carousel slide carousel-fade header" >
     
         <!-- Wrapper for Slides -->
         <div class="carousel-inner">
         <foreach name="banners" item="vo" k="key">
             <div class="item <eq name='key' value='0'>active</eq>">
                 <!-- Set the first background image using inline CSS below. -->
-                <div class="fill" style="background-image:url({:cmf_get_image_url($vo.pic)});"> 
-                	<a href="{$vo.link}" target="_blank"></a> 
+                <div class="fill" > 
+                	<img src="{:cmf_get_image_url($vo.pic)}" width="100%"/>
+                	<!--<a href="{$vo.link}" target="_blank"></a>--> 
                	</div>
            
             </div>
