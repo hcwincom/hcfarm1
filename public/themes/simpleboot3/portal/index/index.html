@@ -8,15 +8,16 @@
     
     
     <!-- Full Page Image Background Carousel Header -->
-    <header id="myCarousel" class="carousel slide carousel-fade header">
+    <header id="myCarousel" class="carousel slide carousel-fade header" >
     
         <!-- Wrapper for Slides -->
         <div class="carousel-inner">
         <foreach name="banners" item="vo" k="key">
             <div class="item <eq name='key' value='0'>active</eq>">
                 <!-- Set the first background image using inline CSS below. -->
-                <div class="fill" style="background-image:url({:cmf_get_image_url($vo.pic)});"> 
-                	<a href="{$vo.link}" target="_blank"></a> 
+                <div class="fill" > 
+                	<img src="{:cmf_get_image_url($vo.pic)}" width="100%"/>
+                	<!--<a href="{$vo.link}" target="_blank"></a>--> 
                	</div>
            
             </div>
@@ -29,7 +30,7 @@
     
     <!-- About Section -->
     
-    <section id="about" class="about service newbg1" style="background-image: url({:cmf_get_image_url($company.index_xie_bg.content)});min-height: 550px;background-size: cover;background-position:center;"><!-- Section id-->
+    <section id="abouttt" class="about service newbg1" style="background-image: url({:cmf_get_image_url($company.index_xie_bg.content)});min-height: 550px;background-size: cover;background-position:center;"><!-- Section id-->
     	<div class="container">
     		<div class="row">
     			<div class="col-md-6 col-xs-12 col-sm-12" >
