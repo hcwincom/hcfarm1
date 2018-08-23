@@ -1,0 +1,140 @@
+<include file="portal@thj/head" />
+<body>
+    <include file="portal@thj/header" />
+    <div class="main">
+        <!--  -->
+        <div class="personal2">
+            <h6 class="appctitle">
+                <strong>请完善以下信息 </strong>
+                (注：
+                <em class="redcolor"> * </em> 为必填项)
+            </h6>
+            <div class="item appc1">
+                <span class="label">
+                    <span class="redcolor">*</span>
+                    货物订单号：
+                </span>
+                <div class="fl">
+                    <input type="text" class="itxt" maxlength="24" name="orderno" onkeyup="value=value.replace(/\s/g,'')" id="orderno">
+                    <!--默认不显示 失去焦点时 显示下面的标签 begin-->
+                    <span class="error-msg" id="showorderno">
+                        <img src="images/wr.png" alt="" /> 请填写货物订单号
+                    </span>
+                    <!--默认不显示 失去焦点时 显示下面的标签 end-->
+                </div>
+            </div>
+            <div class="item appc1">
+                <span class="label">
+                    <span class="redcolor">*</span>
+                    理赔原因：
+                </span>
+                <div class="fl">
+                    <textarea style="float: left;" class="itxt" name="description" maxlength="200" id="description" onkeyup="value=value.replace(/\s/g,'')"></textarea>
+                    <span class="error-msg" id="showdescription">
+                        <img src="images/wr.png" alt="" /> 请填写理赔原因
+                    </span>
+                </div>
+            </div>
+            <div class="item appc1">
+                <span class="label">
+                    <span class="redcolor">*</span>
+                    理赔凭证图1：
+                </span>
+                <div class="fl">
+                    <input type="file" name="picurl1" id="picurl1" value="" />
+                </div>
+            </div>
+            <div class="item appc1">
+                <span class="label">
+                    <span class="redcolor"></span>
+                    理赔凭证图2：
+                </span>
+                <div class="fl">
+                    <input type="file" name="picurl2" id="picurl2" value="" />
+                </div>
+            </div>
+            <div class="item appc1">
+                <span class="label">
+                    <span class="redcolor"></span>
+                    理赔凭证图3：
+                </span>
+                <div class="fl">
+                    <input type="file" name="picurl3" id="picurl3" value="" />
+                </div>
+            </div>
+            <div class="item appc1">
+                <span class="label">
+                    <span class="redcolor"></span>
+                    理赔凭证图4：
+                </span>
+                <div class="fl">
+                    <input type="file" name="picurl4" id="picurl4" value="" />
+                </div>
+            </div>
+            <div class="item appc1">
+                <span class="label">
+                    <span class="redcolor">*</span>
+                    申请人姓名：
+                </span>
+                <div class="fl">
+                    <input type="text" class="itxt" maxlength="10" id="contacts" onkeyup="value=value.replace(/\s/g,'')" name="contacts">
+                    <!--默认不显示 失去焦点时 显示下面的标签 begin-->
+                    <span class="error-msg" id="showcontacts">
+                        <img src="images/wr.png" alt="" /> 请填写申请人姓名
+                    </span>
+                    <!--默认不显示 失去焦点时 显示下面的标签 end-->
+                </div>
+            </div>
+            <div class="item appc1">
+                <span class="label">
+                    <span class="redcolor">*</span>
+                    申请人电话：
+                </span>
+                <div class="fl">
+                    <input type="text" class="itxt" maxlength="15" id="contactstel" onkeyup="value=value.replace(/\s/g,'')" name="contactstel">
+                    <!--默认不显示 失去焦点时 显示下面的标签 begin-->
+                    <span class="error-msg" id="showcontactstel">
+                        <img src="images/wr.png" alt="" /> 请填写申请人电话
+                    </span>
+                    <!--默认不显示 失去焦点时 显示下面的标签 end-->
+                </div>
+            </div>
+            <div class="item appc1">
+                <span class="label">
+                    <span class="redcolor">*</span>
+                    验证码：
+                </span>
+                <div class="fl">
+                    <input type="text" class="itxt txtyzm" id="yancode">
+                    <img src="" alt="看不清楚?请点击刷新" class="yzmimg">
+                    <!--默认不显示 失去焦点时 显示下面的标签 begin-->
+                    <span class="error-msg" id="showyancode">
+                        <img src="images/wr.png" alt="" />
+                        <em>请输入4位验证码</em>
+                    </span>
+                    <!--默认不显示 失去焦点时 显示下面的标签 end-->
+                </div>
+            </div>
+            <div class="item appc1">
+                <span class="label">&nbsp;</span>
+                <div class="fl">
+                    <input type="button" class="btn-9 bgred" value="提交" onclick="validateFormB();">
+                </div>
+            </div>
+        
+        </div>
+
+
+
+
+        <!--  -->
+    </div>
+
+    <!--底部-->
+    <include file="portal@thj/footer" />
+
+        <script type="text/javascript" src="__TMPL__/public/thj/js/jquery-1.12.1.min.js"></script>
+        <script type="text/javascript" src="__TMPL__/public/thj/js/index.js"></script>
+        <script type="text/javascript" src="__TMPL__/public/thj/js/form.js"></script>
+</body>
+</html>

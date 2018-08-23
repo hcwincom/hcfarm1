@@ -222,10 +222,6 @@
 			$("#orderno").focus();
 			$("#showorderno").show();
 			return false;
-		}else if($.trim($("#expno").val()) == ""){
-			$("#expno").focus();
-			$("#showexpno").show();
-			return false;
 		}else if($.trim($("#description").val()) == ""){
 			$("#description").focus();
 			$("#showdescription").show();

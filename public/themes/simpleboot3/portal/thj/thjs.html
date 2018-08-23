@@ -186,7 +186,7 @@ $('#goods_verify').submit(function(){
 			if(info.network == '0'){
 				$(".city_name em").text(info['city_name'] + info['address']);
 				$(".express_time em").text('--');
-				$(".express_odd a").remove();
+				$(".express_odd a").hide();
 				$(".express_odd").append('<em>--</em>')
 			}else{
 				$(".city_name").text("");
@@ -208,8 +208,10 @@ $('#goods_verify').submit(function(){
 			if (info.network == '0') {
 				$(".city_name em").text(info['city_name'] + info['address']);
 				$(".express_time em").text(express_time);
+				$(".express_odd a").show();
 				$(".express_odd a").attr("href", expressHref + info['express']);
 				$(".express_odd a").text(info['express']);	
+
 			} else {
 				$(".city_name").text("");
 				$(".express_time").text("");
@@ -219,7 +221,7 @@ $('#goods_verify').submit(function(){
 			return false;
 		}
 		if (parseInt(info.status) == '6') {
-			$('#info .status').append('<em class="greenc">已发货</em>');
+			$('#info .status').append('<em class="greenc">已收货</em>');
 			$('#info').show();
 			$(".cardGoods").show();
 			$(".uname em").text(info['uname']);
@@ -227,6 +229,7 @@ $('#goods_verify').submit(function(){
 			if (info.network == '0') {
 				$(".city_name em").text(info['city_name'] + info['address']);
 				$(".express_time em").text(express_time);
+				$(".express_odd a").show();
 				$(".express_odd a").attr("href", expressHref + info['express']);
 				$(".express_odd a").text(info['express']);
 			} else {
@@ -247,6 +250,7 @@ $('#goods_verify').submit(function(){
 			if (info.network == '0') {
 				$(".city_name em").text(info['city_name'] + info['address']);
 				$(".express_time em").text(express_time);
+				$(".express_odd a").show();
 				$(".express_odd a").attr("href", expressHref + info['express']);
 				$(".express_odd a").text(info['express']);
 				$(".cardGoods_info").append('<p class="redcolor">申请退货</p>');
