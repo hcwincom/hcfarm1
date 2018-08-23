@@ -86,7 +86,7 @@
 				<div class="col-md-6 col-sm-10">
 					<input type="text" class="form-control"  
 						name="bname" value="--"  />
-						<p>此时填写客户名称则默认更改状态已导出为已发出</p>
+					 
 				</div>
 			</div>
 			<div class="form-group">
@@ -96,7 +96,28 @@
 						name="btel" value="--"  />
 				</div>
 			</div>
-		  
+		   <div class="form-group">
+				<label class="col-sm-2 control-label">原提货状态</label>
+				<div class="col-md-6 col-sm-10">
+				<foreach name="voucher_status" item="vo">
+					<label class="radio-inline  ">
+						<input type="radio" name="status0" value="{$key}" />{$vo}
+					</label>
+				</foreach>
+				 	  <p>未避免操作错误，可以先选择原提货状态，则数据更改只限于选中的状态</p>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">新提货状态</label>
+				<div class="col-md-6 col-sm-10">
+				<foreach name="voucher_status" item="vo">
+					<label class="radio-inline  ">
+						<input type="radio" name="status" value="{$key}" />{$vo}
+					</label>
+				</foreach>
+				 	 <p>未避免操作错误，设置新提货状态前必须选择原提货状态</p>
+				</div>
+			</div>
 			<div class="form-group">
 				<label class="col-sm-2 control-label">编号范围</label>
 				<div class="col-md-6 col-sm-10">

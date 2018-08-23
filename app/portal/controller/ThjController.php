@@ -231,6 +231,7 @@ class ThjController extends HomeBaseController
         $update=[
             'time'=>$time,
             'status'=>7,
+            'back_time'=>$time,
         ];
         $m_voucher->startTrans();
         $m_voucher->where($where)->update($update);

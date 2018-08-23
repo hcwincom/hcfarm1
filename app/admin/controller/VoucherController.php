@@ -50,7 +50,7 @@ class VoucherController extends AdminbaseController {
         }else{
             $where['v.status']=['eq',$data['status']];
         }
-        
+        //按类型搜索
         $types=[
             'no'=>'未选择',
             'sn'=>'编码',
@@ -82,12 +82,55 @@ class VoucherController extends AdminbaseController {
                 $where['v.'.$data['type2']]=['like','%'.$data['type2_name'].'%'];
             }
         }
+        //时间
+        $times=[
+            'no'=>'选择时间',
+            'create_time'=>'创建时间',
+            'send_time'=>'发卡时间',
+            'take_time'=>'提货时间',
+            'express_time'=>'发货时间',
+            'get0_time'=>'预定收货时间',
+            'get_time'=>'实际收货时间',
+            'back_time'=>'退货时间',
+            'end_time'=>'售后完成时间',
+            'time'=>'最后更新时间',
+            
+        ];
+        if(empty($data['time']) || $data['time']=='no'){
+            $data['time']='no';
+            $data['time1']='';
+            $data['time2']='';
+        }else{
+            if(empty($data['time1'])){
+                $data['time1']='';
+                if(empty($data['time2'])){
+                    $data['time2']=''; 
+                }else{
+                    $time2=strtotime($data['time2']);
+                    $where['v.'.$data['time']]=['elt',$time2];
+                }
+            }else{
+                $time1=strtotime($data['time1']);
+                if(empty($data['time2'])){
+                    $data['time2']='';
+                    $where['v.'.$data['time']]=['egt',$time1];
+                }else{
+                    $time2=strtotime($data['time2']);
+                    if($time1>=$time2){
+                        $this->error('时间选择错误');
+                    }
+                    $where['v.'.$data['time']]=['between',[$time1,$time2]];
+                }
+            }
+        }
+        //排序方式
         if(empty($data['order'])){
             $data['order']='time';
         }
         if(empty($data['sort'])){
             $data['sort']='desc';
         }
+        
          $list= $m->field('v.*')
          ->alias('v') 
          ->where($where)
@@ -100,13 +143,17 @@ class VoucherController extends AdminbaseController {
          $this->assign('data',$data);
          $this->assign('list',$list);
          $this->assign('types',$types);
-         
+         $this->assign('times',$times);
          $orders=[
              'time'=>'更新时间',
              'sn'=>'编号',
+             'send_time'=>'发卡时间',
              'take_time'=>'提货时间',
              'get0_time'=>'预订时间',
              'express_time'=>'发货时间',
+             'get_time'=>'实际收货时间',
+             'back_time'=>'退货时间',
+             'end_time'=>'售后完成时间', 
          ];
          $this->assign('orders',$orders);
         return $this->fetch();
@@ -325,7 +372,7 @@ class VoucherController extends AdminbaseController {
         unset($data['id2']);
         //过滤不更改的
         foreach ($data as $k=>$v){
-            if($v=='--' || $v==''){
+            if($v==='--' || $v===''){
                 unset($data[$k]);
             }
         }
@@ -341,19 +388,41 @@ class VoucherController extends AdminbaseController {
          }
         $data['time']=time();
         $where=['sn'=>['between',[$id1,$id2]]];
-        $row=$m->where($where)->update($data);
-        if(!empty($data['bname'])){
-            $where['status']=['eq',2];
-            $update=[
-                'status'=>3,
-                'send_time'=>time(),
-            ];
-            $m->where($where)->update($update);
+        //原状态
+        if(!empty($data['status0'])){
+            $where['status']=['eq',$data['status0']];
+            unset($data['status0']);
         }
-        if($row>=1){
+        if(!empty($data['status'])){
+            switch ($data['status']){
+                case 3: 
+                    $data['send_time']=$data['time']; 
+                    break;
+                case 4: 
+                    $data['take_time']=$data['time']; 
+                    break;
+                case 5: 
+                    $data['express_time']=$data['time']; 
+                    break;
+                case 6: 
+                    $data['get_time']=$data['time']; 
+                    break;
+                case 7:
+                    $data['back_time']=$data['time'];
+                    break;
+                case 8:
+                    $data['end_time']=$data['time'];
+                    break;
+                default:
+                    break;
+            }
+        }
+        $row=$m->where($where)->update($data);
+        
+        if($row>0){
             $this->success('修改成功'.$row.'条数据',url('index'));
         }else{
-            $this->error('修改失败');
+            $this->error('未修改数据');
         }
         
     }
@@ -639,17 +708,10 @@ class VoucherController extends AdminbaseController {
     function delete(){
         $m=$this->m;
         $id=$this->request->param('id');  
-        if($id==8){
-            $this->error('组合套装，不能删除！');
-        }
+        
         $info=$m->where('id',$id)->find();
-        if(empty($info)){
-            $this->error('该提货券不存在');
-        }
-    
-        $count=$m->where('fid',$id)->count();
-        if($count>0){
-            $this->error('该提货券下有信息，不能删除');
+        if($info['status']!=1){
+            $this->error('该提货券已导出，不能删除');
         }
         $row=$m->where('id',$id)->delete();
         if($row===1){ 
@@ -659,7 +721,40 @@ class VoucherController extends AdminbaseController {
         }
         exit;
     }
-   
+    /**
+     * 提货券批量删除
+     * @adminMenu(
+     *     'name'   => '提货券批量删除',
+     *     'parent' => 'index',
+     *     'display'=> false,
+     *     'hasView'=> false,
+     *     'order'  => 10,
+     *     'icon'   => '',
+     *     'remark' => '提货券批量删除',
+     *     'param'  => ''
+     * )
+     */
+    function deletes(){
+        $m=$this->m;
+        
+        if(empty($_POST['ids'])){
+            $this->error('未选中');
+        }
+        $ids=$_POST['ids'];
+        
+        $where=[
+            'id'=>['in',$ids],
+            'status'=>['eq',1],
+        ];
+        $row=$m->where($where)->delete();
+        if($row>0){
+            $this->success('删除成功'.$row.'条数据');
+        }else{
+            $this->error('没有删除数据，只能删除未导出的数据');
+        }
+        exit;
+    }
+    
      
 }
 
