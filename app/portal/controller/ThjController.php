@@ -128,6 +128,7 @@ class ThjController extends HomeBaseController
                 'time'=>$time,
                 'take_dsc'=>$data['take_dsc'],
                 'status'=>4,
+                'take_ip'=>get_client_ip(0),
             ];
             
             $update['city_name']=db('city')
@@ -161,6 +162,7 @@ class ThjController extends HomeBaseController
                 'time'=>$time,
                 'take_dsc'=>$data['take_dsc'],
                 'status'=>6,
+                'take_ip'=>get_client_ip(0),
             ];
             $dsc='已提货';
         }
@@ -202,8 +204,8 @@ class ThjController extends HomeBaseController
         if(empty($thj['psw'])){
             $this->error('数据错误');
         }
-        if(empty($data['express']) || empty($data['dsc'])){
-            $this->error('请输入退货运单号和退货描述');
+        if(empty($data['dsc'])){
+            $this->error('请输入退货描述');
         }
         $where=[
             'sn'=>['eq',$thj['sn']],
@@ -236,7 +238,6 @@ class ThjController extends HomeBaseController
             'pid'=>$info['id'],
             'sn'=>$info['sn'],
             'time'=>$time,
-            'express'=>$data['express'],
             'dsc'=>$data['dsc'],
             'pic1'=>$data['pic1'],
             'pic2'=>$data['pic2'],

@@ -13,49 +13,62 @@
 			<li><a href="{:url('index')}">所有{$flag}</a></li>
 			<li class="active"><a href="{:url('add')}">添加{$flag}</a></li>
 		</ul>
-		<form method="post" class="form-horizontal js-ajax-form margin-top-20"
+		<form method="post" class="form-horizontal js-ajax-form33 margin-top-20"
 			action="{:url('addPost')}">
-			 
-			<!-- <div class="form-group">
-				<label class="col-sm-2 control-label">产品<span
-					class="form-required">*</span></label>
-				<div class="col-md-6 col-sm-10">
-					<select name="" id="cate">
-						<foreach name="cates" item="vo">
-						<option value="{$key}">{$vo}</option>
-						</foreach>
-					</select>
-					<select name="pid" id="goods">
-					 
-						<foreach name="goods" item="vo">
-						<option value="{$key}">
-						{$vo.name}-{$vo.price}
-						</option> 
-						</foreach>
-					</select>
-				</div>
-			</div> -->
+		 
 			<div class="form-group">
-				<label class="col-sm-2 control-label">产品<span
+				<label class="col-sm-2 control-label">产品名<span
 					class="form-required">*</span></label>
 				<div class="col-md-6 col-sm-10">
 					 <input type="text" class="form-control" name="name"   required>
 				</div>
 			</div>
+				 
 			<div class="form-group">
-				<label class="col-sm-2 control-label">展示价格</label>
+				<label class="col-sm-2 control-label">型号<span
+					class="form-required">*</span></label>
+				<div class="col-md-6 col-sm-10">
+					 <input type="text" class="form-control" name="model"   required>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">规格<span
+					class="form-required">*</span></label>
+				<div class="col-md-6 col-sm-10">
+					 <input type="text" class="form-control" name="spec"   required>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">颜色<span
+					class="form-required">*</span></label>
+				<div class="col-md-6 col-sm-10">
+					 <input type="text" class="form-control" name="color"   required>
+				</div>
+			</div>
+				<div class="form-group">
+				<label class="col-sm-2 control-label">只数<span
+					class="form-required">*</span></label>
+				<div class="col-md-6 col-sm-10">
+					 <input type="text" class="form-control" name="num"   required>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">展示价格<span
+					class="form-required">*</span></label>
 				<div class="col-md-6 col-sm-10">
 					<input type="text" class="form-control" name="show_money" id="show_money" required>
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-sm-2 control-label">实际价格</label>
+				<label class="col-sm-2 control-label">实际价格<span
+					class="form-required">*</span></label>
 				<div class="col-md-6 col-sm-10">
 					<input type="text" class="form-control" name="real_money" required>
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-sm-2 control-label">添加数量</label>
+				<label class="col-sm-2 control-label">添加数量<span
+					class="form-required">*</span></label>
 				<div class="col-md-6 col-sm-10">
 					<input type="text" class="form-control" name="count" required>
 				</div>

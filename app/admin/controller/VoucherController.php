@@ -358,14 +358,14 @@ class VoucherController extends AdminbaseController {
      * )
      */
     function add(){
-        exit('暂不添加');
-       /*  $m=$this->m;
+       /*  exit('暂不添加');
+         $m=$this->m;
         $cates=Db::name('cate')->where('type','goods')->order('sort asc')->column('id,name');
         $cid=key($cates); 
         $goods=db('goods')->where(['cid'=>$cid])->column('id,name,price');
         
         $this->assign('cates',$cates);
-        $this->assign('goods',$goods); */
+        $this->assign('goods',$goods);  */
         return $this->fetch();
     }
     /**
@@ -384,7 +384,7 @@ class VoucherController extends AdminbaseController {
     function addPost(){
         $m=$this->m;
         $data= $this->request->param();
-        if(empty($data['pid']) || empty($data['real_money']) || empty($data['show_money']) || empty($data['count'])){
+        if(empty($data['name']) || empty($data['real_money']) || empty($data['show_money']) || empty($data['count'])){
             $this->error('数据错误');
         }
         if($data['count']<=0 || $data['count']>1000 || $data['show_money']<=0){
@@ -393,26 +393,32 @@ class VoucherController extends AdminbaseController {
        
         $vouchers=[];
         $time=time();
-        $date=date('Ym');
-        $time0=strtotime($date.'01');
-        $tmp=$m->where(['create_time'=>['egt',$time0]])->order('create_time desc,id desc')->find();
-        if(empty($tmp)){
-            $start=0;
-        }else{
-            $start=intval(substr($tmp['sn'], 6)); 
-        }
+       
+        $tmp=$m->order('sn desc')->value('sn');
         
-        if(($start+$data['count'])>999999){
-            $this->error('已经超过999999了');
+        if(empty($tmp)){
+            $start=18080000;
+        }else{
+            $start=$tmp; 
+        }
+       
+        if(($start+$data['count'])>99999999){
+            $this->error('已经超过99999999了');
         }
         for($i=0;$i<$data['count'];$i++){
             $start=$start+1;
             
             $vouchers[]=[
-                'pid'=>$data['pid'],
+                
                 'real_money'=>$data['real_money'],
                 'show_money'=>$data['show_money'],
-                'sn'=> $date.str_pad($start, 6 , '0',STR_PAD_LEFT),
+                'name'=>$data['name'],
+                'model'=>$data['model'],
+                'spec'=>$data['spec'],
+                'num'=>$data['num'],
+                'color'=>$data['color'],
+                
+                'sn'=> $start,
                 'psw'=>rand(100000,999999),
                 'dsc'=>$data['dsc'],
                 'uid'=>0,
@@ -472,7 +478,7 @@ class VoucherController extends AdminbaseController {
         }
        
         $list= $m->where($where)
-        ->column('id,sn,psw,pid,show_money,real_money,dsc,status,model,spec,num,color');  
+        ->column('id,sn,psw,name,show_money,real_money,dsc,status,model,spec,num,color');  
         
         if(empty($list)){
             $this->error('数据不存在');
@@ -531,15 +537,16 @@ class VoucherController extends AdminbaseController {
 //         $dir='upload/qrcode/';
          
         $url0 = 'http://hcfarm.wincomtech.cn'.url('portal/thj/th','',false,false).'/sn/'; 
+        $aid=session('ADMIN_ID');
        foreach($list as $k=>$v){ 
            $i++;
            $url = $url0.$v['sn']; 
            $sheet
            ->setCellValue('A'.$i, $i-1) 
            ->setCellValue('B'.$i, $url) 
-           ->setCellValue('D'.$i, '******')
+           ->setCellValue('D'.$i, ($aid==1)?$v['psw']:'******')
            ->setCellValue('E'.$i, $statuss[$v['status']])
-           ->setCellValue('F'.$i, $v['pid'])
+           ->setCellValue('F'.$i, $v['name'])
            ->setCellValue('G'.$i, $v['show_money'])
            ->setCellValue('H'.$i, $v['real_money'])
            ->setCellValue('I'.$i, $v['model'])
