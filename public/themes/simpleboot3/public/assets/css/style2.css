@@ -492,7 +492,7 @@ header {
 .carousel,
 .item,
 .active {
-    height: 100%;
+    height: auto;
     /*max-height: 400px;*/	
 }
 
@@ -2328,9 +2328,9 @@ body{
 
 
 /*首页自适应*/
-.fill{
-	background-size: 100% 100%;
-	height: 300px;
+.fill img{
+	width: 100%;
+	/*height: 300px;*/
 }
 .carousel, .item, .active {
 	height: auto;
