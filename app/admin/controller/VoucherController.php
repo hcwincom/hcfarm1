@@ -417,7 +417,7 @@ class VoucherController extends AdminbaseController {
                 'spec'=>$data['spec'],
                 'num'=>$data['num'],
                 'color'=>$data['color'],
-                
+                'pid'=>0,
                 'sn'=> $start,
                 'psw'=>rand(100000,999999),
                 'dsc'=>$data['dsc'],
