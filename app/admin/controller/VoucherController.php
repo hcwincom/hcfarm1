@@ -212,6 +212,12 @@ class VoucherController extends AdminbaseController {
                     break;
             }
         }
+        //处理时间
+        $data['value_time1']=strtotime($data['value_time1']);
+        $data['value_time2']=strtotime($data['value_time2']);
+        if($data['value_time1']>=$data['value_time2']){
+           $this->error('请填写有效提货时间');
+       }
         //处理图片
         $pics=[];
         if(isset($data['urls'])){
@@ -319,9 +325,16 @@ class VoucherController extends AdminbaseController {
         unset($data['id2']);
         //过滤不更改的
         foreach ($data as $k=>$v){
-            if($v=='--'){
+            if($v=='--' || $v==''){
                 unset($data[$k]);
             }
+        }
+        //处理时间
+        if(isset($data['value_time1'])){
+            $data['value_time1']=strtotime($data['value_time1']);
+        }
+        if(isset($data['value_time2'])){
+            $data['value_time2']=strtotime($data['value_time2']);
         }
          if(($id2-$id1)>300){
              $this->error('批量处理一次不能超过300');

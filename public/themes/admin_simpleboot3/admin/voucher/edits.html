@@ -69,6 +69,17 @@
 						name="real_money" value="--"  />
 				</div>
 			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">提货有效期</label>
+				<div class="col-md-6 col-sm-10">
+				 
+					<input type="text" class="js-datetime "  
+						name="value_time1" value=""  />
+						--
+					<input type="text" class="js-datetime "  
+						name="value_time2" value=""  />
+				</div>
+			</div>
 			 
 			<div class="form-group">
 				<label class="col-sm-2 control-label">客户姓名</label>
@@ -103,7 +114,7 @@
  
 					<button type="submit" class="btn btn-primary js-ajax-submit">{:lang('SAVE')}</button>
 					<a class="btn btn-default" href="{:url('index')}">{:lang('BACK')}</a>
-					 
+					 <p>输入框为--或空则不修改</p>
 				</div>
 				
 			</div>

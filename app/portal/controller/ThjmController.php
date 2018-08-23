@@ -58,7 +58,7 @@ class ThjmController extends HomeBaseController
             db('voucher')->where($where)->setInc('psw_num');
             $this->error('密码错误');
         }
-        session('thj',['sn'=>$data['sn'],'psw'=>$data['psw']]);
+        session('thj',['sn'=>$info['sn'],'psw'=>$info['psw']]);
         $this->success('ok',url('info',['sn'=>$data['sn']]));
     }
     //券卡信息

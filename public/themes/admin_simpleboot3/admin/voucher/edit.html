@@ -91,6 +91,17 @@
 						name="real_money" value="{$info.real_money}"  />
 				</div>
 			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">提货有效期</label>
+				<div class="col-md-6 col-sm-10">
+				 
+					<input type="text" class="js-datetime "  
+						name="value_time1" value="{$info.value_time1|date='Y-m-d',###}"   />
+						--
+					<input type="text" class="js-datetime "
+						name="value_time2" value="{$info.value_time2|date='Y-m-d',###}"   />
+				</div>
+			</div>
 		 
 			<div class="form-group">
 				<label class="col-sm-2 control-label">客户姓名</label>

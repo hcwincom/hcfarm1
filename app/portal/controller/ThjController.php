@@ -87,7 +87,7 @@ class ThjController extends HomeBaseController
             ];
             $pics1=db('voucher_pic')->where($where)->column('id,pic');
         }
-         
+        session('thj',['sn'=>$info['sn'],'psw'=>$info['psw']]);
         $this->success('ok','',['info'=>$info,'pics1'=>$pics1]);
     }
     //提货地址提交
