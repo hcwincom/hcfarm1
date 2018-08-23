@@ -12,34 +12,19 @@
     
     <section id="gallery" class="gallery services" style="padding-bottom: 300px;"><!-- Section id-->
         <div class="container">
-            <div class="row no-gutter popup-gallery">
-            <foreach name="list" item="vo">
-            	 <div class="col-lg-1 col-sm-1"> </div>
-                <div class="col-lg-3 col-sm-3" style="border: 1px solid #000000; padding: 10px ;margin: 85px 0;">
-                    <a href="{:cmf_get_image_url($vo.pic0)}" class="gallery-box" rel="alternate"><!-- full image -->
-                        <img src="{:cmf_get_image_url($vo.pic)}" class="img-responsive" alt=""><!-- thumb image -->
-                        
-                        <div class="gallery-box-caption"><!-- caption here -->
-                            <div class="gallery-box-caption-content">
-                                <div class="project-name fs-18">
-                                {$vo.name}
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-             </foreach> 
-               
+            <div class="row">
+            	<div class="col-md-12 col-xs-12 col-sm-12">
+            		<img src="{:cmf_get_image_url($company.shouhuo_pic1.content)}" width="100%"/>
+            	</div>
+              <div class="col-md-12 col-xs-12 col-sm-12">
+            		<img src="{:cmf_get_image_url($company.shouhuo_pic2.content)}"width="100%"/>
+            		
+            	</div>
               
+            	</div>
             </div>
         </div>
-         <!--<div class="container container-nav">
-             <nav aria-label="Page navigation ">
-              <ul class="pagination pagination-lg">
-                {$page}8888
-              </ul>
-            </nav>
-         </div>-->
+        
     </section>
     
     <!-- Footer Section -->
