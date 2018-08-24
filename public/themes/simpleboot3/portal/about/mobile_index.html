@@ -1,0 +1,63 @@
+﻿<include file="public@head"/>    
+  </head>
+
+  <body id="page-top">
+    
+    <!-- Nav Section -->
+   <include file="public@nav"/>  
+    
+    <!-- Page Title Header -->
+     <include file="public@header"/>  
+    
+    
+    <!-- About page Section -->
+    
+ 	<section id="about" class="about services" style="padding-bottom: 50px;"><!-- Section id-->
+         <div class="container">
+            <div class="row row_tit"> 
+                <p class="tit companyje">
+                	
+                	<img src="__TMPL__/public/assets/images/company-detail.png"/>     
+                	
+                </p>
+            </div>
+       
+            <div class="row">
+            	<div class="col-md-12 col-sm-12">
+                    
+                    <div class="about-content" style="padding-bottom: 10px;">
+                    	<p>{$about[0]['content']}</p>
+                    </div>
+                </div>
+                <div class="col-md-12 col-sm-12 ">
+                    <div class="row about-img">
+                        <div class="col-md-3 col-xs-3">
+                        	<img src="{:cmf_get_image_url($company.about_pic1.content)}"/>
+                        	
+                        </div>
+                        
+                        <div class="col-md-3 col-xs-3">
+                        	<img src="{:cmf_get_image_url($company.about_pic2.content)}"/>
+                        </div>
+                        
+                        <div class="col-md-3 col-xs-3">
+                        	<img src="{:cmf_get_image_url($company.about_pic3.content)}"/>
+                        </div>
+                        
+                        <div class="col-md-3 col-xs-3">
+                        	<img src="{:cmf_get_image_url($company.about_pic4.content)}"/>
+                        </div>
+                     		
+                    </div>
+                </div>
+             
+            </div>
+        </div>
+    </section>
+    
+
+   
+    <include file="public@footer"/>   
+  </body>
+</html>
+

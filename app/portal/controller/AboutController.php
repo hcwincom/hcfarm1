@@ -34,7 +34,9 @@ class AboutController extends HomeBaseController
         
         $this->assign('about',$about);
         $this->assign('workers',$workers);
-       
+        if(cmf_is_mobile()){
+            return $this->fetch('mobile_index');
+        }
         return $this->fetch();
     }
     

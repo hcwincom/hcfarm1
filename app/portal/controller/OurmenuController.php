@@ -37,6 +37,9 @@ class OurmenuController extends HomeBaseController
         $this->assign('page',$page);
         $this->assign('list',$list);
         $this->assign('cid',$data['cid']);
+        if(cmf_is_mobile()){
+            return $this->fetch('mobile_index');
+        }
         return $this->fetch();
     }
     
@@ -71,6 +74,9 @@ class OurmenuController extends HomeBaseController
      public function xie(){
          $type=$this->request->param('type',0,'intval'); 
          $this->assign('type',$type); 
+         if(cmf_is_mobile()){
+             return $this->fetch('mobile_xie');
+         }
          return $this->fetch();
      }
     

@@ -53,7 +53,9 @@ class IndexController extends HomeBaseController
         $cates=session('cates');
        
         $this->assign('cate_goods',$cates['goods']);
-        
+        if(cmf_is_mobile()){
+            return $this->fetch('mobile_index');
+        }
         return $this->fetch();
     }
     
