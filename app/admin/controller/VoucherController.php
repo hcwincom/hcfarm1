@@ -159,6 +159,122 @@ class VoucherController extends AdminbaseController {
         return $this->fetch();
     }
     /**
+     * 退货列表
+     * @adminMenu(
+     *     'name'   => '退货列表',
+     *     'parent' => 'index',
+     *     'display'=> false,
+     *     'hasView'=> true,
+     *     'order'  => 10,
+     *     'icon'   => '',
+     *     'remark' => '退货列表',
+     *     'param'  => ''
+     * )
+     */
+    function back(){
+        $m=$this->m;
+        $data=$this->request->param();
+        $where=[];
+        if(empty($data['status'])){
+            $data['status']=0;
+        }else{
+            $where['v.status']=['eq',$data['status']];
+        }
+        //按类型搜索
+        $types=[
+            'no'=>'未选择',
+            'sn'=>'编码',
+            'model'=>'型号',
+            'spec'=>'规格',
+            'num'=>'只数',
+            'color'=>'颜色',
+            'uname'=>'提货人',
+            'utel'=>'提货人联系方式',
+            
+        ];
+        if(empty($data['type1']) || $data['type1']=='no'){
+            $data['type1']='no';
+            $data['type1_name']='';
+        }else{
+            if(empty($data['type1_name'])){
+                $data['type1_name']='';
+            }else{
+                $where['v.'.$data['type1']]=['eq',$data['type1_name']];
+            }
+        }
+        if(empty($data['type2']) || $data['type2']=='no'){
+            $data['type2']='no';
+            $data['type2_name']='';
+        }else{
+            if(empty($data['type2_name'])){
+                $data['type2_name']='';
+            }else{
+                $where['v.'.$data['type2']]=['like','%'.$data['type2_name'].'%'];
+            }
+        }
+        //时间
+        $times=[
+            'no'=>'选择时间',
+            'create_time'=>'创建时间',
+            'send_time'=>'发卡时间',
+            'take_time'=>'提货时间',
+            'express_time'=>'发货时间',
+            'get0_time'=>'预定收货时间',
+            'get_time'=>'实际收货时间',
+            'back_time'=>'退货时间',
+            'end_time'=>'售后完成时间',
+            'time'=>'最后更新时间',
+            
+        ];
+        if(empty($data['time']) || $data['time']=='no'){
+            $data['time']='no';
+            $data['time1']='';
+            $data['time2']='';
+        }else{
+            if(empty($data['time1'])){
+                $data['time1']='';
+                if(empty($data['time2'])){
+                    $data['time2']='';
+                }else{
+                    $time2=strtotime($data['time2']);
+                    $where['v.'.$data['time']]=['elt',$time2];
+                }
+            }else{
+                $time1=strtotime($data['time1']);
+                if(empty($data['time2'])){
+                    $data['time2']='';
+                    $where['v.'.$data['time']]=['egt',$time1];
+                }else{
+                    $time2=strtotime($data['time2']);
+                    if($time1>=$time2){
+                        $this->error('时间选择错误');
+                    }
+                    $where['v.'.$data['time']]=['between',[$time1,$time2]];
+                }
+            }
+        }
+        
+        
+        $list= Db::name('voucher_back')
+        ->field('vk.sn,vk.dsc,v.sn,v.id,v.name,v.model,v.spec,v.show_money,v.back_time,v.time,v.status,v.uname,v.utel')
+        ->alias('vk')
+        ->join('cmf_voucher v','v.id=vk.pid')
+        ->where($where)
+        ->order('vk.id desc')
+        ->paginate(20);
+        // 获取分页显示
+        $page = $list->appends($data)->render();
+        
+        $this->assign('page',$page);
+        $this->assign('data',$data);
+        $this->assign('list',$list);
+        $this->assign('types',$types);
+        $this->assign('times',$times);
+        
+        return $this->fetch();
+    }
+    
+    /**
      * 编辑提货券
      * @adminMenu(
      *     'name'   => '提货券编辑',
@@ -252,9 +368,6 @@ class VoucherController extends AdminbaseController {
                 case 6: 
                         $data['get_time']=$data['time']; 
                     break;
-                case 7:
-                    $data['back_time']=$data['time'];
-                    break;
                
                 default:
                     break;
@@ -332,6 +445,7 @@ class VoucherController extends AdminbaseController {
                 $data_back['pid']=$data['id'];
                 $data_back['sn']=$info['sn'];
                 $data_back['time']=$data['time'];
+                $data['back_time']=$data['time'];
                 $m_back->insert($data_back);
             }else{
                 $m_back->where($where_back)->update($data_back);
@@ -419,18 +533,11 @@ class VoucherController extends AdminbaseController {
                 case 3: 
                     $data['send_time']=$data['time']; 
                     break;
-                case 4: 
-                    $data['take_time']=$data['time']; 
-                    break;
-                case 5: 
-                    $data['express_time']=$data['time']; 
-                    break;
+                
                 case 6: 
                     $data['get_time']=$data['time']; 
                     break;
-                case 7:
-                    $data['back_time']=$data['time'];
-                    break;
+                
                 case 8:
                     $data['end_time']=$data['time'];
                     break;

@@ -208,12 +208,9 @@ class ThPublicController extends HomeBaseController
         
         //提货券信息
         $update=[
-            'time'=>$time,
-            'status'=>7,
-            'back_time'=>$time,
+            'time'=>$time, 
         ];
-        $m_voucher->startTrans();
-        $m_voucher->where($where)->update($update);
+        //退货信息
         $data_back=[
             'pid'=>$info['id'],
             'sn'=>$info['sn'], 
@@ -223,17 +220,20 @@ class ThPublicController extends HomeBaseController
             'pic3'=>$data['pic3'],
             
         ];
-        $where_back=['pid'=>$info['id']];
-        
+        $where_back=['pid'=>$info['id']]; 
         $m_back=Db::name('voucher_back');
         $tmp=$m_back->where($where_back)->find();
+        $m_back->startTrans();
         if(empty($tmp)){ 
             $data_back['time']=$time;
+            $update['back_time']=$time;
+            $update['status']=7;
             $m_back->insert($data_back);
         }else{ 
             $m_back->where($where_back)->update($data_back);
         }
-        
+        $m_voucher->where($where)->update($update);
+        $m_back->commit();
         if(cmf_is_mobile()){
             $this->success('已提交退货信息',url('portal/thjm/back'));
         }
