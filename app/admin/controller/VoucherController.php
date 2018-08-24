@@ -135,7 +135,7 @@ class VoucherController extends AdminbaseController {
          ->alias('v') 
          ->where($where)
          ->order('v.'.$data['order'].' '. $data['sort'])
-         ->paginate(10);  
+         ->paginate(20);  
          // 获取分页显示
          $page = $list->appends($data)->render(); 
           
