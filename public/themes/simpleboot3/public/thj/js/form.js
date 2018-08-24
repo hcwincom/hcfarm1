@@ -207,7 +207,7 @@
 	}
 	
 	// 理赔验证
-	function validateFormB(form){
+	function validateFormB(){
 		var picurl1 = $("#picurl1").val();
 		var picurl2 = $("#picurl2").val();
 		var picurl3 = $("#picurl3").val();
@@ -223,14 +223,9 @@
 		}else if($.trim($("#picurl1").val()) == ""){
 		 	$("#showpicurl1").show();
 			return false;
-	 	} else if ($.trim($("#yancode").val()) = "" || isCode($.trim($("#yancode").val())) == false) {
-		 	$("#yancode").focus();
-			$("#showyancode").show();
-			return false;
-		} else {
+	 	} {
 			$("#showdescription").hide();
 			$("#showpicurl1").hide();
-			$("#showyancode").hide();
 		}
 		
 		

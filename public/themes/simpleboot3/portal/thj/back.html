@@ -17,8 +17,7 @@
                         券卡编号：
                     </span>
                     <div class="fl">
-                        <input style="border: none; color: #d5000d;font-weight: 600;font-size: 18px;letter-spacing: 2px;" type="text" class="itxt" maxlength="24" name="orderno" onkeyup="value=value.replace(/\s/g,'')" id="orderno" value="{$info.sn}"
-                            readonly>
+                        <input style="border: none; color: #d5000d;font-weight: 600;font-size: 18px;" type="text" class="itxt" id="sn" value="{$info.sn}" readonly>
                     </div>
                 </div>
                 <div class="item appc1">
@@ -32,6 +31,7 @@
                             请填写理赔原因
                         </span>
                     </div>
+                    <p class="redcolor">请填写需要理赔的物品</p>
                 </div>
                 <div class="item appc1">
                     <span class="label">

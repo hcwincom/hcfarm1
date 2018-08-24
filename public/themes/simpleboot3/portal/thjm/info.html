@@ -78,7 +78,12 @@
 						<span>提货时间：</span>
 						<p>{$info.take_time|date='Y-m-d',###}</p>
 					</div>
-					
+					<neq name="info.get0_time" value="0">
+					<div>
+						<span>预定时间：</span>
+						<p>{$info.get0_time|date='Y-m-d',###}</p>
+					</div>
+					</neq>
 					<div>
 						<span style="vertical-align: top;">联系地址：</span>
 						<p>
@@ -89,25 +94,48 @@
 						</eq>
 						</p>
 					</div>
-
+					<notempty name="info.express">
+						<div>
+							<span>发货时间：</span>
+							<p>{$info.express_time|date='Y-m-d H:i',###}</p>
+						</div>
+						<div>
+							<span>顺丰快递：</span>
+							<p>
+								<a href="http://www.kuaidi100.com/chaxun?com=shunfeng&nu={$info.express}" target="_blank">{$info.express}</a>
+							</p>
+						</div>
+					</notempty>
+					<gt name="info.status" value="5">
+							<div>
+								<span>收货时间：</span>
+								<p>
+									<neq name="info.get_time" value="0">
+										{$info.get_time|date='Y-m-d H:i',###}
+									</neq>
+								</p>
+							</div>
+					</gt>
+					
 					<div>
 						<span>&nbsp;</span>
-						<a class="confirmGoods" id="confirmGoods" href="javascript:void();">确认收货</a>
-						<a class="backRequest" id="backRequest" href="{:url('back')}" >售后服务</a>
+						<eq name="info.status" value="5">
+							<a class="confirmGoods" id="confirmGoods" href="javascript:void();">确认收货</a>
+
+						</eq>
+						<gt name="info.status" value="4">
+							<a class="backRequest" id="backRequest" href="{:url('back')}" >售后服务</a>
+						</gt>
 					</div>
-				 
-				<notempty name="info.express" >
+				<gt name="info.status" value="6">
 					<div>
-						<span>发货时间：</span>
-						<p>{$info.express_time|date='Y-m-d H:i',###}</p>
+						<span>退货时间：</span>
+						<p>{$info.back_time|date='Y-m-d H:i',###} </p>
 					</div>
-					<div>
-						<span>顺丰快递：</span>
-						<p>
-							<a href="http://www.kuaidi100.com/chaxun?com=shunfeng&nu={$info.express}" target="_blank">{$info.express}</a>
-						</p>
-					</div>
-				</notempty>
+				
+				</gt>
+				
+				
 				</div>
 			</eq>
 	    	</div>  	
