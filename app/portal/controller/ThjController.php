@@ -186,7 +186,8 @@ class ThjController extends HomeBaseController
             $this->error('卡券不能退货');
         }
         //发货7天内退货
-        $time=time()-7*3600*24;
+        $back_day=config('back_day');
+        $time=time()-$back_day*3600*24;
         if($info['express_time']<$time){
             $this->error('时间超过退货期，不能退货');
         }
