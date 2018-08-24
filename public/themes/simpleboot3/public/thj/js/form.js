@@ -207,40 +207,34 @@
 	}
 	
 	// 理赔验证
-	function validateFormB(){
+	function validateFormB(form){
 		var picurl1 = $("#picurl1").val();
 		var picurl2 = $("#picurl2").val();
 		var picurl3 = $("#picurl3").val();
-		var picurl4 = $("#picurl4").val();
 		
 		var img1 = $("#picurl1")[0].files[0];
 		var img2 = $("#picurl2")[0].files[0];
 		var img3 = $("#picurl3")[0].files[0];
-		var img4 = $("#picurl4")[0].files[0];
-		
-		if($.trim($("#orderno").val()) == ""){
-			$("#orderno").focus();
-			$("#showorderno").show();
-			return false;
-		}else if($.trim($("#description").val()) == ""){
+
+	 if($.trim($("#description").val()) == ""){
 			$("#description").focus();
 			$("#showdescription").show();
 			return false;
 		}else if($.trim($("#picurl1").val()) == ""){
-			$("#picurl1").focus();
+		 	$("#showpicurl1").show();
 			return false;
-		}else if($.trim($("#contacts").val()) == "" || isChinaName($.trim($("#contacts").val())) == false){
-			$("#contacts").focus();
-			$("#showcontacts").show();
+	 	} else if ($.trim($("#yancode").val()) = "" || isCode($.trim($("#yancode").val())) == false) {
+		 	$("#yancode").focus();
+			$("#showyancode").show();
 			return false;
-		}else if($.trim($("#contactstel").val()) == "" || isPhoneNo($.trim($("#contactstel").val())) == false){
-			$("#contactstel").focus();
-			$("#showcontactstel").show();
-			return false;
-		}	
+		} else {
+			$("#showdescription").hide();
+			$("#showpicurl1").hide();
+			$("#showyancode").hide();
+		}
 		
 		
-		if(picurl1 == "" && picurl2 == "" && picurl3 == "" && picurl4 == ""){
+		if(picurl1 == "" && picurl2 == "" && picurl3 == ""){
 		    alert('请至少上传一张图片');
 			return false;
 		}
@@ -270,13 +264,6 @@
 			}
 		}
 		
-		if($("#picurl4").val() !=''){
-			var size4 = img4.size / 1024;
-			if(!ruleimg.test(picurl4) || size4 > 2144){
-				alert("理赔凭证图4,请上传jpg、png等常用格式的图片,最大为2M");
-				return false;
-			}
-		}	
 		return true;
 		
 	}

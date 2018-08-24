@@ -708,6 +708,9 @@ header .top0{
    border-bottom: 0.02rem solid #999;
    padding-top: 0.2rem;
 }
+.cardInfomation>div.btndiv{
+     border-bottom: none;
+}
 .cardInfomation>div>span{
     display: inline-block;
     font-size: 0.3rem;
@@ -786,7 +789,6 @@ header .top0{
 .personIndo>div>input#start{
    width: 80%;    
 }
-
 
 
 

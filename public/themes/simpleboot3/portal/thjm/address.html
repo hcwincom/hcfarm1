@@ -5,6 +5,12 @@
     <form action="" method="POST">
         <div class="yzdiv yzdivInfo">
             <div class="personIndo">
+                <span>券卡编号：</span>
+                <div>
+                    <input type="text"  id="sn" value="{$info.sn}"   readonly>
+                </div>
+            </div>
+            <div class="personIndo">
                 <span>联系人：</span>
                 <div>
                     <input type="text" name="myname" id="myname" value="" placeholder="请输入联系人姓名" maxlength="50" value="" onkeyup="value=value.replace(/\s/g,'')">

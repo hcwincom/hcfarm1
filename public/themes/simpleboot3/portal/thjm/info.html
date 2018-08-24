@@ -2,7 +2,7 @@
 	</head>
 	<body class="bgf"> 
 		  <include file="portal@thjm/header" />
-	    <form action="{:url('verify')}" method="post" id="goods_verify">
+	    <form action="" method="post" id="goods_verify">
 	    	<div class="yzdiv yzdivInfo">
 				<h1>礼品券信息</h1>
 		    	<div class="middles_item">
@@ -78,7 +78,7 @@
 						<span>提货时间：</span>
 						<p>{$info.take_time|date='Y-m-d',###}</p>
 					</div>
-			 
+					
 					<div>
 						<span style="vertical-align: top;">联系地址：</span>
 						<p>
@@ -88,6 +88,12 @@
 							{$info.city_name}{$info.address}
 						</eq>
 						</p>
+					</div>
+
+					<div>
+						<span>&nbsp;</span>
+						<a class="confirmGoods" id="confirmGoods" href="javascript:void();">确认收货</a>
+						<a class="backRequest" id="backRequest" href="{:url('back')}" >售后服务</a>
 					</div>
 				 
 				<notempty name="info.express" >

@@ -701,12 +701,55 @@ img {
     margin-left: 5px;
     float: left;
 }
-.cardGoods{
-
-}
 .cardGoods_info{
     margin: 30px 20px;
 }
+/* 收货和售后 */
+.cardGoods_btn>a{
+    background: #D50708;
+    color: #fff;
+    padding: 0.3rem 0.5rem;
+    font-size: 0.28rem;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* 商品中心*/
 .proh1{
