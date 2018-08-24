@@ -32,7 +32,7 @@ class ThPublicController extends HomeBaseController
         $where=[ 
             'sn'=>['eq',$sn], 
         ];
-        $info=db('voucher')->where($where)->find();
+        $info=Db::name('voucher')->where($where)->find();
         if(empty($info)){
             $this->error('该编号不存在'.$sn);
         }
@@ -44,7 +44,7 @@ class ThPublicController extends HomeBaseController
             $this->error('密码错误次数过多，请联系客服或明天再试');
         }
         if($info['psw']!=$data['psw']){
-            db('voucher')->where($where)->setInc('psw_num');
+            Db::name('voucher')->where($where)->setInc('psw_num');
             $this->error('密码错误');
         }
         session('thj',['sn'=>$info['sn'],'psw'=>$info['psw']]);
@@ -62,7 +62,7 @@ class ThPublicController extends HomeBaseController
                 'vid'=>$info['id'],
                 'type'=>1,
             ];
-            $pics1=db('voucher_pic')->where($where)->column('id,pic');
+            $pics1=Db::name('voucher_pic')->where($where)->column('id,pic');
         } 
         $this->success('ok','',['info'=>$info,'pics1'=>$pics1]);
         exit;
@@ -88,7 +88,7 @@ class ThPublicController extends HomeBaseController
             'sn'=>['eq',$data['sn']],
         ];
         $time=time();
-        $info=db('voucher')->where($where)->find();
+        $info=Db::name('voucher')->where($where)->find();
         if(empty($info)){
             $this->error('该编号不存在');
         }
@@ -120,7 +120,7 @@ class ThPublicController extends HomeBaseController
                 'take_ip'=>get_client_ip(0),
             ];
             
-            $update['city_name']=db('city')
+            $update['city_name']=Db::name('city')
             ->alias('c3')
             ->join('cmf_city c2','c2.id=c3.fid')
             ->join('cmf_city c1','c1.id=c2.fid')
@@ -156,7 +156,7 @@ class ThPublicController extends HomeBaseController
             $dsc='已提货';
         }
          
-        db('voucher')->where($where)->update($update);
+        Db::name('voucher')->where($where)->update($update);
         if(cmf_is_mobile()){
             $this->success($dsc,url('portal/thjm/info'));
         }
@@ -184,7 +184,7 @@ class ThPublicController extends HomeBaseController
             'sn'=>['eq',$thj['sn']],
         ];
         $time=time();
-        $m_voucher=db('voucher');
+        $m_voucher=Db::name('voucher');
         $info=$m_voucher->where($where)->find();
         if(empty($info)){
             $this->error('该编号不存在');
@@ -216,20 +216,24 @@ class ThPublicController extends HomeBaseController
         $m_voucher->where($where)->update($update);
         $data_back=[
             'pid'=>$info['id'],
-            'sn'=>$info['sn'],
-            'time'=>$time,
+            'sn'=>$info['sn'], 
             'dsc'=>$data['dsc'],
             'pic1'=>$data['pic1'],
             'pic2'=>$data['pic2'],
             'pic3'=>$data['pic3'],
             
         ];
-        if(empty($data['id'])){
-            db('voucher_back')->insert($data_back);
-        }else{
-            db('voucher_back')->where('id',$data['id'])->update($data_back);
+        $where_back=['pid'=>$info['id']];
+        
+        $m_back=Db::name('voucher_back');
+        $tmp=$m_back->where($where_back)->find();
+        if(empty($tmp)){ 
+            $data_back['time']=$time;
+            $m_back->insert($data_back);
+        }else{ 
+            $m_back->where($where_back)->update($data_back);
         }
-     
+        
         if(cmf_is_mobile()){
             $this->success('已提交退货信息',url('portal/thjm/back'));
         }
@@ -254,7 +258,7 @@ class ThPublicController extends HomeBaseController
             'sn'=>['eq',$thj['sn']],
         ];
         $time=time();
-        $m_voucher=db('voucher');
+        $m_voucher=Db::name('voucher');
         $info=$m_voucher->where($where)->find();
         if(empty($info)){
             $this->error('该编号不存在');

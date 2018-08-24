@@ -48,7 +48,7 @@ class ThjController extends HomeBaseController
         $where=[
             'sn'=>['eq',$sn],
         ];
-        $info=db('voucher')->where($where)->find();
+        $info=Db::name('voucher')->where($where)->find();
         if(empty($info)){
             $this->error('该编号不存在');
         }
@@ -64,7 +64,7 @@ class ThjController extends HomeBaseController
         }
         
         $this->assign('info',$info);
-        $back=db('voucher_back')->where('sn',$sn)->find();
+        $back=Db::name('voucher_back')->where('sn',$sn)->find();
         $this->assign('back',$back);
         return $this->fetch();
     }
@@ -74,10 +74,10 @@ class ThjController extends HomeBaseController
     {
         //获取查询
         $data=$this->request->param();
-        $m_net=db('network');
+        $m_net=Db::name('network');
         //获取所有有线下网点的城市
         $keys=$m_net->distinct('city')->column('city');
-        $citys=db('city')->where('id','in',$keys)->column('id,name');
+        $citys=Db::name('city')->where('id','in',$keys)->column('id,name');
       
         $where=['p.status'=>1];
         if(empty($data['city'])){
@@ -91,7 +91,7 @@ class ThjController extends HomeBaseController
              $where['p.name']=['like','%'.$data['name'].'%'];
         }
         
-        $list= db('network')->field('p.*,concat(c1.name,c2.name) as city_name')
+        $list= Db::name('network')->field('p.*,concat(c1.name,c2.name) as city_name')
         ->alias('p')
         ->join('cmf_city c2','c2.id=p.city')
         ->join('cmf_city c1','c1.id=c2.fid')
@@ -114,7 +114,7 @@ class ThjController extends HomeBaseController
         $where=[
             'id'=>['eq',$id],
         ];
-        $info=db('network')->where($where)->find();
+        $info=Db::name('network')->where($where)->find();
         if(empty($info)){
             $this->error('数据不存在');
         }

@@ -180,7 +180,7 @@ class VoucherController extends AdminbaseController {
         ->join('cmf_goods p','p.id=v.pid')
         ->find(); */
         if($info['network']!=0){
-            $info['network_name']=db('network') 
+            $info['network_name']=Db::name('network') 
             ->alias('net')
             ->join('cmf_city city','city.id=net.city')
             ->where('net.id',$info['network'])
@@ -191,12 +191,12 @@ class VoucherController extends AdminbaseController {
             'vid'=>$info['id'],
             'type'=>1,
         ];
-        $m_pic=db('voucher_pic');
+        $m_pic=Db::name('voucher_pic');
         $pics1=$m_pic->where($where)->column('id,pic');
         
         $back=[];
         if($info['status']>6){
-            $back=db('voucher_back')->where('pid',$info['id'])->find();
+            $back=Db::name('voucher_back')->where('pid',$info['id'])->find();
         }
         
         $this->assign('info',$info);
@@ -245,16 +245,17 @@ class VoucherController extends AdminbaseController {
                         $data['take_time']=$data['time'];
                     
                     break;
-                case 5:
-                   
+                case 5: 
                         $data['express_time']=$data['time'];
                  
                     break;
-                case 6:
-                  
-                        $data['get_time']=$data['time'];
-                  
+                case 6: 
+                        $data['get_time']=$data['time']; 
                     break;
+                case 7:
+                    $data['back_time']=$data['time'];
+                    break;
+               
                 default:
                     break;
             }
@@ -297,7 +298,7 @@ class VoucherController extends AdminbaseController {
             'vid'=>$info['id'],
             'type'=>1,
         ];
-        $m_pic=db('voucher_pic');
+        $m_pic=Db::name('voucher_pic');
         $pics0=$m_pic->where($where)->column('id,pic');
         //比较变化
         $m_pic->startTrans();
@@ -318,6 +319,26 @@ class VoucherController extends AdminbaseController {
             if(!empty($pics)){
                 $m_pic->insertAll($data_pic);
             }
+        }
+        if(isset($data['back_express'])){
+            $where_back=['pid'=>$data['id']];
+            $data_back=[
+                'express'=>$data['back_express'],
+                'res'=>$data['back_res'],
+            ];
+            $m_back=Db::name('voucher_back');
+            $tmp=$m_back->where($where_back)->find();
+            if(empty($tmp)){
+                $data_back['pid']=$data['id'];
+                $data_back['sn']=$info['sn'];
+                $data_back['time']=$data['time'];
+                $m_back->insert($data_back);
+            }else{
+                $m_back->where($where_back)->update($data_back);
+            }
+            
+            unset($data['back_express']);
+            unset($data['back_res']);
         }
         $row=$m->where('id', $data['id'])->update($data);
         if($row===1){
@@ -444,7 +465,7 @@ class VoucherController extends AdminbaseController {
          $m=$this->m;
         $cates=Db::name('cate')->where('type','goods')->order('sort asc')->column('id,name');
         $cid=key($cates); 
-        $goods=db('goods')->where(['cid'=>$cid])->column('id,name,price');
+        $goods=Db::name('goods')->where(['cid'=>$cid])->column('id,name,price');
         
         $this->assign('cates',$cates);
         $this->assign('goods',$goods);  */

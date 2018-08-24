@@ -234,7 +234,7 @@
 			</div>
 		</eq>
 		</gt>
-		<notempty name="back">
+		<gt name="info.status" value="6">
 			<div class="form-group">
 				<label class="col-sm-2 control-label">退货理由</label>
 				<div class="col-md-6 col-sm-10">
@@ -256,13 +256,7 @@
 					 
 				</div>
 			</div>
-			<div class="form-group">
-				<label class="col-sm-2 control-label">退货单号</label>
-				<div class="col-md-6 col-sm-10">
-					<a href="http://www.kuaidi100.com/chaxun?com=shunfeng&nu={$back.express}" target="_blank">{$back.express}</a>
-				 
-				</div>
-			</div>
+			
 			<div class="form-group">
 				<label class="col-sm-2 control-label">退货时间</label>
 				<div class="col-md-6 col-sm-10">
@@ -270,7 +264,22 @@
 						 value="{$back.time|date='Y-m-d H:i',###}"  />
 				</div>
 			</div>
-		</notempty>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">退货重发单号</label>
+				<div class="col-md-6 col-sm-10">
+					
+				 	<input type="text" name="back_express" value="{$back.express}"/>
+				 	<a href="http://www.kuaidi100.com/chaxun?com=shunfeng&nu={$back.express}" target="_blank">查询快递</a>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">退货回复</label>
+				<div class="col-md-6 col-sm-10">
+					<input type="text" class="form-control"  name="back_res"
+						value="{$back.res}"  >
+				</div>
+			</div>
+		</gt>
 			<div class="form-group">
 				<label class="col-sm-2 control-label">备注</label>
 				<div class="col-md-6 col-sm-10">

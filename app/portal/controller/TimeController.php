@@ -21,7 +21,7 @@ class TimeController extends HomeBaseController
         if($time_day===$date){
             exit();
         }
-        db('voucher')->where('psw_num','gt',0)->update(['psw_num'=>0]);
+        Db::name('voucher')->where('psw_num','gt',0)->update(['psw_num'=>0]);
          
         cmf_set_dynamic_config(['task_date'=>$date]);
         exit();
