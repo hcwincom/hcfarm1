@@ -6,10 +6,10 @@
 			<!--logo-->
 			
 			<!--nav-->
-			<section>
+			<section id="phone_top">
 				<header>
-					<nav style="position: fixed;top: 0;width: 100%; ">
-						<ul class="clearfix row" style="background: #DCE4EC; margin: 0;height: 50px;">
+					<nav style="position: fixed;top: 0;width: 100%; " id="nav">
+						<ul class="clearfix row" style="background: #DCE4EC; margin: 0;">
 							
 							<li class="fl"><i class="glyphicon glyphicon-gift"></i><a href="{:url('portal/thj/th')}">在线提货</a></li>
 							<li class="fr"><i class="glyphicon glyphicon-earphone "></i><a >团购热线：<br />400-6527-879</a></li>
@@ -18,7 +18,7 @@
 				</header>
 			</section>
 			<!--首页大图-->
-			<section style="margin-top: 50px;">
+			<section>
 				<div style="width: 100%;">
 					<img src="{:cmf_get_image_url($company.ad_phone1.content)}" class="ph_banner" style="width: 100%;height: auto;"/>
 				</div>
@@ -40,6 +40,13 @@
 	<footer>
 		<p >  {$company.copyright.title} {$company.copyright.content}</p>
 		<p>{$company.tech.title} : {$company.tech.content}</p>
-	</footer>		
+	</footer>	
+	
+	
+	<script type="text/javascript" >
+		var top_hei = document.getElementById('nav').offsetHeight;
+		document.getElementById('phone_top').style.height = top_hei-1+'px'
+		
+	</script>
 </body>
 		
