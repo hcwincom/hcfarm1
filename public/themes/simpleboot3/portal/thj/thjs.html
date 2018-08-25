@@ -194,24 +194,7 @@ $('#goods_verify').submit(function(){
 			return false;
 		}
 		//已提货显示提货信息
-		if(info.status > 3){ 
-			$('#info .status em').attr("class", "greenc");
-			$('#info').show();
-			$(".cardGoods").show();
-			$(".city_name em").text(info['city_name'] + info['address']);
-			$(".take_time em").text(take_time);
-			$(".express_time em").text('--');
-			$(".express_odd a").hide();
-			$(".express_odd").append('<em>--</em>');
-			$(".get_time").hide();			
-		}
-
-
-
-
-
-
-		if(info.status<5){   //  4  已申请提货
+		if(info.status>3){   //  4  已申请提货
 			$('#info .status em').attr("class", "greenc");
 			$('#info').show();
 			$(".cardGoods").show();		 
@@ -220,28 +203,37 @@ $('#goods_verify').submit(function(){
 			$(".express_time em").text('--');
 			$(".express_odd a").hide();
 			$(".express_odd").append('<em>--</em>');
-			$(".get_time").hide();			
-		}else{
+			$(".get_time").hide();
+
+			
+		}
+		if (info.status > 4) {  // 5 已发货
+			$('#info .status em').attr("class", "greenc");
 			$(".express_time em").text(express_time);
 			$(".express_odd em").remove();
 			$(".express_odd a").show();
 			$(".express_odd a").attr("href", expressHref + info['express']);
 			$(".express_odd a").text(info['express']);
+			$(".cardGoods_btn").show();
 		}
-		//已发货显示提货信息
-		if (info.status < 6) { // 5  已发货
-			$('#info .status em').attr("class", "greenc");
+		if(info.status > 5){ // 6 已收货
+
+		}
+
+		// //已发货显示提货信息
+		// if (info.status < 6) { // 5  已发货
+			
 				
-			$(".cardGoods_btn").show();
-		}
-		if(info.status < 7){  // 6 已收货
-			$(".cardGoods_btn").show();
-			$(".cardGoods_btn #confirmGoods").hide();
-		}
-		if(info.status < 8){ // 7 已申请售后
-			$('#info .status em').attr("class", "redcolor");
-			$(".cardGoods_btn").hide();
-		}
+			
+		// }
+		// if(info.status < 7){  // 6 已收货
+		// 	$(".cardGoods_btn").show();
+		// 	$(".cardGoods_btn #confirmGoods").hide();
+		// }
+		// if(info.status < 8){ // 7 已申请售后
+		// 	$('#info .status em').attr("class", "redcolor");
+		// 	$(".cardGoods_btn").hide();
+		// }
 			 
 	},'json');
 	

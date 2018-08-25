@@ -216,7 +216,8 @@ $('#goods_verify').submit(function(){
 		var pic2 = $("input[name='pic2']").val();
 		var pic3 = $("input[name='pic3']").val();
 
-
+		$('form').submit();
+		return false;
 		$.post("{:url('portal/thpublic/back_do')}", { "sn": sn, "dsc": dsc, "pic1": pic1, "pic2": pic2, "pic3": pic3 }, function (data) {
 			console.log(data);
 			$(".codeMsg").html(data.msg);
