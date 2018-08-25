@@ -74,7 +74,7 @@ class ThPublicController extends HomeBaseController
         $thj=session('thj');
         if(empty($thj['psw']) || empty($thj['sn'])){
             session('thj',null);
-            $this->error('数据错误');
+            $this->error('数据错误，请重新输入编码和密码查询');
         }
         if(empty($data['sn'])  || empty($data['uname']) || empty($data['utel']) || empty($data['take_type'])){
             $this->error('输入错误');
@@ -170,7 +170,7 @@ class ThPublicController extends HomeBaseController
         $thj=session('thj');
         if(empty($thj['psw']) || empty($thj['sn'])){
             session('thj',null);
-            $this->error('数据错误');
+            $this->error('数据错误，请重新输入编码和密码查询');
         }
         if(empty($data['dsc'])){
             $this->error('请输入退货描述');
@@ -246,7 +246,7 @@ class ThPublicController extends HomeBaseController
         $thj=session('thj');
         if(empty($thj['psw']) || empty($thj['sn'])){
             session('thj',null);
-            $this->error('数据错误');
+            $this->error('数据错误，请重新输入编码和密码查询');
         }
         
         //提货信息不匹配
