@@ -19,20 +19,29 @@
 			</section>
 			<!--首页大图-->
 			<section>
-				<div style="width: 100%;">
-					<img src="{:cmf_get_image_url($company.ad_phone1.content)}" class="ph_banner" style="width: 100%;height: auto;"/>
+				<div class="swiper-container" style="width: 100%;">
+					<div class="swiper-wrapper">
+						<div class="swiper-slide">
+							<img src="{:cmf_get_image_url($company.ad_phone1.content)}" class="ph_banner" style="width: 100%;height: auto;"/>
+						</div>
+						<div class="swiper-slide">
+							<img src="{:cmf_get_image_url($company.ad_phone1.content)}" class="ph_banner" style="width: 100%;height: auto;"/>
+						</div>
+					</div>
+					 <!-- 如果需要分页器 -->
+		    		<div class="swiper-pagination"></div>
 				</div>
 				
 			</section>	 
 			<!--图片广告-->
 			<section>
 				<img src="__TMPL__/public/assets/phone_image/bg2-phone.gif" />
-				 <img src="__TMPL__/public/assets/phone_image/bg1.gif" />
-				 <img src="__TMPL__/public/assets/phone_image/bg3-phone.gif" />
-				 <img src="__TMPL__/public/assets/phone_image/bg4.gif" />
-				 <img src="__TMPL__/public/assets/phone_image/bg5.gif" />
-				 <img src="__TMPL__/public/assets/phone_image/bg6.gif" />
-				 <img src="__TMPL__/public/assets/phone_image/bg7.gif" />
+				<img src="__TMPL__/public/assets/phone_image/bg1.gif" />
+				<img src="__TMPL__/public/assets/phone_image/bg3-phone.gif" />
+				<img src="__TMPL__/public/assets/phone_image/bg4.gif" />
+				<img src="__TMPL__/public/assets/phone_image/bg5.gif" />
+				<img src="__TMPL__/public/assets/phone_image/bg6.gif" />
+				<img src="__TMPL__/public/assets/phone_image/bg7.gif" />
 			</section>
 			<!--图片广告-->
 			
@@ -42,11 +51,21 @@
 		<p>{$company.tech.title} : {$company.tech.content}</p>
 	</footer>	
 	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.2/js/swiper.min.js"></script>
 	
 	<script type="text/javascript" >
 		var top_hei = document.getElementById('nav').offsetHeight;
 		document.getElementById('phone_top').style.height = top_hei-1+'px'
 		
+		var mySwiper = new Swiper ('.swiper-container', {
+		    loop: true,
+		    autoplay: true,//可选选项，自动滑动
+		   
+		    // 如果需要分页器
+		    pagination:{
+		      el:'.swiper-pagination',
+		    }
+		  }) 
 	</script>
 </body>
 		
