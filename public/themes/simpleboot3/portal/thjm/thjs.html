@@ -202,6 +202,31 @@ $('#goods_verify').submit(function(){
 
 		});
 
+	// 申请售后服务
+	$("#backBtn").click(function () {
+
+		var backcheck = validateFormA();
+		if(backcheck == false){
+			return false;
+		}
+
+		var sn = $("#sn").val();
+		var dsc = $("textarea[name='dsc']").val();
+		var pic1 = $("input[name='pic1']").val();
+		var pic2 = $("input[name='pic2']").val();
+		var pic3 = $("input[name='pic3']").val();
+
+
+		$.post("{:url('portal/thpublic/back_do')}", { "sn": sn, "dsc": dsc, "pic1": pic1, "pic2": pic2, "pic3": pic3 }, function (data) {
+			console.log(data);
+			$(".codeMsg").html(data.msg);
+			if (data.code != 1) {
+				return false;
+			}
+			$("#address_btn").hide();
+		});
+
+	});
 
 
 

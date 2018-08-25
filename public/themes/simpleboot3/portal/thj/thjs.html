@@ -113,7 +113,6 @@ $('#goods_verify').submit(function(){
 		return false;
 	}
 	
-
 	$('#info').hide();
 	$(".cardGoods").hide();
 	$(".personInfo").hide();
@@ -195,16 +194,33 @@ $('#goods_verify').submit(function(){
 			return false;
 		}
 		//已提货显示提货信息
-		if(info.status<5){   //  4  已申请提货
-			$('#info .status em').attr("class", "orangrc");
+		if(info.status > 3){ 
+			$('#info .status em').attr("class", "greenc");
 			$('#info').show();
 			$(".cardGoods").show();
-		 
 			$(".city_name em").text(info['city_name'] + info['address']);
 			$(".take_time em").text(take_time);
 			$(".express_time em").text('--');
 			$(".express_odd a").hide();
-			$(".express_odd").append('<em>--</em>');			
+			$(".express_odd").append('<em>--</em>');
+			$(".get_time").hide();			
+		}
+
+
+
+
+
+
+		if(info.status<5){   //  4  已申请提货
+			$('#info .status em').attr("class", "greenc");
+			$('#info').show();
+			$(".cardGoods").show();		 
+			$(".city_name em").text(info['city_name'] + info['address']);
+			$(".take_time em").text(take_time);
+			$(".express_time em").text('--');
+			$(".express_odd a").hide();
+			$(".express_odd").append('<em>--</em>');
+			$(".get_time").hide();			
 		}else{
 			$(".express_time em").text(express_time);
 			$(".express_odd em").remove();
@@ -226,17 +242,7 @@ $('#goods_verify').submit(function(){
 			$('#info .status em').attr("class", "redcolor");
 			$(".cardGoods_btn").hide();
 		}
-
 			 
-	
-		// $(".city_name em").text(info['city_name'] + info['address']);
-		// $(".express_time em").text(express_time);
-		// $(".express_odd a").attr("href", expressHref + info['express']);
-		// $(".take_time em").text(take_time);
-		// $(".express_odd a").text(info['express']);
-		// $(".get_time em").text(get_time);
-		// $(".get0_time em").text(get0_time);
-		 $('#address_btn').hide();
 	},'json');
 	
 	return false;
@@ -347,10 +353,20 @@ $("#backBtn").click(function () {
 	}
 
 	var sn = $("#sn").val();
+	var dsc = $("#description").val();
+	var pic1 = $("#picurl1").val();
+	var pic2 = $("#picurl2").val();
+	var pic3 = $("#picurl3").val();
+
+	$.post("{:url('portal/thpublic/back_do')}",{"sn":sn,"dsc":dsc,"pic1": pic1,"pic2": pic2,"pic3": pic3},function (data) {
+		console.log(data);
+		$(".codeMsg").html(data.msg);
+		if (data.code != 1) {
+			return false;
+		}
+		
+	});
  
-
-
-
 });
 
 

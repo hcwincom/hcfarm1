@@ -128,40 +128,17 @@
 		var picurl1 = $("#picUrl1").val();
 		var picurl2 = $("#picUrl2").val();
 		var picurl3 = $("#picUrl3").val();
-		var picurl4 = $("#picUrl4").val();
 		
 		var img1 = $("#picUrl1")[0].files[0];
 		var img2 = $("#picUrl2")[0].files[0];
 		var img3 = $("#picUrl3")[0].files[0];
-		var img4 = $("#picUrl4")[0].files[0];
+
 		
-		if($.trim($("#orderNum").val()) == ""){
-			$("#orderNum").focus();
-			$(".msg").html("请输入货物订单号");
+		if ($.trim($("textarea[name='dsc']").val()) == ""){
+			$(".codeMsg").html("请输入理赔原因");
 			return false;
-		}else if($.trim($("#expNum").val()) == ""){
-			$("#expNum").focus();
-			$(".msg").html("请输入物流订单号");
-			return false;
-		}else if($.trim($("#description").val()) == ""){
-			$("#description").focus();
-			$(".msg").html("请输入理赔原因");
-			return false;
-		}else if($.trim($("#picUrl1").val()) == ""){
-			$("#picUrl1").focus();
-			$(".msg").html("请上传理赔凭证");
-			return false;
-		}else if($.trim($("#applyName").val()) == "" || isChinaName($.trim($("#applyName").val())) == false){
-			$("#applyName").focus();
-			$(".msg").html("请填写申请人姓名");
-			return false;
-		}else if($.trim($("#applyPnone").val()) == "" || isPhoneNo($.trim($("#applyPnone").val())) == false){
-			$("#applyPnone").focus();
-			$(".msg").html("请填写申请人手机号码");
-			return false;
-		}else if($.trim($("#yancode").val()).length != 4){
-			$("#yancode").focus();
-			$(".msg").html("请输入正确的验证码");
+		} else if ($.trim($("input[name='pic1']").val()) == ""){
+			$(".codeMsg").html("请上传理赔凭证");
 			return false;
 		}
 		
@@ -175,7 +152,7 @@
 		if($("#picUrl1").val() !=''){
 			var size1 = img1.size / 1024;
 			if(!ruleimg.test(picurl1) || size1 > 6144){
-				alert("理赔凭证图1,请上传jpg、png等常用格式的图片,最大为6M");
+				$(".codeMsg").html("理赔凭证图1,请上传jpg、png等常用格式的图片,最大为6M");
 				return false;
 			}
 		}
@@ -183,7 +160,7 @@
 		if($("#picUrl2").val() !=''){
 			var size2 = img2.size / 1024;
 			if(!ruleimg.test(picurl2) || size2 > 6144){
-				alert("理赔凭证图2,请上传jpg、png等常用格式的图片,最大为6M");
+				$(".codeMsg").html("理赔凭证图2,请上传jpg、png等常用格式的图片,最大为6M");
 				return false;
 			}
 		}
@@ -191,18 +168,11 @@
 		if($("#picUrl3").val() !=''){
 			var size3 = img3.size / 1024;
 			if(!ruleimg.test(picurl3) || size3 > 6144){
-				alert("理赔凭证图3,请上传jpg、png等常用格式的图片,最大为6M");
+				$(".codeMsg").html("理赔凭证图3,请上传jpg、png等常用格式的图片,最大为6M");
 				return false;
 			}
 		}
 		
-		if($("#picUrl4").val() !=''){
-			var size4 = img4.size / 1024;
-			if(!ruleimg.test(picurl4) || size4 > 6144){
-				alert("理赔凭证图4,请上传jpg、png等常用格式的图片,最大为6M");
-				return false;
-			}
-		}
 		return true;			
 	}
 	

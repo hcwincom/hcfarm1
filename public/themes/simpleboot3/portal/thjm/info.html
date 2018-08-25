@@ -87,11 +87,11 @@
 					<div>
 						<span style="vertical-align: top;">联系地址：</span>
 						<p>
-						<eq name="info.network" value="0">
+						<neq name="info.network" value="0">
 							线下自提
 						<else/>
 							{$info.city_name}{$info.address}
-						</eq>
+						</neq>
 						</p>
 					</div>
 					<notempty name="info.express">
@@ -120,11 +120,11 @@
 					<div>
 						<span>&nbsp;</span>
 						<eq name="info.status" value="5">
-							<a class="confirmGoods" id="confirmGoods" href="javascript:void();">确认收货</a>
+							<a class="confirmGoods greenc" id="confirmGoods" href="javascript:void();">确认收货</a>
 
 						</eq>
 						<gt name="info.status" value="4">
-							<a class="backRequest" id="backRequest" href="{:url('back')}" >售后服务</a>
+							<a class="backRequest colorred" id="backRequest" href="{:url('back')}" >售后服务</a>
 						</gt>
 					</div>
 				<gt name="info.status" value="6">

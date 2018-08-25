@@ -747,14 +747,14 @@ header .top0{
 }
    /*信息输入  */
 
-.personIndo>span{
+.personIndo>span,.backinfo>span{
     display: inline-block;
     width: 23%;
     text-align: right;
     font-size: 0.29rem;
     line-height: 0.8rem;
 }
-.personIndo>div{
+.personIndo>div,.backinfo>div{
     display: inline-block;
     width: 74%;
     line-height: 0.8rem;
@@ -789,10 +789,25 @@ header .top0{
 .personIndo>div>input#start{
    width: 80%;    
 }
-
-
-
-
+.backinfo{
+    width: 100%;
+    margin-top: 0.3rem;
+}
+.backinfo>span{
+    width: 25%;
+    font-size: 0.3rem;
+}
+.backinfo>div{
+    width: 72%; 
+}
+.backinfo>div>textarea{
+     width: 100%;
+    padding-left: 0.1rem;
+    border: 0.01rem solid #999;
+    line-height: 0.6rem;
+    font-size: 0.3rem;
+    
+}
 
 
 
