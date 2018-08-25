@@ -6,6 +6,15 @@ use think\Config;
 use think\Db;
 use think\Url;
  
+/**
+ * 文件日志
+ * @param $content 要写入的内容
+ * @param string $file 日志文件,在web 入口目录
+ */
+function zz_log($content, $file = "log.txt")
+{
+    file_put_contents('log/'.$file, date('Y-m-d H:i:s').' '.$content."\r\n",FILE_APPEND);
+}
 /* 过滤HTML得到纯文本 */
 function zz_get_content($list,$len=100){
     //过滤富文本
