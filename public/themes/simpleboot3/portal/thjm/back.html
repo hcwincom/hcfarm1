@@ -22,19 +22,22 @@
             <div class="backinfo">
                 <span>理赔凭证1：</span>
                 <div>
-                    <input type="file" name="pic1" id="picUrl1">
+                    <input type="file" name="pic1" id="picUrl1" class="file file1">
+                    <input type="hidden" name="pic1" value="{$back.pic1}" class="filepath filepath1" />
                 </div>
             </div>
             <div class="backinfo">
                 <span>理赔凭证2：</span>
                 <div>
-                    <input type="file" name="pic2" id="picUrl2">
+                    <input type="file" name="pic2" id="picUrl2" class="file file2">
+                    <input type="hidden" name="pic2" value="{$back.pic1}" class="filepath filepath2" />
                 </div>
             </div>
             <div class="backinfo">
                 <span>理赔凭证3：</span>
                 <div>
-                    <input type="file" name="pic3" id="picUrl3">
+                    <input type="file" name="pic3" id="picUrl3" class="file file3">
+                    <input type="hidden" name="pic3" value="{$back.pic1}" class="filepath filepath3" />
                 </div>
             </div>
             <p class="codeMsg colorred"></p>
@@ -46,24 +49,7 @@
         </form>
        
 
-
-
     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -71,5 +57,39 @@
 <!--底部-->
 <include file="portal@thjm/footer" />
 <include file="portal@thjm/thjs" />
+<script>
+    //上传图片
+    $('.file').change(function () {
+        //组装表单数据
+        var fordata = new FormData();
+        var file = this.files[0];
+        var sn = $('#sn').val();
+        var $filepath = $(this).siblings('file_path');
+        fordata.append("file", file);
+        fordata.append("dir", 'voucher/' + sn);
+        //ajax
+        $.ajax({
+            "url": "{:url('portal/public/upload')}",
+            "type": "POST",
+            "processData": false,
+            "contentType": false,
+            "data": fordata,
+            "dataType": "json",
+            "error": function () {
+                console.log('上传失败');
+                click = 0;
+            },
+            "success": function (data) {
+                console.log(data);
+                console.log(data.msg);
+
+                $filepath.val(data.data.path);
+                click = 0;
+            }
+        });
+    });
+
+
+</script>
 </body>
 </html>

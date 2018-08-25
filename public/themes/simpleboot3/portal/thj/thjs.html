@@ -117,7 +117,8 @@ $('#goods_verify').submit(function(){
 	$(".cardGoods").hide();
 	$(".personInfo").hide();
 	$(".storeGoods").hide();
-	$(".cardGoods_btn").hide();
+	$(".goodsConfirm").hide();
+	$(".goodsBack").hide();
 		
 	var sn=$('#code').val();
 	var psw=$('#password').val();
@@ -195,7 +196,7 @@ $('#goods_verify').submit(function(){
 		}
 		//已提货显示提货信息
 		if(info.status>3){   //  4  已申请提货
-			$('#info .status em').attr("class", "greenc");
+			$('#info .status em').attr("class", "orangrc");
 			$('#info').show();
 			$(".cardGoods").show();		 
 			$(".city_name em").text(info['city_name'] + info['address']);
@@ -203,9 +204,7 @@ $('#goods_verify').submit(function(){
 			$(".express_time em").text('--');
 			$(".express_odd a").hide();
 			$(".express_odd").append('<em>--</em>');
-			$(".get_time").hide();
-
-			
+			$(".get_time").hide();			
 		}
 		if (info.status > 4) {  // 5 已发货
 			$('#info .status em').attr("class", "greenc");
@@ -214,26 +213,23 @@ $('#goods_verify').submit(function(){
 			$(".express_odd a").show();
 			$(".express_odd a").attr("href", expressHref + info['express']);
 			$(".express_odd a").text(info['express']);
-			$(".cardGoods_btn").show();
+			$(".goodsConfirm").show();
+			$(".goodsBack").show();
 		}
 		if(info.status > 5){ // 6 已收货
+			$(".get_time").show();
+			$(".get_time em").text(get_time);
+			$(".goodsConfirm").hide();
+		}
+		if(info.status > 6){ // 7 已申请售后
+			$('#info .status em').attr("class", "redcolor");
+		}
+		if (info.status > 7) { // 8 售后结束
+			$('#info .status em').attr("class", "redcolor");
+			$(".goodsConfirm").hide();
+			$(".goodsBack").hide();
 
 		}
-
-		// //已发货显示提货信息
-		// if (info.status < 6) { // 5  已发货
-			
-				
-			
-		// }
-		// if(info.status < 7){  // 6 已收货
-		// 	$(".cardGoods_btn").show();
-		// 	$(".cardGoods_btn #confirmGoods").hide();
-		// }
-		// if(info.status < 8){ // 7 已申请售后
-		// 	$('#info .status em').attr("class", "redcolor");
-		// 	$(".cardGoods_btn").hide();
-		// }
 			 
 	},'json');
 	
@@ -316,7 +312,7 @@ $('#goods_verify').submit(function(){
 					return false;
 				}
 				$('#address_btn').hide();
-			});
+			},'json');
 		}
 	
 	return false;
@@ -334,7 +330,15 @@ $('#goods_verify').submit(function(){
  
 	// 确认收货
 	$("#confirmGoods").click(function () {
-		
+		var sncode = $("#codeNum").val();
+		console.log(sncode);
+		$.post("{:url('portal/thpublic/get_do')}",{"sn": sncode},function (data) {
+			$(".codeMsg").html(data.msg);
+			if (data.code != 1) {
+				return false;
+			}
+			$(".goodsBack").hide();
+		},'json');
 	});
 
 // 申请售后服务
@@ -346,9 +350,9 @@ $("#backBtn").click(function () {
 
 	var sn = $("#sn").val();
 	var dsc = $("#description").val();
-	var pic1 = $("#picurl1").val();
-	var pic2 = $("#picurl2").val();
-	var pic3 = $("#picurl3").val();
+	var pic1 = $("input[name='pic1']").val();
+	var pic2 = $("input[name='pic2']").val();
+	var pic3 = $("input[name='pic3']").val();
 
 	$.post("{:url('portal/thpublic/back_do')}",{"sn":sn,"dsc":dsc,"pic1": pic1,"pic2": pic2,"pic3": pic3},function (data) {
 		console.log(data);
@@ -356,8 +360,8 @@ $("#backBtn").click(function () {
 		if (data.code != 1) {
 			return false;
 		}
-		
-	});
+		$("#backBtn").hide();
+	},'json');
  
 });
 

@@ -66,6 +66,7 @@
 			<else/>
 				<!-- 券卡信息是已提货时显示 -->
 				<div class="cardInfomation">
+					<input type="hidden" name="sn" id="sn" value="{$info.sn}">
 					<div>
 						<span>联系人：</span>
 						<p>{$info.uname}</p>
@@ -117,14 +118,15 @@
 							</div>
 					</gt>
 					
-					<div>
-						<span>&nbsp;</span>
+					<p class="codeMsg colorred"></p>
+				
+					<div class="cardGoods_btn">
 						<eq name="info.status" value="5">
-							<a class="confirmGoods greenc" id="confirmGoods" href="javascript:void();">确认收货</a>
+							<a class="confirmGoods" id="confirmGoods" href="javascript:void();">确认收货</a>
 
 						</eq>
 						<gt name="info.status" value="4">
-							<a class="backRequest colorred" id="backRequest" href="{:url('back')}" >售后服务</a>
+							<a class="backRequest" id="backRequest" href="{:url('back')}" >售后服务</a>
 						</gt>
 					</div>
 				<gt name="info.status" value="6">

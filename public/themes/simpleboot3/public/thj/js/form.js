@@ -125,13 +125,13 @@
 	
 	// 申请理赔
 	function validateFormA(){
-		var picurl1 = $("#picUrl1").val();
-		var picurl2 = $("#picUrl2").val();
-		var picurl3 = $("#picUrl3").val();
-		
-		var img1 = $("#picUrl1")[0].files[0];
-		var img2 = $("#picUrl2")[0].files[0];
-		var img3 = $("#picUrl3")[0].files[0];
+		var picurl1 = $("input[name='pic1']").val();
+		var picurl2 = $("input[name='pic2']").val();
+		var picurl3 = $("input[name='pic3']").val();
+
+		var img1 = $("input[name='pic1']")[0].files[0];
+		var img2 = $("input[name='pic2']")[0].files[0];
+		var img3 = $("input[name='pic3']")[0].files[0];
 
 		
 		if ($.trim($("textarea[name='dsc']").val()) == ""){
@@ -149,26 +149,26 @@
 		}
 		
 		var ruleimg = /^(.*)(\.)(JPEG|jpeg|JPG|jpg|GIF|gif|bmp|BMP|png|PNG)$/;
-		if($("#picUrl1").val() !=''){
+		if ($("input[name='pic1']").val() != '') {
 			var size1 = img1.size / 1024;
-			if(!ruleimg.test(picurl1) || size1 > 6144){
-				$(".codeMsg").html("理赔凭证图1,请上传jpg、png等常用格式的图片,最大为6M");
+			if (!ruleimg.test(picurl1) || size1 > 2144) {
+				alert("理赔凭证图1,请上传jpg、png等常用格式的图片,最大为2M");
 				return false;
 			}
 		}
-		
-		if($("#picUrl2").val() !=''){
+
+		if ($("input[name='pic2']").val() != '') {
 			var size2 = img2.size / 1024;
-			if(!ruleimg.test(picurl2) || size2 > 6144){
-				$(".codeMsg").html("理赔凭证图2,请上传jpg、png等常用格式的图片,最大为6M");
+			if (!ruleimg.test(picurl2) || size2 > 2144) {
+				alert("理赔凭证图2,请上传jpg、png等常用格式的图片,最大为2M");
 				return false;
 			}
 		}
-		
-		if($("#picUrl3").val() !=''){
+
+		if ($("input[name='pic3']").val() != '') {
 			var size3 = img3.size / 1024;
-			if(!ruleimg.test(picurl3) || size3 > 6144){
-				$(".codeMsg").html("理赔凭证图3,请上传jpg、png等常用格式的图片,最大为6M");
+			if (!ruleimg.test(picurl3) || size3 > 2144) {
+				alert("理赔凭证图3,请上传jpg、png等常用格式的图片,最大为2M");
 				return false;
 			}
 		}
@@ -178,19 +178,19 @@
 	
 	// 理赔验证
 	function validateFormB(){
-		var picurl1 = $("#picurl1").val();
-		var picurl2 = $("#picurl2").val();
-		var picurl3 = $("#picurl3").val();
+		var picurl1 = $("input[name='pic1']").val();
+		var picurl2 = $("input[name='pic2']").val();
+		var picurl3 = $("input[name='pic3']").val();
 		
-		var img1 = $("#picurl1")[0].files[0];
-		var img2 = $("#picurl2")[0].files[0];
-		var img3 = $("#picurl3")[0].files[0];
+		var img1 = $("input[name='pic1']")[0].files[0];
+		var img2 = $("input[name='pic2']")[0].files[0];
+		var img3 = $("input[name='pic3']")[0].files[0];
 
 	 if($.trim($("#description").val()) == ""){
 			$("#description").focus();
 			$("#showdescription").show();
 			return false;
-		}else if($.trim($("#picurl1").val()) == ""){
+	 } else if ($.trim($("input[name='pic1']").val()) == ""){
 		 	$("#showpicurl1").show();
 			return false;
 	 	} {
@@ -205,7 +205,7 @@
 		}
 		
 		var ruleimg = /^(.*)(\.)(JPEG|jpeg|JPG|jpg|GIF|gif|bmp|BMP|png|PNG)$/;
-		if($("#picurl1").val() !=''){
+		if ($("input[name='pic1']").val() !=''){
 			var size1 = img1.size / 1024;
 			if(!ruleimg.test(picurl1) || size1 > 2144){
 				alert("理赔凭证图1,请上传jpg、png等常用格式的图片,最大为2M");
@@ -213,7 +213,7 @@
 			}
 		}
 		
-		if($("#picurl2").val() !=''){
+		if ($("input[name='pic2']").val() !=''){
 			var size2 = img2.size / 1024;
 			if(!ruleimg.test(picurl2) || size2 > 2144){
 				alert("理赔凭证图2,请上传jpg、png等常用格式的图片,最大为2M");
@@ -221,7 +221,7 @@
 			}
 		}
 		
-		if($("#picurl3").val() !=''){
+		if ($("input[name='pic3']").val() !=''){
 			var size3 = img3.size / 1024;
 			if(!ruleimg.test(picurl3) || size3 > 2144){
 				alert("理赔凭证图3,请上传jpg、png等常用格式的图片,最大为2M");

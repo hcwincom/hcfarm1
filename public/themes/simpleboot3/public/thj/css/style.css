@@ -705,13 +705,24 @@ img {
     margin: 30px 20px;
 }
 /* 收货和售后 */
-.cardGoods_btn>a{
+.cardGoods_btn{
+    width: 100%;
+    line-height: 0.5rem;
+}
+.cardGoods_btn>div{
+    display: inline-block;
+    text-align: center;
+    margin-right: 0.3rem;
+}
+.cardGoods_btn>div>a{
     background: #D50708;
     color: #fff;
-    padding: 0.3rem 0.5rem;
-    font-size: 0.28rem;
+    padding: 0.4rem 0.8rem;
+    font-size: 1.1rem;
 }
-
+.cardGoods_btn>.goodsConfirm>a{
+    background: green;
+}
 
 
 

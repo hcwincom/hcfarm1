@@ -31,15 +31,18 @@
                             请填写理赔原因
                         </span>
                     </div>
-                    <p class="redcolor">请填写需要理赔的物品</p>
                 </div>
+                <p class="orangrc" style="padding-left:20px;">请填写需要理赔的方式</p>
                 <div class="item appc1">
                     <span class="label">
                         <span class="redcolor">*</span>
                         理赔凭证图1：
                     </span>
                     <div class="fl">
-                        <input type="file" name="pic1" id="picurl1" value="" class="itxt" />
+                    <neq name="info.status" value="8">
+                        <input type="file"  id="picurl1" value="" class="file file1 itxt" />
+                    </neq>
+                        <input type="hidden" name="pic1" value="{$back.pic1}" class="filepath filepath1" />
                         <span class="error-msg" id="showpicurl1">
                             请上传理赔凭证图
                         </span>
@@ -51,7 +54,10 @@
                         理赔凭证图2：
                     </span>
                     <div class="fl">
-                        <input type="file" name="pic2" id="picurl2" value="" />
+                        <neq name="info.status" value="8">
+                        <input type="file" value="" class="file file2" />
+                        </neq>
+                        <input type="hidden" name="pic2" value="{$back.pic1}"  class="filepath filepath2" />
                     </div>
                 </div>
                 <div class="item appc1">
@@ -60,20 +66,24 @@
                         理赔凭证图3：
                     </span>
                     <div class="fl">
-                        <input type="file" name="pic3" id="picurl3" value="" />
+                        <neq name="info.status" value="8">
+                        <input type="file" id="picurl3" value="" class="file file3" />
+                        </neq>
+                        <input type="hidden" name="pic3" value="{$back.pic1}" class="filepath filepath3" />
                     </div>
                 </div>
-                
+                <neq name="info.status" value="8">
                 <div class="item appc1">
                     <span class="label">&nbsp;</span>
                     <div class="fl">
                         <input type="button" class="btn-9 bgred" value="提交" id="backBtn">
                     </div>
                 </div>
+                </neq>
                 <div class="item appc1">
                     <span class="label">&nbsp;</span>
                     <div class="fl">
-                       <p class="codeMsg"></p>
+                       <p class="codeMsg colorred"></p>
                     </div>
                 </div>
 
@@ -96,6 +106,37 @@
         <script type="text/javascript" src="__TMPL__/public/thj/js/form.js"></script>
         <include file="portal@thj/thjs" />
       <script>
+         //上传图片
+            $('.file').change(function () {
+                //组装表单数据
+                var fordata = new FormData();
+                var file = this.files[0];
+                var sn = $('#sn').val();
+                var $filepath = $(this).siblings('file_path');
+                fordata.append("file", file);
+                fordata.append("dir", 'voucher/' + sn);
+                //ajax
+                $.ajax({
+                    "url": "{:url('portal/public/upload')}",
+                    "type": "POST",
+                    "processData": false,
+                    "contentType": false,
+                    "data": fordata,
+                    "dataType": "json",
+                    "error": function () {
+                        console.log('上传失败');
+                        click = 0;
+                    },
+                    "success": function (data) {
+                        console.log(data);
+                        console.log(data.msg);
+
+                        $filepath.val(data.data.path);
+                        click = 0;
+                    }
+                });
+            });
+
       </script>
 </body>
 </html>

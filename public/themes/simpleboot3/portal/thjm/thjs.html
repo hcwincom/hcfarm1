@@ -194,13 +194,27 @@ $('#goods_verify').submit(function(){
 						return false;
 					}
 					$('#address_btn').hide();
-				});
+				},'json');
 			}
 
 			return false;
 
-
 		});
+
+//  确认收货
+
+$("#confirmGoods").click(function () {
+	var sn = $("#sn").val();
+	$.post("{:url('portal/thpublic/get_do')}",{"sn":sn},function (data) {
+		$(".codeMsg").html(data.msg);
+			if(data.code != 1){
+				return false;
+			}
+			$("#confirmGoods").hide();
+	},'json');
+});
+
+
 
 	// 申请售后服务
 	$("#backBtn").click(function () {
@@ -225,12 +239,9 @@ $('#goods_verify').submit(function(){
 				return false;
 			}
 			$("#address_btn").hide();
-		});
+		},'json');
 
 	});
-
-
-
 
 
 

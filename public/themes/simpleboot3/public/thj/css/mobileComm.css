@@ -809,15 +809,25 @@ header .top0{
     
 }
 
-
-
-
-
 /* 添加收货地址和收货类型 */
-
-
-
-
+.cardInfomation>div.cardGoods_btn{
+    margin-top: 0.3rem;
+    border-bottom: none;
+    width: 100%;
+    text-align: center;
+}
+.cardGoods_btn>a{
+    font-size: 0.33rem;
+    padding: 0.1rem 0.3rem;
+    margin-right: 0.2rem;
+    color: #fff;
+}
+.cardGoods_btn>a.confirmGoods{
+    background: rgb(25, 138, 8);
+}
+.cardGoods_btn>a.backRequest{
+    background: #D50708;
+}
 
 
 
