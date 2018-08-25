@@ -10,28 +10,36 @@
 				<header>
 					<nav style="position: fixed;top: 0;width: 100%; ">
 						<ul class="clearfix row" style="background: #DCE4EC; margin: 0;height: 50px;">
-							<li class="mlr10"><i class="glyphicon glyphicon-home"></i><a href="/">首页</a></li>
-							<li class="mlr10"><i class="glyphicon glyphicon-gift"></i><a href="{:url('portal/thj/th')}">在线提货</a></li>
-							<li class="mlr10"><i class="glyphicon glyphicon-earphone "></i>团购热线：<br />400-6527-879</li>
+							
+							<li class="fl"><i class="glyphicon glyphicon-gift"></i><a href="{:url('portal/thj/th')}">在线提货</a></li>
+							<li class="fr"><i class="glyphicon glyphicon-earphone "></i><a >团购热线：<br />400-6527-879</a></li>
 						</ul>
 					</nav>
 				</header>
 			</section>
 			<!--首页大图-->
 			<section style="margin-top: 50px;">
-				<img src="{:cmf_get_image_url($company.ad_phone1.content)}" class="ph_banner"/>
+				<div style="width: 100%;">
+					<img src="{:cmf_get_image_url($company.ad_phone1.content)}" class="ph_banner" style="width: 100%;height: auto;"/>
+				</div>
+				
 			</section>	 
 			<!--图片广告-->
 			<section>
 				<img src="__TMPL__/public/assets/phone_image/bg2-phone.gif" />
 				 <img src="__TMPL__/public/assets/phone_image/bg1.gif" />
 				 <img src="__TMPL__/public/assets/phone_image/bg3-phone.gif" />
+				 <img src="__TMPL__/public/assets/phone_image/bg4.gif" />
+				 <img src="__TMPL__/public/assets/phone_image/bg5.gif" />
+				 <img src="__TMPL__/public/assets/phone_image/bg6.gif" />
+				 <img src="__TMPL__/public/assets/phone_image/bg7.gif" />
 			</section>
 			<!--图片广告-->
 			
 			
 	<footer>
-		
+		<p >  {$company.copyright.title} {$company.copyright.content}</p>
+		<p>{$company.tech.title} : {$company.tech.content}</p>
 	</footer>		
 </body>
 		
