@@ -15,7 +15,7 @@
             <div class="backinfo">
                 <span style=" vertical-align: top;">理赔原因：</span>
                 <div>
-                    <textarea name="dsc" onkeyup="value=value.replace(/\s/g,'')"></textarea>
+                    <textarea name="dsc" onkeyup="value=value.replace(/\s/g,'')">{$back.dsc}</textarea>
                 </div>
             </div>
             <p class="orangrc" style="padding-left:0.3rem;">请填写需要的售后方式</p>
@@ -64,7 +64,7 @@
         var fordata = new FormData();
         var file = this.files[0];
         var sn = $('#sn').val();
-        var $filepath = $(this).siblings('file_path');
+        var $filepath = $(this).siblings('.filepath');
         fordata.append("file", file);
         fordata.append("dir", 'voucher/' + sn);
         //ajax

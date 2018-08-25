@@ -26,7 +26,7 @@
                         理赔原因：
                     </span>
                     <div class="fl">
-                        <textarea style="float: left;" class="itxt" name="dsc" maxlength="200" id="description" onkeyup="value=value.replace(/\s/g,'')"></textarea>
+                        <textarea style="float: left;" class="itxt" name="dsc" maxlength="200" id="description" onkeyup="value=value.replace(/\s/g,'')">{$back.dsc}</textarea>
                         <span class="error-msg" id="showdescription">
                             请填写理赔原因
                         </span>
@@ -72,6 +72,31 @@
                         <input type="hidden" name="pic3" value="{$back.pic1}" class="filepath filepath3" />
                     </div>
                 </div>
+                <notempty name="back.time">
+                    <div class="item appc1">
+                        <span class="label">
+                            <span class="redcolor"></span>
+                            申请时间：
+                        </span>
+                        <div class="fl">
+                          {$back.time|date='Y-m-d H:i',###}
+                    
+                        </div>
+                    </div>
+                    </notempty>
+               <notempty name="back.res">
+<div class="item appc1">
+    <span class="label">
+        <span class="redcolor"></span>
+        售后回复：
+    </span>
+    <div class="fl">
+        <textarea style="float: left;" class="itxt" readonly>{$back.res}</textarea>
+        
+    </div>
+</div>
+
+               </notempty>
                 <neq name="info.status" value="8">
                 <div class="item appc1">
                     <span class="label">&nbsp;</span>
@@ -79,6 +104,7 @@
                         <input type="button" class="btn-9 bgred" value="提交" id="backBtn">
                     </div>
                 </div>
+                
                 </neq>
                 <div class="item appc1">
                     <span class="label">&nbsp;</span>
@@ -111,8 +137,16 @@
                 //组装表单数据
                 var fordata = new FormData();
                 var file = this.files[0];
+               // var ruleimg = /^(.*)(\.)(JPEG|jpeg|JPG|jpg|GIF|gif|bmp|BMP|png|PNG)$/;
+              /*   if ($("input[name='pic1']").val() != '') {
+                    var size1 = file.size / 1024;
+                    if (size1 > 2144) {
+                        alert("理赔凭证图1,请上传jpg、png等常用格式的图片,最大为4M");
+                        return false;
+                    }
+                } */
                 var sn = $('#sn').val();
-                var $filepath = $(this).siblings('file_path');
+                var $filepath = $(this).siblings('.filepath');
                 fordata.append("file", file);
                 fordata.append("dir", 'voucher/' + sn);
                 //ajax
