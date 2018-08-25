@@ -22,30 +22,68 @@
             <div class="backinfo">
                 <span>理赔凭证1：</span>
                 <div>
-                    <input type="file" name="pic1" id="picUrl1" class="file file1">
+                    <neq name="info.status" value="8">
+                        <input type="file" name="pic1" id="picUrl1" class="file file1">
+                    </neq>                   
                     <input type="hidden" name="pic1" value="{$back.pic1}" class="filepath filepath1" />
                 </div>
             </div>
             <div class="backinfo">
                 <span>理赔凭证2：</span>
                 <div>
-                    <input type="file" name="pic2" id="picUrl2" class="file file2">
+                    <neq name="info.status" value="8">
+                        <input type="file" name="pic2" id="picUrl2" class="file file2">
+                    </neq>                   
                     <input type="hidden" name="pic2" value="{$back.pic1}" class="filepath filepath2" />
                 </div>
             </div>
             <div class="backinfo">
                 <span>理赔凭证3：</span>
                 <div>
-                    <input type="file" name="pic3" id="picUrl3" class="file file3">
+                    <neq name="info.status" value="8">
+                        <input type="file" name="pic3" id="picUrl3" class="file file3">
+                    </neq>                   
                     <input type="hidden" name="pic3" value="{$back.pic1}" class="filepath filepath3" />
                 </div>
             </div>
-            <p class="codeMsg colorred"></p>
-            <div id="address_btn" style="margin-top:0.5rem;">
-                <div class="btndiv">
-                    <input type="button" id="backBtn" class="orgbtn btn w100b" value="提交" />
+            <notempty name="back.time">
+                <div class="backinfo">
+                    <span class="label">
+                        <span class="redcolor"></span>
+                        申请时间：
+                    </span>
+                    <div class="fl">
+                        {$back.time|date='Y-m-d H:i',###}
+            
+                    </div>
                 </div>
-            </div>
+            </notempty>
+            <notempty name="back.res">
+                <div class="backinfo">
+                    <span class="label">
+                        <span class="redcolor"></span>
+                        售后回复：
+                    </span>
+                    <div class="fl">
+                        <textarea style="float: left;" class="itxt" readonly>{$back.res}</textarea>
+            
+                    </div>
+                </div>
+            
+            </notempty>
+
+
+
+
+
+            <p class="codeMsg colorred"></p>
+            <neq name="info.status" value="8">
+                <div id="address_btn" style="margin-top:0.5rem;">
+                    <div class="btndiv">
+                        <input type="button" id="backBtn" class="orgbtn btn w100b" value="提交" />
+                    </div>
+                </div>
+            </neq>
         </form>
        
 
