@@ -75,7 +75,7 @@ class ThjmController extends HomeBaseController
             $this->error('该编号不存在');
         }
         //判断状态
-        if($info['status']<5 || $info['status']==8){
+        if($info['status']<5 ){
             $this->error('卡券不能退货');
         }
         //发货7天内退货
