@@ -62,8 +62,9 @@ class ThPublicController extends HomeBaseController
                 'vid'=>$info['id'],
                 'type'=>1,
             ];
-            $pics1=Db::name('voucher_pic')->where($where)->column('id,pic');
-        } 
+            $pics1=Db::name('voucher_pic')->where($where)->column('id,pic'); 
+        }
+        
         $this->success('ok','',['info'=>$info,'pics1'=>$pics1]);
         exit;
        

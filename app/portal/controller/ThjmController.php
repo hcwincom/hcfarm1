@@ -41,8 +41,18 @@ class ThjmController extends HomeBaseController
         }
         $status=config('voucher_status');
         $info['status_name']=$status[$info['status']];
-        $this->assign('info',$info);
+        //提货图片
+        $pics1=[];
+        if($info['status']>3){
+            $where=[
+                'vid'=>$info['id'],
+                'type'=>1,
+            ];
+            $pics1=Db::name('voucher_pic')->where($where)->column('id,pic');
+        }
         
+        $this->assign('info',$info);
+        $this->assign('pics1',$pics1);
         return $this->fetch();
     }
     //提货信息
