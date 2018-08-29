@@ -64,7 +64,7 @@ $(function () {
     
     //  点击查看商品显示商品信息
     $("#checkGoods p").click(function () {
-        $(".showdiv").toggle();
+        $("#showdiv").toggle();
     });
     
     // 点击选择发货形式

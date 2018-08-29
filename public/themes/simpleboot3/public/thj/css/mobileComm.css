@@ -613,7 +613,9 @@ header .top0{
 	letter-spacing: 0.02rem;
 }
 .yzdiv {
-    padding: 1.6rem 5%;
+    width: 96%;
+    margin: 0 auto;
+    padding: 1.6rem 0;
 }
 
 .yzdiv .middles_item{
@@ -686,6 +688,9 @@ header .top0{
 .yzdivInfo{
     padding-top: 0.9rem;
 }
+.yzdivInfo>.middles_item{
+    width: 100%;
+}
 .yzdivInfo>.middles_item>span{width: 30%;color: #8E8D8D;}
 .yzdivInfo>h1{
     font-weight: 600;
@@ -725,26 +730,35 @@ header .top0{
     line-height: 0.6rem;
 }
 /* 点击查看商品信息进行切换显示 */
-.showdiv{display: none;}
-.hidegoodsinfo{
-    width: 100%;
+#showdiv{
+    display: none;
     border: 0.01rem solid #999;
-    padding: 0.2rem 0.1rem;
-     display: flex;
-     display: -webkit-flex;
 }
-/* .hidegoodsinfo .goodsImg{
-    width: 40%;
-    height: auto;
-} */
-.hidegoodsinfo .goodsImg img{
+.showdiv{
     width: 100%;
-    height: 100%;
 }
-.goodsInfomation>p{
-    font-size: 0.29rem;
-    font-weight: 500;
+.flexShowdiv{
+    display: flex;
+    display: -webkit-flex;
+    justify-content: flex-start;
 }
+.flexShowdiv>div>img{
+    width: 4rem;
+    height: 3.8rem;
+    margin: 0.2rem 0.2rem;
+}
+.showdivInfo{
+    width: 25rem;
+}
+.showdivInfo>p{
+    display: block;
+    width: 100%;
+    font-size: 0.3rem;
+    line-height: 0.5rem;
+    word-wrap:break-word;
+    word-break:normal;
+}
+
    /*信息输入  */
 
 .personIndo>span,.backinfo>span{

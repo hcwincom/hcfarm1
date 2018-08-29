@@ -289,7 +289,7 @@
 					<div class="boxc">
 						<ul>
 							<li>
-								<div class="divImg"> </div>
+								<div class="divImg"></div>
 								<div class="divTxt">
 									<p class="modeal_name"></p>
 									<p class="orangrc modeal_model"> </p>
@@ -303,9 +303,18 @@
 			
 			</div>
 
-
-
-			<!--  -->
+			<!--图片点击出现大图  -->
+			<div id="bigImg">
+				<div class="showbigImg">
+					<h2 style="padding-top:10px;">
+						<span class="imgclose"></span>
+					</h2>
+					<div class="innerBigimg">
+						<img src="" alt="">
+					</div>
+				</div>
+			</div>
+			
 
 		</div>
 		
@@ -338,7 +347,8 @@
 			         end.start = datas //将结束日的初始值设定为开始日
 			    }
 			};			
-			laydate(start);
+			laydate(start);			
+			
 		</script>
 		<include file="portal@thj/thjs" /> 
 	</body>

@@ -30,11 +30,16 @@
 						<p class="colorred">点击查看商品信息</p>
 					</div>
 				</div>
-				<div class="showdiv">
-					<div class="hidegoodsinfo">
-						<div class="goodsImg">
+				<div class="showdiv" id="showdiv">
+					<div class="flexShowdiv">
+						<div class="showdivImg">
+							<gt name="info.status" value="3">
+								<foreach name="pics1" item="vo"> 
+									<img src="{:cmf_get_image_url($vo)}" alt="">
+								</foreach>	
+							</gt>
 						</div>
-						<div class="goodsInfomation">
+						<div class="showdivInfo">
 							<p>{$info.name}</p>
 							<p>{$info.model}</p>
 							<p>{$info.spec}</p>
@@ -56,96 +61,113 @@
 					</div>
 				</div>
 				<!-- 券卡信息是未提货时显示 -->
-			<eq name="info.status" value="3">
-	            <div>
-	                <span>&nbsp;</span>
-	                <div class="btndiv">
-						<a href="{:url('address')}" class="orgbtn btn w100b">去提货</a>
-	                </div>
-				</div>
-			<else/>
-				<!-- 券卡信息是已提货时显示 -->
-				<div class="cardInfomation">
-					<input type="hidden" name="sn" id="sn" value="{$info.sn}">
+				<eq name="info.status" value="3">
 					<div>
-						<span>联系人：</span>
-						<p>{$info.uname}</p>
+						<span>&nbsp;</span>
+						<div class="btndiv">
+							<a href="{:url('address')}" class="orgbtn btn w100b">去提货</a>
+						</div>
 					</div>
-					<div>
-						<span>联系电话：</span>
-						<p>{$info.utel}</p>
-					</div>
-					<div>
-						<span>提货时间：</span>
-						<p>{$info.take_time|date='Y-m-d',###}</p>
-					</div>
-					<neq name="info.get0_time" value="0">
-					<div>
-						<span>预定时间：</span>
-						<p>{$info.get0_time|date='Y-m-d',###}</p>
-					</div>
-					</neq>
-					<div>
-						<span style="vertical-align: top;">联系地址：</span>
-						<p>
-						<neq name="info.network" value="0">
-							线下自提
-						<else/>
-							{$info.city_name}{$info.address}
-						</neq>
-						</p>
-					</div>
-					<notempty name="info.express">
+				<else/>
+					<!-- 券卡信息是已提货时显示 -->
+					<div class="cardInfomation">
+						<input type="hidden" name="sn" id="sn" value="{$info.sn}">
 						<div>
-							<span>发货时间：</span>
-							<p>{$info.express_time|date='Y-m-d H:i',###}</p>
+							<span>联系人：</span>
+							<p>{$info.uname}</p>
 						</div>
 						<div>
-							<span>顺丰快递：</span>
+							<span>联系电话：</span>
+							<p>{$info.utel}</p>
+						</div>
+						<div>
+							<span>提货时间：</span>
+							<p>{$info.take_time|date='Y-m-d',###}</p>
+						</div>
+						<neq name="info.get0_time" value="0">
+						<div>
+							<span>预定时间：</span>
+							<p>{$info.get0_time|date='Y-m-d',###}</p>
+						</div>
+						</neq>
+						<div>
+							<span style="vertical-align: top;">联系地址：</span>
 							<p>
-								<a href="http://www.kuaidi100.com/chaxun?com=shunfeng&nu={$info.express}" target="_blank">{$info.express}</a>
+							<neq name="info.network" value="0">
+								线下自提
+							<else/>
+								{$info.city_name}{$info.address}
+							</neq>
 							</p>
 						</div>
-					</notempty>
-					<gt name="info.status" value="5">
+						<notempty name="info.express">
 							<div>
-								<span>收货时间：</span>
+								<span>发货时间：</span>
+								<p>{$info.express_time|date='Y-m-d H:i',###}</p>
+							</div>
+							<div>
+								<span>顺丰快递：</span>
 								<p>
-									<neq name="info.get_time" value="0">
-										{$info.get_time|date='Y-m-d H:i',###}
-									</neq>
+									<a href="http://www.kuaidi100.com/chaxun?com=shunfeng&nu={$info.express}" target="_blank">{$info.express}</a>
 								</p>
 							</div>
-					</gt>
-					
-					<p class="codeMsg colorred"></p>
-				
-					<div class="cardGoods_btn">
-						<eq name="info.status" value="5">
-							<a class="confirmGoods" id="confirmGoods" href="javascript:void();">确认收货</a>
-
-						</eq>
-						<gt name="info.status" value="4">
-							<a class="backRequest" id="backRequest" href="{:url('back')}" >售后服务</a>
+						</notempty>
+						<gt name="info.status" value="5">
+								<div>
+									<span>收货时间：</span>
+									<p>
+										<neq name="info.get_time" value="0">
+											{$info.get_time|date='Y-m-d H:i',###}
+										</neq>
+									</p>
+								</div>
+						</gt>					
+						<gt name="info.status" value="6">
+							<div>
+								<span>退货时间：</span>
+								<p>{$info.back_time|date='Y-m-d H:i',###} </p>
+							</div>
+						
 						</gt>
+						<!-- 确认收货和售后服务 -->
+						<p class="codeMsg colorred"></p>
+						<div class="cardGoods_btn">
+							<eq name="info.status" value="5">
+								<a class="confirmGoods" id="confirmGoods" href="javascript:void();">确认收货</a>
+						
+							</eq>
+							<gt name="info.status" value="4">
+								<a class="backRequest" id="backRequest" href="{:url('back')}">售后服务</a>
+							</gt>
+						</div>
+
+					
 					</div>
-				<gt name="info.status" value="6">
-					<div>
-						<span>退货时间：</span>
-						<p>{$info.back_time|date='Y-m-d H:i',###} </p>
-					</div>
-				
-				</gt>
-				
-				
-				</div>
-			</eq>
+				</eq>
 	    	</div>  	
 	    </form>
-	    
-	    
+		<!--图片点击出现大图  -->
+		<div id="bigImg">
+			<div class="showbigImg">
+				<h2 style="padding-top:10px;">
+					<span class="imgclose"></span>
+				</h2>
+				<div class="innerBigimg">
+					<img src="" alt="">
+				</div>
+			</div>
+		</div>    
 	    <!--底部-->	
 	 <include file="portal@thjm/footer" />
-     <include file="portal@thjm/thjs" />
+	 <include file="portal@thjm/thjs" />
+	 
+	 <script>
+		 	$(".showdivImg img").click(function () {
+				var src = $(this).attr("src");
+				console.log(src);
+			});
+			
+
+	 </script>
 	</body>
 </html>

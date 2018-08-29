@@ -9,7 +9,6 @@
                 (注：
                 <em class="redcolor"> * </em> 为必填项)
             </h6>
-
             <form action="" method="POST" >
                 <div class="item appc1">
                     <span class="label">
@@ -40,7 +39,7 @@
                     </span>
                     <div class="fl">
                     <neq name="info.status" value="8">
-                        <input type="file"  id="picurl1" value="" class="file file1 itxt" />
+                        <input type="file"  id="picurl1" value="" class="file file1 itxt" multiple="" accept="image/png, image/jpeg, image/gif, image/jpg" />
                     </neq>
                         <input type="hidden" name="pic1" value="{$back.pic1}" class="filepath filepath1" />
                         <span class="error-msg" id="showpicurl1">
@@ -55,7 +54,7 @@
                     </span>
                     <div class="fl">
                         <neq name="info.status" value="8">
-                            <input type="file" value="" class="file file2" />
+                            <input type="file" value="" class="file file2" multiple="" accept="image/png, image/jpeg, image/gif, image/jpg" />
                         </neq>
                         <input type="hidden" name="pic2" value="{$back.pic1}"  class="filepath filepath2" />
                     </div>
@@ -67,7 +66,7 @@
                     </span>
                     <div class="fl">
                         <neq name="info.status" value="8">
-                        <input type="file" id="picurl3" value="" class="file file3" />
+                        <input type="file" id="picurl3" value="" class="file file3" multiple="" accept="image/png, image/jpeg, image/gif, image/jpg" />
                         </neq>
                         <input type="hidden" name="pic3" value="{$back.pic1}" class="filepath filepath3" />
                     </div>
@@ -91,42 +90,34 @@
                             售后回复：
                         </span>
                         <div class="fl">
-                            <textarea style="float: left;" class="itxt" readonly>{$back.res}</textarea>
-                            
+                            <textarea style="float: left;" class="itxt" readonly>{$back.res}</textarea>                           
                         </div>
                     </div>
-
                </notempty>
+
+                <div class="item appc1">
+                    <span class="label">&nbsp;</span>
+                    <div class="fl">
+                        <p class="redc codeMsg"></p>
+                    </div>
+                </div>
+
                 <neq name="info.status" value="8">
                 <div class="item appc1">
                     <span class="label">&nbsp;</span>
                     <div class="fl">
                         <input type="button" class="btn-9 bgred" value="提交" id="backBtn">
                     </div>
-                </div>
-                
+                </div>               
                 </neq>
-                <div class="item appc1">
-                    <span class="label">&nbsp;</span>
-                    <div class="fl">
-                       <p class="codeMsg colorred"></p>
-                    </div>
-                </div>
-
-                <!--  -->
+               
             </form>
       
         </div>
-
-
-
-
-        <!--  -->
     </div>
 
     <!--底部-->
     <include file="portal@thj/footer" />
-
         <script type="text/javascript" src="__TMPL__/public/thj/js/jquery-1.12.1.min.js"></script>
         <script type="text/javascript" src="__TMPL__/public/thj/js/index.js"></script>
         <script type="text/javascript" src="__TMPL__/public/thj/js/form.js"></script>
@@ -137,14 +128,13 @@
                 //组装表单数据
                 var fordata = new FormData();
                 var file = this.files[0];
-               // var ruleimg = /^(.*)(\.)(JPEG|jpeg|JPG|jpg|GIF|gif|bmp|BMP|png|PNG)$/;
-              /*   if ($("input[name='pic1']").val() != '') {
-                    var size1 = file.size / 1024;
-                    if (size1 > 2144) {
-                        alert("理赔凭证图1,请上传jpg、png等常用格式的图片,最大为4M");
+                if($(".file").val() != ''){
+                    var size = file.size/1024;
+                    if(size > 4024){
+                        $(".codeMsg").html("上传的图片超过4M,请重新上传");
                         return false;
                     }
-                } */
+                }
                 var sn = $('#sn').val();
                 var $filepath = $(this).siblings('.filepath');
                 fordata.append("file", file);
@@ -170,7 +160,6 @@
                     }
                 });
             });
-
       </script>
 </body>
 </html>

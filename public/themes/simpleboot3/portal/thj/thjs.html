@@ -162,8 +162,12 @@ $('#goods_verify').submit(function(){
 		}else{
 			get0_time = timestampToTime(info['get0_time']);
 		}
-		 
-		var get_time = timestampToTime(info['get_time']);
+		 var get_time;
+		 if(info['get_time'] == 0){
+			 get_time='--';
+		 }else{
+			 get_time = timestampToTime(info['get_time']);
+		 }
 		var expressHref = $(".express_odd a").attr("href");
 
 		console.log(express_time);
@@ -196,6 +200,26 @@ $('#goods_verify').submit(function(){
 		}
 		//已提货显示提货信息
 		if(info.status>3){   //  4  已申请提货
+			var pics1=data.data.pics1;
+			var pic_url="{:cmf_get_image_url('')}";	
+			var img = "";
+			for(var j in pics1){
+				var src = pic_url+ pics1[j];
+				img += "<img class='imggoods' src='" + src +"' alt='' />";				
+			}
+			$(".divImg").append(img);
+
+			$(".imggoods").click(function () {
+				var src = $(this).attr("src");
+				console.log(src);
+				$("#bigImg").fadeIn();
+				$(".innerBigimg img").attr("src",src);
+			});
+
+			$(".imgclose").click(function () {
+				$("#bigImg").fadeOut();
+			});
+		
 			$('#info .status em').attr("class", "orangrc");
 			$('#info').show();
 			$(".cardGoods").show();		 
@@ -235,7 +259,6 @@ $('#goods_verify').submit(function(){
 	
 	return false;
 });
-
 
 
 

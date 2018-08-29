@@ -22,8 +22,11 @@
             <div class="backinfo">
                 <span>理赔凭证1：</span>
                 <div>
+                    <label for="picUrl1" class="labelPic">
+                        <img src="" alt="">
+                    </label>
                     <neq name="info.status" value="8">
-                        <input type="file" name="pic1" id="picUrl1" class="file file1">
+                        <input type="file" name="pic1" id="picUrl1" class="file file1" multiple="" accept="image/png, image/jpeg, image/gif, image/jpg">
                     </neq>                   
                     <input type="hidden" name="pic1" value="{$back.pic1}" class="filepath filepath1" />
                 </div>
@@ -32,7 +35,7 @@
                 <span>理赔凭证2：</span>
                 <div>
                     <neq name="info.status" value="8">
-                        <input type="file" name="pic2" id="picUrl2" class="file file2">
+                        <input type="file" name="pic2" id="picUrl2" class="file file2" multiple="" accept="image/png, image/jpeg, image/gif, image/jpg">
                     </neq>                   
                     <input type="hidden" name="pic2" value="{$back.pic1}" class="filepath filepath2" />
                 </div>
@@ -41,7 +44,7 @@
                 <span>理赔凭证3：</span>
                 <div>
                     <neq name="info.status" value="8">
-                        <input type="file" name="pic3" id="picUrl3" class="file file3">
+                        <input type="file" name="pic3" id="picUrl3" class="file file3" multiple="" accept="image/png, image/jpeg, image/gif, image/jpg">
                     </neq>                   
                     <input type="hidden" name="pic3" value="{$back.pic1}" class="filepath filepath3" />
                 </div>
@@ -72,11 +75,7 @@
             
             </notempty>
 
-
-
-
-
-            <p class="codeMsg colorred"></p>
+            <p class="colorred codeMsg"></p>
             <neq name="info.status" value="8">
                 <div id="address_btn" style="margin-top:0.5rem;">
                     <div class="btndiv">
@@ -85,12 +84,7 @@
                 </div>
             </neq>
         </form>
-       
-
     </div>
-
-
-
 
 <!--底部-->
 <include file="portal@thjm/footer" />
@@ -105,6 +99,7 @@
         var $filepath = $(this).siblings('.filepath');
         fordata.append("file", file);
         fordata.append("dir", 'voucher/' + sn);
+        
         //ajax
         $.ajax({
             "url": "{:url('portal/public/upload')}",
@@ -125,6 +120,15 @@
                 click = 0;
             }
         });
+
+        //  图片上传预览
+        var imgPath = "{:cmf_get_image_url('')}";
+        console.log(imgPath);
+        
+
+
+
+
     });
 
 
