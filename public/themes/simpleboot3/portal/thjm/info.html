@@ -153,7 +153,7 @@
 					<span class="imgclose"></span>
 				</h2>
 				<div class="innerBigimg">
-					<img src="" alt="">
+					<img src="" alt="" style="max-width:100%;">
 				</div>
 			</div>
 		</div>    
@@ -165,6 +165,11 @@
 		 	$(".showdivImg img").click(function () {
 				var src = $(this).attr("src");
 				console.log(src);
+				$("#bigImg").fadeIn();
+				$(".innerBigimg img").attr("src",src);
+			});
+			$(".imgclose").click(function () {
+				$("#bigImg").fadeOut();
 			});
 			
 

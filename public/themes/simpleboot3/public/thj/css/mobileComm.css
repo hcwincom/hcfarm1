@@ -758,6 +758,55 @@ header .top0{
     word-wrap:break-word;
     word-break:normal;
 }
+/* 点击商品图片出现大图 */
+#bigImg{
+    background: rgba(0,0,0,.5);
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;  
+    display: none;
+}
+.showbigImg{
+    width: 90%;
+    border-radius: 20px;
+    background: #fff;
+    position: fixed;
+    top: 20%;
+    left: 0;
+    right: 0;
+    margin: auto;
+    z-index: 15;
+    padding: 0.3rem;
+    position: relative;
+}
+.showbigImg h2{
+    height: 0.5rem;
+}
+.imgclose{
+    position: absolute;
+    background: url(../images/close.jpg) no-repeat;
+    width: 44px;
+    height: 40px;
+    right: 8px;
+    top: 6px;
+    transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    transition: all .5s ease-in-out;
+    -webkit-transition: all .5s ease-in-out;
+    -moz-transition: all .5s ease-in-out;
+    -ms-transition: all .5s ease-in-out;
+    opacity: .5;
+}
+.innerBigimg{
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    text-align: center;
+}
 
    /*信息输入  */
 
