@@ -1,6 +1,7 @@
 @charset "utf-8";
 html,body,p,ul,ol{margin:0;padding:0;margin:auto;font-family: 微软雅黑;}
 body{font-size:0.2rem;}
+body,html{height: 100%;;}
 img{vertical-align: top;}
 ol,ul{list-style: none}
 input::-webkit-input-placeholder{ color:#9f9f9f;text-align: left;}
@@ -743,12 +744,12 @@ header .top0{
     justify-content: flex-start;
 }
 .flexShowdiv>div>img{
-    width: 4rem;
-    height: 3.8rem;
+    width: 2rem;
+    height: 2rem;
     margin: 0.2rem 0.2rem;
 }
 .showdivInfo{
-    width: 25rem;
+    width: 30rem;
 }
 .showdivInfo>p{
     display: block;
@@ -769,8 +770,7 @@ header .top0{
     display: none;
 }
 .showbigImg{
-    width: 90%;
-    border-radius: 20px;
+    width: 100%;
     background: #fff;
     position: fixed;
     top: 20%;
@@ -778,27 +778,19 @@ header .top0{
     right: 0;
     margin: auto;
     z-index: 15;
-    padding: 0.3rem;
     position: relative;
 }
 .showbigImg h2{
-    height: 0.5rem;
+    height: 0.3rem;
 }
 .imgclose{
     position: absolute;
     background: url(../images/close.jpg) no-repeat;
-    width: 44px;
-    height: 40px;
-    right: 8px;
-    top: 6px;
-    transform: rotate(0deg);
-    -webkit-transform: rotate(0deg);
-    -moz-transform: rotate(0deg);
-    -ms-transform: rotate(0deg);
-    transition: all .5s ease-in-out;
-    -webkit-transition: all .5s ease-in-out;
-    -moz-transition: all .5s ease-in-out;
-    -ms-transition: all .5s ease-in-out;
+    background-size: contain;
+    width: 30px;
+    height: 30px;
+    right: 0px;
+    top: 0px;
     opacity: .5;
 }
 .innerBigimg{
