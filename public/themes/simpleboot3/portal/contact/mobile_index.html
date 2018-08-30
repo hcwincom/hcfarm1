@@ -5,23 +5,97 @@
 				<nav style="position: fixed;top: 0;width: 100%; " id="nav">
 					<ul class="clearfix row" style="background: #DCE4EC; margin: 0;">
 							
-						<li class="fl"><i class="glyphicon glyphicon-gift"></i><a href="{:url('portal/thj/th')}">在线提货</a></li>
+						<li class="fl"><i class="glyphicon glyphicon-gift"></i><a href="{:url('portal/index/index')}">首页</a></li>
 						<li class="fr"><i class="glyphicon glyphicon-earphone "></i><a href="tel://400-6527-879">团购热线：<br />400-6527-879</a></li>
 					</ul>
 				</nav>
 			</header>
 		</section>
-		<!--公司地址-->
+		<!--头部大图-->
 		<section>
-			
+			<img src="{:cmf_get_image_url($company.ad_phone1.content)}" class="ph_banner" style="width: 100%;height: auto;"/>
 		</section>
-		<!--留言信息-->
-		<section>
+		<!--公司地址-->
+		<section style="background: #fff;">
+			<div class="title"><h1>联系我们</h1></div>
+			<div >
+				<div class="container">
+					
+            			<div class="row contact-info justify-content-between">
+                    	<div class="col-sm-3 col-xs-7" style="position: inherit;">
+                            <img src="__TMPL__/public/assets/images/phone.png" class="img-responsive" alt="Phone"style="max-width: 60%;"/>
+                             <p class="fs-18 text-uppercase black">{$company.tel1.title}</p>
+                            <p class="black">{$company.tel1.content}</p>                     
+                        </div> 
+                        	
+                        <div class="col-sm-3 col-xs-7 "style="position: inherit;">
+                            <img src="__TMPL__/public/assets/images/address.png" class="img-responsive" alt="Phone" style="max-width: 60%;"/>
+                             <p class="fs-18 text-uppercase black">{$company.address.title}</p>
+                            <p class="black">{$company.address.content}</p>
+                          
+                        </div>
+                        	   
+                        <div class="col-sm-3 col-xs-7 "style="position: inherit;">
+                            <img src="__TMPL__/public/assets/images/email.png" class="img-responsive" alt="Phone" style="max-width: 60%;"/>
+                            <p class="fs-18 text-uppercase black">{$company.email.title}</p>
+                            <p class="black">{$company.email.content}</p>                          
+                        </div>    
+           				 </div>              
+        		</div> 			
+			</div>
 			
 		</section>
 		
-		<script type="text/javascript">
-			var top_hei = document.getElementById('nav').offsetHeight;
-			document.getElementById('phone_top').style.height = top_hei-1+'px'
-		</script>
+		<section class="contact-form"  style="padding: 30px 0; background-image: url({:cmf_get_image_url($company.bg_footer.content)})">
+			
+				<include file="public@contact"/>
+			</div>
+			
+		</section>
+		
+		
+		
+		
+		
+		<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="__TMPL__/public/assets/js/ie10-viewport-bug-workaround.js"></script>
+
+<!-- jQuery -->
+<script src="__TMPL__/public/assets/vendor/jquery/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="__TMPL__/public/assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+
+<!-- Bootstrap Datepicker- JavaScript -->
+<script src="__TMPL__/public/assets/vendor/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
+
+<!-- Plugin JavaScript -->
+<script src="__TMPL__/public/assets/vendor/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+<script src="__TMPL__/public/assets/vendor/scrollreveal/scrollreveal.min.js"></script>
+
+<!-- custom JavaScript -->
+<script src="__TMPL__/public/assets/js/theme.js"></script>
+
+<!-- custom JavaScript -->
+<script src="__TMPL__/public/assets/js/custom.js"></script>
+
+<!-- prettyPhoto -->
+<script src="__TMPL__/public/assets/vendor/prettyPhoto/jquery.prettyPhoto.js"></script>
+<script>
+    $('.zzcontact').submit(function(){
+    	var name=$('#InputName').val();
+    	var email=$('#InputEmail').val();
+    	var content=$('#InputMessage').val();
+    	var tel=$('#InputPhone').val(); 
+    	$.post("{:url('portal/index/send')}",{'name':name,'email':email,'content':content,'tel':tel},function(data){
+    		alert(data.msg);
+    	},'json');
+    	return false;
+    });
+    
+    	var top_hei = document.getElementById('nav').offsetHeight;
+		document.getElementById('phone_top').style.height = top_hei-1+'px';
+    
+    
+    </script>
 	</body>
