@@ -1,0 +1,27 @@
+<include file="public@mobile_header"/> 
+	<body>
+		<section id="phone_top">
+			<header>
+				<nav style="position: fixed;top: 0;width: 100%; " id="nav">
+					<ul class="clearfix row" style="background: #DCE4EC; margin: 0;">
+							
+						<li class="fl"><i class="glyphicon glyphicon-gift"></i><a href="{:url('portal/thj/th')}">在线提货</a></li>
+						<li class="fr"><i class="glyphicon glyphicon-earphone "></i><a href="tel://400-6527-879">团购热线：<br />400-6527-879</a></li>
+					</ul>
+				</nav>
+			</header>
+		</section>
+		<!--公司地址-->
+		<section>
+			
+		</section>
+		<!--留言信息-->
+		<section>
+			
+		</section>
+		
+		<script type="text/javascript">
+			var top_hei = document.getElementById('nav').offsetHeight;
+			document.getElementById('phone_top').style.height = top_hei-1+'px'
+		</script>
+	</body>
