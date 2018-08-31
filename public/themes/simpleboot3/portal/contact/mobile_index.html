@@ -22,21 +22,21 @@
 				<div class="container">
 					
             			<div class="row contact-info justify-content-between">
-                    	<div class="col-sm-3 col-xs-7" style="position: inherit;">
-                            <img src="__TMPL__/public/assets/images/phone.png" class="img-responsive" alt="Phone"style="max-width: 60%;"/>
+                    	<div class="col-sm-12 " style="position: inherit;">
+                            <img src="__TMPL__/public/assets/images/phone.png" class="img-responsive" alt="Phone"style="max-width: 70px;"/>
                              <p class="fs-18 text-uppercase black">{$company.tel1.title}</p>
                             <p class="black">{$company.tel1.content}</p>                     
                         </div> 
                         	
-                        <div class="col-sm-3 col-xs-7 "style="position: inherit;">
-                            <img src="__TMPL__/public/assets/images/address.png" class="img-responsive" alt="Phone" style="max-width: 60%;"/>
+                        <div class="col-sm-12 "style="position: inherit;">
+                            <img src="__TMPL__/public/assets/images/address.png" class="img-responsive" alt="Phone" style="max-width: 70px;"/>
                              <p class="fs-18 text-uppercase black">{$company.address.title}</p>
                             <p class="black">{$company.address.content}</p>
                           
                         </div>
                         	   
-                        <div class="col-sm-3 col-xs-7 "style="position: inherit;">
-                            <img src="__TMPL__/public/assets/images/email.png" class="img-responsive" alt="Phone" style="max-width: 60%;"/>
+                        <div class="col-sm-12 "style="position: inherit;">
+                            <img src="__TMPL__/public/assets/images/email.png" class="img-responsive" alt="Phone" style="max-width: 70px;"/>
                             <p class="fs-18 text-uppercase black">{$company.email.title}</p>
                             <p class="black">{$company.email.content}</p>                          
                         </div>    
@@ -46,9 +46,13 @@
 			
 		</section>
 		
-		<section class="contact-form"  style="padding: 30px 0; background-image: url({:cmf_get_image_url($company.bg_footer.content)})">
-			
-				<include file="public@contact"/>
+		<section class="contact-form clearfix"  style="padding: 30px 0; background-image: url({:cmf_get_image_url($company.bg_footer.content)})">
+			<div class="container">
+				<div class="row justify-content-between">
+					<div class="col-sm-12 col-xs-12" style="position: inherit;">
+						<include file="public@contact"/>
+					</div>	
+				</div>
 			</div>
 			
 		</section>
