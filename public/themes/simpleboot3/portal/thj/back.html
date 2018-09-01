@@ -137,8 +137,9 @@
         <include file="portal@thj/thjs" />
       <script>
          //上传图片
+           var imgurl = "{:cmf_get_image_url('')}";
             $('.file').change(function () {
-                 var imgurl = "{:cmf_get_image_url('')}";
+                
                 //组装表单数据              
                 var sn = $('#sn').val();
                 var fordata = new FormData();
@@ -152,7 +153,8 @@
                 }
                 var sn = $('#sn').val();
                 var $filepath = $(this).siblings('.filepath');
-                var $imgsrc = $(this).parent().siblings(".labelPic");
+                var $imgpath = $(this).parent().siblings(".labelPic");
+               
                 fordata.append("file", file);
                 fordata.append("dir", 'voucher/' + sn);
                 //ajax
@@ -170,11 +172,12 @@
                     "success": function (data) {
                         console.log(data);
                         console.log(data.msg);
-                        var imgpath = data.data.path;
-                        $filepath.val(imgpath);
-                        var src = imgurl+imgpath;
-                        $imgsrc.children("img").attr("src", src);
-                        $imgsrc.children("span").css("display","none");
+                        // var imgpath = data.data.path;
+                        console.log(data.data.path);
+                        $filepath.val(data.data.path);
+                        var src = imgurl+ data.data.path;
+                        $imgpath.children("img").attr("src", src);
+                        $imgpath.children("span").css("display","none");
                         click = 0;
                     }
                 });

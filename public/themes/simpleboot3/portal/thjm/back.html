@@ -27,7 +27,7 @@
                 </label>
                 <div>
                     <neq name="info.status" value="8">
-                        <input type="file" name="pic1" id="picUrl1" class="file file1" multiple="" accept="image/png, image/jpeg, image/gif, image/jpg" value="" >
+                        <input type="file" id="picUrl1" class="file file1" multiple="" accept="image/png, image/jpeg, image/gif, image/jpg" value="" >
                     </neq>                   
                     <input type="hidden" name="pic1" value="{$back.pic1}" class="filepath filepath1" />
                 </div>
@@ -40,7 +40,7 @@
                 </label>
                 <div>
                     <neq name="info.status" value="8">
-                        <input type="file" name="pic2" id="picUrl2" class="file file2" multiple="" accept="image/png, image/jpeg, image/gif, image/jpg">
+                        <input type="file" id="picUrl2" class="file file2" multiple="" accept="image/png, image/jpeg, image/gif, image/jpg">
                     </neq>                   
                     <input type="hidden" name="pic2" value="{$back.pic2}" class="filepath filepath2" />
                 </div>
@@ -53,7 +53,7 @@
                 </label>
                 <div>
                     <neq name="info.status" value="8">
-                        <input type="file" name="pic3" id="picUrl3" class="file file3" multiple="" accept="image/png, image/jpeg, image/gif, image/jpg">
+                        <input type="file" id="picUrl3" class="file file3" multiple="" accept="image/png, image/jpeg, image/gif, image/jpg">
                     </neq>                   
                     <input type="hidden" name="pic3" value="{$back.pic3}" class="filepath filepath3" />
                 </div>
@@ -108,6 +108,7 @@
         var file = this.files[0];
         var sn = $('#sn').val();
         var $filepath = $(this).siblings('.filepath');
+        console.log($filepath);
         var $imgsrc = $(this).parent().siblings(".labelPic");
         fordata.append("file", file);
         fordata.append("dir", 'voucher/' + sn);
@@ -128,6 +129,7 @@
                 console.log(data);
                 console.log(data.msg);
                 var imgpath = data.data.path;
+                console.log(data.data.path);
                 $filepath.val(imgpath);
                 var src = imgurl + imgpath;
                 $imgsrc.children("img").attr("src", src);
