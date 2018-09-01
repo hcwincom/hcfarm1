@@ -49,6 +49,7 @@ class PublicController extends HomeBaseController
     public function upload(){
         set_time_limit(300);
         $dir=$this->request->param('dir','');
+        $this->error('请选择图片'.$dir);
         if(empty($dir)){
            $dir='tmp/';
         }else{
