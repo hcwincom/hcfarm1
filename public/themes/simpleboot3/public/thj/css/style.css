@@ -1026,12 +1026,6 @@ input[type=text], textarea, input[type=password] {
 }
 
 
-
-
-
-
-
-
 /*网点查询  销售网点*/
 #myForm{width: 100%;}
 .storeleft {
@@ -1192,7 +1186,7 @@ select {
 	padding: 20px 10px;
     border: 1px solid #e4e4e4;
     background: #fff;
-    min-height: 650px;
+    min-height: 750px;
     margin-bottom: 10px;
 }
 .appctitle {
@@ -1222,6 +1216,17 @@ select {
 }
 .appc1 span.label {
     width: 120px;
+}
+.item>div{
+    position: relative;
+}
+.posinput{
+    position: absolute;
+    top:0;
+    left: 2px;
+    opacity: 0;
+    width: 130px;
+    height: 100px;
 }
 .personal2 input[type=text],.personal2 input[type=password] {
     background: transparent;
@@ -1263,6 +1268,45 @@ select {
 .register .item .bgred:hover, .persinfo .item .bgred:hover, .appc1 .bgred:hover, .submitorder .item .bgred:hover, .okbtn:hover, .tjorderbtn:hover {
     background: #e22d3a;
 }
+/*  圖片預覽 */
+.labelPic{
+    display: inline-block;
+    border: 1px dashed darkgray;
+    width: 130px;
+    height: 100px;
+    position: relative;
+}
+.labelPic span::before{
+     content: "";
+    display: block;
+    position: absolute;  
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 80px;
+    height: 2px;
+    background: #cdcdcd;
+}
+.labelPic span::after{
+    content: "";
+    display: block;
+    position: absolute;  
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 2px;
+    height: 80px;
+    background: #cdcdcd;
+}
+.labelPic img{
+    width: 100%;
+    height: 100%;
+}
+
 
 /*联系我们*/
 .contactdl dl {

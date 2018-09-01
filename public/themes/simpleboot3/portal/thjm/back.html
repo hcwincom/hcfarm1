@@ -21,32 +21,41 @@
             <p class="orangrc" style="padding-left:0.3rem;">请填写需要的售后方式</p>
             <div class="backinfo">
                 <span>理赔凭证1：</span>
+                <label for="picUrl1" class="labelPic">
+                    <img class="img" src="{:cmf_get_image_url($back.pic1)}" alt="">
+                    <span></span>
+                </label>
                 <div>
-                    <label for="picUrl1" class="labelPic">
-                        <img src="" alt="">
-                    </label>
                     <neq name="info.status" value="8">
-                        <input type="file" name="pic1" id="picUrl1" class="file file1" multiple="" accept="image/png, image/jpeg, image/gif, image/jpg">
+                        <input type="file" name="pic1" id="picUrl1" class="file file1" multiple="" accept="image/png, image/jpeg, image/gif, image/jpg" value="" >
                     </neq>                   
                     <input type="hidden" name="pic1" value="{$back.pic1}" class="filepath filepath1" />
                 </div>
             </div>
             <div class="backinfo">
                 <span>理赔凭证2：</span>
+                <label for="picUrl2" class="labelPic">
+                    <img class="img" src="{:cmf_get_image_url($back.pic2)}" alt="">
+                    <span></span>
+                </label>
                 <div>
                     <neq name="info.status" value="8">
                         <input type="file" name="pic2" id="picUrl2" class="file file2" multiple="" accept="image/png, image/jpeg, image/gif, image/jpg">
                     </neq>                   
-                    <input type="hidden" name="pic2" value="{$back.pic1}" class="filepath filepath2" />
+                    <input type="hidden" name="pic2" value="{$back.pic2}" class="filepath filepath2" />
                 </div>
             </div>
             <div class="backinfo">
                 <span>理赔凭证3：</span>
+                <label for="picUrl3" class="labelPic">
+                    <img class="img" src="{:cmf_get_image_url($back.pic3)}" alt="">
+                    <span></span>
+                </label>
                 <div>
                     <neq name="info.status" value="8">
                         <input type="file" name="pic3" id="picUrl3" class="file file3" multiple="" accept="image/png, image/jpeg, image/gif, image/jpg">
                     </neq>                   
-                    <input type="hidden" name="pic3" value="{$back.pic1}" class="filepath filepath3" />
+                    <input type="hidden" name="pic3" value="{$back.pic3}" class="filepath filepath3" />
                 </div>
             </div>
             <notempty name="back.time">
@@ -55,7 +64,7 @@
                         <span class="redcolor"></span>
                         申请时间：
                     </span>
-                    <div class="fl">
+                    <div>
                         {$back.time|date='Y-m-d H:i',###}
             
                     </div>
@@ -89,7 +98,9 @@
 <!--底部-->
 <include file="portal@thjm/footer" />
 <include file="portal@thjm/thjs" />
+
 <script>
+      var imgurl = "{:cmf_get_image_url('')}";
     //上传图片
     $('.file').change(function () {
         //组装表单数据
@@ -97,6 +108,7 @@
         var file = this.files[0];
         var sn = $('#sn').val();
         var $filepath = $(this).siblings('.filepath');
+        var $imgsrc = $(this).parent().siblings(".labelPic");
         fordata.append("file", file);
         fordata.append("dir", 'voucher/' + sn);
         
@@ -115,23 +127,16 @@
             "success": function (data) {
                 console.log(data);
                 console.log(data.msg);
-
-                $filepath.val(data.data.path);
+                var imgpath = data.data.path;
+                $filepath.val(imgpath);
+                var src = imgurl + imgpath;
+                $imgsrc.children("img").attr("src", src);
+                $imgsrc.children("span").css("display", "none");
                 click = 0;
             }
         });
-
-        //  图片上传预览
-        var imgPath = "{:cmf_get_image_url('')}";
-        console.log(imgPath);
-        
-
-
-
-
+   
     });
-
-
 </script>
 </body>
 </html>

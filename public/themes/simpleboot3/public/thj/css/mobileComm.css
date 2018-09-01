@@ -854,15 +854,64 @@ header .top0{
 }
 .backinfo>div{
     width: 72%; 
+    font-size: 0.3rem;
+    position: relative;
 }
 .backinfo>div>textarea{
      width: 100%;
     padding-left: 0.1rem;
     border: 0.01rem solid #999;
     line-height: 0.6rem;
-    font-size: 0.3rem;
-    
+    font-size: 0.3rem;  
 }
+.backinfo>div>input.file{
+    position: absolute;
+    top: 0;
+    left: 0.1rem;
+    opacity: 0;
+    width: 2.5rem;
+    height: 2rem;
+}
+.backinfo>label.labelPic {
+    display: inline-block;
+    border: 0.01rem dashed darkgray;
+    width: 2.5rem;
+    height: 2rem;
+    position: relative;
+}
+.backinfo>label.labelPic>span::before{
+    content: "";
+    display: block;
+    position: absolute;  
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 0.8rem;
+    height: 0.02rem;
+    background: #cdcdcd;
+}
+.backinfo>label.labelPic>span::after{
+    content: "";
+    display: block;
+    position: absolute;  
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 0.02rem;
+    height: 0.8rem;
+    background: #cdcdcd;
+}
+.labelPic img {
+    width: 100%;
+    height: 100%;
+}
+
+
+
 
 /* 添加收货地址和收货类型 */
 .cardInfomation>div.cardGoods_btn{
