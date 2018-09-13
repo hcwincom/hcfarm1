@@ -144,7 +144,8 @@ $('#goods_verify').submit(function(){
 				return false;
 			} 
 			$(".codeMsg").html("");
-				
+			var valueTime1 = $("#valueTime1").val();
+			var valueTime2 = $("#valueTime2").val();
 			
 			var sn = $("#sn").val();
 			var city = $("#countys").val();
@@ -174,6 +175,13 @@ $('#goods_verify').submit(function(){
 				//sn
 				$.post("{:url('portal/thpublic/address_do')}", {"sn":sn,"uname": uname, "utel": utel, "city": city, "address": address, "get0_time": time, "take_dsc": take_dsc,'take_type':1 }, function (data) {
 					console.log(data);
+					if (time != '') {
+						if (valueTime1 < time < valueTime2) {
+							if (time < time * 3 * 24 * 3600) {
+								$(".codeMsg").html(data.msg);
+							}
+						}
+					}
 					$(".codeMsg").html(data.msg);
 					 setTimeout(function () {
 						window.location = data.url;
@@ -182,6 +190,7 @@ $('#goods_verify').submit(function(){
 						return false;
 					}
 					$('#address_btn').hide();
+
 
 				}, 'json');
 			} else if (checked == 2) {
