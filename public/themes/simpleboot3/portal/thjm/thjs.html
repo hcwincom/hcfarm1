@@ -154,12 +154,11 @@ $('#goods_verify').submit(function(){
 			var address = $("#myaddr").val();
 			var take_dsc = $("input[name='beizhu']").val();
 
-			var time = $("#start").val();
-
+			var time = $.trim($("#start").val());
+		
 			var storeaddr = $("#storeaddr").val();
 
 			var checked = $("input[name='take_type']:checked").val();
-
 
 			if (checked == 1) {
 				 if ($.trim($("#countys").val()) == " ") {
@@ -170,18 +169,22 @@ $('#goods_verify').submit(function(){
 					$(".codeMsg").html("请填写详细地址");
 					return false;
 				} 
+				if (time != "") {
+					var timeNum = new Date(time).getTime() / 1000;
+					if ( timeNum < valueTime1 || timeNum > valueTime2) {
+						$(".codeMsg").html("不在预定日期内，请查看有效期，在有效期内预定 ！！！");
+						return false;
+					}
+					if (timeNum < timeNum *3600 * 24 * 3) {
+						$(".codeMsg").html("请至少提前三天预定 ！！！");
+						return false;
+					}
+				}
 				$(".codeMsg").html("");
 					
 				//sn
 				$.post("{:url('portal/thpublic/address_do')}", {"sn":sn,"uname": uname, "utel": utel, "city": city, "address": address, "get0_time": time, "take_dsc": take_dsc,'take_type':1 }, function (data) {
 					console.log(data);
-					if (time != '') {
-						if (valueTime1 < time < valueTime2) {
-							if (time < time * 3 * 24 * 3600) {
-								$(".codeMsg").html(data.msg);
-							}
-						}
-					}
 					$(".codeMsg").html(data.msg);
 					 setTimeout(function () {
 						window.location = data.url;
@@ -190,7 +193,6 @@ $('#goods_verify').submit(function(){
 						return false;
 					}
 					$('#address_btn').hide();
-
 
 				}, 'json');
 			} else if (checked == 2) {

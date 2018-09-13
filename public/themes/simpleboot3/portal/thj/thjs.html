@@ -278,7 +278,6 @@ $('#goods_verify').submit(function(){
 
 	// 提货信息验证
 	$("#pickBtn").click(function () {
-			console.log("tt1");
 		if ($.trim($("#myname").val()) == "") {
 			$("#myname").focus();
 			$(".codeMsg").html("请填写联系人姓名");
@@ -292,24 +291,18 @@ $('#goods_verify').submit(function(){
 		 
 		var valueTime1 = $("#valueTime1").val();
 		var valueTime2 = $("#valueTime2").val();
-	
+		var hvalueTime1 = new Date(valueTime1);
 		var sncode = $("#codeNum").val();
 	 
 		var city = $("#countys").val();
 		var uname = $("#myname").val();
 		var utel = $("#myphone").val();
 		var address = $("#myaddr").val();
-		var take_dsc = $("input[name='beizhu']").val();
-		
-		var time = $("#start").val();
-		
+		var take_dsc = $("input[name='beizhu']").val();	
+		var time = $.trim($("#start").val());
 
-		var storeaddr = $("#storeaddr").val();
-		 
+		var storeaddr = $("#storeaddr").val();		 
 		var checkedV = $('#pick_way input[name="takeType"]:checked').val();
-		
-		console.log("tt");
-		console.log(checkedV);
 
 		if(checkedV == 1){				
 			if ($.trim($("#countys").val()) == "0") {
@@ -319,25 +312,35 @@ $('#goods_verify').submit(function(){
 				$("#myaddr").focus();
 				$(".codeMsg").html("请填写详细地址");
 				return false;
-			} 
-			$(".codeMsg").html("");
-			 
-			 
+			} else{
+				$(".codeMsg").html(""); 
+			}
+			if (time != "") {
+				var timeNum = new Date(time).getTime() / 1000;
+				var timeNum2 = new Date(time).getTime()/ 1000 * 3600 * 24 * 3 ;
+				var valueTimeNum1 = new Date(valueTime1).getTime() / 1000;
+				var valueTimeNum2 = new Date(valueTime2).getTime() / 1000;
+
+				if (timeNum < valueTimeNum1 || timeNum > valueTimeNum2) {
+					console.log("yy");
+					$(".codeMsg").html("不在预定日期内，请查看有效期，在有效期内进行预定 ！！！");
+					return false;
+				}
+				if (timeNum2 > timeNum) {
+					$(".codeMsg").html("请至少提前三天预定 ！！！");
+					return false;
+				}
+				$(".codeMsg").html(""); 
+			}
+
+
 			$.post("{:url('portal/thpublic/address_do')}", { "sn": sncode,  "uname": uname, "utel": utel, "city": city, "address": address, "get0_time": time, "take_dsc": take_dsc,'take_type':1}, function (data) {
 				console.log(data);
-				if (time != '') {
-					if (valueTime1 < time < valueTime2) {
-						if (time < time * 3 * 24 * 3600) {
-							$(".codeMsg").html(data.msg);
-						}
-					}
-				}
 				$(".codeMsg").html(data.msg);
 				if (data.code != 1) {
 					return false;
 				}
 				$('#address_btn').hide();
-
 					setTimeout(function () {
 						 location.href = data.url;
 					}, 5000);
@@ -357,7 +360,6 @@ $('#goods_verify').submit(function(){
 		}
 	
 	return false;
-
 
 });
 

@@ -668,8 +668,8 @@ header .top0{
 }
 
 .btndiv{
-	text-align: center;
-   width: 100%;
+    text-align: center;
+    width: 100%;
 }
 .btndiv .btn{
 	background-color: #D91422;
@@ -678,7 +678,8 @@ header .top0{
     border: 0;
     padding: 10px;
     font-family: "microsoft yahei";
-    font-size: 0.3rem; 
+    font-size: 0.35rem; 
+    letter-spacing: 0.05rem;
     cursor: pointer;
 }
 .btndiv a{
