@@ -137,6 +137,9 @@ class ThPublicController extends HomeBaseController
                 if($info['value_time2'] < $data['get0_time']){
                     $this->error('预订时间太晚，不在发货期内');
                 }
+                if($data['get0_time'] < ($time+3600*24*3)){
+                    $this->error('请至少提前3天预订');
+                }
                 $update['get0_time']=$data['get0_time'];
             }
             $dsc='已提交提货信息，请等待发货，可以在网站查询快递进度';
