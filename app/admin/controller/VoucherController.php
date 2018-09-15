@@ -788,7 +788,7 @@ class VoucherController extends AdminbaseController {
 //            $objDrawing->setWorksheet($sheet);  
             
        }
-       
+       unset($list);
         //***********************画出单元格边框*****************************
         $styleArray = array(
             'borders' => array(
@@ -813,9 +813,12 @@ class VoucherController extends AdminbaseController {
         
         $objwriter = PHPExcel_IOFactory::createWriter($phpexcel, 'Excel5');
         $objwriter->save('php://output');
+        unset($sheet);
+        unset($phpexcel);
+        unset($objwriter);
         $where['status']=['eq',1];
         $rows= $m->where($where)->update(['status'=>2]);
-        
+       
         exit;
     }
      
