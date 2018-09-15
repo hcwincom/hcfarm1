@@ -634,6 +634,8 @@ class VoucherController extends AdminbaseController {
                 'uid'=>0,
                 'create_time'=>$time,
                 'time'=>$time,
+                'value_time1'=>strtotime($data['value_time1']),
+                'value_time2'=>strtotime($data['value_time2']),
             ];
         } 
         $counts=$m->insertAll($vouchers); 
