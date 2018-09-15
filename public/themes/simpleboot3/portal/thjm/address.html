@@ -70,7 +70,7 @@
                         <input type="hidden" name="" id="valueTime2" value="{$info.value_time2}">
                         <input class="inline laydate-icon" name="start" id="start" readonly/>
                     </div>
-                    <p class="orangrc" style="font-size: 14px;">请至少提前三天预定，不选择预定时间，我们会尽快安排发货</p>
+                    <p class="orangrc" style="font-size: 14px;">请至少提前四天预定，不选择预定时间，我们会尽快安排发货</p>
                 </div>
             </div>
             <!-- 门店自提 -->
@@ -123,7 +123,7 @@
     var start = {
         elem: '#start',
         format: 'YYYY-MM-DD',
-        min: laydate.now(+3),//设定最小日期为当前日期
+        min: laydate.now(+4),//设定最小日期为当前日期
         max: '2099-06-16', //最大日期
         istime: false,
         istoday: true,
