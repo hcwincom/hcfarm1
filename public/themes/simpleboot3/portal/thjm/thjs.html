@@ -172,13 +172,10 @@ $('#goods_verify').submit(function(){
 				if (time != "") {
 					var timeNum = new Date(time).getTime() / 1000;
 					if ( timeNum < valueTime1 || timeNum > valueTime2) {
-						$(".codeMsg").html("不在预定日期内，请查看有效期，在有效期内预定 ！！！");
+						$(".codeMsg").html("不在预定日期内，请查看有效期，在有效期内进行预定 ！！！");
 						return false;
 					}
-					if (timeNum < timeNum *3600 * 24 * 3) {
-						$(".codeMsg").html("请至少提前三天预定 ！！！");
-						return false;
-					}
+					
 				}
 				$(".codeMsg").html("");
 					

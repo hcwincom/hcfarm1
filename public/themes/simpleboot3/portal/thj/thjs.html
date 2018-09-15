@@ -108,7 +108,7 @@
 
 $('#goods_verify').submit(function(){
 	var form_check=pickGoods();
-	console.log('ssssssss');
+	// console.log('ssssssss');
 	if(form_check==false){
 		return false;
 	}
@@ -133,7 +133,7 @@ $('#goods_verify').submit(function(){
 		//获取卡券数据赋值
 		var info=data.data.info;
 		console.log(info);
-		console.log(info.network);
+		// console.log(info.network);
 		$('#info').show();
 		$('#info .show_price em').text(info['show_money']);
 		$('#info .status em').text(info['status_name']);
@@ -169,9 +169,6 @@ $('#goods_verify').submit(function(){
 			 get_time = timestampToTime(info['get_time']);
 		 }
 		var expressHref = $(".express_odd a").attr("href");
-
-		console.log(express_time);
-		console.log(info.status);
 		// 查看图片显示信息
 		$(".value_time1 em").text(value_time1);
 		$(".value_time2 em").text(value_time2);
@@ -183,11 +180,13 @@ $('#goods_verify').submit(function(){
 		if(info.status=='3'){ 
 			$('#info .status em').attr("class","redcolor");
 			$('#info').show();
-			$(".personInfo").show();	
-			$("#valueTime1").val(value_time1);
-			$("#valueTime2").val(value_time2);
+			$(".personInfo").show();
+			$("#valueTime1").val(info.value_time1);
+			$("#valueTime2").val(info.value_time2);
+			
 			return false;
 		} 
+
 		$(".uname em").text(info['uname']);
 		$(".utel em").text(info['utel']);
 		$(".get0_time em").text(get0_time);
@@ -317,17 +316,9 @@ $('#goods_verify').submit(function(){
 			}
 			if (time != "") {
 				var timeNum = new Date(time).getTime() / 1000;
-				var timeNum2 = new Date(time).getTime()/ 1000 * 3600 * 24 * 3 ;
-				var valueTimeNum1 = new Date(valueTime1).getTime() / 1000;
-				var valueTimeNum2 = new Date(valueTime2).getTime() / 1000;
-
-				if (timeNum < valueTimeNum1 || timeNum > valueTimeNum2) {
+				if (timeNum < valueTime1 || timeNum > valueTime2) {
 					console.log("yy");
 					$(".codeMsg").html("不在预定日期内，请查看有效期，在有效期内进行预定 ！！！");
-					return false;
-				}
-				if (timeNum2 > timeNum) {
-					$(".codeMsg").html("请至少提前三天预定 ！！！");
 					return false;
 				}
 				$(".codeMsg").html(""); 
