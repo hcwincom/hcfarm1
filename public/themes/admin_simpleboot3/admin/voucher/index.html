@@ -60,9 +60,11 @@
          &nbsp;&nbsp;&nbsp;&nbsp;
         <a class="btn btn-danger" href="{:url('index')}">清空</a>
         &nbsp;&nbsp;&nbsp;&nbsp;
-         <a class="btn btn-primary" href="{:url('excel',$data)}">导出表格</a>
+         <a class="btn btn-primary" href="{:url('excel',$data)}">制卡信息导出</a>
           &nbsp;&nbsp;&nbsp;&nbsp;
-         
+           <a class="btn btn-primary" href="{:url('excel1',$data)}">提货信息导出</a>
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          <p>导出表格前请选择条件，搜索之后再导出；如果导出失败请选择更小的范围，每次1000条一下；制卡信息导出按编号排序，提货信息导出按状态和更新时间排序</p>
     </form>
     <form method="post" class="js-ajax-form margin-top-20" action="{:url('deletes')}">
          <div class="table-actions">
@@ -88,7 +90,8 @@
                 <th>展示价格</th>
                 <th>实际价格</th> 
                
-                <th>创建时间</th>
+                <th>提货时间</th>
+                <th>预订时间</th>
                 <th>更新时间</th>
                  
                 <th>状态</th>
@@ -110,8 +113,19 @@
                      <td>{$vo.model}</td>
                  	<td>￥{$vo.show_money}</td> 
                     <td>￥{$vo.real_money}</td>
-                    
-                    <td>{$vo.create_time|date='Y-m-d H:i:s',###}</td>
+                <gt name="vo.status" value="3">    
+                    <td>{$vo.take_time|date='Y-m-d H:i:s',###} </td>
+                    <td>
+                    <eq name="vo.get0_time" value="0">
+						 尽快发货 
+					<else/>
+						{$vo.get0_time|date='Y-m-d',###}
+					</eq>
+					</td>
+				<else/>
+					<td>--</td>
+					<td>--</td>
+				</gt>
                     <td>{$vo.time|date='Y-m-d H:i:s',###}</td>
                     <td>{$voucher_status[$vo.status]}</td>
                 </tr>

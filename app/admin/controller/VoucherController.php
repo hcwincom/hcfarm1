@@ -138,7 +138,7 @@ class VoucherController extends AdminbaseController {
          ->paginate(20);  
          // 获取分页显示
          $page = $list->appends($data)->render(); 
-          
+         session('index_data',$data);
          $this->assign('page',$page);
          $this->assign('data',$data);
          $this->assign('list',$list);
@@ -457,7 +457,7 @@ class VoucherController extends AdminbaseController {
         $row=$m->where('id', $data['id'])->update($data);
         if($row===1){
             $m_pic->commit();
-            $this->success('修改成功',url('edit',['id'=>$data['id']])); 
+            $this->success('修改成功',url('index', session('index_data'))); 
         }else{
             $m_pic->rollback();
             $this->error('修改失败');
@@ -823,7 +823,167 @@ class VoucherController extends AdminbaseController {
        
         exit;
     }
-     
+    /**
+     * 提货信息导出excel
+     * @adminMenu(
+     *     'name'   => '提货信息导出excel',
+     *     'parent' => 'index',
+     *     'display'=> false,
+     *     'hasView'=> false,
+     *     'order'  => 10,
+     *     'icon'   => '',
+     *     'remark' => '提货信息导出excel',
+     *     'param'  => ''
+     * )
+     */
+    function excel1(){
+        
+        $m=$this->m;
+        $statuss=$this->voucher_status;
+        $data=$this->request->param();
+        $where=[];
+        if(empty($data['status'])){
+            $data['status']=0;
+        }else{
+            $where['status']=['eq',$data['status']];
+        }
+        if(empty($data['type1']) || $data['type1']=='no'){
+            $data['type1']='no';
+            $data['type1_name']='';
+        }else{
+            if(empty($data['type1_name'])){
+                $data['type1_name']='';
+            }else{
+                $where[$data['type1']]=['eq',$data['type1_name']];
+            }
+        }
+        if(empty($data['type2']) || $data['type2']=='no'){
+            $data['type2']='no';
+            $data['type2_name']='';
+        }else{
+            if(empty($data['type2_name'])){
+                $data['type2_name']='';
+            }else{
+                $where[$data['type2']]=['like','%'.$data['type2_name'].'%'];
+            }
+        }
+        
+        $list= $m->where($where)
+        ->order('status asc,time asc')
+        ->column('id,sn,name,show_money,real_money,status,model,city_name,address,uname,utel,take_time,get0_time,express_time,express,network,take_dsc');
+        
+        if(empty($list)){
+            $this->error('数据不存在');
+        }
+        $networks= Db::name('network')->column('id,name');
+        ini_set('max_execution_time', '0');
+        
+        $filename='提货信息'.date('Y-m-d-H-i-s').'.xls';
+        $phpexcel = new PHPExcel();
+        
+        //设置第一个sheet
+        $phpexcel->setActiveSheetIndex(0);
+        $sheet= $phpexcel->getActiveSheet();
+        
+        //设置sheet表名
+        $sheet->setTitle($filename);
+        
+        // 所有单元格默认高度
+        $sheet->getDefaultRowDimension()->setRowHeight(60);
+        $sheet->getDefaultColumnDimension()->setWidth(10);
+        
+        //单个宽度设置
+        $sheet->getColumnDimension('A')->setWidth(5);
+        $sheet->getColumnDimension('K')->setWidth(20);
+        $sheet->getColumnDimension('H')->setWidth(20);
+        
+        //设置水平居中
+        $sheet->getDefaultStyle()->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+        
+        //垂直居中
+        $sheet->getDefaultStyle()->getAlignment()->setVertical(PHPExcel_Style_Alignment::VERTICAL_CENTER);
+        //长度不够显示的时候 是否自动换行
+        $sheet->getDefaultStyle()->getAlignment()->setWrapText(true);
+        //设置文本格式
+        $str=PHPExcel_Cell_DataType::TYPE_STRING;
+        
+        //设置第一行
+        $i=1;
+        
+        $sheet
+        ->setCellValue('A'.$i, '序号') 
+        ->setCellValue('B'.$i, '提货状态')
+        ->setCellValue('C'.$i, '提货编号')  
+        ->setCellValue('D'.$i, '产品名称')
+        ->setCellValue('E'.$i, '展示价格')
+        ->setCellValue('F'.$i, '实际价格')
+        ->setCellValue('G'.$i, '型号') 
+        ->setCellValue('H'.$i, '提货地址')
+        ->setCellValue('I'.$i, '提货时间')
+        ->setCellValue('J'.$i, '预订时间')
+        ->setCellValue('K'.$i, '提货人-联系电话') 
+        ->setCellValue('L'.$i, '提货备注')
+        ->setCellValue('M'.$i, '发货时间')
+        ->setCellValue('N'.$i, '快递单号');
+         
+        foreach($list as $k=>$v){
+            $i++; 
+            $v['take_time']=($v['status']>3 )?date('Y-m-d H:i',$v['take_time']):'--';
+            $v['get0_time']=($v['status']>3 && $v['get0_time']>0)?date('Y-m-d H:i',$v['get0_time']):'--';
+            $v['express_time']=($v['status']>4 && $v['express_time']>0)?date('Y-m-d H:i',$v['express_time']):'--';
+            $sheet
+            ->setCellValue('A'.$i, $i-1)
+            ->setCellValue('B'.$i, $statuss[$v['status']]) 
+            ->setCellValue('D'.$i, $v['name'])
+            ->setCellValue('E'.$i, $v['show_money'])
+            ->setCellValue('F'.$i, $v['real_money'])
+            ->setCellValue('G'.$i, $v['model'])
+            ->setCellValue('I'.$i, $v['take_time'])
+            ->setCellValue('K'.$i, $v['uname'].'-'.$v['utel'])
+            ->setCellValue('L'.$i, $v['take_dsc']);
+            if($v['network']>0){
+                $sheet->setCellValue('H'.$i, '线下提货-'.(isset($networks[$v['network']])?$networks[$v['network']]:'未知')); 
+            }else{
+                $sheet->setCellValue('H'.$i,  $v['city_name'].'-'.$v['address']) 
+                ->setCellValue('J'.$i, $v['get0_time']) 
+                ->setCellValue('M'.$i, $v['express_time']);
+                $sheet->setCellValue('N'.$i, $v['express']);
+            } 
+            $sheet->setCellValueExplicit('C'.$i, $v['sn'],$str);
+            
+        }
+        unset($list);
+        //***********************画出单元格边框*****************************
+        $styleArray = array(
+            'borders' => array(
+                'allborders' => array(
+                    //'style' => PHPExcel_Style_Border::BORDER_THICK,//边框是粗的
+                    'style' => PHPExcel_Style_Border::BORDER_THIN,//细边框
+                    //'color' => array('argb' => 'FFFF0000'),
+                ),
+            ),
+        );
+        
+        $sheet->getStyle('A1:N'.$i)->applyFromArray($styleArray);
+        
+        //在浏览器输出
+        header('Content-Type: application/vnd.ms-excel');
+        header("Content-Disposition: attachment;filename=$filename");
+        header('Cache-Control: max-age=0');
+        header('Cache-Control: max-age=1');
+        
+        header ('Cache-Control: cache, must-revalidate'); // HTTP/1.1
+        header ('Pragma: public'); // HTTP/1.0
+        
+        $objwriter = PHPExcel_IOFactory::createWriter($phpexcel, 'Excel5');
+        $objwriter->save('php://output');
+        unset($sheet);
+        unset($phpexcel);
+        unset($objwriter);
+         
+        exit;
+    }
+    
     
     /**
      * 提货券删除
