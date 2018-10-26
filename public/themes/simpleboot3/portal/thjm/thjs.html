@@ -1,16 +1,30 @@
 <script>
 $('#goods_verify').submit(function(){
-	var form_check=pickGoods();
-	console.log('ssssssss');
-	if(form_check==false){
+
+	if ($.trim($("#code").val()) == "" || isNumber($.trim($("#code").val())) == false) {
+		$("#code").focus();
+		$(".indyz").html("请正确填写提货编码");
 		return false;
-	} 
-	 
-	var sn=$('#code').val();
-	var psw=$('#password').val();
-	var verify=$('#checkcode').val();
-	
+	} else if ($.trim($("#password").val()) == "" || isPassword($.trim($("#password").val())) == false) {
+		$("#password").focus();
+		$(".indyz1").html("请输入正确密码");
+		return false;
+	} else if ($.trim($("#checkcode").val()) = "" || $.trim($("#checkcode").val()).length != 4) {
+		$("#checkcode").focus();
+		$(".indyz2").html("请输入正确验证码");
+		return false;
+	} else {
+		$(".indyz").html("");
+		$(".indyz1").html("");
+		$(".indyz2").html("");
+	}
+
+	var sn = $('#code').val();
+	var psw = $('#password').val();
+	var verify = $('#checkcode').val();
+
 	$.post("{:url('portal/thpublic/verify')}",{'sn':sn,'psw':psw,'verify':verify},function(data){
+		console.log("tt");
 		if(data.code!=1){
 			$(".indyz2").html(data.msg);
 			$('.codeImg').attr('src',$('.codeImg').attr('src')+';1');

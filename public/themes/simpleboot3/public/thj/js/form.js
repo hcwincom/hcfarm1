@@ -46,19 +46,19 @@
 
 //  礼品券验证
 	function pickGoods(){
-		var num = $.trim($("input[name=number]").val());
-		var pwd = $.trim($("input[name=password]").val());
-		var code = $.trim($("input[name=codeNum]").val());
+		var num = $.trim($("#code").val());
+		var pwd = $.trim($("#password").val());
+		var code = $.trim($("#checkcode").val());
 		if(num == "" || isNumber(num) == false){
-			$("input[name=code]").focus();
+			$("#code").focus();
 			$(".indyz").html("请正确填写提货编码");
 			return false;
 		}else if(pwd == "" || isPassword(pwd) == false){
-			$("input[name=password]").focus();
+			$("#password").focus();
 			$(".indyz1").html("请输入正确密码");
 			return false;
 		}else if(code = "" || code.length != 4){
-			$("input[name=codeNum]").focus();
+			$("#checkcode").focus();
 			$(".indyz2").html("请输入正确验证码");
 			return false;
 		}else{
