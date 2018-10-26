@@ -7,21 +7,21 @@
 		    		<div class="middles_item">
 	                <span>券卡编码：</span>
 	                <div>
-	                    <input id="code" type="text" class="txtpt" name="number" value="{$sn}" maxlength="20" placeholder="请输入提货编码" required/>
+	                    <input id="code" type="text" class="txtpt" name="sn" value="{$sn}" maxlength="20" placeholder="请输入提货编码" required/>
 	                </div>
 	            </div>
 	            <p class="redColor indyz"></p>
 	            <div class="middles_item">
 	            	<span>提货密码：</span>
 	            	<div>
-	            		<input id="password" type="password" class="txtpt" name="password" placeholder="请输入提货密码" required/>
+	            		<input id="password" type="password" class="txtpt" name="psw" placeholder="请输入提货密码" required/>
 	            	</div>
 	            </div>
 	            <p class="redColor indyz1"></p>
 	            <div class="middles_item">
 	                <span>验证码：</span>
 	                <div style="position: relative;">
-	                    <input id="checkcode" type="text" class="txtpt" name="codeNum" placeholder="请输入验证码" required/>
+	                    <input id="checkcode" type="text" class="txtpt" name="verify" placeholder="请输入验证码" required/>
 	                    <div class="identify">
 	                    	<img class="codeImg" src="/captcha/new.html?height=50;width=150;font_size=18" onclick="this.src='/captcha/new.html?height=50;width=150;font_size=18;time='+Math.random();"
 										 title="换一张">

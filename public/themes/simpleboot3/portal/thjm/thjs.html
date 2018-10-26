@@ -12,7 +12,6 @@ $('#goods_verify').submit(function(){
 	
 	$.post("{:url('portal/thpublic/verify')}",{'sn':sn,'psw':psw,'verify':verify},function(data){
 		if(data.code!=1){
-		 
 			$(".indyz2").html(data.msg);
 			$('.codeImg').attr('src',$('.codeImg').attr('src')+';1');
 			return false;
@@ -23,7 +22,6 @@ $('#goods_verify').submit(function(){
 	
 	return false;
 });
-
 
 //  城市选择
 
@@ -174,8 +172,7 @@ $('#goods_verify').submit(function(){
 					if ( timeNum < valueTime1 || timeNum > valueTime2) {
 						$(".codeMsg").html("不在预定日期内，请查看有效期，在有效期内进行预定 ！！！");
 						return false;
-					}
-					
+					}					
 				}
 				$(".codeMsg").html("");
 					
@@ -221,8 +218,6 @@ $("#confirmGoods").click(function () {
 			$("#confirmGoods").hide();
 	},'json');
 });
-
-
 
 	// 申请售后服务
 	$("#backBtn").click(function () {

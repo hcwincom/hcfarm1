@@ -2,24 +2,24 @@
 </head>
 <body class="bgf">
     <include file="portal@thjm/header" />
-    <form action="" method="POST">
+    <form action="{:url('portal/thpublic/address_do')}" method="POST">
         <div class="yzdiv yzdivInfo">
             <div class="personIndo">
                 <span>券卡编号：</span>
                 <div>
-                    <input type="text"  id="sn" value="{$info.sn}"   readonly>
+                    <input type="text"  id="sn" name="sn"value="{$info.sn}" readonly>
                 </div>
             </div>
             <div class="personIndo">
                 <span>联系人：</span>
                 <div>
-                    <input type="text" name="myname" id="myname" value="" placeholder="请输入联系人姓名" maxlength="50" value="" onkeyup="value=value.replace(/\s/g,'')">
+                    <input type="text" name="uname" id="myname" value="" placeholder="请输入联系人姓名" maxlength="50" value="" onkeyup="value=value.replace(/\s/g,'')">
                 </div>
             </div>
             <div class="personIndo">
                 <span>联系电话：</span>
                 <div>
-                    <input type="text" name="myphone" id="myphone" placeholder="请输入联系电话" maxlength="50" value="" onkeyup="value=value.replace(/\s/g,'')">
+                    <input type="text" name="utel" id="myphone" placeholder="请输入联系电话" maxlength="50" value="" onkeyup="value=value.replace(/\s/g,'')">
                 </div>
             </div>
             <div class="personIndo">
@@ -54,13 +54,13 @@
                 <div class="personIndo">
                     <span style="vertical-align: top;">详细地址：</span>
                     <div>
-                        <textarea name="myaddr" id="myaddr" class="infotxt" maxlength="100" placeholder="街道门牌信息" onkeyup="value=value.replace(/\s/g,'')"></textarea>
+                        <textarea name="address" id="myaddr" class="infotxt" maxlength="100" placeholder="街道门牌信息" onkeyup="value=value.replace(/\s/g,'')"></textarea>
                     </div>
                 </div>
                 <div class="personIndo">
                     <span>信息备注：</span>
                     <div>
-                        <input type="text" name="beizhu" id="beizhu" class="infotxt" maxlength="50" placeholder="备注信息" onkeyup="value=value.replace(/\s/g,'')" value="">
+                        <input type="text" name="take_dsc" id="beizhu" class="infotxt" maxlength="50" placeholder="备注信息" onkeyup="value=value.replace(/\s/g,'')" value="">
                     </div>
                 </div>
                 <div class="personIndo" style="margin-bottom:0.3rem;">
@@ -68,7 +68,7 @@
                     <div>
                         <input type="hidden" name="" id="valueTime1" value="{$info.value_time1}">
                         <input type="hidden" name="" id="valueTime2" value="{$info.value_time2}">
-                        <input class="inline laydate-icon" name="start" id="start" readonly/>
+                        <input class="inline laydate-icon" name="get0_time" id="start" readonly/>
                     </div>
                     <p class="orangrc" style="font-size: 14px;">请至少提前四天预定，不选择预定时间，我们会尽快安排发货</p>
                 </div>
@@ -82,7 +82,7 @@
                             <select name="store" id="storeCity">
                                 <option class="store0" value="0">请选择城市</option>
                             </select>
-                            <select name="storeaddr" id="storeaddr">
+                            <select name="network" id="storeaddr">
                                 <option class="store0" value="0">请选择门店地址</option>
                             </select>
                         </div>
@@ -91,7 +91,7 @@
                 <div class="personIndo">
                     <span>信息备注：</span>
                     <div>
-                        <input type="text" name="beizhu" id="beizhu2" class="infotxt" maxlength="50" placeholder="备注信息" onkeyup="value=value.replace(/\s/g,'')" value="">
+                        <input type="text" name="take_dsc" id="beizhu2" class="infotxt" maxlength="50" placeholder="备注信息" onkeyup="value=value.replace(/\s/g,'')" value="">
                     </div>
                 </div>
             </div>
@@ -100,7 +100,7 @@
             </div>
             <div id="address_btn">
                 <div class="btndiv">
-                    <input type="button" id="pickBtn" class="orgbtn btn w100b" value="提交" />
+                    <input type="submit" id="pickBtn" class="orgbtn btn w100b" value="提交" />
                 </div>
             </div>
 
