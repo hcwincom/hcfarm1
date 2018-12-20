@@ -321,6 +321,7 @@ img {
 	float: left;
     border: 1px solid #e6e6e6;
     margin: 10px 0;
+    position: relative;
 }
 .cardl {
     text-align: center;
@@ -768,10 +769,27 @@ img {
 .cardGoods_btn>.goodsConfirm>a{
     background: green;
 }
-
-
-
-
+/* 提货验证弹窗 */
+.goodsWindow{
+    position: absolute;
+    top: 20%;
+    left: 20%;
+    margin: auto;
+    background: #fff;
+    width:  600px;
+    height: 100px;
+   box-shadow: 1px 5px 5px #888;
+   display: none;
+   z-index: 20;
+}
+.goodsWindow-content>p{
+     width: 100%;
+    text-align: center;
+     line-height: 100px;
+     font-size: 16px;
+     letter-spacing: 2px;
+     color: #666;
+}
 
 
 

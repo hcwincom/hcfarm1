@@ -936,9 +936,27 @@ header .top0{
     background: #D50708;
 }
 
-
-
-
+/* 提完 */
+.goodsWindow{
+    background: #f7f7f7;
+    position: absolute;
+    top:30%;
+    left: 0;
+    right: 0;
+    margin: auto;
+    z-index: 20;
+    height: 80px;
+    box-shadow: 1px 3px 3px #999,-1px 3px 3px #999,1px -3px 3px #999,-1px -3px 3px #999;
+    -webkit-box-shadow: 1px 3px 3px #999,-1px 3px 3px #999,1px -3px 3px #999,-1px -3px 3px #999;
+    -moz-box-shadow: 1px 3px 3px #999,-1px 3px 3px #999,1px -3px 3px #999,-1px -3px 3px #999;
+    display: none;
+}
+.goodsWindow>p{
+    text-align: center;
+    line-height: 80px;
+    color: #666;
+    letter-spacing: 2px;
+}
 
 
 

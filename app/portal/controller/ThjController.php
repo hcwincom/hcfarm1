@@ -31,6 +31,8 @@ class ThjController extends HomeBaseController
         }
        
     }
+
+   
     //提货券首页
     public function goods()
     {
