@@ -940,7 +940,7 @@ header .top0{
 .goodsWindow{
     background: #f7f7f7;
     position: absolute;
-    top:30%;
+    top:36%;
     left: 0;
     right: 0;
     margin: auto;
@@ -954,8 +954,9 @@ header .top0{
 .goodsWindow>p{
     text-align: center;
     line-height: 80px;
-    color: #666;
+    color: #D50708;
     letter-spacing: 2px;
+    font-size: 0.35rem;
 }
 
 
