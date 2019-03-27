@@ -79,11 +79,7 @@ class HomeBaseController extends BaseController
         }    
         View::share('company',$com); 
         View::share('cates',$cates); 
-        $module     = $this->request->module();
-        $controller = $this->request->controller();
-        $action     = $this->request->action();
-        $rule       = $module . $controller . $action;
-        echo $rule;
+       
     }
 
     public function _initializeView()
