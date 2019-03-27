@@ -920,7 +920,7 @@ class VoucherController extends AdminbaseController {
         ->setCellValue('G'.$i, '型号') 
         ->setCellValue('H'.$i, '提货地址')
         ->setCellValue('I'.$i, '提货时间')
-        ->setCellValue('J'.$i, '预订时间')
+        ->setCellValue('J'.$i, '预订收货时间')
         ->setCellValue('K'.$i, '提货人-联系电话') 
         ->setCellValue('L'.$i, '提货备注')
         ->setCellValue('M'.$i, '发货时间')
@@ -929,6 +929,7 @@ class VoucherController extends AdminbaseController {
         foreach($list as $k=>$v){
             $i++; 
             $v['take_time']=($v['status']>3 )?date('Y-m-d H:i',$v['take_time']):'--';
+            
             $v['get0_time']=($v['status']>3 && $v['get0_time']>0)?date('Y-m-d H:i',$v['get0_time']):'--';
             $v['express_time']=($v['status']>4 && $v['express_time']>0)?date('Y-m-d H:i',$v['express_time']):'--';
             $sheet
