@@ -1,7 +1,7 @@
 <script>
 $('#goods_verify').submit(function(){
-	$(".goodsWindow").fadeIn();
-	return false;
+	// $(".goodsWindow").fadeIn();
+	// return false;
 	if ($.trim($("#code").val()) == "" || isNumber($.trim($("#code").val())) == false) {
 		$("#code").focus();
 		$(".indyz").html("请正确填写提货编码");
