@@ -232,7 +232,7 @@ class UserController extends AdminBaseController
      *     'param'  => ''
      * )
      */
-    public function userInfo()
+    public function userinfo()
     {
         $id   = cmf_get_current_admin_id();
         $user = Db::name('user')->where(["id" => $id])->find();
@@ -253,7 +253,7 @@ class UserController extends AdminBaseController
      *     'param'  => ''
      * )
      */
-    public function userInfoPost()
+    public function userinfoPost()
     {
         if ($this->request->isPost()) {
 
@@ -338,7 +338,7 @@ class UserController extends AdminBaseController
      *     'param'  => ''
      * )
      */
-    public function cancelBan()
+    public function cancelban()
     {
         $id = $this->request->param('id', 0, 'intval');
         if (!empty($id)) {

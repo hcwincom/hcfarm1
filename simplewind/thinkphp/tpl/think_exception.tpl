@@ -310,7 +310,7 @@
     </style>
 </head>
 <body>
-    <div class="echo"> 
+    <div class="echo">
         <?php echo $echo;?>
     </div>
     <?php if(\think\App::$debug) { ?>
@@ -319,7 +319,7 @@
         
             <div class="info">
                 <div>
-                    <h2>[<?php echo $code; ?>] <?php echo sprintf('%s in %s', parse_class($name), parse_file($file, $line)); ?></h2>
+                    <h2>[<?php echo $code; ?>]&nbsp;<?php echo sprintf('%s in %s', parse_class($name), parse_file($file, $line)); ?></h2>
                 </div>
                 <div><h1><?php echo nl2br(htmlentities($message)); ?></h1></div>
             </div>
@@ -328,9 +328,9 @@
 	<?php if(!empty($source)){?>
         <div class="source-code">
             <pre class="prettyprint lang-php"><ol start="<?php echo $source['first']; ?>"><?php foreach ((array) $source['source'] as $key => $value) { ?><li class="line-<?php echo $key + $source['first']; ?>"><code><?php echo htmlentities($value); ?></code></li><?php } ?></ol></pre>
-        </div> 
+        </div>
 	<?php }?>
-        <div class="trace"> 
+        <div class="trace">
             <h2>Call Stack</h2>
             <ol>
                 <li><?php echo sprintf('in %s', parse_file($file, $line)); ?></li>
@@ -368,7 +368,7 @@
     
     <?php if(!empty($datas)){ ?>
     <div class="exception-var">
-        <h2>Exception Datas</h2> 
+        <h2>Exception Datas</h2>
         <?php foreach ((array) $datas as $label => $value) { ?>
         <table>
             <?php if(empty($value)){ ?>
@@ -440,10 +440,10 @@
     <?php } ?>
 
     <div class="copyright">
-       <a title="返回首页" href="/">返回首页</a> 
-       
-        <a title="返回上一页" href="javascript:history.go(-1);">返回上一页</a> 
-    </div>  
+        <a title="官方网站" href="http://www.thinkphp.cn">ThinkPHP</a> 
+        <span>V<?php echo THINK_VERSION; ?></span> 
+        <span>{ 十年磨一剑-为API开发设计的高性能框架 }</span>
+    </div>
     <?php if(\think\App::$debug) { ?>
     <script>
         var LINE = <?php echo $line; ?>;

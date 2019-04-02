@@ -243,7 +243,7 @@ class SettingController extends AdminBaseController
      *     'param'  => ''
      * )
      */
-    public function clearCache()
+    public function clearcache()
     {
         cmf_clear_cache();
        
